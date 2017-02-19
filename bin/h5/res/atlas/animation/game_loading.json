@@ -1,0 +1,736 @@
+{
+    "frames": {
+        "game_loading_01.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_02.png": {
+            "frame": {
+                "x": 0,
+                "y": 53,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_03.png": {
+            "frame": {
+                "x": 0,
+                "y": 106,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_04.png": {
+            "frame": {
+                "x": 50,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_05.png": {
+            "frame": {
+                "x": 51,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_06.png": {
+            "frame": {
+                "x": 0,
+                "y": 159,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_07.png": {
+            "frame": {
+                "x": 51,
+                "y": 159,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_08.png": {
+            "frame": {
+                "x": 52,
+                "y": 106,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_09.png": {
+            "frame": {
+                "x": 101,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_10.png": {
+            "frame": {
+                "x": 102,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_11.png": {
+            "frame": {
+                "x": 101,
+                "y": 159,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_12.png": {
+            "frame": {
+                "x": 103,
+                "y": 106,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_13.png": {
+            "frame": {
+                "x": 152,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_14.png": {
+            "frame": {
+                "x": 153,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_15.png": {
+            "frame": {
+                "x": 153,
+                "y": 106,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_16.png": {
+            "frame": {
+                "x": 153,
+                "y": 159,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_17.png": {
+            "frame": {
+                "x": 203,
+                "y": 53,
+                "w": 37,
+                "h": 10,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 37,
+                "h": 10
+            },
+            "sourceSize": {
+                "w": 37,
+                "h": 10
+            },
+            "rotated": false,
+            "trimed": true
+        }
+    },
+    "meta": {
+        "app": "http:\/\/www.layabox.com",
+        "version": "0.1.0 alpha",
+        "format": "json",
+        "scale": 1,
+        "image": "game_loading.png",
+        "prefix": "animation\/game_loading\/"
+    },
+    "frames": {
+        "game_loading_01.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_02.png": {
+            "frame": {
+                "x": 0,
+                "y": 53,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_03.png": {
+            "frame": {
+                "x": 0,
+                "y": 106,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_04.png": {
+            "frame": {
+                "x": 50,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_05.png": {
+            "frame": {
+                "x": 51,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_06.png": {
+            "frame": {
+                "x": 0,
+                "y": 159,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_07.png": {
+            "frame": {
+                "x": 51,
+                "y": 159,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_08.png": {
+            "frame": {
+                "x": 52,
+                "y": 106,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_09.png": {
+            "frame": {
+                "x": 101,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_10.png": {
+            "frame": {
+                "x": 102,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_11.png": {
+            "frame": {
+                "x": 101,
+                "y": 159,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_12.png": {
+            "frame": {
+                "x": 103,
+                "y": 106,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_13.png": {
+            "frame": {
+                "x": 152,
+                "y": 53,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_14.png": {
+            "frame": {
+                "x": 153,
+                "y": 0,
+                "w": 49,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 49,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_15.png": {
+            "frame": {
+                "x": 153,
+                "y": 106,
+                "w": 48,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 0,
+                "w": 48,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_16.png": {
+            "frame": {
+                "x": 153,
+                "y": 159,
+                "w": 50,
+                "h": 51,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 51
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 51
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_loading_17.png": {
+            "frame": {
+                "x": 203,
+                "y": 53,
+                "w": 37,
+                "h": 10,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 37,
+                "h": 10
+            },
+            "sourceSize": {
+                "w": 37,
+                "h": 10
+            },
+            "rotated": false,
+            "trimed": true
+        }
+    },
+    "meta": {
+        "app": "http:\/\/www.layabox.com",
+        "version": "0.1.0 alpha",
+        "format": "json",
+        "scale": 1,
+        "image": "game_loading.png",
+        "prefix": "animation\/game_loading\/"
+    }
+}

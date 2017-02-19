@@ -1,0 +1,2280 @@
+{
+    "frames": {
+        "ttz_dyj_txk.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 353,
+                "h": 302,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 12,
+                "y": 0,
+                "w": 353,
+                "h": 302
+            },
+            "sourceSize": {
+                "w": 375,
+                "h": 302
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_gx_yg1.png": {
+            "frame": {
+                "x": 0,
+                "y": 304,
+                "w": 256,
+                "h": 256,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 256,
+                "h": 256
+            },
+            "sourceSize": {
+                "w": 256,
+                "h": 256
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_gx_yg.png": {
+            "frame": {
+                "x": 355,
+                "y": 0,
+                "w": 345,
+                "h": 185,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 345,
+                "h": 185
+            },
+            "sourceSize": {
+                "w": 345,
+                "h": 185
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_com_tip_bg.png": {
+            "frame": {
+                "x": 355,
+                "y": 187,
+                "w": 400,
+                "h": 125,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 400,
+                "h": 125
+            },
+            "sourceSize": {
+                "w": 400,
+                "h": 125
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_z_2.png": {
+            "frame": {
+                "x": 0,
+                "y": 562,
+                "w": 168,
+                "h": 225,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 168,
+                "h": 225
+            },
+            "sourceSize": {
+                "w": 168,
+                "h": 225
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_z_1.png": {
+            "frame": {
+                "x": 0,
+                "y": 789,
+                "w": 233,
+                "h": 140,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 233,
+                "h": 140
+            },
+            "sourceSize": {
+                "w": 233,
+                "h": 140
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_d_sm.png": {
+            "frame": {
+                "x": 258,
+                "y": 314,
+                "w": 271,
+                "h": 84,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 271,
+                "h": 84
+            },
+            "sourceSize": {
+                "w": 271,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_ts_02.png": {
+            "frame": {
+                "x": 258,
+                "y": 400,
+                "w": 273,
+                "h": 82,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 273,
+                "h": 82
+            },
+            "sourceSize": {
+                "w": 273,
+                "h": 82
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bz_1.png": {
+            "frame": {
+                "x": 702,
+                "y": 0,
+                "w": 174,
+                "h": 123,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 174,
+                "h": 123
+            },
+            "sourceSize": {
+                "w": 174,
+                "h": 123
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bz_3.png": {
+            "frame": {
+                "x": 258,
+                "y": 484,
+                "w": 158,
+                "h": 110,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 8,
+                "y": 6,
+                "w": 158,
+                "h": 110
+            },
+            "sourceSize": {
+                "w": 174,
+                "h": 123
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bz_2.png": {
+            "frame": {
+                "x": 418,
+                "y": 484,
+                "w": 151,
+                "h": 104,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 12,
+                "y": 9,
+                "w": 151,
+                "h": 104
+            },
+            "sourceSize": {
+                "w": 174,
+                "h": 123
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_ts_01.png": {
+            "frame": {
+                "x": 531,
+                "y": 314,
+                "w": 212,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 212,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 212,
+                "h": 81
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_board_2.png": {
+            "frame": {
+                "x": 170,
+                "y": 596,
+                "w": 380,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 380,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 380,
+                "h": 40
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_gx_hd.png": {
+            "frame": {
+                "x": 170,
+                "y": 638,
+                "w": 143,
+                "h": 105,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 143,
+                "h": 105
+            },
+            "sourceSize": {
+                "w": 143,
+                "h": 105
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_bt_xy.png": {
+            "frame": {
+                "x": 315,
+                "y": 638,
+                "w": 89,
+                "h": 104,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 89,
+                "h": 104
+            },
+            "sourceSize": {
+                "w": 89,
+                "h": 104
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_wz_bz.png": {
+            "frame": {
+                "x": 406,
+                "y": 638,
+                "w": 123,
+                "h": 68,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 123,
+                "h": 68
+            },
+            "sourceSize": {
+                "w": 123,
+                "h": 68
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_ls_lv2.png": {
+            "frame": {
+                "x": 533,
+                "y": 397,
+                "w": 207,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 207,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 207,
+                "h": 40
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_status_6.png": {
+            "frame": {
+                "x": 170,
+                "y": 745,
+                "w": 183,
+                "h": 42,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 183,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 183,
+                "h": 42
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_0.png": {
+            "frame": {
+                "x": 235,
+                "y": 789,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_1.png": {
+            "frame": {
+                "x": 235,
+                "y": 854,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_2.png": {
+            "frame": {
+                "x": 304,
+                "y": 789,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_3.png": {
+            "frame": {
+                "x": 304,
+                "y": 854,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_a.png": {
+            "frame": {
+                "x": 406,
+                "y": 708,
+                "w": 75,
+                "h": 68,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 9,
+                "y": 6,
+                "w": 75,
+                "h": 68
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_b.png": {
+            "frame": {
+                "x": 483,
+                "y": 708,
+                "w": 73,
+                "h": 68,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 8,
+                "y": 6,
+                "w": 73,
+                "h": 68
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_c.png": {
+            "frame": {
+                "x": 373,
+                "y": 778,
+                "w": 73,
+                "h": 73,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 8,
+                "y": 0,
+                "w": 73,
+                "h": 73
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_4.png": {
+            "frame": {
+                "x": 373,
+                "y": 853,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_light.png": {
+            "frame": {
+                "x": 448,
+                "y": 778,
+                "w": 86,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 86,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 86,
+                "h": 81
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j3.png": {
+            "frame": {
+                "x": 442,
+                "y": 861,
+                "w": 78,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 82
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j2.png": {
+            "frame": {
+                "x": 522,
+                "y": 861,
+                "w": 78,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 82
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j1.png": {
+            "frame": {
+                "x": 536,
+                "y": 778,
+                "w": 77,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 77,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 82
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j4.png": {
+            "frame": {
+                "x": 602,
+                "y": 861,
+                "w": 78,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 81
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j5.png": {
+            "frame": {
+                "x": 571,
+                "y": 439,
+                "w": 78,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 81
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_j6.png": {
+            "frame": {
+                "x": 651,
+                "y": 439,
+                "w": 78,
+                "h": 81,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 81
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 81
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_status_5.png": {
+            "frame": {
+                "x": 702,
+                "y": 125,
+                "w": 148,
+                "h": 42,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 148,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 148,
+                "h": 42
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_gx_yzsg.png": {
+            "frame": {
+                "x": 571,
+                "y": 522,
+                "w": 78,
+                "h": 76,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 76
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 76
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_gx_yzsg_2.png": {
+            "frame": {
+                "x": 651,
+                "y": 522,
+                "w": 78,
+                "h": 76,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 78,
+                "h": 76
+            },
+            "sourceSize": {
+                "w": 78,
+                "h": 76
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_wz_dd.png": {
+            "frame": {
+                "x": 757,
+                "y": 169,
+                "w": 65,
+                "h": 69,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 65,
+                "h": 69
+            },
+            "sourceSize": {
+                "w": 65,
+                "h": 69
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_wz_x.png": {
+            "frame": {
+                "x": 757,
+                "y": 240,
+                "w": 65,
+                "h": 68,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 65,
+                "h": 68
+            },
+            "sourceSize": {
+                "w": 65,
+                "h": 68
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_bt_sz.png": {
+            "frame": {
+                "x": 824,
+                "y": 169,
+                "w": 46,
+                "h": 96,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 46,
+                "h": 96
+            },
+            "sourceSize": {
+                "w": 46,
+                "h": 96
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_bt_sz1.png": {
+            "frame": {
+                "x": 731,
+                "y": 439,
+                "w": 46,
+                "h": 96,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 46,
+                "h": 96
+            },
+            "sourceSize": {
+                "w": 46,
+                "h": 96
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_ls_lv.png": {
+            "frame": {
+                "x": 731,
+                "y": 537,
+                "w": 70,
+                "h": 58,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 70,
+                "h": 58
+            },
+            "sourceSize": {
+                "w": 70,
+                "h": 58
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_tx_lpt.png": {
+            "frame": {
+                "x": 552,
+                "y": 600,
+                "w": 70,
+                "h": 58,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 70,
+                "h": 58
+            },
+            "sourceSize": {
+                "w": 70,
+                "h": 58
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_men_3.jpg": {
+            "frame": {
+                "x": 624,
+                "y": 600,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_men_0.jpg": {
+            "frame": {
+                "x": 687,
+                "y": 600,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_men_1.jpg": {
+            "frame": {
+                "x": 750,
+                "y": 597,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_men_2.jpg": {
+            "frame": {
+                "x": 824,
+                "y": 267,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_women_0.jpg": {
+            "frame": {
+                "x": 558,
+                "y": 660,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_women_1.jpg": {
+            "frame": {
+                "x": 621,
+                "y": 663,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_women_2.jpg": {
+            "frame": {
+                "x": 684,
+                "y": 663,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_women_3.jpg": {
+            "frame": {
+                "x": 745,
+                "y": 314,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_06.png": {
+            "frame": {
+                "x": 808,
+                "y": 330,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_01.png": {
+            "frame": {
+                "x": 745,
+                "y": 377,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_02.png": {
+            "frame": {
+                "x": 805,
+                "y": 391,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_07.png": {
+            "frame": {
+                "x": 779,
+                "y": 452,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_09.png": {
+            "frame": {
+                "x": 839,
+                "y": 452,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_10.png": {
+            "frame": {
+                "x": 803,
+                "y": 513,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_11.png": {
+            "frame": {
+                "x": 813,
+                "y": 574,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_08.png": {
+            "frame": {
+                "x": 813,
+                "y": 635,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_05.png": {
+            "frame": {
+                "x": 747,
+                "y": 663,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_04.png": {
+            "frame": {
+                "x": 807,
+                "y": 696,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_d_03.png": {
+            "frame": {
+                "x": 747,
+                "y": 724,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_nz_dk.png": {
+            "frame": {
+                "x": 615,
+                "y": 726,
+                "w": 100,
+                "h": 33,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 100,
+                "h": 33
+            },
+            "sourceSize": {
+                "w": 100,
+                "h": 33
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_zz.png": {
+            "frame": {
+                "x": 615,
+                "y": 761,
+                "w": 56,
+                "h": 56,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 56,
+                "h": 56
+            },
+            "sourceSize": {
+                "w": 56,
+                "h": 56
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_clock.png": {
+            "frame": {
+                "x": 673,
+                "y": 761,
+                "w": 53,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 53,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 53,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_4_1.png": {
+            "frame": {
+                "x": 863,
+                "y": 513,
+                "w": 49,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 49,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_5_1.png": {
+            "frame": {
+                "x": 558,
+                "y": 723,
+                "w": 49,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 49,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_6_1.png": {
+            "frame": {
+                "x": 807,
+                "y": 757,
+                "w": 49,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 49,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_3_1.png": {
+            "frame": {
+                "x": 728,
+                "y": 785,
+                "w": 49,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 49,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 49,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_2.png": {
+            "frame": {
+                "x": 858,
+                "y": 757,
+                "w": 48,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 48,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 48,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_1.png": {
+            "frame": {
+                "x": 779,
+                "y": 809,
+                "w": 48,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 48,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 48,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_4.png": {
+            "frame": {
+                "x": 865,
+                "y": 391,
+                "w": 47,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 47,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 47,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_3.png": {
+            "frame": {
+                "x": 829,
+                "y": 809,
+                "w": 46,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 46,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 46,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_bt_sz4.png": {
+            "frame": {
+                "x": 682,
+                "y": 861,
+                "w": 46,
+                "h": 48,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 46,
+                "h": 48
+            },
+            "sourceSize": {
+                "w": 46,
+                "h": 48
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_2_1.png": {
+            "frame": {
+                "x": 730,
+                "y": 837,
+                "w": 43,
+                "h": 48,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 48
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 48
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_1_1.png": {
+            "frame": {
+                "x": 868,
+                "y": 330,
+                "w": 43,
+                "h": 48,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 43,
+                "h": 48
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 48
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_4.png": {
+            "frame": {
+                "x": 615,
+                "y": 819,
+                "w": 41,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 41,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_1.png": {
+            "frame": {
+                "x": 852,
+                "y": 125,
+                "w": 42,
+                "h": 42,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 2,
+                "w": 42,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_2.png": {
+            "frame": {
+                "x": 730,
+                "y": 887,
+                "w": 43,
+                "h": 42,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 2,
+                "w": 43,
+                "h": 42
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_3.png": {
+            "frame": {
+                "x": 775,
+                "y": 861,
+                "w": 41,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 41,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_5.png": {
+            "frame": {
+                "x": 872,
+                "y": 169,
+                "w": 40,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 40,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_6.png": {
+            "frame": {
+                "x": 872,
+                "y": 211,
+                "w": 40,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 40,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_6.png": {
+            "frame": {
+                "x": 818,
+                "y": 861,
+                "w": 41,
+                "h": 47,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 41,
+                "h": 47
+            },
+            "sourceSize": {
+                "w": 41,
+                "h": 47
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_head_player_bg.png": {
+            "frame": {
+                "x": 170,
+                "y": 562,
+                "w": 70,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 70,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 70,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_5.png": {
+            "frame": {
+                "x": 861,
+                "y": 861,
+                "w": 40,
+                "h": 46,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 40,
+                "h": 46
+            },
+            "sourceSize": {
+                "w": 40,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_wz_d.png": {
+            "frame": {
+                "x": 878,
+                "y": 0,
+                "w": 34,
+                "h": 34,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 2,
+                "y": 2,
+                "w": 34,
+                "h": 34
+            },
+            "sourceSize": {
+                "w": 38,
+                "h": 38
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_nz_qdd.png": {
+            "frame": {
+                "x": 658,
+                "y": 837,
+                "w": 59,
+                "h": 22,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1,
+                "w": 59,
+                "h": 22
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 23
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_nz_qxz.png": {
+            "frame": {
+                "x": 235,
+                "y": 919,
+                "w": 59,
+                "h": 22,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 1,
+                "w": 59,
+                "h": 22
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 23
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bt_gd.png": {
+            "frame": {
+                "x": 373,
+                "y": 918,
+                "w": 52,
+                "h": 24,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 52,
+                "h": 24
+            },
+            "sourceSize": {
+                "w": 52,
+                "h": 24
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_bt_help.png": {
+            "frame": {
+                "x": 533,
+                "y": 439,
+                "w": 22,
+                "h": 30,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 2,
+                "y": 3,
+                "w": 22,
+                "h": 30
+            },
+            "sourceSize": {
+                "w": 26,
+                "h": 35
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sm_baozi.png": {
+            "frame": {
+                "x": 296,
+                "y": 919,
+                "w": 50,
+                "h": 17,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 17
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 17
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sm_dianshu.png": {
+            "frame": {
+                "x": 861,
+                "y": 909,
+                "w": 50,
+                "h": 17,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 17
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 17
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_08.png": {
+            "frame": {
+                "x": 717,
+                "y": 726,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_07.png": {
+            "frame": {
+                "x": 682,
+                "y": 911,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_05.png": {
+            "frame": {
+                "x": 877,
+                "y": 809,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_04.png": {
+            "frame": {
+                "x": 878,
+                "y": 36,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_03.png": {
+            "frame": {
+                "x": 878,
+                "y": 65,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_01.png": {
+            "frame": {
+                "x": 878,
+                "y": 94,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_06.png": {
+            "frame": {
+                "x": 355,
+                "y": 744,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_02.png": {
+            "frame": {
+                "x": 775,
+                "y": 903,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_10.png": {
+            "frame": {
+                "x": 873,
+                "y": 565,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_chip_x_09.png": {
+            "frame": {
+                "x": 873,
+                "y": 594,
+                "w": 27,
+                "h": 27,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 27,
+                "h": 27
+            },
+            "sourceSize": {
+                "w": 27,
+                "h": 27
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bj_zs_03.png": {
+            "frame": {
+                "x": 873,
+                "y": 623,
+                "w": 24,
+                "h": 26,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 24,
+                "h": 26
+            },
+            "sourceSize": {
+                "w": 24,
+                "h": 26
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bj_zs_02.png": {
+            "frame": {
+                "x": 873,
+                "y": 651,
+                "w": 24,
+                "h": 26,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 24,
+                "h": 26
+            },
+            "sourceSize": {
+                "w": 24,
+                "h": 26
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bj_zs_01.png": {
+            "frame": {
+                "x": 873,
+                "y": 679,
+                "w": 24,
+                "h": 26,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 24,
+                "h": 26
+            },
+            "sourceSize": {
+                "w": 24,
+                "h": 26
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bj_xt.png": {
+            "frame": {
+                "x": 867,
+                "y": 707,
+                "w": 24,
+                "h": 25,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 24,
+                "h": 25
+            },
+            "sourceSize": {
+                "w": 24,
+                "h": 25
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_z_3.png": {
+            "frame": {
+                "x": 702,
+                "y": 169,
+                "w": 42,
+                "h": 12,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 42,
+                "h": 12
+            },
+            "sourceSize": {
+                "w": 42,
+                "h": 12
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_bj_hg.png": {
+            "frame": {
+                "x": 682,
+                "y": 940,
+                "w": 159,
+                "h": 2,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 159,
+                "h": 2
+            },
+            "sourceSize": {
+                "w": 159,
+                "h": 2
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_sz_ls_11.png": {
+            "frame": {
+                "x": 711,
+                "y": 911,
+                "w": 17,
+                "h": 17,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 17,
+                "h": 17
+            },
+            "sourceSize": {
+                "w": 17,
+                "h": 17
+            },
+            "rotated": false,
+            "trimed": true
+        }
+    },
+    "meta": {
+        "app": "http:\/\/www.layabox.com",
+        "version": "0.1.0 alpha",
+        "format": "json",
+        "scale": 1,
+        "image": "baseUI.png",
+        "prefix": "ui\/baseUI\/"
+    }
+}
