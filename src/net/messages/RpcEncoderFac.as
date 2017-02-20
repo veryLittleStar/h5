@@ -3,7 +3,7 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.gameLogin.MsgRoomLoginReq;
-	import net.messages.login.MsgLoginReq;
+	import net.messages.serverLogin.MsgLoginReq;
 	import net.messages.user.MsgUserSitDownReq;
 	import net.socket.ByteArray;
 	

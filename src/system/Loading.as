@@ -7,9 +7,9 @@ package system
 	import resource.ResLoader;
 	import resource.ResType;
 	
-	import ui.loadingUI;
+	import ui.LoadingUI;
 
-	public class Loading extends loadingUI
+	public class Loading extends LoadingUI
 	{
 		private static var _ins:Loading;
 		public static function getInstance():Loading

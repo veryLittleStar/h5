@@ -8,11 +8,11 @@ package net.messages
 	import net.messages.gameLogin.MsgRoomLoginFailureRec;
 	import net.messages.gameLogin.MsgRoomLoginFinishRec;
 	import net.messages.gameLogin.MsgRoomLoginSucessRec;
-	import net.messages.login.MsgGameListRec;
-	import net.messages.login.MsgLoginFailureRec;
-	import net.messages.login.MsgLoginFinishRec;
-	import net.messages.login.MsgLoginSuccessRec;
-	import net.messages.login.MsgRoomListRec;
+	import net.messages.serverLogin.MsgGameListRec;
+	import net.messages.serverLogin.MsgLoginFailureRec;
+	import net.messages.serverLogin.MsgLoginFinishRec;
+	import net.messages.serverLogin.MsgLoginSuccessRec;
+	import net.messages.serverLogin.MsgRoomListRec;
 	import net.messages.status.MsgTableStatusRec;
 	import net.messages.user.MsgUserInfoRec;
 	import net.socket.ByteArray;

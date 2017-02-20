@@ -32,8 +32,6 @@
 			Laya.stage.bgColor = "#333333";
 			
 			UILayer.init();
-			Loading.getInstance().openMe();
-			return;
 //			initRes();
 			initNet();
 			ManagersMap.initManagers();
@@ -41,6 +39,7 @@
 		
 		private function initNet():void
 		{
+			Loading.getInstance().openMe();
 			var data:Object = {};
 			data.host = Browser.window.initConfig.loginHost;
 			data.port = Browser.window.initConfig.loginPort;

@@ -23,18 +23,26 @@ package system
 		public static function init():void
 		{
 			layerMain = new Sprite();
+			layerMain.width = Laya.stage.width;
+			layerMain.height = Laya.stage.height;
 			layerMain.mouseEnabled = true;
 			Laya.stage.addChild(layerMain);
 			
 			layerLoading = new Sprite();
+			layerLoading.width = Laya.stage.width;
+			layerLoading.height = Laya.stage.height;
 			layerLoading.mouseEnabled = true;
 			Laya.stage.addChild(layerLoading);
 			
 			layerMsgBox = new Sprite();
+			layerMsgBox.width = Laya.stage.width;
+			layerMsgBox.height = Laya.stage.height;
 			layerMsgBox.mouseEnabled = true;
 			Laya.stage.addChild(layerMsgBox);
 			
 			layerAlert = new Sprite();
+			layerAlert.width = Laya.stage.width;
+			layerAlert.height = Laya.stage.height;
 			layerAlert.mouseEnabled = false;
 			Laya.stage.addChild(layerAlert);
 			

@@ -23,6 +23,9 @@ package system
 		/**比赛消息*/
 		public static const MDM_GR_MATCH:String 	= 27;
 		
+		/**游戏配置*/
+		public static const MDM_GF_FRAME:String	= 100;
+		
 		/**游戏消息*/
 		public static const MDM_GF_GAME:String 	= 200;
 		

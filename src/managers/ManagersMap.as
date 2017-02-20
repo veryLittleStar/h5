@@ -1,12 +1,12 @@
 package managers
 {
-	import managers.login.LoginManager;
-	import managers.mainPanel.MainPanelManager;
+	import managers.serverLogin.ServerLoginManager;
+	import managers.baoziwang.MainPanelManager;
 
 	public class ManagersMap
 	{
 		public static var mainPanelManager:MainPanelManager;
-		public static var loginManager:LoginManager;
+		public static var loginManager:ServerLoginManager;
 		
 		public function ManagersMap()
 		{
@@ -15,7 +15,7 @@ package managers
 		public static function initManagers():void
 		{
 //			mainPanelManager = new MainPanelManager();
-			loginManager = new LoginManager();
+			loginManager = new ServerLoginManager();
 		}
 	}
 }
