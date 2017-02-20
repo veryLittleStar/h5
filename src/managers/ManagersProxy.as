@@ -46,6 +46,9 @@ package managers
 				case "24_100":
 					ManagersMap.loginManager.tableStatusRec(obj.body);
 					break;
+				case "23_102":
+					ManagersMap.mainPanelManager.userStatusRec(obj.body);
+					break;
 			}
 		}
 	}

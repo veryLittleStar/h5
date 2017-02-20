@@ -17,7 +17,7 @@ package net.messages.gameLogin
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["dwUserRight"] 			= BytesUtil.read(bytes, BytesType.DWORD);
+			vo["dwUserRight"] 		= BytesUtil.read(bytes, BytesType.DWORD);
 			vo["dwMasterRight"]		= BytesUtil.read(bytes, BytesType.DWORD);
 			
 			return vo;;

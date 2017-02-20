@@ -2,6 +2,7 @@ package net.messages
 {
 	import laya.utils.Dictionary;
 	
+	import net.messages.baoziwang.MsgGameOptionReq;
 	import net.messages.gameLogin.MsgRoomLoginReq;
 	import net.messages.serverLogin.MsgLoginReq;
 	import net.messages.user.MsgUserSitDownReq;
@@ -76,6 +77,8 @@ package net.messages
 			
 			//
 			_encodeMessageDict["23_3"] =  MsgUserSitDownReq;
+			
+			_encodeMessageDict["100_1"] =  MsgGameOptionReq;
 		}
 		
 	}

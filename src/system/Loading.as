@@ -7,9 +7,9 @@ package system
 	import resource.ResLoader;
 	import resource.ResType;
 	
-	import ui.LoadingUI;
+	import ui.loadingUI;
 
-	public class Loading extends LoadingUI
+	public class Loading extends loadingUI
 	{
 		private static var _ins:Loading;
 		public static function getInstance():Loading
@@ -55,13 +55,10 @@ package system
 		{
 			if(isOpen && init)
 			{
-				trace(x,y);
 				UILayer.layerLoading.addChild(this);
 				dice.play(0,true);
-				trace(x,y);
 				this.centerX = 0;
 				this.centerY = 0;
-				trace(x,y);
 			}
 		}
 		

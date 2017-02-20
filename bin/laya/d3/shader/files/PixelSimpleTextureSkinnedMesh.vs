@@ -4,7 +4,7 @@ uniform mat4 u_MvpMatrix;
 
 
 
-#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(COLOR)&&defined(SPECULARMAP)||defined(NORMALMAP)))
+#ifdef DIFFUSEMAP||((DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT)&&(COLOR&&SPECULARMAP||NORMALMAP))
 attribute vec2 a_Texcoord0;
 varying vec2 v_Texcoord0;
   #ifdef MIXUV
@@ -18,7 +18,6 @@ varying vec2 v_Texcoord0;
 
 #ifdef AMBIENTMAP
 attribute vec2 a_Texcoord1;
-uniform vec4 u_LightmapScaleOffset;
 varying vec2 v_Texcoord1;
 #endif
 
@@ -34,17 +33,17 @@ const int c_MaxBoneCount = 24;
 uniform mat4 u_Bones[c_MaxBoneCount];
 #endif
 
-#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)
+#ifdef DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT||REFLECTMAP
 attribute vec3 a_Normal;
 varying vec3 v_Normal;
 #endif
 
-#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP))&&defined(NORMALMAP)
+#ifdef (DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT||REFLECTMAP)&&NORMALMAP
 attribute vec3 a_Tangent0;
 varying vec3 v_Tangent0;
 #endif
 
-#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(FOG)||defined(REFLECTMAP)
+#ifdef DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT||FOG||REFLECTMAP
 uniform mat4 u_WorldMat;
 varying vec3 v_PositionWorld;
 #endif
@@ -73,7 +72,7 @@ void main()
  #endif
  
 
- #if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)
+ #ifdef DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT||REFLECTMAP
  mat3 worldMat;
    #ifdef BONE
    worldMat=mat3(u_WorldMat*skinTransform);
@@ -81,12 +80,12 @@ void main()
    worldMat=mat3(u_WorldMat);
    #endif  
  v_Normal=worldMat*a_Normal;
-   #if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)
+   #ifdef (DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT)&&NORMALMAP
    v_Tangent0=worldMat*a_Tangent0;
    #endif
  #endif
  
- #if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(FOG)
+ #ifdef DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT||FOG
    #ifdef BONE
    v_PositionWorld=(u_WorldMat*position).xyz;
    #else
@@ -94,7 +93,7 @@ void main()
    #endif
  #endif
  
-#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(COLOR)&&defined(SPECULARMAP)||defined(NORMALMAP)))
+#ifdef DIFFUSEMAP||((DIRECTIONLIGHT||POINTLIGHT||SPOTLIGHT)&&(COLOR&&SPECULARMAP||NORMALMAP))
   #ifdef MIXUV
   v_Texcoord0=mix(a_Texcoord0,a_TexcoordNext0,u_UVAge);
   #else
@@ -106,11 +105,7 @@ void main()
 #endif
 
 #ifdef AMBIENTMAP
-  #ifdef SCALEOFFSETLIGHTINGMAPUV
-  v_Texcoord1=vec2(a_Texcoord1.x*u_LightmapScaleOffset.x+u_LightmapScaleOffset.z,1.0+a_Texcoord1.y*u_LightmapScaleOffset.y+u_LightmapScaleOffset.w);
-  #else
-  v_Texcoord1=a_Texcoord1;
-  #endif 
+v_Texcoord1=a_Texcoord1;
 #endif
 
   

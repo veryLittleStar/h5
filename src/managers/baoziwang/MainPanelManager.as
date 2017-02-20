@@ -4,6 +4,9 @@ package managers.baoziwang
 	import laya.events.Keyboard;
 	import laya.maths.Matrix;
 	
+	import net.NetDefine;
+	import net.NetProxy;
+	
 	import ui.BaoziwangUI;
 	
 	public class MainPanelManager extends BaoziwangUI
@@ -65,7 +68,26 @@ package managers.baoziwang
 			diceCupBox.openDiceCup([1,6,6]);
 		}
 		
+		public function gameStartRec(obj:Object):void
+		{
+			
+		}
 		
+		public function gameFreeRec(obj:Object):void
+		{
+			
+		}
 		
+		public function userStatusRec(obj:Object):void
+		{
+			var obj:Object = {};
+			obj.header = "100_1";
+			var body:Object = {};
+			obj.body = body;
+			body.cbAllowLookon = 0;
+			body.dwFrameVersion = 0;
+			body.dwClientVersion = 0;
+			NetProxy.getInstance().execute(NetDefine.SEND_TO_SERVER,obj);
+		}
 	}
 }
