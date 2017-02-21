@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":76,
+    "selectedBox":49,
+    "selecteID":45,
     "props":{"width":800,"sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -617,7 +617,7 @@
             "props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},
             "nodeParent":1,
             "label":"Box(mainPanelTop)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -631,6 +631,7 @@
             "compId":49,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0},
                     "nodeParent":49,
@@ -651,6 +652,7 @@
                     "$LOCKED":true
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":3,"x":170,"skin":"ui/baseUI/yb_bt_gd.png"},
                     "nodeParent":49,
@@ -670,6 +672,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"y":2,"x":518,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png"},
                     "nodeParent":49,
@@ -689,6 +692,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"y":2,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png"},
                     "nodeParent":49,
@@ -708,6 +712,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"y":3,"x":519,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png"},
                     "nodeParent":49,
@@ -727,6 +732,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":386,"skin":"ui/baseUI/yb_tx_lpt.png"},
                     "nodeParent":49,
@@ -746,6 +752,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":14,"x":460,"text":"老炮王","color":"#f4f3ec"},
                     "nodeParent":49,
@@ -765,6 +772,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "props":{"y":37,"x":468,"text":"10亿","color":"#f2eacb"},
                     "nodeParent":49,
@@ -785,6 +793,7 @@
                     "$LOCKED":false
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"},
                     "nodeParent":49,
@@ -804,10 +813,11 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"List",
-                    "props":{"y":32,"x":52.5,"spaceX":6,"repeatX":6},
+                    "props":{"y":32,"x":52.5,"var":"recordList","spaceX":6,"repeatX":6},
                     "nodeParent":49,
-                    "label":"List",
+                    "label":"List(recordList)",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
@@ -822,6 +832,7 @@
                     "compId":45,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"},
                             "nodeParent":45,

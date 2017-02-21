@@ -66,7 +66,8 @@ package managers.gameLogin
 			//obj.cbUserStatus
 			if(obj.dwUserID != DataProxy.userID)return;
 			if(obj.wTableID == DataProxy.tableID)return;
-			
+			DataProxy.tableID = obj.wTableID;
+			DataProxy.chairID = obj.wChairID;
 			var body:Object = {};
 			obj.body = body;
 			body.cbAllowLookon = 0;
