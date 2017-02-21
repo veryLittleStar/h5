@@ -72,7 +72,7 @@ package managers.baoziwang
 			this.visible = false;
 			if(type == 1)
 			{
-				ManagersMap.mainPanelManager.maiDingLiShou();
+				ManagersMap.baoziwangManager.maiDingLiShou();
 			}
 			else
 			{

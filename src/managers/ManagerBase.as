@@ -1,24 +1,24 @@
 package managers
 {
-	import system.UILayer;
-	
 	import laya.net.Loader;
 	import laya.ui.View;
 	import laya.utils.Handler;
 	
 	import resource.ResLoader;
 	import resource.ResType;
+	
+	import system.Loading;
+	import system.UILayer;
 
 	public class ManagerBase
 	{
 		private var _uiClass:Class;
-		private var _uiAtlas:String;
-		private var _view:View;
+		private var _resLoading:Boolean = false;
+		protected var _view:View;
 		private var _isOpen:Boolean = false;
-		public function ManagerBase(uiClass:Class = null, uiAtlas:String = null)
+		public function ManagerBase(uiClass:Class = null)
 		{
 			_uiClass = uiClass;
-			_uiAtlas = uiAtlas;
 			initManager();
 		}
 		
@@ -30,6 +30,11 @@ package managers
 		protected function initPanel():void
 		{
 			
+		}
+		
+		protected function getResList():Array
+		{
+			return null;
 		}
 		
 		public function openMe():void
@@ -47,19 +52,27 @@ package managers
 		public function closeMe():void
 		{
 			_isOpen = false;
+			_view.removeSelf();
 		}
 		
 		public function openOrClose():void
 		{
-			
+			if(_isOpen)
+			{
+				closeMe();
+			}
+			else
+			{
+				openMe();
+			}
 		}
 		
-		public function beforeOpen():Boolean
+		protected function beforeOpen():Boolean
 		{
 			return true;
 		}
 		
-		public function afterOpen():void
+		protected function afterOpen():void
 		{
 			
 		}
@@ -68,23 +81,27 @@ package managers
 		{
 			if(!_view)
 			{
-				if(!_uiAtlas || _uiAtlas == "")
+				var _resArr:Array = getResList();
+				if(!_resArr || !_resArr.length)
 				{
 					createView();
 				}
 				else
 				{
-					var url:String = ResLoader.getResUrl(ResType.UI,_uiAtlas);
-					if(Laya.loader.getRes(url))
+					if(_resLoading == false)
 					{
-						createView();
-					}
-					else
-					{
-						Laya.loader.load(url,Handler.create(this,createView),null,Loader.ATLAS);
+						_resLoading = true;
+						Laya.loader.load(_resArr, Handler.create(this, resComplete));
 					}
 				}
 			}
+		}
+		
+		private function resComplete(e:* = null):void
+		{
+			_resLoading = false;
+			trace(e);
+			createView();
 		}
 		
 		private function createView():void
@@ -101,6 +118,7 @@ package managers
 			{
 				UILayer.layerMain.addChild(_view);
 				afterOpen();
+				Loading.getInstance().closeMe();
 			}
 		}
 	}

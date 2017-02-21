@@ -50,6 +50,7 @@ package net.socket
 		 * 交换用数据类型：字串 
 		 */
 		public static const CHAR : String = 'char';
+		public static const TCHAR:String = "tchar";
 		/**自定义字符串*/
 		public static const CUSTOM_CHAR:String = "customChar";
 		

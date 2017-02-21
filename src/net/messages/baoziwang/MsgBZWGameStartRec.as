@@ -5,7 +5,7 @@ package net.messages.baoziwang
 	import net.socket.BytesType;
 	import net.socket.BytesUtil;
 
-	/**200_99 豹子王  游戏开始*/
+	/**200_100 豹子王  游戏开始*/
 	public class MsgBZWGameStartRec implements IRpcDecoder
 	{
 		public function MsgBZWGameStartRec()

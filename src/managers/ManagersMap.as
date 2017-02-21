@@ -1,21 +1,24 @@
 package managers
 {
+	import managers.baoziwang.BaoziwangManager;
+	import managers.gameLogin.GameLoginManager;
 	import managers.serverLogin.ServerLoginManager;
-	import managers.baoziwang.MainPanelManager;
 
 	public class ManagersMap
 	{
-		public static var mainPanelManager:MainPanelManager;
-		public static var loginManager:ServerLoginManager;
+		public static var serverLoginManager:ServerLoginManager = null;
+		public static var gameLoginManager:GameLoginManager = null;
+		public static var baoziwangManager:BaoziwangManager = null;
 		
 		public function ManagersMap()
 		{
 		}
 		
-		public static function initManagers():void
+		public static function init():void
 		{
-//			mainPanelManager = new MainPanelManager();
-			loginManager = new ServerLoginManager();
+			serverLoginManager = new ServerLoginManager();
+			gameLoginManager = new GameLoginManager();
+			baoziwangManager = new BaoziwangManager();
 		}
 	}
 }

@@ -12,6 +12,8 @@ package net
 	import net.socket.ByteArray;
 	import net.socket.BytesSocket;
 	import net.socket.SocketEvent;
+	
+	import system.Logger;
 
 	public class NetProxy
 	{
@@ -42,21 +44,11 @@ package net
 			var obj:Object = {};
 			if(_socket.host == Browser.window.initConfig.loginHost && _socket.port == Browser.window.initConfig.loginPort)
 			{
-				obj.header = "1_2";
-				obj.body = {};
-				obj.body.account = "111111";
-				obj.body.password = "111111";
-				sendToServer(obj);
+				ManagersMap.serverLoginManager.loginReq();
 			}
 			else
 			{
-				obj.header = "21_1";
-				obj.body = {};
-				obj.body.account = "111111";
-				obj.body.password = "111111";
-				obj.body.dwUserID 	= ManagersMap.loginManager.userData.dwUserID;
-				obj.body.wKindID	= ManagersMap.loginManager.userData.wKindID;
-				sendToServer(obj);
+				ManagersMap.gameLoginManager.roomLoginReq();
 			}
 								
 		}
@@ -78,9 +70,6 @@ package net
 				case NetDefine.CONNECT_SOCKET:
 					connectSocket(data);
 					break;
-				case NetDefine.SEND_TO_SERVER:
-					sendToServer(data);
-					break;
 			}
 		}
 		
@@ -101,10 +90,10 @@ package net
 		 * obj.header  	包头
 		 * obj.body		数据
 		 * */
-		private function sendToServer(obj:Object):void
+		public function sendToServer(header:String,body:Object):void
 		{
-			var bytes:ByteArray = RpcEncoderFac.getInstance().getEncodeData(obj.header,obj.body);
-			trace("发送数据，消息号：",String(obj.header).split("_")[0],String(obj.header).split("_")[1],"数据长度：",bytes.length-4,obj.body);
+			var bytes:ByteArray = RpcEncoderFac.getInstance().getEncodeData(header,body);
+			trace("发送数据，消息号：",header.split("_")[0],header.split("_")[1],"数据长度：",bytes.length-4,{body:body});
 			if(bytes)
 			{
 				_socket.writeInSocket(bytes);
@@ -115,11 +104,10 @@ package net
 		{
 			var main:int = bytes.readUnsignedShort();
 			var sub:int = bytes.readUnsignedShort();
-			var data:Object = {};
-			data.header = main + "_" + sub;
-			data.body = RpcDecoderFac.getInstance().getDecodeData(data.header,bytes);
-			trace("接收数据，消息号：",main,sub,"数据长度:",bytes.length-4,data);
-			ManagersProxy.getInstance().execute(ManagersDefine.MESSAGE_FROM_SERVER,data);
+			var header:String = main + "_" + sub;
+			var body:Object = RpcDecoderFac.getInstance().getDecodeData(header,bytes);
+			trace("接收数据，消息号：",main,sub,"数据长度:",bytes.length-4,{body:body});
+			ManagersProxy.getInstance().messageHanlder(header,body);
 		}
 	}
 }

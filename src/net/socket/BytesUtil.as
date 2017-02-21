@@ -39,6 +39,7 @@ package net.socket
 						break;
 					
 					case BytesType.CHAR:
+					case BytesType.TCHAR:
 						var cp:int = bytes.position;
 						value = bytes.readMultiByte(length*2, "unicode");
 						bytes.position = cp + length*2;

@@ -1,0 +1,69 @@
+三种状态
+GAME_STATUS_FREE = 0					CMD_S_StatusFree
+GAME_SCENE_PLACE_JETTON = 100			CMD_S_StatusPlay
+GAME_GAME_SCENE_GAME_END  = 101			CMD_S_StatusPlay
+
+
+//游戏状态
+struct CMD_S_StatusFree
+{
+	//全局信息
+	BYTE							cbGameStatus;						//游戏状态
+	BYTE							cbTimeLeave;						//剩余时间
+
+	//玩家信息
+	LONGLONG						lUserMaxScore;						//玩家金币
+
+	//庄家信息
+	WORD							wBankerUser;						//当前庄家
+	WORD							cbBankerTime;						//庄家局数
+	LONGLONG						lBankerWinScore;					//庄家成绩
+	LONGLONG						lBankerScore;						//庄家分数
+	bool							bEnableSysBanker;					//系统做庄
+
+	//控制信息
+	LONGLONG						lApplyBankerCondition;				//申请条件
+	LONGLONG						lAreaLimitScore;					//区域限制
+
+	TCHAR							szGameRoomName[32];			//房间名称
+};
+
+//游戏状态
+struct CMD_S_StatusPlay
+{
+	//全局信息
+	BYTE							cbGameStatus;						//游戏状态
+	BYTE							cbTimeLeave;						//剩余时间
+
+	//全局下注
+	LONGLONG						lAreaInAllScore[AREA_ALL];			//每个区域的总分				
+
+	//个人下注
+	LONGLONG						lUserInAllScore[AREA_ALL];//每个玩家每个区域的下注
+
+	//玩家积分
+	LONGLONG						lUserMaxScore;						//最大下注							
+
+	//控制信息
+	LONGLONG						lApplyBankerCondition;				//申请条件
+	LONGLONG						lAreaLimitScore;					//区域限制
+
+	//扑克信息
+	BYTE							cbCardCount[2];						//扑克数目
+	BYTE							cbTableCardArray[2][3];				//桌面扑克
+
+	//庄家信息
+	WORD							wBankerUser;						//当前庄家
+	WORD							cbBankerTime;						//庄家局数
+	LONGLONG						lBankerWinScore;					//庄家赢分
+	LONGLONG						lBankerScore;						//庄家分数
+	bool							bEnableSysBanker;					//系统做庄
+
+	//结束信息
+	LONGLONG						lEndBankerScore;					//庄家成绩
+	LONGLONG						lEndUserScore;						//玩家成绩
+	LONGLONG						lEndUserReturnScore;				//返回积分
+	LONGLONG						lEndRevenue;						//游戏税收
+
+	TCHAR							szGameRoomName[32];					//房间名称
+};

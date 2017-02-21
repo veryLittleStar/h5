@@ -10,9 +10,9 @@ package managers.serverLogin
 		
 		public static const MSG_LOGIN_FINISH_REC:String	= "1_102";
 		
-		public static const MSG_LOGIN_GAME_LIST_REC:String = "";
+		public static const MSG_LOGIN_GAME_LIST_REC:String = "2_101";
 		
-		public static const MSG_LOGIN_ROOM_LIST_REC:String = "";
+		public static const MSG_LOGIN_ROOM_LIST_REC:String = "2_104";
 		
 		
 		public function ServerLoginDefine()

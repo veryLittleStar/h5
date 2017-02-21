@@ -72,12 +72,12 @@ package managers.baoziwang
 			this.visible = false;
 			if(type == 1)
 			{
-				ManagersMap.mainPanelManager.mainPanelBottom.canBetting = true;
-				ManagersMap.mainPanelManager.clockBox.countDown(1,3000);
+				ManagersMap.baoziwangManager.ui.mainPanelBottom.canBetting = true;
+				ManagersMap.baoziwangManager.ui.clockBox.countDown(1,3000);
 			}
 			else
 			{
-				ManagersMap.mainPanelManager.kaiZhong();
+				ManagersMap.baoziwangManager.kaiZhong();
 			}
 		}
 	}

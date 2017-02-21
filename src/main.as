@@ -1,5 +1,7 @@
 ﻿package {
 	import laya.display.Stage;
+	import laya.events.Event;
+	import laya.events.Keyboard;
 	import laya.net.Loader;
 	import laya.ui.Label;
 	import laya.utils.Browser;
@@ -11,6 +13,7 @@
 	import net.NetDefine;
 	import net.NetProxy;
 	import net.NetTest;
+	import net.messages.CMD_GameServer;
 	
 	import system.Loading;
 	import system.UILayer;
@@ -32,9 +35,20 @@
 			Laya.stage.bgColor = "#333333";
 			
 			UILayer.init();
+			ManagersMap.init();
 //			initRes();
 			initNet();
-			ManagersMap.initManagers();
+			Laya.stage.on(Event.KEY_UP,this,key_up);
+		}
+		
+		private function key_up(event:Event):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.A:
+					ManagersMap.baoziwangManager.openOrClose();
+					break;
+			}
 		}
 		
 		private function initNet():void
@@ -68,7 +82,6 @@
 		private function resLoaded():void
 		{
 			progressLabel.text = "资源加载中：100%";
-			ManagersMap.initManagers();
 		}
 		
 	}

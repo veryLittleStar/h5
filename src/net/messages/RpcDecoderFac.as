@@ -4,6 +4,8 @@ package net.messages
 	
 	import net.messages.IRpcDecoder;
 	import net.messages.baoziwang.MsgBZWGameFreeRec;
+	import net.messages.baoziwang.MsgBZWGameRecordRec;
+	import net.messages.baoziwang.MsgBZWGameSceneRec;
 	import net.messages.baoziwang.MsgBZWGameStartRec;
 	import net.messages.gameLogin.MsgRoomLoginFailureRec;
 	import net.messages.gameLogin.MsgRoomLoginFinishRec;
@@ -100,6 +102,8 @@ package net.messages
 			//baoziwang
 			_decodeMessageDict["200_99"] 	= MsgBZWGameFreeRec
 			_decodeMessageDict["200_100"] 	= MsgBZWGameStartRec;
+			_decodeMessageDict["200_106"] 	= MsgBZWGameRecordRec;
+			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
 		}
 		
 	}
