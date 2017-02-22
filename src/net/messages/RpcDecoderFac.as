@@ -3,6 +3,7 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.IRpcDecoder;
+	import net.messages.baoziwang.MsgBZWGameEndRec;
 	import net.messages.baoziwang.MsgBZWGameFreeRec;
 	import net.messages.baoziwang.MsgBZWGameRecordRec;
 	import net.messages.baoziwang.MsgBZWGameSceneRec;
@@ -11,6 +12,7 @@ package net.messages
 	import net.messages.gameLogin.MsgRoomLoginFinishRec;
 	import net.messages.gameLogin.MsgRoomLoginSucessRec;
 	import net.messages.serverLogin.MsgGameListRec;
+	import net.messages.serverLogin.MsgHeartBeatRec;
 	import net.messages.serverLogin.MsgLoginFailureRec;
 	import net.messages.serverLogin.MsgLoginFinishRec;
 	import net.messages.serverLogin.MsgLoginSuccessRec;
@@ -82,6 +84,7 @@ package net.messages
 		 */		
 		private function init():void
 		{
+			_decodeMessageDict["0_1"] =  MsgHeartBeatRec;
 			//login
 			_decodeMessageDict["1_100"] =  MsgLoginSuccessRec;
 			_decodeMessageDict["1_101"] =  MsgLoginFailureRec;
@@ -102,6 +105,7 @@ package net.messages
 			//baoziwang
 			_decodeMessageDict["200_99"] 	= MsgBZWGameFreeRec
 			_decodeMessageDict["200_100"] 	= MsgBZWGameStartRec;
+			_decodeMessageDict["200_102"] 	= MsgBZWGameEndRec;
 			_decodeMessageDict["200_106"] 	= MsgBZWGameRecordRec;
 			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
 		}

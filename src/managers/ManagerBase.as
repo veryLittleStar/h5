@@ -100,7 +100,6 @@ package managers
 		private function resComplete(e:* = null):void
 		{
 			_resLoading = false;
-			trace(e);
 			createView();
 		}
 		

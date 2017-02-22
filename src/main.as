@@ -37,6 +37,7 @@
 			UILayer.init();
 			ManagersMap.init();
 //			initRes();
+//			ManagersMap.baoziwangManager.openMe();
 			initNet();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 		}

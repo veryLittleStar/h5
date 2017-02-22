@@ -33,6 +33,9 @@ package managers
 		{
 			switch(header)
 			{
+				case ServerLoginDefine.MSG_HEART_BEAT_REC:
+					ManagersMap.serverLoginManager.heartBeatRec(body);
+					break;
 				case GameLoginDefine.MSG_TABLE_STATUS_REC:
 					ManagersMap.gameLoginManager.tableStatusRec(body);
 					break;
@@ -71,6 +74,9 @@ package managers
 					break;
 				case BaoziwangDefine.MSG_BZW_GAME_START_REC:
 					ManagersMap.baoziwangManager.gameStartRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_GAME_END_REC:
+					ManagersMap.baoziwangManager.gameEndRec(body);
 					break;
 				case BaoziwangDefine.MSG_BZW_GAME_RECORD_REC:
 					ManagersMap.baoziwangManager.gameRecordRec(body);

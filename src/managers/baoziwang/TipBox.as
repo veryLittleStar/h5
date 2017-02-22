@@ -70,15 +70,6 @@ package managers.baoziwang
 		private function bgOut():void
 		{
 			this.visible = false;
-			if(type == 1)
-			{
-				ManagersMap.baoziwangManager.ui.mainPanelBottom.canBetting = true;
-				ManagersMap.baoziwangManager.ui.clockBox.countDown(1,3000);
-			}
-			else
-			{
-				ManagersMap.baoziwangManager.kaiZhong();
-			}
 		}
 	}
 }

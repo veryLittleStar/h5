@@ -14,9 +14,14 @@ package managers.baoziwang
 			this.on(Event.COMPLETE,this,motionComplete);
 		}
 		
-		public function reset():void
+		public function init():void
 		{
 			
+		}
+		
+		public function reset():void
+		{
+			changeMotion("idle",true);
 		}
 		
 		public function changeMotion(motion:String,loop:Boolean):void

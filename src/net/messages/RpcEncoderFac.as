@@ -4,6 +4,7 @@ package net.messages
 	
 	import net.messages.baoziwang.MsgBZWGameOptionReq;
 	import net.messages.gameLogin.MsgRoomLoginReq;
+	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
 	import net.messages.user.MsgUserSitDownReq;
 	import net.socket.ByteArray;
@@ -72,6 +73,8 @@ package net.messages
 		 */		
 		private function init():void
 		{
+			_encodeMessageDict["0_1"] =  MsgHeartBeatReq;
+			
 			_encodeMessageDict["1_2"] =  MsgLoginReq;
 			_encodeMessageDict["21_1"] =  MsgRoomLoginReq;
 			

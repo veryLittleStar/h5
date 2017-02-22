@@ -23,10 +23,10 @@ package net.messages.serverLogin
 			for(i = 0; i < dwCount; i++)
 			{
 				var obj:Object = {};
-				obj["wGameID"] 			= BytesUtil.read(bytes, BytesType.WORD);
-				obj["dwOnLineCount"]	= BytesUtil.read(bytes, BytesType.DWORD);
-				obj["dwFullCount"]		= BytesUtil.read(bytes, BytesType.DWORD);
-				obj["szKindName"]		= BytesUtil.read(bytes, BytesType.CHAR,	32);
+				obj["wGameID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//游戏id
+				obj["dwOnLineCount"]	= BytesUtil.read(bytes, BytesType.DWORD);		//在线人数
+				obj["dwFullCount"]		= BytesUtil.read(bytes, BytesType.DWORD);		//满员人数
+				obj["szKindName"]		= BytesUtil.read(bytes, BytesType.CHAR,	32);	//游戏名字
 				arr.push(obj);
 			}
 			vo["arGame"] = arr;

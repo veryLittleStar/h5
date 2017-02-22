@@ -70,14 +70,6 @@ package managers.baoziwang
 		{
 			Laya.timer.clear(this,countLoop);
 			this.visible = false;
-			if(type == 1)
-			{
-				ManagersMap.baoziwangManager.maiDingLiShou();
-			}
-			else
-			{
-				
-			}
 			
 		}
 	}

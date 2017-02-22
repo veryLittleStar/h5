@@ -71,6 +71,10 @@ package managers.serverLogin
 			//obj.cbShowServerStatus
 			
 			DataProxy.userID = obj.dwUserID;
+			DataProxy.nickName = obj.szNickName;
+			DataProxy.account = obj.szAccounts;
+			DataProxy.userScore = obj.lUserScore;
+			DataProxy.gender = obj.cbGender;
 		}
 		
 		public function loginFailureRec(obj:Object):void
@@ -103,6 +107,11 @@ package managers.serverLogin
 			data.host = host;
 			data.port = port;
 			NetProxy.getInstance().execute(NetDefine.CONNECT_SOCKET,data);
+		}
+		
+		public function heartBeatRec(obj:Object):void
+		{
+			NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_HEART_BEAT_REQ,obj);
 		}
 		
 	}

@@ -22,15 +22,15 @@ package net.messages.serverLogin
 			for(i = 0; i < dwCount; i++)
 			{
 				var obj:Object = {};
-				obj["wKindID"] 			= BytesUtil.read(bytes, BytesType.WORD);
-				obj["wNodeID"] 			= BytesUtil.read(bytes, BytesType.WORD);
-				obj["wSortID"] 			= BytesUtil.read(bytes, BytesType.WORD);
-				obj["wServerID"] 		= BytesUtil.read(bytes, BytesType.WORD);
-				obj["wServerPort"] 		= BytesUtil.read(bytes, BytesType.WORD);
-				obj["dwOnLineCount"]	= BytesUtil.read(bytes, BytesType.DWORD);
-				obj["dwFullCount"]		= BytesUtil.read(bytes, BytesType.DWORD);
-				obj["szServerAddr"]	= BytesUtil.read(bytes, BytesType.CHAR,	32);
-				obj["szServerName"]	= BytesUtil.read(bytes, BytesType.CHAR,	32);
+				obj["wKindID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//名称索引
+				obj["wNodeID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//节点索引(忽略)
+				obj["wSortID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//排序索引(忽略)
+				obj["wServerID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//房间索引
+				obj["wServerPort"] 	= BytesUtil.read(bytes, BytesType.WORD);		//房间端口
+				obj["dwOnLineCount"]	= BytesUtil.read(bytes, BytesType.DWORD);		//在线人数
+				obj["dwFullCount"]		= BytesUtil.read(bytes, BytesType.DWORD);		//满员人数
+				obj["szServerAddr"]	= BytesUtil.read(bytes, BytesType.CHAR,	32);	//IP
+				obj["szServerName"]	= BytesUtil.read(bytes, BytesType.CHAR,	32);	//房间名称
 				arr.push(obj);
 			}
 			vo["arRoom"] = arr;

@@ -70,7 +70,7 @@ package net.socket
 			}
 		}
 		
-		override protected function socketError(event:Event):void
+		override protected function socketError(event:Event = null):void
 		{
 			trace("socketError");
 			super.socketError(event);

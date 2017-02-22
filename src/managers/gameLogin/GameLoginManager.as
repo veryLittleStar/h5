@@ -108,6 +108,12 @@ package managers.gameLogin
 				DataProxy.gameID = obj.dwGameID;
 				DataProxy.nickName = obj.szNickName;
 				DataProxy.faceID = obj.wFaceID;
+				
+				DataProxy.allUsers[obj.dwUserID] = obj;
+			}
+			else
+			{
+				DataProxy.allUsers[obj.dwUserID] = obj;
 			}
 		}
 		

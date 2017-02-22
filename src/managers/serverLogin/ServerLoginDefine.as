@@ -14,6 +14,10 @@ package managers.serverLogin
 		
 		public static const MSG_LOGIN_ROOM_LIST_REC:String = "2_104";
 		
+		public static const MSG_HEART_BEAT_REQ:String = "0_1";
+		
+		public static const MSG_HEART_BEAT_REC:String = "0_1";
+		
 		
 		public function ServerLoginDefine()
 		{

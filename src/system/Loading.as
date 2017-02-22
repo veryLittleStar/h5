@@ -69,5 +69,10 @@ package system
 			if(dice)dice.stop();
 		}
 		
+		public function set loadText(value:String):void
+		{
+			loadLabel.text = value;
+		}
+		
 	}
 }

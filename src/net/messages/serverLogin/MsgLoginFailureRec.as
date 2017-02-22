@@ -16,8 +16,8 @@ package net.messages.serverLogin
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["lResultCode"] 			= BytesUtil.read(bytes, BytesType.INT);
-			vo["szDescribeString"]	= BytesUtil.read(bytes, BytesType.CHAR,128);
+			vo["lResultCode"] 			= BytesUtil.read(bytes, BytesType.INT);			//错误代码
+			vo["szDescribeString"]	= BytesUtil.read(bytes, BytesType.CHAR,128);	//描述消息
 			
 			return vo;
 		}

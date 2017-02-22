@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":5,
+    "selectedBox":5,
+    "selecteID":3,
     "props":{"width":600,"sceneColor":"#95a8b9","height":400},
     "nodeParent":-1,
     "label":"View",
@@ -61,9 +61,9 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "props":{"y":82,"x":0,"text":"资源加载中","fontSize":15,"color":"#f4f3ec"},
+                    "props":{"y":82,"x":0,"var":"loadLabel","text":"资源加载中","fontSize":15,"color":"#f4f3ec"},
                     "nodeParent":5,
-                    "label":"Label",
+                    "label":"Label(loadLabel)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,

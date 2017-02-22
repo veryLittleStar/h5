@@ -870,6 +870,29 @@ struct CMD_GF_S_UserExpression
 #define REQUEST_FAILURE_PASSWORD	3									//密码错误
 
 //////////////////////////////////////////////////////////////////////////////////
+游戏命令 
+MDM_GF_GAME 200
+
+#define SUB_S_GAME_FREE				99									//游戏空闲
+#define SUB_S_GAME_START			100									//游戏开始
+#define SUB_S_PLACE_JETTON			101									//用户下注
+#define SUB_S_GAME_END				102									//游戏结束
+#define SUB_S_APPLY_BANKER			103									//申请庄家
+#define SUB_S_CHANGE_BANKER			104									//切换庄家
+#define SUB_S_CHANGE_USER_SCORE		105									//更新积分
+#define SUB_S_SEND_RECORD			106									//游戏记录
+#define SUB_S_PLACE_JETTON_FAIL		107									//下注失败
+#define SUB_S_CANCEL_BANKER			108									//取消申请
+#define SUB_S_AMDIN_COMMAND			109									//系统控制
+
+//用户下注
+struct CMD_S_PlaceJetton 101
+{
+	WORD							wChairID;							//用户位置
+	BYTE							cbJettonArea;						//筹码区域
+	LONGLONG							lJettonScore;						//加注数目
+	BYTE							cbAndroid;							//机器人
+};
 
 #pragma pack()
 

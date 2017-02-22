@@ -17,8 +17,8 @@ package net.messages.serverLogin
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["wIntermitTime"] 			= BytesUtil.read(bytes, BytesType.WORD);
-			vo["wOnLineCountTime"] 		= BytesUtil.read(bytes, BytesType.WORD);
+			vo["wIntermitTime"] 			= BytesUtil.read(bytes, BytesType.WORD);		//中断时间
+			vo["wOnLineCountTime"] 		= BytesUtil.read(bytes, BytesType.WORD);		//更新时间
 			
 			return vo;
 		}

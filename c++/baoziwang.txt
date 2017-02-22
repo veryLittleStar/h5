@@ -1,7 +1,7 @@
 ÈýÖÖ×´Ì¬
 GAME_STATUS_FREE = 0					CMD_S_StatusFree
 GAME_SCENE_PLACE_JETTON = 100			CMD_S_StatusPlay
-GAME_GAME_SCENE_GAME_END  = 101			CMD_S_StatusPlay
+GAME_SCENE_GAME_END  = 101				CMD_S_StatusPlay
 
 
 //ÓÎÏ·×´Ì¬

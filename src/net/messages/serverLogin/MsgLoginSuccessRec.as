@@ -16,24 +16,29 @@ package net.messages.serverLogin
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["wFaceID"] 			= BytesUtil.read(bytes, BytesType.WORD);
-			vo["dwUserID"]			= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwGameID"]			= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwGroupID"]		= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwCustomID"]		= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwUserMedal"]		= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwExperience"]	= BytesUtil.read(bytes, BytesType.DWORD);
-			vo["dwLoveLiness"]	= BytesUtil.read(bytes, BytesType.DWORD);
+			//属性资料
+			vo["wFaceID"] 			= BytesUtil.read(bytes, BytesType.WORD);			//头像标识
+			vo["dwUserID"]			= BytesUtil.read(bytes, BytesType.DWORD);			//用户 I D
+			vo["dwGameID"]			= BytesUtil.read(bytes, BytesType.DWORD);			//游戏 I D
+			vo["dwGroupID"]		= BytesUtil.read(bytes, BytesType.DWORD);			//社团标识
+			vo["dwCustomID"]		= BytesUtil.read(bytes, BytesType.DWORD);			//自定标识
+			vo["dwUserMedal"]		= BytesUtil.read(bytes, BytesType.DWORD);			//用户奖牌
+			vo["dwExperience"]	= BytesUtil.read(bytes, BytesType.DWORD);			//经验数值
+			vo["dwLoveLiness"]	= BytesUtil.read(bytes, BytesType.DWORD);			//用户魅力
 			
-			vo["lUserScore"]		= BytesUtil.read(bytes, BytesType.INT64);
-			vo["lUserInsure"]		= BytesUtil.read(bytes, BytesType.INT64);
-			vo["cbGender"]			= BytesUtil.read(bytes, BytesType.BYTE);
-			vo["cbMoorMachine"]	= BytesUtil.read(bytes, BytesType.BYTE);
-			vo["szAccounts"]		= BytesUtil.read(bytes, BytesType.CHAR,32);
-			vo["szNickName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);
-			vo["szGroupName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);
+			//用户成绩
+			vo["lUserScore"]		= BytesUtil.read(bytes, BytesType.INT64);			//用户金币
+			vo["lUserInsure"]		= BytesUtil.read(bytes, BytesType.INT64);			//用户银行
 			
-			vo["cbShowServerStatus"]	= BytesUtil.read(bytes, BytesType.BYTE);
+			//用户信息
+			vo["cbGender"]			= BytesUtil.read(bytes, BytesType.BYTE);			//用户性别
+			vo["cbMoorMachine"]	= BytesUtil.read(bytes, BytesType.BYTE);			//锁定机器
+			vo["szAccounts"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//登录帐号
+			vo["szNickName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//用户昵称
+			vo["szGroupName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//社团名字
+			
+			//配置信息
+			vo["cbShowServerStatus"]	= BytesUtil.read(bytes, BytesType.BYTE);		//显示服务器状态
 			
 			return vo;
 		}
