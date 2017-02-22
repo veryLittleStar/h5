@@ -100,8 +100,6 @@ package managers.baoziwang
 			//obj.cbTimeLeave
 			//obj.nListUserCount
 			
-			
-			
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.clockBox.countDown(2,leftTime - 2500);
 			Laya.timer.once(leftTime - 2500,this,yaoTouzi);
@@ -199,7 +197,7 @@ package managers.baoziwang
 			if(obj.bEnableSysBanker)
 			{
 				_ui.bankerNameLabel.text = "老炮王";
-				_ui.bankerScoreLabel.text = "10亿";
+				_ui.bankerScoreLabel.text = "100亿";
 			}
 			else
 			{
@@ -298,17 +296,17 @@ package managers.baoziwang
 			obj.cbDice2 = arr[2];
 			if(obj.cbDice0 == obj.cbDice1 &&  obj.cbDice1 == obj.cbDice2)
 			{
-				obj.cbResult = 1;
+				obj.cbResult = BaoziwangDefine.RESULT_BAOZI;
 			}
 			else
 			{
 				if((obj.cbDice0 + obj.cbDice1 + obj.cbDice2) <= 10)
 				{
-					obj.cbResult = 2;
+					obj.cbResult = BaoziwangDefine.RESULT_SMALL;
 				}
 				else
 				{
-					obj.cbResult = 0;
+					obj.cbResult = BaoziwangDefine.RESULT_BIG;
 				}
 			}
 			recordArr.unshift(obj);

@@ -20,7 +20,7 @@ package net.messages.user
 			vo["dwUserID"]			= BytesUtil.read(bytes, BytesType.DWORD);			//用户标识
 			vo["wTableID"]			= BytesUtil.read(bytes, BytesType.WORD);			//桌子索引
 			vo["wChairID"]			= BytesUtil.read(bytes, BytesType.WORD);			//椅子位置
-			vo["cbUserStatus"]		= BytesUtil.read(bytes, BytesType.BYTE);			//用户状态
+			vo["cbUserStatus"]	= BytesUtil.read(bytes, BytesType.BYTE);			//用户状态
 			
 			
 			return vo;

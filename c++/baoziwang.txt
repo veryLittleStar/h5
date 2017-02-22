@@ -67,3 +67,12 @@ struct CMD_S_StatusPlay
 
 	TCHAR							szGameRoomName[32];					//房间名称
 };
+
+//用户状态
+#define US_NULL						0x00								//没有状态
+#define US_FREE						0x01								//站立状态
+#define US_SIT						0x02								//坐下状态
+#define US_READY					0x03								//同意状态
+#define US_LOOKON					0x04								//旁观状态
+#define US_PLAYING					0x05								//游戏状态
+#define US_OFFLINE					0x06								//断线状态

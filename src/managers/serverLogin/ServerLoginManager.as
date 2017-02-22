@@ -46,8 +46,8 @@ package managers.serverLogin
 		public function loginReq():void
 		{
 			var body:Object = {};
-			body.account = "111111";
-			body.password = "111111";
+			body.account = NetDefine.getQueryString("account");
+			body.password = NetDefine.getQueryString("password");
 			NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_LOGIN_REQ,body);
 		}
 		

@@ -20,8 +20,8 @@ package managers.gameLogin
 		public function roomLoginReq():void
 		{
 			var body:Object = {};
-			body.account = "111111";
-			body.password = "111111";
+			body.account = NetDefine.getQueryString("account");
+			body.password = NetDefine.getQueryString("password");
 			body.dwUserID 	= DataProxy.userID;
 			body.wKindID	= DataProxy.kindID;
 			NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_ROOM_LOGIN_REQ,body);

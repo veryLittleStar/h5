@@ -86,11 +86,11 @@ package managers.baoziwang
 				
 				if(totalNum <= 10)
 				{//小
-					
+					dx.skin = "ui/baseUI/yb_wz_x.png";
 				}
 				else
 				{//大
-					
+					dx.skin = "ui/baseUI/yb_wz_dd.png";
 				}
 			}
 			var posX:int = 0;
@@ -160,7 +160,7 @@ package managers.baoziwang
 			}
 			else
 			{
-				if(totalNum < 10)
+				if(totalNum <= 10)
 				{
 					Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:175,y:250},500);
 				}
