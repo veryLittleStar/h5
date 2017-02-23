@@ -22,12 +22,24 @@ package managers
 		public static var gender:int = 0;
 		/**用户金币*/
 		public static var userScore:int = 0;
-		
-		public static var allUsers:Object = {};
+		/**用户状态*/
+		public static var userStatus:int = 0;
+		/**这是所有玩家的用户数据*/
+		public static var userInfoDic:Object = {};
 		
 		
 		public function DataProxy()
 		{
 		}
+		
+		/////////////////////用户状态////////////////////////////////
+		//用户状态
+		public static const US_NULL:int		=				0x00								//没有状态
+		public static const US_FREE:int		=				0x01								//站立状态
+		public static const US_SIT:int		=				0x02								//坐下状态
+		public static const US_READY:int		=				0x03								//同意状态
+		public static const US_LOOKON:int		=				0x04								//旁观状态
+		public static const US_PLAYING:int	=				0x05								//游戏状态
+		public static const US_OFFLINE:int	=				0x06								//断线状态
 	}
 }

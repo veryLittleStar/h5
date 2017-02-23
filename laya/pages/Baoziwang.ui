@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":90,
+    "selectedBox":92,
+    "selecteID":110,
     "props":{"width":800,"sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -25,7 +25,7 @@
             "props":{"y":0,"x":0,"var":"table","skin":"ui/common/yb_bj.png"},
             "nodeParent":1,
             "label":"Image(table)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -39,9 +39,8 @@
             "compId":2,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":261,"x":132,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
+                    "props":{"y":371,"x":133,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
                     "nodeParent":2,
                     "label":"Label(myJetion2)",
                     "isDirectory":false,
@@ -59,9 +58,8 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":261,"x":324,"width":170,"visible":false,"var":"myJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
+                    "props":{"y":372,"x":321,"width":170,"visible":false,"var":"myJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
                     "nodeParent":2,
                     "label":"Label(myJetion1)",
                     "isDirectory":false,
@@ -79,9 +77,8 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":261,"x":521,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
+                    "props":{"y":376,"x":527,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_me","align":"center"},
                     "nodeParent":2,
                     "label":"Label(myJetion0)",
                     "isDirectory":false,
@@ -99,9 +96,8 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":373,"x":133,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
+                    "props":{"y":232,"x":136,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
                     "nodeParent":2,
                     "label":"Label(allJetion2)",
                     "isDirectory":false,
@@ -119,9 +115,8 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":373,"x":324,"width":170,"visible":false,"var":"allJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
+                    "props":{"y":233,"x":325,"width":170,"visible":false,"var":"allJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
                     "nodeParent":2,
                     "label":"Label(allJetion1)",
                     "isDirectory":false,
@@ -139,9 +134,8 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
-                    "props":{"y":373,"x":521,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
+                    "props":{"y":234,"x":525,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","font":"benz_xz_total","align":"center"},
                     "nodeParent":2,
                     "label":"Label(allJetion0)",
                     "isDirectory":false,
@@ -158,7 +152,8 @@
                     "child":[
                         ]
                 }],
-            "$LOCKED":false
+            "$LOCKED":false,
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -166,7 +161,7 @@
             "props":{"y":70,"x":163,"visible":false,"var":"clockBox","runtime":"managers.baoziwang.ClockBox"},
             "nodeParent":1,
             "label":"Box(clockBox)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -180,7 +175,6 @@
             "compId":14,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":17,"x":43,"skin":"ui/baseUI/yb_nz_dk.png"},
                     "nodeParent":14,
@@ -201,7 +195,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":5,"x":0,"skin":"ui/baseUI/ttz_clock.png"},
                     "nodeParent":14,
@@ -222,7 +215,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qxz.png","name":"xzImage"},
                     "nodeParent":14,
@@ -242,7 +234,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qdd.png","name":"ddImage"},
                     "nodeParent":14,
@@ -262,7 +253,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":18,"x":6,"width":41,"text":"0","runtime":"customUI.BmpFontLabel","name":"clockNumLabel","height":30,"font":"sgj_nz","align":"center"},
                     "nodeParent":14,
@@ -280,12 +270,13 @@
                     "compId":75,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":true
         },
         {
             "x":15,
             "type":"List",
-            "props":{"y":123,"x":22,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},
+            "props":{"y":123,"x":22,"visible":false,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},
             "nodeParent":1,
             "label":"List(playerList)",
             "isOpen":false,
@@ -438,7 +429,8 @@
                                 }]
                         }]
                 }],
-            "$LOCKED":true
+            "$LOCKED":true,
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -674,7 +666,8 @@
                             "child":[
                                 ],
                             "$HIDDEN":false
-                        }]
+                        }],
+                    "$HIDDEN":false
                 },
                 {
                     "type":"Label",
@@ -713,7 +706,8 @@
                     "compId":41,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -733,7 +727,8 @@
                 }],
             "compId":47,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -741,7 +736,7 @@
             "props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},
             "nodeParent":1,
             "label":"Box(mainPanelTop)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -755,7 +750,6 @@
             "compId":49,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0},
                     "nodeParent":49,
@@ -776,7 +770,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":3,"x":170,"skin":"ui/baseUI/yb_bt_gd.png"},
                     "nodeParent":49,
@@ -796,7 +789,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":2,"x":518,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png"},
                     "nodeParent":49,
@@ -816,7 +808,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":2,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png"},
                     "nodeParent":49,
@@ -836,7 +827,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":3,"x":519,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png"},
                     "nodeParent":49,
@@ -856,7 +846,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":386,"skin":"ui/baseUI/yb_tx_lpt.png"},
                     "nodeParent":49,
@@ -876,7 +865,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":14,"x":460,"var":"bankerNameLabel","text":"老炮王","color":"#f4f3ec"},
                     "nodeParent":49,
@@ -896,7 +884,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":37,"x":468,"var":"bankerScoreLabel","text":"10亿","color":"#f2eacb"},
                     "nodeParent":49,
@@ -917,7 +904,6 @@
                     "$LOCKED":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"},
                     "nodeParent":49,
@@ -937,7 +923,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":32,"x":52.5,"name":"recordListBox"},
                     "nodeParent":49,
@@ -956,7 +941,6 @@
                     "compId":85,
                     "child":[
                         {
-                            "x":45,
                             "type":"List",
                             "props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},
                             "nodeParent":85,
@@ -975,7 +959,6 @@
                             "compId":45,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"},
                                     "nodeParent":45,
@@ -995,7 +978,8 @@
                                         ]
                                 }]
                         }]
-                }]
+                }],
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -1003,7 +987,7 @@
             "props":{"y":240,"width":800,"var":"tipBox","runtime":"managers.baoziwang.TipBox","centerX":0},
             "nodeParent":1,
             "label":"Box(tipBox)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -1017,7 +1001,6 @@
             "compId":67,
             "child":[
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":65,"x":0,"width":800,"pivotY":62.5,"name":"bg"},
                     "nodeParent":67,
@@ -1036,7 +1019,6 @@
                     "compId":70,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":0,"x":0,"skin":"ui/baseUI/game_com_tip_bg.png"},
                             "nodeParent":70,
@@ -1056,7 +1038,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":0,"x":799.5,"skin":"ui/baseUI/game_com_tip_bg.png","scaleX":-1},
                             "nodeParent":70,
@@ -1077,7 +1058,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":22,"x":294,"skin":"ui/baseUI/ttz_ts_01.png","name":"word1"},
                     "nodeParent":67,
@@ -1097,7 +1077,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":19,"x":264,"skin":"ui/baseUI/ttz_ts_02.png","name":"word2"},
                     "nodeParent":67,
@@ -1125,7 +1104,7 @@
             "props":{"y":333,"x":415,"width":1,"visible":false,"var":"diceCupBox","runtime":"managers.baoziwang.DiceCupBox","height":1},
             "nodeParent":1,
             "label":"Box(diceCupBox)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -1139,7 +1118,6 @@
             "compId":76,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_1.png","pivotY":65,"pivotX":117,"name":"tray"},
                     "nodeParent":76,
@@ -1159,7 +1137,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_2.png","pivotY":185,"pivotX":85,"name":"cap"},
                     "nodeParent":76,
@@ -1181,7 +1158,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-334,"x":0,"skin":"ui/baseUI/yb_gx_hd.png","scaleY":2.5,"scaleX":2.5,"pivotX":71.5,"name":"light"},
                     "nodeParent":76,
@@ -1202,7 +1178,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":39,"x":-131,"skin":"ui/baseUI/yb_d_sm.png","name":"pointBox"},
                     "nodeParent":76,
@@ -1221,7 +1196,6 @@
                     "compId":84,
                     "child":[
                         {
-                            "x":45,
                             "type":"Label",
                             "props":{"y":44,"x":89,"width":50,"text":"18","runtime":"customUI.BmpFontLabel","name":"numLabel","font":"yb_sz_ds","anchorY":0.5,"anchorX":0.5,"align":"right"},
                             "nodeParent":84,
@@ -1241,7 +1215,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":46,"x":139,"width":38,"skin":"ui/baseUI/yb_wz_d.png","pivotY":21,"pivotX":18,"name":"point","height":38},
                             "nodeParent":84,
@@ -1261,7 +1234,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":44,"x":196,"width":65,"skin":"ui/baseUI/yb_wz_dd.png","pivotY":36,"pivotX":33,"name":"dx","height":69},
                             "nodeParent":84,
@@ -1282,6 +1254,555 @@
                         }]
                 }],
             "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "props":{"x":0,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","centerY":0},
+            "nodeParent":1,
+            "label":"Box(chatAndUserList)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "frames":[
+                {
+                    "type":1,
+                    "props":{},
+                    "frame":0,
+                    "__InPool":false
+                }],
+            "compId":92,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":-14,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"},
+                    "nodeParent":92,
+                    "label":"Image(bgImage)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":124,"x":-164,"skin":"ui/baseUI/ttz_talk_bg_1.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":93,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":135,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"},
+                    "nodeParent":92,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":149,"x":310,"skin":"ui/baseUI/ttz_talk_txt_01.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":94,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":235,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"},
+                    "nodeParent":92,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":245,"x":311,"skin":"ui/baseUI/ttz_talk_txt_02.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":95,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":274,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12},
+                    "nodeParent":92,
+                    "label":"Image(userArrow)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":287,"x":314,"skin":"ui/baseUI/ttz_talk_j2.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":96,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":179,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"},
+                    "nodeParent":92,
+                    "label":"Image(chatArrow)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":183,"x":311,"skin":"ui/baseUI/ttz_talk_j2.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":97,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":-2,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417},
+                    "nodeParent":92,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":155,"x":141,"skin":"ui/baseUI/ttz_talk_bg_3.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":98,
+                    "child":[
+                        ],
+                    "$LOCKED":true
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "props":{"y":103,"x":296,"width":30,"name":"chatBtn","height":97},
+                    "nodeParent":92,
+                    "label":"Box(chatBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":162,"x":297},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":99,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "props":{"y":205,"x":296,"width":30,"name":"userBtn","height":97},
+                    "nodeParent":92,
+                    "label":"Box(userBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":162,"x":297},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":100,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"List",
+                    "props":{"y":0,"x":0,"width":285,"vScrollBarSkin":"\"\"","spaceY":-4,"name":"userList","height":414},
+                    "nodeParent":92,
+                    "label":"List(userList)",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"width":100,"height":100},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":110,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Box",
+                            "props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},
+                            "nodeParent":110,
+                            "label":"Box",
+                            "isOpen":true,
+                            "isDirectory":true,
+                            "isAniNode":false,
+                            "hasChild":true,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":111,
+                            "child":[
+                                {
+                                    "x":60,
+                                    "type":"Image",
+                                    "props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60},
+                                    "nodeParent":111,
+                                    "label":"Image",
+                                    "isOpen":true,
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":95,"x":59,"skin":"ui/baseUI/ttz_wzwj_1.png"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":102,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Box",
+                                    "props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},
+                                    "nodeParent":111,
+                                    "label":"Box(portraitBox)",
+                                    "isOpen":true,
+                                    "isDirectory":true,
+                                    "isAniNode":false,
+                                    "hasChild":true,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":0,"x":0},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":104,
+                                    "child":[
+                                        {
+                                            "x":75,
+                                            "type":"Image",
+                                            "props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},
+                                            "nodeParent":104,
+                                            "label":"Image(portraitImage)",
+                                            "isOpen":false,
+                                            "isDirectory":true,
+                                            "isAniNode":false,
+                                            "hasChild":true,
+                                            "frames":[
+                                                {
+                                                    "type":1,
+                                                    "props":{"skin":"ui/baseUI/lob_men_1.jpg"},
+                                                    "frame":0,
+                                                    "__InPool":false
+                                                }],
+                                            "compId":105,
+                                            "child":[
+                                                {
+                                                    "type":"Image",
+                                                    "props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56},
+                                                    "nodeParent":105,
+                                                    "label":"Image",
+                                                    "isDirectory":false,
+                                                    "isAniNode":false,
+                                                    "hasChild":false,
+                                                    "frames":[
+                                                        {
+                                                            "type":1,
+                                                            "props":{"skin":"ui/baseUI/game_user_head_zz.png"},
+                                                            "frame":0,
+                                                            "__InPool":false
+                                                        }],
+                                                    "compId":106,
+                                                    "child":[
+                                                        ],
+                                                    "$HIDDEN":false
+                                                }],
+                                            "$HIDDEN":false
+                                        },
+                                        {
+                                            "x":75,
+                                            "type":"Image",
+                                            "props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84},
+                                            "nodeParent":104,
+                                            "label":"Image(portraitBg)",
+                                            "isDirectory":false,
+                                            "isAniNode":false,
+                                            "hasChild":false,
+                                            "frames":[
+                                                {
+                                                    "type":1,
+                                                    "props":{"skin":"ui/baseUI/game_user_head_box_1.png"},
+                                                    "frame":0,
+                                                    "__InPool":false
+                                                }],
+                                            "compId":107,
+                                            "child":[
+                                                ],
+                                            "$HIDDEN":false
+                                        }],
+                                    "$HIDDEN":false
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Label",
+                                    "props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true},
+                                    "nodeParent":111,
+                                    "label":"Label(userName)",
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":22,"x":116,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":108,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Label",
+                                    "props":{"y":36,"x":93,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true},
+                                    "nodeParent":111,
+                                    "label":"Label(userScore)",
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":22,"x":116,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":109,
+                                    "child":[
+                                        ]
+                                }]
+                        }]
+                }],
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "props":{"var":"recordPanel"},
+            "nodeParent":1,
+            "label":"Box(recordPanel)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "frames":[
+                {
+                    "type":1,
+                    "props":{},
+                    "frame":0,
+                    "__InPool":false
+                }],
+            "compId":112,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":-30,"x":387,"width":284,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","height":500},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":173,"x":423,"skin":"ui/baseUI/game_phb_10.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":113,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":20,"x":395,"width":269,"skin":"ui/baseUI/yb_sz_ls_lv2.png","sizeGrid":"15,30,15,30","height":49},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":45,"x":419,"skin":"ui/baseUI/yb_sz_ls_lv2.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":114,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":33,"x":601,"skin":"ui/baseUI/yb_sz_ls_11.png"},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":32,"x":513,"skin":"ui/baseUI/yb_sz_ls_11.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":115,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":29,"x":623,"skin":"ui/baseUI/yb_bj_zs_01.png"},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":34,"x":571,"skin":"ui/baseUI/yb_bj_zs_01.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":116,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":21,"x":400,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":30,"x":512,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":117,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":21,"x":448,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":30,"x":512,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":118,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":21,"x":493,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                    "nodeParent":112,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":30,"x":512,"skin":"ui/baseUI/ttz_sezi_d_1.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":119,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"y":43,"x":556,"text":"label"},
+                    "nodeParent":112,
+                    "label":"Label",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":33,"x":546,"text":"label"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":120,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {

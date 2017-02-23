@@ -64,17 +64,32 @@ package managers.gameLogin
 			//obj.wTableID
 			//obj.wChairID
 			//obj.cbUserStatus
-			if(obj.dwUserID != DataProxy.userID)return;
-			if(obj.wTableID == DataProxy.tableID)return;
-			DataProxy.tableID = obj.wTableID;
-			DataProxy.chairID = obj.wChairID;
-			var body:Object = {};
-			obj.body = body;
-			body.cbAllowLookon = 0;
-			body.dwFrameVersion = 0;
-			body.dwClientVersion = 0;
-			NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_GAME_OPTION_REQ,body);
-			ManagersMap.baoziwangManager.openMe();
+			
+			if(obj.dwUserID == DataProxy.userID)
+			{
+				if(obj.wTableID != DataProxy.tableID)
+				{
+					var body:Object = {};
+					obj.body = body;
+					body.cbAllowLookon = 0;
+					body.dwFrameVersion = 0;
+					body.dwClientVersion = 0;
+					NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_GAME_OPTION_REQ,body);
+					Loading.getInstance().closeMe();
+				}
+				DataProxy.userStatus= obj.cbUserStatus;
+				DataProxy.tableID 	= obj.wTableID;
+				DataProxy.chairID	= obj.wChairID;
+			}
+			
+			var userInfo:Object = DataProxy.userInfoDic[obj.dwUserID];
+			if(userInfo)
+			{
+				userInfo.dwUserID = obj.dwUserID;
+				userInfo.wTableID = obj.wTableID;
+				userInfo.wChairID = obj.wChairID;
+				userInfo.cbUserStatus = obj.cbUserStatus;
+			}
 		}
 		
 		public function userInfoRec(obj:Object):void
@@ -105,16 +120,17 @@ package managers.gameLogin
 			//obj.lLoveLiness
 			if(obj.dwUserID == DataProxy.userID)
 			{
-				DataProxy.gameID = obj.dwGameID;
-				DataProxy.nickName = obj.szNickName;
-				DataProxy.faceID = obj.wFaceID;
-				
-				DataProxy.allUsers[obj.dwUserID] = obj;
+				DataProxy.faceID 	= obj.wFaceID;
+				DataProxy.gameID	= obj.dwGameID;
+				DataProxy.nickName 	= obj.szNickName;
+				DataProxy.gender 	= obj.cbGender;
+				DataProxy.userScore = obj.lScore;
+				DataProxy.userStatus= obj.cbUserStatus;
+				DataProxy.tableID 	= obj.wTableID;
+				DataProxy.chairID	= obj.wChairID;
 			}
-			else
-			{
-				DataProxy.allUsers[obj.dwUserID] = obj;
-			}
+			DataProxy.userInfoDic[obj.dwUserID] = obj;
+			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
 		}
 		
 

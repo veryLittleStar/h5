@@ -70,11 +70,13 @@ package managers.serverLogin
 			//obj.szGroupName
 			//obj.cbShowServerStatus
 			
-			DataProxy.userID = obj.dwUserID;
-			DataProxy.nickName = obj.szNickName;
-			DataProxy.account = obj.szAccounts;
+			DataProxy.userID 	= obj.dwUserID;
+			DataProxy.faceID 	= obj.wFaceID;
+			DataProxy.gameID	= obj.dwGameID;
+			DataProxy.nickName 	= obj.szNickName;
+			DataProxy.account 	= obj.szAccounts;
 			DataProxy.userScore = obj.lUserScore;
-			DataProxy.gender = obj.cbGender;
+			DataProxy.gender 	= obj.cbGender;
 		}
 		
 		public function loginFailureRec(obj:Object):void

@@ -16,6 +16,8 @@ package managers.baoziwang
 	import resource.ResLoader;
 	import resource.ResType;
 	
+	import system.Loading;
+	
 	import ui.baoziwangUI;
 	
 	public class BaoziwangManager extends ManagerBase
@@ -26,7 +28,6 @@ package managers.baoziwang
 			return _ui;
 		}
 		/////////////////////////////////////////
-		private var statusInfo:Object;
 		private var recordArr:Array = [];
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
@@ -53,15 +54,18 @@ package managers.baoziwang
 			_ui.diceCupBox.init();
 			_ui.tipBox.init();
 			_ui.laoPaoWang.init();
-			
-			_ui.myNameLabel.text = DataProxy.nickName;
-			_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(DataProxy.userScore);
-			if(statusInfo)
-			{
-				gameSceneRec(statusInfo);
-			}
-			_ui.mainPanelTop.recordInit(recordArr);
+			_ui.chatAndUserList.init();
+			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
+		}
+		
+		private function connectLoginServer():void
+		{
+			Loading.getInstance().openMe();
+			var data:Object = {};
+			data.host = Browser.window.initConfig.loginHost;
+			data.port = Browser.window.initConfig.loginPort;
+			NetProxy.getInstance().execute(NetDefine.CONNECT_SOCKET,data);
 		}
 		
 		private function key_up(event:Event):void
@@ -72,7 +76,6 @@ package managers.baoziwang
 					_ui.clockBox.countDown(1,3000);
 					break;
 				case Keyboard.B:
-					xxx();
 					break;
 				case Keyboard.S:
 					yaoTouzi();
@@ -87,12 +90,6 @@ package managers.baoziwang
 					gameSceneRec({cbTimeLeave:12,cbGameStatus:101,arcbDice:[1,2,3]});
 					break;
 			}
-		}
-		
-		private function xxx():void
-		{
-//			_ui.diceCupBox.openDiceCup([1,6,6]);
-			pushRecord([Math.ceil(Math.random()*5),Math.ceil(Math.random()*5),Math.ceil(Math.random()*5)]);
 		}
 		
 		public function gameFreeRec(obj:Object):void
@@ -187,13 +184,6 @@ package managers.baoziwang
 			//obj.lEndRevenue
 			//obj.szGameRoomName
 			trace(obj.cbGameStatus,"gameSceneRec");
-			statusInfo = obj;
-			if(!statusInfo.endTime)
-			{
-				statusInfo.endTime = Browser.now() + obj.cbTimeLeave*1000;
-			}
-			if(!_ui)return;
-			
 			if(obj.bEnableSysBanker)
 			{
 				_ui.bankerNameLabel.text = "老炮王";
@@ -207,7 +197,7 @@ package managers.baoziwang
 			
 			_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(obj.lUserMaxScore);
 			
-			var leftTime:int = obj.endTime - Browser.now();
+			var leftTime:int = obj.cbTimeLeave*1000;
 			if(obj.cbGameStatus == 0)
 			{
 				_ui.clockBox.countDown(2,leftTime);
@@ -271,22 +261,16 @@ package managers.baoziwang
 			recordArr.splice(0);
 			var arr:Array = obj.arRecord;
 			var i:int = 0;
-			if(arr.length > 8)
+			for(i = arr.length - 1;i >= 0; i--)
 			{
-				i = arr.length - 8;
-			}
-			for(i = arr.length - 1;i >= arr.length - 8; i--)
-			{
-				if(i < 0)break;
 				recordArr.push(arr[i]);
 			}
-			if(!_ui)return;
 			_ui.mainPanelTop.recordInit(recordArr);
 		}
 		
 		private function pushRecord(arr:Array):void
 		{
-			if(recordArr.length >= 8)
+			if(recordArr.length >= 50)
 			{
 				recordArr.pop();
 			}
@@ -294,7 +278,7 @@ package managers.baoziwang
 			obj.cbDice0 = arr[0];
 			obj.cbDice1 = arr[1];
 			obj.cbDice2 = arr[2];
-			if(obj.cbDice0 == obj.cbDice1 &&  obj.cbDice1 == obj.cbDice2)
+			if(obj.cbDice0 == obj.cbDice1 && obj.cbDice1 == obj.cbDice2)
 			{
 				obj.cbResult = BaoziwangDefine.RESULT_BAOZI;
 			}
@@ -310,12 +294,19 @@ package managers.baoziwang
 				}
 			}
 			recordArr.unshift(obj);
-			if(_ui)
-			{
-				_ui.mainPanelTop.pushRecord(obj.cbResult);
-			}
+			_ui.mainPanelTop.pushRecord(obj.cbResult);
 		}
 		
+		public function updateUserInfo(userID:int):void
+		{
+			if(userID == DataProxy.userID)
+			{
+				_ui.myNameLabel.text = DataProxy.nickName;
+				_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(DataProxy.userScore);
+				
+			}
+			_ui.chatAndUserList.updateUserInfo(userID);
+		}
 		
 	}
 }

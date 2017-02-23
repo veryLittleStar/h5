@@ -32,12 +32,14 @@ package system
 			layerLoading.width = Laya.stage.width;
 			layerLoading.height = Laya.stage.height;
 			layerLoading.mouseEnabled = true;
+			layerLoading.mouseThrough = true;
 			Laya.stage.addChild(layerLoading);
 			
 			layerMsgBox = new Sprite();
 			layerMsgBox.width = Laya.stage.width;
 			layerMsgBox.height = Laya.stage.height;
 			layerMsgBox.mouseEnabled = true;
+			layerMsgBox.mouseThrough = true;
 			Laya.stage.addChild(layerMsgBox);
 			
 			layerAlert = new Sprite();

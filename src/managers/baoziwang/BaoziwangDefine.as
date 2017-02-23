@@ -24,6 +24,7 @@ package managers.baoziwang
 		{
 		}
 		
+		/**系统文本*/
 		public static function getScoreStr(num:int):String
 		{
 			var str:String = "";
@@ -42,6 +43,7 @@ package managers.baoziwang
 			return str;
 		}
 		
+		/**美术字*/
 		public static function getScoreStr1(num:int):String
 		{
 			var str:String = "";
@@ -56,6 +58,26 @@ package managers.baoziwang
 			else
 			{
 				str = Math.floor(num/100000000) + "y";
+			}
+			return str;
+		}
+		
+		public static function getPortraitBg():String
+		{
+			return "";
+		}
+		
+		public static function getPortraitImage(gender:int,faceID:int):String
+		{
+			var index:int = faceID % 4;
+			var str:String;
+			if(gender == 0)
+			{
+				str = "ui/baseUI/lob_men_" + index + ".jpg";
+			}
+			else
+			{
+				str = "ui/baseUI/lob_women_" + index + ".jpg";
 			}
 			return str;
 		}

@@ -894,6 +894,28 @@ struct CMD_S_PlaceJetton 101
 	BYTE							cbAndroid;							//机器人
 };
 
+struct CMD_S_GameEnd 102
+{
+	//下局信息
+	BYTE							cbTimeLeave;						//剩余时间
+
+	//扑克信息
+	BYTE							cbDice[3];
+
+	//庄家信息
+	LONGLONG							lBankerScore;						//庄家成绩
+	LONGLONG							lBankerTotallScore;					//庄家成绩
+	INT									nBankerTime;						//做庄次数
+
+	//玩家成绩
+	LONGLONG							lUserScore;							//玩家成绩
+	LONGLONG							lUserReturnScore;					//返回积分
+
+	//全局信息
+	LONGLONG							lRevenue;							//游戏税收
+};
+
+
 #pragma pack()
 
 #endif

@@ -91,6 +91,7 @@ package managers
 					if(_resLoading == false)
 					{
 						_resLoading = true;
+						Loading.getInstance().openMe("资源加载中...");
 						Laya.loader.load(_resArr, Handler.create(this, resComplete));
 					}
 				}
@@ -107,6 +108,7 @@ package managers
 		{
 			if(_view)return;
 			_view = new _uiClass() as View;
+			Loading.getInstance().closeMe();
 			initPanel();
 			checkOpen();
 		}
@@ -117,7 +119,6 @@ package managers
 			{
 				UILayer.layerMain.addChild(_view);
 				afterOpen();
-				Loading.getInstance().closeMe();
 			}
 		}
 	}

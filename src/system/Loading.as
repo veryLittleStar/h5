@@ -23,6 +23,7 @@ package system
 		////////////////////////////////////////////////
 		private var isOpen:Boolean = false;
 		private var init:Boolean = false;
+		private var showText:String;
 		public function Loading()
 		{
 			if(_ins)
@@ -45,9 +46,10 @@ package system
 			super.createView(uiView);
 		}
 		
-		public function openMe():void
+		public function openMe(showText:String = ""):void
 		{
 			isOpen = true;
+			this.showText = showText;
 			checkOpen();
 		}
 		
@@ -59,6 +61,7 @@ package system
 				dice.play(0,true);
 				this.centerX = 0;
 				this.centerY = 0;
+				loadLabel.text = showText;
 			}
 		}
 		
@@ -67,11 +70,6 @@ package system
 			isOpen = false;
 			this.removeSelf();
 			if(dice)dice.stop();
-		}
-		
-		public function set loadText(value:String):void
-		{
-			loadLabel.text = value;
 		}
 		
 	}
