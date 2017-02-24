@@ -45,7 +45,7 @@ package managers.baoziwang
 			{
 				tempImage.skin = getRecordSkin(result);
 			}
-			Tween.to(recordList,{x:30},100,null,Handler.create(this,showNewRecord),0,true);
+			Tween.to(recordList,{x:30},100,null,Handler.create(this,showNewRecord),4000,true);
 		}
 		
 		private function showNewRecord():void

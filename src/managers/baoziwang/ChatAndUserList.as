@@ -18,7 +18,7 @@ package managers.baoziwang
 		private var userList:List;
 		
 		private var _showState:int = 0;
-		private var _choseState:int = 0;
+		private var _choseState:int = 1;
 		public function ChatAndUserList()
 		{
 			super();
@@ -81,10 +81,24 @@ package managers.baoziwang
 			if(_showState == 0)
 			{
 				Tween.to(this,{x:-295},500,null,null,0,true);
+				Laya.stage.off(Event.MOUSE_UP,this,stageMouseUp);
 			}
 			else
 			{
-				Tween.to(this,{x:0},500,null,null,0,true);
+				Tween.to(this,{x:-5},500,null,null,0,true);
+				Laya.stage.on(Event.MOUSE_UP,this,stageMouseUp);
+			}
+		}
+		
+		private function stageMouseUp(event:Event = null):void
+		{
+			if(this.hitTestPoint(event.stageX,event.stageY))
+			{
+				
+			}
+			else
+			{
+				showState = 0;
 			}
 		}
 		
@@ -111,12 +125,14 @@ package managers.baoziwang
 			{
 				chatArrow.visible = true;
 				userArrow.visible = false;
+				userList.visible = false;
 				bgImage.skin = "ui/baseUI/ttz_talk_bg_2.png";
 			}
 			else				//选中玩家
 			{
 				chatArrow.visible = false;
 				userArrow.visible = true;
+				userList.visible = true;
 				bgImage.skin = "ui/baseUI/ttz_talk_bg_1.png";
 			}
 		}

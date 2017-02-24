@@ -3,6 +3,7 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.baoziwang.MsgBZWGameOptionReq;
+	import net.messages.baoziwang.MsgBZWPlaceJetionReq;
 	import net.messages.gameLogin.MsgRoomLoginReq;
 	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
@@ -82,6 +83,7 @@ package net.messages
 			_encodeMessageDict["23_3"] =  MsgUserSitDownReq;
 			
 			_encodeMessageDict["100_1"] =  MsgBZWGameOptionReq;
+			_encodeMessageDict["200_1"] =  MsgBZWPlaceJetionReq;
 		}
 		
 	}

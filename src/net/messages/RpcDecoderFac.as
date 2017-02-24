@@ -8,6 +8,8 @@ package net.messages
 	import net.messages.baoziwang.MsgBZWGameRecordRec;
 	import net.messages.baoziwang.MsgBZWGameSceneRec;
 	import net.messages.baoziwang.MsgBZWGameStartRec;
+	import net.messages.baoziwang.MsgBZWPlaceJetionFailRec;
+	import net.messages.baoziwang.MsgBZWPlaceJetionRec;
 	import net.messages.gameLogin.MsgRoomLoginFailureRec;
 	import net.messages.gameLogin.MsgRoomLoginFinishRec;
 	import net.messages.gameLogin.MsgRoomLoginSucessRec;
@@ -107,6 +109,8 @@ package net.messages
 			_decodeMessageDict["200_100"] 	= MsgBZWGameStartRec;
 			_decodeMessageDict["200_102"] 	= MsgBZWGameEndRec;
 			_decodeMessageDict["200_106"] 	= MsgBZWGameRecordRec;
+			_decodeMessageDict["200_101"] 	= MsgBZWPlaceJetionRec;
+			_decodeMessageDict["200_107"] 	= MsgBZWPlaceJetionFailRec;
 			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
 		}
 		

@@ -55,8 +55,23 @@ package managers.baoziwang
 			_ui.tipBox.init();
 			_ui.laoPaoWang.init();
 			_ui.chatAndUserList.init();
+			_ui.recordPanel.init();
 			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
+			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
+		}
+		
+		private function recordBtnMouseUp(event:Event = null):void
+		{
+			event.stopPropagation();
+			if(_ui.recordPanel.visible)
+			{
+				_ui.recordPanel.closeMe();
+			}
+			else
+			{
+				_ui.recordPanel.openMe(recordArr);
+			}
 		}
 		
 		private function connectLoginServer():void
@@ -306,6 +321,21 @@ package managers.baoziwang
 				
 			}
 			_ui.chatAndUserList.updateUserInfo(userID);
+		}
+		
+		public function placeJetionRec(obj:Object):void
+		{
+			//obj["wChairID"] 			//用户位置
+			//obj["cbJettonArea"]		//筹码区域
+			//obj["lJettonScore"]		//加注数目
+			//obj["cbAndroid"]			//机器人
+		}
+		
+		public function placeJetionFailRec(obj:Object):void
+		{
+			//obj["wPlaceUser"] 			//下注玩家
+			//obj["lJettonArea"]			//下注区域
+			//obj["lPlaceScore"] 			//当前下注
 		}
 		
 	}

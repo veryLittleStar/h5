@@ -84,6 +84,12 @@ package managers
 				case BaoziwangDefine.MSG_BZW_GAME_SCENE_REC:
 					ManagersMap.baoziwangManager.gameSceneRec(body);
 					break;
+				case BaoziwangDefine.MSG_BZW_PLACE_JETION_REC:
+					ManagersMap.baoziwangManager.placeJetionRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC:
+					ManagersMap.baoziwangManager.placeJetionFailRec(body);
+					break;
 			}
 		}
 		

@@ -15,6 +15,12 @@ package managers.baoziwang
 		
 		public static const MSG_BZW_GAME_SCENE_REC:String = "100_101";
 		
+		public static const MSG_BZW_PLACE_JETION_REQ:String = "200_1";
+		
+		public static const MSG_BZW_PLACE_JETION_REC:String = "200_101";
+		
+		public static const MSG_BZW_PLACE_JETION_FAIL_REC:String = "200_107";
+		
 		/////////////////////////
 		public static const RESULT_BIG:int 	= 0;
 		public static const RESULT_BAOZI:int 	= 1;
