@@ -70,7 +70,7 @@ package net.socket
 			}
 		}
 		
-		override protected function socketError(event:Event = null):void
+		override protected function socketError(event:* = null):void
 		{
 			trace("socketError");
 			super.socketError(event);
@@ -82,7 +82,7 @@ package net.socket
 		
 		override protected function socketMessage(data:ArrayBuffer):void
 		{
-			if(!connect)return;
+			if(!connected)return;
 			_inputBa.position = 0;
 			messageHandler.runWith(_inputBa);
 			_inputBa.clear();

@@ -5,6 +5,7 @@ package managers.baoziwang
 	import laya.display.Sprite;
 	import laya.maths.Point;
 	import laya.maths.Rectangle;
+	import laya.media.SoundManager;
 	import laya.ui.Box;
 	import laya.ui.Image;
 	import laya.utils.Ease;
@@ -129,6 +130,7 @@ package managers.baoziwang
 			Tween.to(light,{scaleX:2.5},500,null,null,0,true);
 			Tween.to(cap,{x:-300,y:-400,rotation:-25},700,null,null,0,true);
 			Laya.timer.once(500,this,step3);
+			SoundManager.playSound("music/openCup0.ogg");
 		}
 		
 		private function step3():void
@@ -144,6 +146,14 @@ package managers.baoziwang
 			Tween.to(point,{scaleX:1,scaleY:1},500,Ease.backOut,null,150);
 			Tween.to(dx,{scaleX:1,scaleY:1},500,Ease.backOut,null,300);
 			Laya.timer.once(2000,this,step4);
+			if(baozi)
+			{
+				SoundManager.playSound("music/baozi_dice"+totalNum+".ogg",1);
+			}
+			else
+			{
+				SoundManager.playSound("music/dice"+totalNum+".ogg",1);
+			}
 		}
 		
 		private function step4():void
@@ -169,7 +179,7 @@ package managers.baoziwang
 					Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:575,y:250},500);
 				}
 			}
-			Laya.timer.once(3000,this,step6);
+			Laya.timer.once(1500,this,step6);
 		}
 		
 		private function step6():void

@@ -54,6 +54,9 @@ package managers
 				case GameLoginDefine.MSG_USER_INFO_REC:
 					ManagersMap.gameLoginManager.userInfoRec(body);
 					break;
+				case GameLoginDefine.MSG_USER_SCORE_REC:
+					ManagersMap.gameLoginManager.userScoreRec(body);
+					break;
 				case ServerLoginDefine.MSG_LOGIN_SUCCESS_REC:
 					ManagersMap.serverLoginManager.loginSuccessRec(body);
 					break;

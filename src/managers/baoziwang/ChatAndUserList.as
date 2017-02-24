@@ -80,12 +80,12 @@ package managers.baoziwang
 			freshState();
 			if(_showState == 0)
 			{
-				Tween.to(this,{x:-295},500,null,null,0,true);
+				Tween.to(this,{x:-295},300,null,null,0,true);
 				Laya.stage.off(Event.MOUSE_UP,this,stageMouseUp);
 			}
 			else
 			{
-				Tween.to(this,{x:-5},500,null,null,0,true);
+				Tween.to(this,{x:-5},300,null,null,0,true);
 				Laya.stage.on(Event.MOUSE_UP,this,stageMouseUp);
 			}
 		}

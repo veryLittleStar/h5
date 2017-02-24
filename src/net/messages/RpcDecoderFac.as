@@ -21,6 +21,7 @@ package net.messages
 	import net.messages.serverLogin.MsgRoomListRec;
 	import net.messages.status.MsgTableStatusRec;
 	import net.messages.user.MsgUserInfoRec;
+	import net.messages.user.MsgUserScoreRec;
 	import net.messages.user.MsgUserStatusRec;
 	import net.socket.ByteArray;
 
@@ -102,6 +103,7 @@ package net.messages
 			//user
 			_decodeMessageDict["23_100"] =  MsgUserInfoRec;
 			_decodeMessageDict["24_100"] =  MsgTableStatusRec;
+			_decodeMessageDict["23_101"] =  MsgUserScoreRec;
 			_decodeMessageDict["23_102"] =  MsgUserStatusRec;
 			
 			//baoziwang

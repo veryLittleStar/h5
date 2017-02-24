@@ -2,6 +2,7 @@ package managers.baoziwang
 {
 	import laya.display.Animation;
 	import laya.ui.Box;
+	import laya.ui.Image;
 	import laya.utils.Ease;
 	import laya.utils.Handler;
 	import laya.utils.Tween;
@@ -13,6 +14,15 @@ package managers.baoziwang
 		public function ChipCell()
 		{
 			super();
+		}
+		
+		override public function set dataSource(value:*):void
+		{
+			super.dataSource = value;
+			if (!value)return;
+			var chip:Image = getChildByName("chip") as Image;
+			
+			chip.skin = "ui/baseUI/sgj_chip_d_"+BaoziwangDefine.getChipIndex(value)+".png";
 		}
 		
 		public function set selected(value:Boolean):void

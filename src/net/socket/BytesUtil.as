@@ -167,6 +167,8 @@ package net.socket
 					bytes.writeUnsignedInt(value);
 					break;
 				case BytesType.INT64_NUMBER:
+				case BytesType.SCORE:
+				case BytesType.LONGLONG:
 					SocketUtil.writeInt64(value,bytes);
 					break;
 			}

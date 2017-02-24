@@ -2,10 +2,15 @@ package managers.baoziwang
 {
 	import laya.events.Event;
 	import laya.events.Keyboard;
+	import laya.maths.Point;
+	import laya.media.SoundManager;
 	import laya.net.Loader;
 	import laya.ui.Image;
 	import laya.ui.Label;
 	import laya.utils.Browser;
+	import laya.utils.Handler;
+	import laya.utils.Pool;
+	import laya.utils.Tween;
 	
 	import managers.DataProxy;
 	import managers.ManagerBase;
@@ -29,6 +34,15 @@ package managers.baoziwang
 		}
 		/////////////////////////////////////////
 		private var recordArr:Array = [];
+		private var tempChipArr:Array = [];
+		private var maxScore:int = 0;
+		private var curResult:int = 0;
+		private var allJetion0:int = 0;
+		private var allJetion1:int = 0;
+		private var allJetion2:int = 0;
+		private var myJetion0:int = 0;
+		private var myJetion1:int = 0;
+		private var myJetion2:int = 0;
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
 		{
@@ -59,6 +73,10 @@ package managers.baoziwang
 			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
+			_ui.xLightBtn.on(Event.CLICK,this,lightBtnClick);
+			_ui.bLightBtn.on(Event.CLICK,this,lightBtnClick);
+			_ui.dLightBtn.on(Event.CLICK,this,lightBtnClick);
+			SoundManager.playMusic("music/ybao_bg.mp3");
 		}
 		
 		private function recordBtnMouseUp(event:Event = null):void
@@ -83,26 +101,43 @@ package managers.baoziwang
 			NetProxy.getInstance().execute(NetDefine.CONNECT_SOCKET,data);
 		}
 		
+		private function lightBtnClick(event:Event):void
+		{
+			switch(event.currentTarget)
+			{
+				case _ui.xLightBtn:
+					placeJetionReq(BaoziwangDefine.RESULT_SMALL);
+					break;
+				case _ui.bLightBtn:
+					placeJetionReq(BaoziwangDefine.RESULT_BAOZI);
+					break;
+				case _ui.dLightBtn:
+					placeJetionReq(BaoziwangDefine.RESULT_BIG);
+					break;
+			}
+		}
+		
+		private function placeJetionReq(area:int):void
+		{
+			var body:Object = {};
+			body.cbJettonArea 	= area;
+			if(_ui.mainPanelBottom.selectChipScore)
+			{
+				body.lJettonScore	= _ui.mainPanelBottom.selectChipScore;
+			}
+			else
+			{
+				body.lJettonScore	= 100;
+			}
+			
+			NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BZW_PLACE_JETION_REQ,body);
+		}
+		
 		private function key_up(event:Event):void
 		{
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
-					_ui.clockBox.countDown(1,3000);
-					break;
-				case Keyboard.B:
-					break;
-				case Keyboard.S:
-					yaoTouzi();
-					break;
-				case Keyboard.D:
-					gameSceneRec({cbTimeLeave:10,cbGameStatus:0});
-					break;
-				case Keyboard.F:
-					gameSceneRec({cbTimeLeave:18,cbGameStatus:100});
-					break;
-				case Keyboard.G:
-					gameSceneRec({cbTimeLeave:12,cbGameStatus:101,arcbDice:[1,2,3]});
 					break;
 			}
 		}
@@ -120,6 +155,7 @@ package managers.baoziwang
 		private function yaoTouzi():void
 		{
 			_ui.laoPaoWang.changeMotion("yao",false);
+			SoundManager.playSound("music/roll.ogg");
 		}
 		
 		public function gameStartRec(obj:Object):void
@@ -132,13 +168,24 @@ package managers.baoziwang
 			
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.tipBox.show(1);
-			Laya.timer.once(3000,this,xiaZhu,[leftTime-3000]);
+			Laya.timer.once(2500,this,xiaZhu,[leftTime-2500]);
+			maxScore = obj.lUserMaxScore;
+			allJetion0 = 0;
+			allJetion1 = 0;
+			allJetion2 = 0;
+			myJetion0 = 0;
+			myJetion1 = 0;
+			myJetion2 = 0;
+			SoundManager.playSound("music/xzTip.ogg");
 		}
 		
 		private function xiaZhu(leftTime:int):void
 		{
 			_ui.mainPanelBottom.canBetting = true;
 			_ui.clockBox.countDown(1,leftTime);
+			_ui.xLightBtn.shine();
+			_ui.bLightBtn.shine();
+			_ui.dLightBtn.shine();
 		}
 		
 		public function gameEndRec(obj:Object):void
@@ -154,16 +201,66 @@ package managers.baoziwang
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.tipBox.show(2);
 			_ui.mainPanelBottom.canBetting = false;
-			Laya.timer.once(3200,this,kaiZhong,[obj.arcbDice,leftTime-3200]);
-			pushRecord(obj.arcbDice);
+			Laya.timer.once(2500,this,kaiZhong,[obj.arcbDice,leftTime-2500]);
+			curResult = pushRecord(obj.arcbDice);
+			SoundManager.playSound("music/kpTip.ogg");
 		}
 		
 		/**开盅*/
 		public function kaiZhong(arr:Array,leftTime:int):void
 		{
-			_ui.clockBox.countDown(2,leftTime);
+//			_ui.clockBox.countDown(2,leftTime);
 			_ui.diceCupBox.openDiceCup(arr);
 			_ui.laoPaoWang.changeMotion("open",false);
+			Laya.timer.once(8000,this,shouChouMa);
+		}
+		
+		private function shouChouMa():void
+		{
+			while(tempChipArr.length)
+			{
+				var chip:LittleChip = tempChipArr.pop();
+				var destPoint:Point = new Point();
+				var startPoint:Point = new Point();
+				startPoint= chip.localToGlobal(startPoint);
+				chip.x = startPoint.x;
+				chip.y = startPoint.y;
+				Laya.stage.addChild(chip);
+				if(curResult == chip.info.cbJettonArea)
+				{
+					if(chip.info.wChairID == DataProxy.chairID)
+					{
+						destPoint.x = 35;
+						destPoint.y = 35;
+						destPoint = _ui.mainPanelBottom.localToGlobal(destPoint);
+					}
+					else
+					{
+						destPoint.y = Laya.stage.height * 0.66;
+						destPoint.x = -chip.width;
+					}
+				}
+				else
+				{
+					destPoint.x = 410;
+					destPoint.y = 30;
+					destPoint = _ui.mainPanelTop.localToGlobal(destPoint);
+				}
+				Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipDisappear,[chip]),0,true);
+			}
+			_ui.myJetion0.visible = false;
+			_ui.myJetion1.visible = false;
+			_ui.myJetion2.visible = false;
+			_ui.allJetion0.visible = false;
+			_ui.allJetion1.visible = false;
+			_ui.allJetion2.visible = false;
+			SoundManager.playSound("music/ttz_chip_player.ogg");
+		}
+		
+		private function chipDisappear(chip:Image):void
+		{
+			chip.removeSelf();
+			Pool.recover("littleChip",chip);
 		}
 		
 		public function gameSceneRec(obj:Object):void
@@ -210,7 +307,7 @@ package managers.baoziwang
 				_ui.bankerScoreLabel.text = BaoziwangDefine.getScoreStr(obj.lBankerScore);
 			}
 			
-			_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(obj.lUserMaxScore);
+			maxScore = obj.lUserMaxScore;
 			
 			var leftTime:int = obj.cbTimeLeave*1000;
 			if(obj.cbGameStatus == 0)
@@ -283,7 +380,7 @@ package managers.baoziwang
 			_ui.mainPanelTop.recordInit(recordArr);
 		}
 		
-		private function pushRecord(arr:Array):void
+		private function pushRecord(arr:Array):int
 		{
 			if(recordArr.length >= 50)
 			{
@@ -310,6 +407,7 @@ package managers.baoziwang
 			}
 			recordArr.unshift(obj);
 			_ui.mainPanelTop.pushRecord(obj.cbResult);
+			return obj.cbResult;
 		}
 		
 		public function updateUserInfo(userID:int):void
@@ -318,6 +416,10 @@ package managers.baoziwang
 			{
 				_ui.myNameLabel.text = DataProxy.nickName;
 				_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(DataProxy.userScore);
+				if(DataProxy.userScore == 0)
+				{
+					trace(11111111111111111);
+				}
 				
 			}
 			_ui.chatAndUserList.updateUserInfo(userID);
@@ -329,6 +431,83 @@ package managers.baoziwang
 			//obj["cbJettonArea"]		//筹码区域
 			//obj["lJettonScore"]		//加注数目
 			//obj["cbAndroid"]			//机器人
+			var chipIndex:int = BaoziwangDefine.getChipIndex(obj.lJettonScore);
+			if(chipIndex)
+			{
+				var chipPoint:Point;
+				var destPoint:Point;
+				var chip:LittleChip = Pool.getItemByClass("littleChip",LittleChip);
+				chip.updateInfo(obj);
+				tempChipArr.push(chip);
+				destPoint = getRandomPointByArea(obj.cbJettonArea);
+				
+				if(obj.wChairID == DataProxy.chairID)
+				{
+					chipPoint = _ui.mainPanelBottom.getChipPosByScore(obj.lJettonScore);
+					if(chipPoint)
+					{
+						chip.x = chipPoint.x;
+						chip.y = chipPoint.y;
+						Laya.stage.addChild(chip);
+						Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipFlyEnd,[chip]));
+					}
+				}
+				else
+				{
+					chipPoint = new Point();
+					chipPoint.y = Laya.stage.height * 0.6;
+					chipPoint.x = -chip.width;
+					chip.x = chipPoint.x;
+					chip.y = chipPoint.y;
+					Laya.stage.addChild(chip);
+					Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipFlyEnd,[chip]));
+				}
+			}
+			
+			if(obj.wChairID == DataProxy.chairID)
+			{
+				this["myJetion"+obj.cbJettonArea] += obj.lJettonScore;
+				_ui["myJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["myJetion"+obj.cbJettonArea]);
+				_ui["myJetion"+obj.cbJettonArea].visible = true;
+				DataProxy.userScore -= obj.lJettonScore;
+				DataProxy.myUserInfo.lScore -= obj.lJettonScore;
+				updateUserInfo(DataProxy.userID);
+			}
+			this["allJetion"+obj.cbJettonArea] += obj.lJettonScore;
+			_ui["allJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["allJetion"+obj.cbJettonArea]);
+			_ui["allJetion"+obj.cbJettonArea].visible = true;
+			
+			SoundManager.playSound("music/ttz_chip_player.ogg");
+		}
+		
+		private function chipFlyEnd(chip:LittleChip):void
+		{
+			var point:Point = new Point(chip.x,chip.y);
+			point = _ui.table.globalToLocal(point);
+			_ui.table.addChild(chip);
+			chip.x = point.x;
+			chip.y = point.y;
+		}
+		
+		private function getRandomPointByArea(area:int):Point
+		{
+			var target:Image = _ui.xLightBtn;
+			switch(area)
+			{
+				case BaoziwangDefine.RESULT_SMALL:
+					target = _ui.xLightBtn;
+					break;
+				case BaoziwangDefine.RESULT_BAOZI:
+					target = _ui.bLightBtn;
+					break;
+				case BaoziwangDefine.RESULT_BIG:
+					target = _ui.dLightBtn;
+					break;
+			}
+			var point:Point = new Point();
+			point.x = target.x + target.width/2 * Math.random() + target.width/4;
+			point.y = target.y + target.height/2 * Math.random() + target.height/4;
+			return point;
 		}
 		
 		public function placeJetionFailRec(obj:Object):void

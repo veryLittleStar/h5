@@ -109,3 +109,56 @@ struct CMD_S_PlaceJettonFail
 	BYTE							lJettonArea;						//下注区域
 	LONGLONG						lPlaceScore;						//当前下注
 };
+
+MDM_GF_FRAME SUB_GF_USER_CHAT 100-10
+//用户聊天
+struct CMD_GF_C_UserChat
+{
+	WORD							wChatLength;						//信息长度
+	DWORD							dwChatColor;						//信息颜色
+	DWORD							dwTargetUserID;						//目标用户
+	TCHAR							szChatString[LEN_USER_CHAT];		//聊天信息
+};
+
+//用户聊天
+struct CMD_GF_S_UserChat
+{
+	WORD							wChatLength;						//信息长度
+	DWORD							dwChatColor;						//信息颜色
+	DWORD							dwSendUserID;						//发送用户
+	DWORD							dwTargetUserID;						//目标用户
+	TCHAR							szChatString[LEN_USER_CHAT];		//聊天信息
+};
+
+
+MDM_GR_USER 23
+
+//用户状态
+#define SUB_GR_USER_SCORE			101									//用户分数
+
+//用户分数
+struct CMD_GR_UserScore
+{
+	DWORD							dwUserID;							//用户标识
+	tagUserScore					UserScore;							//积分信息
+};
+
+//用户积分
+struct tagUserScore
+{
+	//积分信息
+	SCORE							lScore;								//用户分数
+	SCORE							lGrade;								//用户成绩
+	SCORE							lInsure;							//用户银行
+
+	//输赢信息
+	DWORD							dwWinCount;							//胜利盘数
+	DWORD							dwLostCount;						//失败盘数
+	DWORD							dwDrawCount;						//和局盘数
+	DWORD							dwFleeCount;						//逃跑盘数
+
+	//全局信息
+	DWORD							dwUserMedal;						//用户奖牌
+	DWORD							dwExperience;						//用户经验
+	LONG							lLoveLiness;						//用户魅力
+};

@@ -128,8 +128,45 @@ package managers.gameLogin
 				DataProxy.userStatus= obj.cbUserStatus;
 				DataProxy.tableID 	= obj.wTableID;
 				DataProxy.chairID	= obj.wChairID;
+				DataProxy.myUserInfo = obj;
 			}
 			DataProxy.userInfoDic[obj.dwUserID] = obj;
+			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
+		}
+		
+		public function userScoreRec(obj:Object):void
+		{
+			//obj.dwUserID
+			//obj.lScore
+			//obj.lGrade
+			//obj.lInsure
+			//obj.dwWinCount
+			//obj.dwLostCount
+			//obj.dwDrawCount
+			//obj.dwFleeCount
+			//obj.dwUserMedal
+			//obj.dwExperience
+			//obj.lLoveLiness
+			var userInfo:Object = DataProxy.userInfoDic[obj.dwUserID];
+			if(userInfo)
+			{
+				userInfo.dwUserID =obj.dwUserID;
+				userInfo.lScore =obj.lScore;
+				userInfo.lGrade =obj.lGrade;
+				userInfo.lInsure=obj.lInsure;
+				userInfo.dwWinCount=obj.dwWinCount;
+				userInfo.dwLostCount=obj.dwLostCount;
+				userInfo.dwDrawCount=obj.dwDrawCount;
+				userInfo.dwFleeCount=obj.dwFleeCount;
+				userInfo.dwUserMedal=obj.dwUserMedal;
+				userInfo.dwExperience=obj.dwExperience;
+				userInfo.lLoveLiness=obj.lLoveLiness;
+			}
+			
+			if(obj.dwUserID == DataProxy.userID)
+			{
+				DataProxy.userScore = obj.lScore;
+			}
 			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
 		}
 		

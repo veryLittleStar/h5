@@ -48,7 +48,7 @@ package managers.baoziwang
 			}
 			if(motion == "open")
 			{
-				Laya.timer.once(4000,this,changeMotion,["close",false]);
+				Laya.timer.once(2500,this,changeMotion,["close",false]);
 			}
 			if(motion == "close")
 			{

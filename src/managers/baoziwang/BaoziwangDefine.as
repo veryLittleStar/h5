@@ -1,5 +1,7 @@
 package managers.baoziwang
 {
+	import laya.maths.Point;
+
 	public class BaoziwangDefine
 	{
 		//msg
@@ -87,5 +89,55 @@ package managers.baoziwang
 			}
 			return str;
 		}
+		
+		public static function getChipIndex(chipScore:int):int
+		{
+			var chipIndex:int = 0;
+			switch(chipScore)
+			{
+				case 100:
+					chipIndex = 1;
+					break;
+				case 1000:
+					chipIndex = 2;
+					break;
+				case 5000:
+					chipIndex = 3;
+					break;
+				case 10000:
+					chipIndex = 4;
+					break;
+				case 100000:
+					chipIndex = 5;
+					break;
+			}
+			return chipIndex;
+		}
+		
+		
+		public static function getChipScore(chipIndex:int):int
+		{
+			var score:int = 0;
+			switch(chipIndex)
+			{
+				case 1:
+					score = 100;
+					break;
+				case 2:
+					score = 1000;
+					break;
+				case 3:
+					score = 5000;
+					break;
+				case 4:
+					score = 10000;
+					break;
+				case 5:
+					score = 100000;
+					break;
+			}
+			return score;
+		}
+		
 	}
 }

@@ -1,0 +1,558 @@
+{
+    "frames": {
+        "yb_rdh_40.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 130,
+                "h": 95,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 14,
+                "y": 33,
+                "w": 130,
+                "h": 95
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_41.png": {
+            "frame": {
+                "x": 0,
+                "y": 97,
+                "w": 106,
+                "h": 94,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 27,
+                "y": 33,
+                "w": 106,
+                "h": 94
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_42.png": {
+            "frame": {
+                "x": 132,
+                "y": 0,
+                "w": 125,
+                "h": 85,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 18,
+                "y": 38,
+                "w": 125,
+                "h": 85
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_43.png": {
+            "frame": {
+                "x": 259,
+                "y": 0,
+                "w": 125,
+                "h": 88,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 18,
+                "y": 36,
+                "w": 125,
+                "h": 88
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_44.png": {
+            "frame": {
+                "x": 386,
+                "y": 0,
+                "w": 153,
+                "h": 79,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 3,
+                "y": 41,
+                "w": 153,
+                "h": 79
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_45.png": {
+            "frame": {
+                "x": 0,
+                "y": 193,
+                "w": 126,
+                "h": 91,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 17,
+                "y": 35,
+                "w": 126,
+                "h": 91
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_46.png": {
+            "frame": {
+                "x": 0,
+                "y": 286,
+                "w": 154,
+                "h": 78,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 2,
+                "y": 41,
+                "w": 154,
+                "h": 78
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_18.png": {
+            "frame": {
+                "x": 0,
+                "y": 366,
+                "w": 87,
+                "h": 104,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 24,
+                "y": 28,
+                "w": 87,
+                "h": 104
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_19.png": {
+            "frame": {
+                "x": 0,
+                "y": 472,
+                "w": 82,
+                "h": 112,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 26,
+                "y": 24,
+                "w": 82,
+                "h": 112
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_20.png": {
+            "frame": {
+                "x": 89,
+                "y": 366,
+                "w": 85,
+                "h": 111,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 25,
+                "y": 25,
+                "w": 85,
+                "h": 111
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_21.png": {
+            "frame": {
+                "x": 84,
+                "y": 479,
+                "w": 95,
+                "h": 95,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 20,
+                "y": 33,
+                "w": 95,
+                "h": 95
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_22.png": {
+            "frame": {
+                "x": 132,
+                "y": 87,
+                "w": 108,
+                "h": 108,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 13,
+                "y": 26,
+                "w": 108,
+                "h": 108
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_30.png": {
+            "frame": {
+                "x": 242,
+                "y": 90,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_31.png": {
+            "frame": {
+                "x": 346,
+                "y": 90,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_32.png": {
+            "frame": {
+                "x": 450,
+                "y": 81,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_33.png": {
+            "frame": {
+                "x": 450,
+                "y": 182,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_34.png": {
+            "frame": {
+                "x": 242,
+                "y": 191,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_35.png": {
+            "frame": {
+                "x": 346,
+                "y": 191,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_36.png": {
+            "frame": {
+                "x": 450,
+                "y": 283,
+                "w": 102,
+                "h": 99,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 16,
+                "y": 31,
+                "w": 102,
+                "h": 99
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 160
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_11.png": {
+            "frame": {
+                "x": 176,
+                "y": 292,
+                "w": 109,
+                "h": 95,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 13,
+                "y": 18,
+                "w": 109,
+                "h": 95
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_12.png": {
+            "frame": {
+                "x": 287,
+                "y": 292,
+                "w": 110,
+                "h": 92,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 13,
+                "y": 19,
+                "w": 110,
+                "h": 92
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_13.png": {
+            "frame": {
+                "x": 176,
+                "y": 389,
+                "w": 104,
+                "h": 83,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 15,
+                "y": 24,
+                "w": 104,
+                "h": 83
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_14.png": {
+            "frame": {
+                "x": 181,
+                "y": 474,
+                "w": 112,
+                "h": 94,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 10,
+                "y": 18,
+                "w": 112,
+                "h": 94
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_15.png": {
+            "frame": {
+                "x": 295,
+                "y": 386,
+                "w": 116,
+                "h": 87,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 9,
+                "y": 22,
+                "w": 116,
+                "h": 87
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_16.png": {
+            "frame": {
+                "x": 295,
+                "y": 475,
+                "w": 114,
+                "h": 90,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 10,
+                "y": 20,
+                "w": 114,
+                "h": 90
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "yb_rdh_17.png": {
+            "frame": {
+                "x": 413,
+                "y": 384,
+                "w": 109,
+                "h": 107,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 13,
+                "y": 12,
+                "w": 109,
+                "h": 107
+            },
+            "sourceSize": {
+                "w": 134,
+                "h": 130
+            },
+            "rotated": false,
+            "trimed": true
+        }
+    },
+    "meta": {
+        "app": "http:\/\/www.layabox.com",
+        "version": "0.1.0 alpha",
+        "format": "json",
+        "scale": 1,
+        "image": "ybao_human.png",
+        "prefix": "animation\/ybao_human\/"
+    }
+}

@@ -26,6 +26,8 @@ package managers
 		public static var userStatus:int = 0;
 		/**这是所有玩家的用户数据*/
 		public static var userInfoDic:Object = {};
+		/***/
+		public static var myUserInfo:Object ={};
 		
 		
 		public function DataProxy()

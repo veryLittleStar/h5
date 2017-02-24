@@ -16,6 +16,8 @@ package managers.gameLogin
 		
 		public static const MSG_USER_INFO_REC:String = "23_100";
 		
+		public static const MSG_USER_SCORE_REC:String = "23_101";
+		
 		public static const MSG_USER_SIT_DOWN_REQ:String = "23_3";
 		
 		public static const MSG_GAME_OPTION_REQ:String = "100_1";
