@@ -3,6 +3,9 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.IRpcDecoder;
+	import net.messages.baoziwang.MsgBZWApplyBankerRec;
+	import net.messages.baoziwang.MsgBZWCancelBankerRec;
+	import net.messages.baoziwang.MsgBZWChangeBankerRec;
 	import net.messages.baoziwang.MsgBZWGameEndRec;
 	import net.messages.baoziwang.MsgBZWGameFreeRec;
 	import net.messages.baoziwang.MsgBZWGameRecordRec;
@@ -20,6 +23,7 @@ package net.messages
 	import net.messages.serverLogin.MsgLoginSuccessRec;
 	import net.messages.serverLogin.MsgRoomListRec;
 	import net.messages.status.MsgTableStatusRec;
+	import net.messages.user.MsgSystemMessageRec;
 	import net.messages.user.MsgUserInfoRec;
 	import net.messages.user.MsgUserScoreRec;
 	import net.messages.user.MsgUserStatusRec;
@@ -112,8 +116,13 @@ package net.messages
 			_decodeMessageDict["200_102"] 	= MsgBZWGameEndRec;
 			_decodeMessageDict["200_106"] 	= MsgBZWGameRecordRec;
 			_decodeMessageDict["200_101"] 	= MsgBZWPlaceJetionRec;
+			_decodeMessageDict["200_103"] 	= MsgBZWApplyBankerRec;
+			_decodeMessageDict["200_104"] 	= MsgBZWChangeBankerRec;
 			_decodeMessageDict["200_107"] 	= MsgBZWPlaceJetionFailRec;
+			_decodeMessageDict["200_108"] 	= MsgBZWCancelBankerRec;
 			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
+			
+			_decodeMessageDict["100_200"] 	= MsgSystemMessageRec;
 		}
 		
 	}

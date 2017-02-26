@@ -35,7 +35,7 @@ package managers.baoziwang
 		/////////////////////////////////////////
 		private var recordArr:Array = [];
 		private var tempChipArr:Array = [];
-		private var maxScore:int = 0;
+		public var maxScore:int = 0;
 		private var curResult:int = 0;
 		private var allJetion0:int = 0;
 		private var allJetion1:int = 0;
@@ -43,6 +43,9 @@ package managers.baoziwang
 		private var myJetion0:int = 0;
 		private var myJetion1:int = 0;
 		private var myJetion2:int = 0;
+		
+		public var preRoundJetionArr:Array = [];
+		public var curRoundJetionArr:Array = [];
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
 		{
@@ -70,6 +73,7 @@ package managers.baoziwang
 			_ui.laoPaoWang.init();
 			_ui.chatAndUserList.init();
 			_ui.recordPanel.init();
+			_ui.shangZhuangPanel.init();
 			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
@@ -138,6 +142,7 @@ package managers.baoziwang
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
+					_ui.diceCupBox.openDiceCup([5,5,4]);
 					break;
 			}
 		}
@@ -150,12 +155,13 @@ package managers.baoziwang
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.clockBox.countDown(2,leftTime - 2500);
 			Laya.timer.once(leftTime - 2500,this,yaoTouzi);
+			
 		}
 		
 		private function yaoTouzi():void
 		{
 			_ui.laoPaoWang.changeMotion("yao",false);
-			SoundManager.playSound("music/roll.ogg");
+			SoundManager.playSound("music/roll.mp3");
 		}
 		
 		public function gameStartRec(obj:Object):void
@@ -176,7 +182,21 @@ package managers.baoziwang
 			myJetion0 = 0;
 			myJetion1 = 0;
 			myJetion2 = 0;
-			SoundManager.playSound("music/xzTip.ogg");
+			SoundManager.playSound("music/xzTip.mp3");
+			
+			if(curRoundJetionArr.length)
+			{
+				preRoundJetionArr.splice(0);
+				while(curRoundJetionArr.length)
+				{
+					preRoundJetionArr.push(curRoundJetionArr.shift());
+				}
+			}
+			_ui.mainPanelBottom.updateAutoBettingBtn();
+			
+			DataProxy.bankerChairID = obj.wBankerUser;
+			DataProxy.bankerSocre = obj.lBankerScore;
+			_ui.mainPanelTop.updateBankerInfo();
 		}
 		
 		private function xiaZhu(leftTime:int):void
@@ -198,21 +218,25 @@ package managers.baoziwang
 			//obj.lUserScore					//玩家成绩
 			//obj.lUserReturnScore				//返回积分
 			//obj.lRevenue						//游戏税收
-			var leftTime:int = obj.cbTimeLeave*1000;
-			_ui.tipBox.show(2);
-			_ui.mainPanelBottom.canBetting = false;
-			Laya.timer.once(2500,this,kaiZhong,[obj.arcbDice,leftTime-2500]);
+			var endTime:int = obj.cbTimeLeave*1000 + Browser.now();
 			curResult = pushRecord(obj.arcbDice);
-			SoundManager.playSound("music/kpTip.ogg");
+			Laya.timer.once(800,this,maiDingLiShou,[endTime,obj.arcbDice]);
+			_ui.mainPanelBottom.canBetting = false;
+		}
+		
+		private function maiDingLiShou(endTime:int,diceArr:Array):void
+		{
+			_ui.tipBox.show(2);
+			Laya.timer.once(2500,this,kaiZhong,[diceArr,endTime]);
+			SoundManager.playSound("music/kpTip.mp3");
 		}
 		
 		/**开盅*/
-		public function kaiZhong(arr:Array,leftTime:int):void
+		public function kaiZhong(arr:Array,endTime:int):void
 		{
-//			_ui.clockBox.countDown(2,leftTime);
 			_ui.diceCupBox.openDiceCup(arr);
 			_ui.laoPaoWang.changeMotion("open",false);
-			Laya.timer.once(8000,this,shouChouMa);
+			Laya.timer.once(6500,this,shouChouMa);
 		}
 		
 		private function shouChouMa():void
@@ -254,7 +278,9 @@ package managers.baoziwang
 			_ui.allJetion0.visible = false;
 			_ui.allJetion1.visible = false;
 			_ui.allJetion2.visible = false;
-			SoundManager.playSound("music/ttz_chip_player.ogg");
+			_ui.diceCupBox.reset();
+			SoundManager.playSound("music/ttz_chip_player.mp3");
+			updateUserInfo(DataProxy.userID);
 		}
 		
 		private function chipDisappear(chip:Image):void
@@ -268,11 +294,13 @@ package managers.baoziwang
 			//obj.cbGameStatus == 0
 			//obj.cbTimeLeave
 			//obj.lUserMaxScore
-			//obj.wBankerUser
+			
+			//obj.wBankerChairID
 			//obj.cbBankerTime
 			//obj.lBankerWinScore
 			//obj.lBankerScore
 			//obj.bEnableSysBanker
+			
 			//obj.lApplyBankerCondition
 			//obj.lAreaLimitScore
 			//obj.szGameRoomName
@@ -285,27 +313,30 @@ package managers.baoziwang
 			//obj.lApplyBankerCondition
 			//obj.lAreaLimitScore
 			//obj.arcbDice
-			//obj.wBankerUser
-			//obj.cbBankerTime
-			//obj.lBankerWinScore
-			//obj.lBankerScore
-			//obj.bEnableSysBanker
+			
+			//obj.wBankerChairID			//当前庄家
+			//obj.cbBankerTime				//庄家局数
+			//obj.lBankerWinScore			//庄家成绩
+			//obj.lBankerScore				//庄家分数
+			//obj.bEnableSysBanker			//系统做庄
+			
 			//obj.lEndBankerScore
 			//obj.lEndUserScore
 			//obj.lEndUserReturnScore
 			//obj.lEndRevenue
 			//obj.szGameRoomName
 			trace(obj.cbGameStatus,"gameSceneRec");
-			if(obj.bEnableSysBanker)
+			_ui.shangZhuangPanel.szConditonUpdate(obj.lApplyBankerCondition);
+			
+			DataProxy.bankerChairID = obj.wBankerChairID;
+			DataProxy.bankerSocre = obj.lBankerScore;
+			if(DataProxy.chairID == obj.wBankerChairID)
 			{
-				_ui.bankerNameLabel.text = "老炮王";
-				_ui.bankerScoreLabel.text = "100亿";
+				DataProxy.myBankerState = 2;
 			}
-			else
-			{
-				_ui.bankerNameLabel.text = "";
-				_ui.bankerScoreLabel.text = BaoziwangDefine.getScoreStr(obj.lBankerScore);
-			}
+			_ui.mainPanelTop.updateBankerBtn();
+			_ui.shangZhuangPanel.updateMyBankerBtn();
+			_ui.mainPanelTop.updateBankerInfo();
 			
 			maxScore = obj.lUserMaxScore;
 			
@@ -415,11 +446,8 @@ package managers.baoziwang
 			if(userID == DataProxy.userID)
 			{
 				_ui.myNameLabel.text = DataProxy.nickName;
-				_ui.myMoneyLabel.text = BaoziwangDefine.getScoreStr(DataProxy.userScore);
-				if(DataProxy.userScore == 0)
-				{
-					trace(11111111111111111);
-				}
+				_ui.myMoneyLabel.text = DataProxy.userScore + "";
+				_ui.myPortraitImage.skin = BaoziwangDefine.getPortraitImage(DataProxy.gender,DataProxy.faceID);
 				
 			}
 			_ui.chatAndUserList.updateUserInfo(userID);
@@ -472,12 +500,19 @@ package managers.baoziwang
 				DataProxy.userScore -= obj.lJettonScore;
 				DataProxy.myUserInfo.lScore -= obj.lJettonScore;
 				updateUserInfo(DataProxy.userID);
+				curRoundJetionArr.push(obj);
+				if(preRoundJetionArr.length)
+				{
+					preRoundJetionArr.splice(0);
+					_ui.mainPanelBottom.updateAutoBettingBtn();
+				}
+				_ui.mainPanelBottom.autoBeting = false;
 			}
 			this["allJetion"+obj.cbJettonArea] += obj.lJettonScore;
 			_ui["allJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["allJetion"+obj.cbJettonArea]);
 			_ui["allJetion"+obj.cbJettonArea].visible = true;
 			
-			SoundManager.playSound("music/ttz_chip_player.ogg");
+			SoundManager.playSound("music/ttz_chip_player.mp3");
 		}
 		
 		private function chipFlyEnd(chip:LittleChip):void
@@ -515,6 +550,63 @@ package managers.baoziwang
 			//obj["wPlaceUser"] 			//下注玩家
 			//obj["lJettonArea"]			//下注区域
 			//obj["lPlaceScore"] 			//当前下注
+			_ui.mainPanelBottom.autoBeting = false;
+		}
+		
+		public function applyBankerRec(obj:Object):void
+		{
+			//	vo["wChairID"] 		//申请玩家
+			if(DataProxy.chairID == obj.wChairID)
+			{
+				DataProxy.myBankerState = 1;
+				_ui.mainPanelTop.updateBankerBtn();
+				_ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			_ui.shangZhuangPanel.addApplyBanker(obj.wChairID);
+		}
+		
+		public function cancelBankerRec(obj:Object):void
+		{
+			//vo["szCancelUser"] 	//取消申请玩家
+			if(DataProxy.nickName == obj.szCancelUser)
+			{
+				DataProxy.myBankerState = 0;
+				_ui.mainPanelTop.updateBankerBtn();
+				_ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			var userInfo:Object = DataProxy.getUserInfoByName(obj.szCancelUser);
+			if(userInfo.wChairID == DataProxy.bankerChairID)
+			{
+				DataProxy.bankerChairID = 65535;
+				_ui.mainPanelTop.updateBankerInfo();
+			}
+			_ui.shangZhuangPanel.removeApplyBanker(obj.szCancelUser);
+		}
+		
+		public function changeBankerRec(obj:Object):void
+		{
+			//vo["wBankerChairID"] 			//当庄玩家chairID
+			//vo["lBankerScore"] 			//庄家金币
+			if(DataProxy.chairID == DataProxy.bankerChairID && obj.wBankerChairID == 65535)
+			{
+				DataProxy.myBankerState = 0;
+				_ui.mainPanelTop.updateBankerBtn();
+				_ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			if(DataProxy.chairID == obj.wBankerChairID)
+			{
+				DataProxy.myBankerState = 2;
+				_ui.mainPanelTop.updateBankerBtn();
+				_ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			DataProxy.bankerChairID = obj.wBankerChairID;
+			DataProxy.bankerSocre = obj.lBankerScore;
+			_ui.mainPanelTop.updateBankerInfo();
+			var userInfo:Object = DataProxy.getUserInfoByChairID(obj.wBankerChairID);
+			if(userInfo)
+			{
+				_ui.shangZhuangPanel.removeApplyBanker(userInfo.szNickName);
+			}
 		}
 		
 	}

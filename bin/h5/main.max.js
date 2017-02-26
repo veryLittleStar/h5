@@ -817,6 +817,11 @@ var Laya=window.Laya=(function(window,document){
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REQ="200_1";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REC="200_101";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC="200_107";
+		BaoziwangDefine.MSG_BZW_APPLY_BANKER_REQ="200_2";
+		BaoziwangDefine.MSG_BZW_APPLY_BANKER_REC="200_103";
+		BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REQ="200_3";
+		BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REC="200_108";
+		BaoziwangDefine.MSG_BZW_CHANGE_BANKER_REC="200_104";
 		BaoziwangDefine.RESULT_BIG=0;
 		BaoziwangDefine.RESULT_BAOZI=1;
 		BaoziwangDefine.RESULT_SMALL=2;
@@ -916,6 +921,28 @@ var Laya=window.Laya=(function(window,document){
 	var DataProxy=(function(){
 		function DataProxy(){}
 		__class(DataProxy,'managers.DataProxy');
+		DataProxy.getUserInfoByChairID=function(chairID){
+			var userInfo;
+			for(var $each_userInfo in DataProxy.userInfoDic){
+				userInfo=DataProxy.userInfoDic[$each_userInfo];
+				if(userInfo.wChairID==chairID){
+					return userInfo;
+				}
+			}
+			return null;
+		}
+
+		DataProxy.getUserInfoByName=function(nameStr){
+			var userInfo;
+			for(var $each_userInfo in DataProxy.userInfoDic){
+				userInfo=DataProxy.userInfoDic[$each_userInfo];
+				if(userInfo.szNickName==nameStr){
+					return userInfo;
+				}
+			}
+			return null;
+		}
+
 		DataProxy.userID=0;
 		DataProxy.kindID=0;
 		DataProxy.tableID=65535;
@@ -929,6 +956,9 @@ var Laya=window.Laya=(function(window,document){
 		DataProxy.userStatus=0;
 		DataProxy.userInfoDic={};
 		DataProxy.myUserInfo={};
+		DataProxy.bankerChairID=65535;
+		DataProxy.bankerSocre=-1;
+		DataProxy.myBankerState=0;
 		__static(DataProxy,
 		['US_NULL',function(){return this.US_NULL=0x00;},'US_FREE',function(){return this.US_FREE=0x01;},'US_SIT',function(){return this.US_SIT=0x02;},'US_READY',function(){return this.US_READY=0x03;},'US_LOOKON',function(){return this.US_LOOKON=0x04;},'US_PLAYING',function(){return this.US_PLAYING=0x05;},'US_OFFLINE',function(){return this.US_OFFLINE=0x06;}
 		]);
@@ -971,11 +1001,13 @@ var Laya=window.Laya=(function(window,document){
 			ManagersMap.serverLoginManager=new ServerLoginManager();
 			ManagersMap.gameLoginManager=new GameLoginManager();
 			ManagersMap.baoziwangManager=new BaoziwangManager();
+			ManagersMap.systemMessageManager=new SystemMessageManager();
 		}
 
 		ManagersMap.serverLoginManager=null;
 		ManagersMap.gameLoginManager=null;
 		ManagersMap.baoziwangManager=null;
+		ManagersMap.systemMessageManager=null;
 		return ManagersMap;
 	})()
 
@@ -1050,6 +1082,18 @@ var Laya=window.Laya=(function(window,document){
 				case "200_107":
 					ManagersMap.baoziwangManager.placeJetionFailRec(body);
 					break ;
+				case "200_103":
+					ManagersMap.baoziwangManager.applyBankerRec(body);
+					break ;
+				case "200_108":
+					ManagersMap.baoziwangManager.cancelBankerRec(body);
+					break ;
+				case "200_104":
+					ManagersMap.baoziwangManager.changeBankerRec(body);
+					break ;
+				case "100_200":
+					ManagersMap.systemMessageManager.systemMessageRec(body);
+					break ;
 				}
 		}
 
@@ -1078,6 +1122,15 @@ var Laya=window.Laya=(function(window,document){
 		ServerLoginDefine.MSG_HEART_BEAT_REQ="0_1";
 		ServerLoginDefine.MSG_HEART_BEAT_REC="0_1";
 		return ServerLoginDefine;
+	})()
+
+
+	//class managers.systemMessage.SystemMessageDefine
+	var SystemMessageDefine=(function(){
+		function SystemMessageDefine(){}
+		__class(SystemMessageDefine,'managers.systemMessage.SystemMessageDefine');
+		SystemMessageDefine.MSG_SYSTEM_MESSAGE_REC="100_200";
+		return SystemMessageDefine;
 	})()
 
 
@@ -1294,6 +1347,97 @@ var Laya=window.Laya=(function(window,document){
 	})()
 
 
+	/**200_103 申请庄家返回*/
+	//class net.messages.baoziwang.MsgBZWApplyBankerRec
+	var MsgBZWApplyBankerRec=(function(){
+		function MsgBZWApplyBankerRec(){}
+		__class(MsgBZWApplyBankerRec,'net.messages.baoziwang.MsgBZWApplyBankerRec');
+		var __proto=MsgBZWApplyBankerRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			vo["wChairID"]=BytesUtil.read(bytes,"word");
+			return vo;
+		}
+
+		return MsgBZWApplyBankerRec;
+	})()
+
+
+	/**200_2 申请庄家请求*/
+	//class net.messages.baoziwang.MsgBZWApplyBankerReq
+	var MsgBZWApplyBankerReq=(function(){
+		function MsgBZWApplyBankerReq(){}
+		__class(MsgBZWApplyBankerReq,'net.messages.baoziwang.MsgBZWApplyBankerReq');
+		var __proto=MsgBZWApplyBankerReq.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcEncoder":true})
+		__proto.makeEncodeBytes=function(body){
+			var bytes=BytesUtil.getByteArray();
+			BytesUtil.write(bytes,"word",200);
+			BytesUtil.write(bytes,"word",2);
+			return bytes;
+		}
+
+		return MsgBZWApplyBankerReq;
+	})()
+
+
+	/**200_108 取消申请上庄返回*/
+	//class net.messages.baoziwang.MsgBZWCancelBankerRec
+	var MsgBZWCancelBankerRec=(function(){
+		function MsgBZWCancelBankerRec(){}
+		__class(MsgBZWCancelBankerRec,'net.messages.baoziwang.MsgBZWCancelBankerRec');
+		var __proto=MsgBZWCancelBankerRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			vo["szCancelUser"]=BytesUtil.read(bytes,"tchar",32);
+			return vo;
+		}
+
+		return MsgBZWCancelBankerRec;
+	})()
+
+
+	/**200_3 取消申请庄家请求*/
+	//class net.messages.baoziwang.MsgBZWCancelBankerReq
+	var MsgBZWCancelBankerReq=(function(){
+		function MsgBZWCancelBankerReq(){}
+		__class(MsgBZWCancelBankerReq,'net.messages.baoziwang.MsgBZWCancelBankerReq');
+		var __proto=MsgBZWCancelBankerReq.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcEncoder":true})
+		__proto.makeEncodeBytes=function(body){
+			var bytes=BytesUtil.getByteArray();
+			BytesUtil.write(bytes,"word",200);
+			BytesUtil.write(bytes,"word",3);
+			return bytes;
+		}
+
+		return MsgBZWCancelBankerReq;
+	})()
+
+
+	/**200_104 切换庄家返回*/
+	//class net.messages.baoziwang.MsgBZWChangeBankerRec
+	var MsgBZWChangeBankerRec=(function(){
+		function MsgBZWChangeBankerRec(){}
+		__class(MsgBZWChangeBankerRec,'net.messages.baoziwang.MsgBZWChangeBankerRec');
+		var __proto=MsgBZWChangeBankerRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
+			vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
+			return vo;
+		}
+
+		return MsgBZWChangeBankerRec;
+	})()
+
+
 	/**200_102 豹子王 游戏一轮结束*/
 	//class net.messages.baoziwang.MsgBZWGameEndRec
 	var MsgBZWGameEndRec=(function(){
@@ -1407,7 +1551,7 @@ var Laya=window.Laya=(function(window,document){
 			vo["cbTimeLeave"]=BytesUtil.read(bytes,'byte');
 			if(vo["cbGameStatus"]==0){
 				vo["lUserMaxScore"]=BytesUtil.read(bytes,"longlong");
-				vo["wBankerUser"]=BytesUtil.read(bytes,"word");
+				vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
 				vo["cbBankerTime"]=BytesUtil.read(bytes,"word");
 				vo["lBankerWinScore"]=BytesUtil.read(bytes,"longlong");
 				vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
@@ -1436,7 +1580,7 @@ var Laya=window.Laya=(function(window,document){
 					arr.push(BytesUtil.read(bytes,'byte'));
 				}
 				vo["arcbDice"]=arr;
-				vo["wBankerUser"]=BytesUtil.read(bytes,"word");
+				vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
 				vo["cbBankerTime"]=BytesUtil.read(bytes,"word");
 				vo["lBankerWinScore"]=BytesUtil.read(bytes,"longlong");
 				vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
@@ -1687,8 +1831,12 @@ var Laya=window.Laya=(function(window,document){
 			this._decodeMessageDict["200_102"]=MsgBZWGameEndRec;
 			this._decodeMessageDict["200_106"]=MsgBZWGameRecordRec;
 			this._decodeMessageDict["200_101"]=MsgBZWPlaceJetionRec;
+			this._decodeMessageDict["200_103"]=MsgBZWApplyBankerRec;
+			this._decodeMessageDict["200_104"]=MsgBZWChangeBankerRec;
 			this._decodeMessageDict["200_107"]=MsgBZWPlaceJetionFailRec;
+			this._decodeMessageDict["200_108"]=MsgBZWCancelBankerRec;
 			this._decodeMessageDict["100_101"]=MsgBZWGameSceneRec;
+			this._decodeMessageDict["100_200"]=MsgSystemMessageRec;
 		}
 
 		RpcDecoderFac.getInstance=function(){
@@ -1753,6 +1901,8 @@ var Laya=window.Laya=(function(window,document){
 			this._encodeMessageDict["23_3"]=MsgUserSitDownReq;
 			this._encodeMessageDict["100_1"]=MsgBZWGameOptionReq;
 			this._encodeMessageDict["200_1"]=MsgBZWPlaceJetionReq;
+			this._encodeMessageDict["200_2"]=MsgBZWApplyBankerReq;
+			this._encodeMessageDict["200_3"]=MsgBZWCancelBankerReq;
 		}
 
 		RpcEncoderFac.getInstance=function(){
@@ -1981,6 +2131,26 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		return MsgTableStatusRec;
+	})()
+
+
+	/**100_200 系统提示*/
+	//class net.messages.user.MsgSystemMessageRec
+	var MsgSystemMessageRec=(function(){
+		function MsgSystemMessageRec(){}
+		__class(MsgSystemMessageRec,'net.messages.user.MsgSystemMessageRec');
+		var __proto=MsgSystemMessageRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			vo["wType"]=BytesUtil.read(bytes,"word");
+			vo["wLength"]=BytesUtil.read(bytes,"word");
+			vo["szString"]=BytesUtil.read(bytes,"tchar",vo.wLength);
+			return vo;
+		}
+
+		return MsgSystemMessageRec;
 	})()
 
 
@@ -14946,6 +15116,8 @@ var Laya=window.Laya=(function(window,document){
 			this.myJetion0=0;
 			this.myJetion1=0;
 			this.myJetion2=0;
+			this.preRoundJetionArr=[];
+			this.curRoundJetionArr=[];
 			BaoziwangManager.__super.call(this,baoziwangUI);
 		}
 
@@ -14969,6 +15141,7 @@ var Laya=window.Laya=(function(window,document){
 			this._ui.laoPaoWang.init();
 			this._ui.chatAndUserList.init();
 			this._ui.recordPanel.init();
+			this._ui.shangZhuangPanel.init();
 			this.connectLoginServer();
 			Laya.stage.on("keyup",this,this.key_up);
 			this._ui.recordBtn.on("mouseup",this,this.recordBtnMouseUp);
@@ -15025,6 +15198,7 @@ var Laya=window.Laya=(function(window,document){
 		__proto.key_up=function(event){
 			switch(event.keyCode){
 				case 65:
+					this._ui.diceCupBox.openDiceCup([5,5,4]);
 					break ;
 				}
 		}
@@ -15037,7 +15211,7 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.yaoTouzi=function(){
 			this._ui.laoPaoWang.changeMotion("yao",false);
-			SoundManager.playSound("music/roll.ogg");
+			SoundManager.playSound("music/roll.mp3");
 		}
 
 		__proto.gameStartRec=function(obj){
@@ -15051,7 +15225,17 @@ var Laya=window.Laya=(function(window,document){
 			this.myJetion0=0;
 			this.myJetion1=0;
 			this.myJetion2=0;
-			SoundManager.playSound("music/xzTip.ogg");
+			SoundManager.playSound("music/xzTip.mp3");
+			if(this.curRoundJetionArr.length){
+				this.preRoundJetionArr.splice(0);
+				while(this.curRoundJetionArr.length){
+					this.preRoundJetionArr.push(this.curRoundJetionArr.shift());
+				}
+			}
+			this._ui.mainPanelBottom.updateAutoBettingBtn();
+			DataProxy.bankerChairID=obj.wBankerUser;
+			DataProxy.bankerSocre=obj.lBankerScore;
+			this._ui.mainPanelTop.updateBankerInfo();
 		}
 
 		__proto.xiaZhu=function(leftTime){
@@ -15063,19 +15247,23 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.gameEndRec=function(obj){
-			var leftTime=obj.cbTimeLeave*1000;
-			this._ui.tipBox.show(2);
-			this._ui.mainPanelBottom.canBetting=false;
-			Laya.timer.once(2500,this,this.kaiZhong,[obj.arcbDice,leftTime-2500]);
+			var endTime=obj.cbTimeLeave*1000+Browser.now();
 			this.curResult=this.pushRecord(obj.arcbDice);
-			SoundManager.playSound("music/kpTip.ogg");
+			Laya.timer.once(800,this,this.maiDingLiShou,[endTime,obj.arcbDice]);
+			this._ui.mainPanelBottom.canBetting=false;
+		}
+
+		__proto.maiDingLiShou=function(endTime,diceArr){
+			this._ui.tipBox.show(2);
+			Laya.timer.once(2500,this,this.kaiZhong,[diceArr,endTime]);
+			SoundManager.playSound("music/kpTip.mp3");
 		}
 
 		/**开盅*/
-		__proto.kaiZhong=function(arr,leftTime){
+		__proto.kaiZhong=function(arr,endTime){
 			this._ui.diceCupBox.openDiceCup(arr);
 			this._ui.laoPaoWang.changeMotion("open",false);
-			Laya.timer.once(8000,this,this.shouChouMa);
+			Laya.timer.once(6500,this,this.shouChouMa);
 		}
 
 		__proto.shouChouMa=function(){
@@ -15111,7 +15299,9 @@ var Laya=window.Laya=(function(window,document){
 			this._ui.allJetion0.visible=false;
 			this._ui.allJetion1.visible=false;
 			this._ui.allJetion2.visible=false;
-			SoundManager.playSound("music/ttz_chip_player.ogg");
+			this._ui.diceCupBox.reset();
+			SoundManager.playSound("music/ttz_chip_player.mp3");
+			this.updateUserInfo(DataProxy.userID);
 		}
 
 		__proto.chipDisappear=function(chip){
@@ -15121,14 +15311,15 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.gameSceneRec=function(obj){
 			console.log(obj.cbGameStatus,"gameSceneRec");
-			if(obj.bEnableSysBanker){
-				this._ui.bankerNameLabel.text="老炮王";
-				this._ui.bankerScoreLabel.text="100亿";
+			this._ui.shangZhuangPanel.szConditonUpdate(obj.lApplyBankerCondition);
+			DataProxy.bankerChairID=obj.wBankerChairID;
+			DataProxy.bankerSocre=obj.lBankerScore;
+			if(DataProxy.chairID==obj.wBankerChairID){
+				DataProxy.myBankerState=2;
 			}
-			else{
-				this._ui.bankerNameLabel.text="";
-				this._ui.bankerScoreLabel.text=BaoziwangDefine.getScoreStr(obj.lBankerScore);
-			}
+			this._ui.mainPanelTop.updateBankerBtn();
+			this._ui.shangZhuangPanel.updateMyBankerBtn();
+			this._ui.mainPanelTop.updateBankerInfo();
 			this.maxScore=obj.lUserMaxScore;
 			var leftTime=obj.cbTimeLeave*1000;
 			if(obj.cbGameStatus==0){
@@ -15207,10 +15398,8 @@ var Laya=window.Laya=(function(window,document){
 		__proto.updateUserInfo=function(userID){
 			if(userID==DataProxy.userID){
 				this._ui.myNameLabel.text=DataProxy.nickName;
-				this._ui.myMoneyLabel.text=BaoziwangDefine.getScoreStr(DataProxy.userScore);
-				if(DataProxy.userScore==0){
-					console.log(11111111111111111);
-				}
+				this._ui.myMoneyLabel.text=DataProxy.userScore+"";
+				this._ui.myPortraitImage.skin=BaoziwangDefine.getPortraitImage(DataProxy.gender,DataProxy.faceID);
 			}
 			this._ui.chatAndUserList.updateUserInfo(userID);
 		}
@@ -15250,11 +15439,17 @@ var Laya=window.Laya=(function(window,document){
 				DataProxy.userScore-=obj.lJettonScore;
 				DataProxy.myUserInfo.lScore-=obj.lJettonScore;
 				this.updateUserInfo(DataProxy.userID);
+				this.curRoundJetionArr.push(obj);
+				if(this.preRoundJetionArr.length){
+					this.preRoundJetionArr.splice(0);
+					this._ui.mainPanelBottom.updateAutoBettingBtn();
+				}
+				this._ui.mainPanelBottom.autoBeting=false;
 			}
 			this["allJetion"+obj.cbJettonArea]+=obj.lJettonScore;
 			this._ui["allJetion"+obj.cbJettonArea].text=BaoziwangDefine.getScoreStr1(this["allJetion"+obj.cbJettonArea]);
 			this._ui["allJetion"+obj.cbJettonArea].visible=true;
-			SoundManager.playSound("music/ttz_chip_player.ogg");
+			SoundManager.playSound("music/ttz_chip_player.mp3");
 		}
 
 		__proto.chipFlyEnd=function(chip){
@@ -15284,7 +15479,53 @@ var Laya=window.Laya=(function(window,document){
 			return point;
 		}
 
-		__proto.placeJetionFailRec=function(obj){}
+		__proto.placeJetionFailRec=function(obj){
+			this._ui.mainPanelBottom.autoBeting=false;
+		}
+
+		__proto.applyBankerRec=function(obj){
+			if(DataProxy.chairID==obj.wChairID){
+				DataProxy.myBankerState=1;
+				this._ui.mainPanelTop.updateBankerBtn();
+				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			this._ui.shangZhuangPanel.addApplyBanker(obj.wChairID);
+		}
+
+		__proto.cancelBankerRec=function(obj){
+			if(DataProxy.nickName==obj.szCancelUser){
+				DataProxy.myBankerState=0;
+				this._ui.mainPanelTop.updateBankerBtn();
+				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			};
+			var userInfo=DataProxy.getUserInfoByName(obj.szCancelUser);
+			if(userInfo.wChairID==DataProxy.bankerChairID){
+				DataProxy.bankerChairID=65535;
+				this._ui.mainPanelTop.updateBankerInfo();
+			}
+			this._ui.shangZhuangPanel.removeApplyBanker(obj.szCancelUser);
+		}
+
+		__proto.changeBankerRec=function(obj){
+			if(DataProxy.chairID==DataProxy.bankerChairID && obj.wBankerChairID==65535){
+				DataProxy.myBankerState=0;
+				this._ui.mainPanelTop.updateBankerBtn();
+				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			if(DataProxy.chairID==obj.wBankerChairID){
+				DataProxy.myBankerState=2;
+				this._ui.mainPanelTop.updateBankerBtn();
+				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			}
+			DataProxy.bankerChairID=obj.wBankerChairID;
+			DataProxy.bankerSocre=obj.lBankerScore;
+			this._ui.mainPanelTop.updateBankerInfo();
+			var userInfo=DataProxy.getUserInfoByChairID(obj.wBankerChairID);
+			if(userInfo){
+				this._ui.shangZhuangPanel.removeApplyBanker(userInfo.szNickName);
+			}
+		}
+
 		__getset(0,__proto,'ui',function(){
 			return this._ui;
 		});
@@ -15380,11 +15621,17 @@ var Laya=window.Laya=(function(window,document){
 				userInfo.dwUserMedal=obj.dwUserMedal;
 				userInfo.dwExperience=obj.dwExperience;
 				userInfo.lLoveLiness=obj.lLoveLiness;
+				if(userInfo.wChairID==DataProxy.bankerChairID){
+					DataProxy.bankerSocre=obj.lScore;
+					ManagersMap.baoziwangManager.ui.mainPanelTop.updateBankerInfo();
+				}
 			}
 			if(obj.dwUserID==DataProxy.userID){
 				DataProxy.userScore=obj.lScore;
 			}
-			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
+			else{
+				ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
+			}
 		}
 
 		return GameLoginManager;
@@ -15452,6 +15699,57 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		return ServerLoginManager;
+	})(ManagerBase)
+
+
+	//class managers.systemMessage.SystemMessageManager extends managers.ManagerBase
+	var SystemMessageManager=(function(_super){
+		function SystemMessageManager(uiClass){
+			this.showArr=[];
+			SystemMessageManager.__super.call(this,uiClass);
+			Laya.stage.on("keyup",this,this.key_up);
+		}
+
+		__class(SystemMessageManager,'managers.systemMessage.SystemMessageManager',_super);
+		var __proto=SystemMessageManager.prototype;
+		__proto.key_up=function(){
+			this.systemMessageRec("拉萨的卡夫卡楼上的房间啊乐山大佛");
+		}
+
+		__proto.systemMessageRec=function(obj){
+			this.showSysMessage(obj.szString);
+		}
+
+		__proto.showSysMessage=function(str){
+			this.moveShowText();
+			var text=new Text();
+			text.fontSize=20;
+			text.color="#f4f3ec";
+			text.text=str;
+			UILayer.layerAlert.addChild(text);
+			text.x=(Laya.stage.width-text.textWidth)/2;
+			text.y=Laya.stage.height-100;
+			this.showArr.push(text);
+			Laya.timer.once(3000,this,this.delayText,[text],false);
+		}
+
+		__proto.delayText=function(text){
+			Tween.to(text,{alpha:0},500,null,Handler.create(this,this.removeText,[text]));
+		}
+
+		__proto.removeText=function(text){
+			text.removeSelf();
+		}
+
+		__proto.moveShowText=function(){
+			var i=0;
+			for(i=0;i < this.showArr.length;i++){
+				var text=this.showArr[i];
+				text.y=text.y-text.textHeight-5;
+			}
+		}
+
+		return SystemMessageManager;
 	})(ManagerBase)
 
 
@@ -31586,6 +31884,34 @@ var Laya=window.Laya=(function(window,document){
 	})(Label)
 
 
+	//class managers.baoziwang.ApplyCell extends laya.ui.Box
+	var ApplyCell=(function(_super){
+		function ApplyCell(){
+			ApplyCell.__super.call(this);
+		}
+
+		__class(ApplyCell,'managers.baoziwang.ApplyCell',_super);
+		var __proto=ApplyCell.prototype;
+		__proto.updateIndex=function(index){
+			var indexLabel=this.getChildByName("indexLabel");
+			indexLabel.text=(index+1)+"";
+		}
+
+		__getset(0,__proto,'dataSource',_super.prototype._$get_dataSource,function(value){
+			_super.prototype._$set_dataSource.call(this,value);
+			var nameLabel=this.getChildByName("nameLabel");
+			var scoreLabel=this.getChildByName("scoreLabel");
+			var userInfo=DataProxy.getUserInfoByChairID(value);
+			if(userInfo){
+				nameLabel.text=userInfo.szNickName;
+				scoreLabel.text=BaoziwangDefine.getScoreStr(userInfo.lScore);
+			}
+		});
+
+		return ApplyCell;
+	})(Box)
+
+
 	//class managers.baoziwang.ChatAndUserList extends laya.ui.Box
 	var ChatAndUserList=(function(_super){
 		function ChatAndUserList(){
@@ -31824,15 +32150,15 @@ var Laya=window.Laya=(function(window,document){
 			Laya.timer.clear(this,this.countLoop);
 			this.visible=false;
 			if(this.type==1){
+				SoundManager.playSound("music/ttz_time_out.mp3");
 			}
 		}
 
-		// SoundManager.playSound("music/ttz_time_out.ogg");
 		__getset(0,__proto,'endSoundCount',null,function(value){
 			if(this._endSoundCount==value)return;
 			this._endSoundCount=value;
 			if(this._endSoundCount <=3){
-				SoundManager.playSound("music/ttz_time_run.ogg");
+				SoundManager.playSound("music/ttz_time_run.mp3");
 			}
 		});
 
@@ -31850,7 +32176,9 @@ var Laya=window.Laya=(function(window,document){
 			this.numLabel=null;
 			this.point=null;
 			this.dx=null;
+			this.pointBg=null;
 			this.pointBox=null;
+			this.baoziAni=null;
 			this.totalNum=0;
 			this.baozi=false;
 			this.diceCtn=new Box();
@@ -31863,10 +32191,12 @@ var Laya=window.Laya=(function(window,document){
 			this.light=this.getChildByName("light");
 			this.cap=this.getChildByName("cap");
 			this.tray=this.getChildByName("tray");
-			this.pointBox=this.getChildByName("pointBox");
+			this.pointBg=this.getChildByName("pointBg");
+			this.pointBox=this.pointBg.getChildByName("pointBox");
 			this.numLabel=this.pointBox.getChildByName("numLabel");
 			this.point=this.pointBox.getChildByName("point");
 			this.dx=this.pointBox.getChildByName("dx");
+			this.baoziAni=this.getChildByName("baoziAni");
 		}
 
 		__proto.reset=function(){
@@ -31883,6 +32213,7 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.prepare=function(){
+			this.baoziAni.visible=false;
 			this.light.visible=false;
 			this.cap.rotation=0;
 			this.cap.x=0;
@@ -31891,7 +32222,7 @@ var Laya=window.Laya=(function(window,document){
 			this.y=250;
 			this.visible=true;
 			this.alpha=1;
-			this.pointBox.visible=false;
+			this.pointBg.visible=false;
 			this.diceCtn.scaleX=this.diceCtn.scaleY=1;
 		}
 
@@ -31903,6 +32234,7 @@ var Laya=window.Laya=(function(window,document){
 			this.numLabel.text=String(this.totalNum);
 			if(diceNumArr[0]==diceNumArr[1] && diceNumArr[1]==diceNumArr[2]){
 				this.baozi=true;
+				this.dx.skin="ui/baseUI/yb_wz_bz.png";
 			}
 			else{
 				if(this.totalNum <=10){
@@ -31938,12 +32270,19 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.step2=function(){
-			this.light.visible=true;
-			this.light.scaleX=0;
-			Tween.to(this.light,{scaleX:2.5},500,null,null,0,true);
+			if(this.baozi){
+				this.baoziAni.visible=true;
+				this.baoziAni.play(0,false);
+				SoundManager.playSound("music/baozi.mp3");
+			}
+			else{
+				this.light.visible=true;
+				this.light.scaleX=0;
+				Tween.to(this.light,{scaleX:2.5},500,null,null,0,true);
+			}
 			Tween.to(this.cap,{x:-300,y:-400,rotation:-25},700,null,null,0,true);
 			Laya.timer.once(500,this,this.step3);
-			SoundManager.playSound("music/openCup0.ogg");
+			SoundManager.playSound("music/openCup0.mp3");
 		}
 
 		__proto.step3=function(){
@@ -31952,17 +32291,29 @@ var Laya=window.Laya=(function(window,document){
 			this.diceCtn.x=tempP.x;
 			this.diceCtn.y=tempP.y;
 			Laya.stage.addChild(this.diceCtn);
-			this.pointBox.visible=true;
+			this.pointBg.visible=true;
 			this.numLabel.scaleX=this.numLabel.scaleY=this.point.scaleX=this.point.scaleY=this.dx.scaleX=this.dx.scaleY=0;
 			Tween.to(this.numLabel,{scaleX:1,scaleY:1},500,Ease.backOut);
 			Tween.to(this.point,{scaleX:1,scaleY:1},500,Ease.backOut,null,150);
 			Tween.to(this.dx,{scaleX:1,scaleY:1},500,Ease.backOut,null,300);
 			Laya.timer.once(2000,this,this.step4);
 			if(this.baozi){
-				SoundManager.playSound("music/baozi_dice"+this.totalNum+".ogg",1);
+				SoundManager.playSound("music/baozi_dice"+this.totalNum+".mp3",1);
+				if(this.totalNum <=10){
+					this.pointBox.x=-35;
+				}
+				else{
+					this.pointBox.x=-30;
+				}
 			}
 			else{
-				SoundManager.playSound("music/dice"+this.totalNum+".ogg",1);
+				SoundManager.playSound("music/dice"+this.totalNum+".mp3",1);
+				if(this.totalNum <=10){
+					this.pointBox.x=-10;
+				}
+				else{
+					this.pointBox.x=0;
+				}
 			}
 		}
 
@@ -31973,21 +32324,25 @@ var Laya=window.Laya=(function(window,document){
 		__proto.step5=function(){
 			this.visible=false;
 			if(this.baozi){
-				Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:375,y:250},500);
+				Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:375,y:250},500,null,Handler.create(this,this.step6));
 			}
 			else{
 				if(this.totalNum <=10){
-					Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:175,y:250},500);
+					Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:175,y:250},500,null,Handler.create(this,this.step6));
 				}
 				else{
-					Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:575,y:250},500);
+					Tween.to(this.diceCtn,{scaleX:0.5,scaleY:0.5,x:575,y:250},500,null,Handler.create(this,this.step6));
 				}
 			}
-			Laya.timer.once(1500,this,this.step6);
 		}
 
 		__proto.step6=function(){
-			this.diceCtn.removeSelf();
+			var tempP=new Point(this.diceCtn.x,this.diceCtn.y);
+			var table=ManagersMap.baoziwangManager.ui.table;
+			tempP=table.globalToLocal(tempP);
+			this.diceCtn.x=tempP.x;
+			this.diceCtn.y=tempP.y;
+			table.addChild(this.diceCtn);
 		}
 
 		__proto.getDiceSkin=function(num,baozi){
@@ -32015,6 +32370,8 @@ var Laya=window.Laya=(function(window,document){
 			this.chipsBg=null;
 			this.chips=null;
 			this.autoBettingBtn=null;
+			this.activeSelectSound=true;
+			this.autoBeting=false;
 			MainPanelBottom.__super.call(this);
 		}
 
@@ -32026,16 +32383,15 @@ var Laya=window.Laya=(function(window,document){
 			this.autoBettingBtn=this.getChildByName("autoBettingBtn");
 			this.chips.selectHandler=Handler.create(this,this.chipSelect,null,false);
 			this.chips.array=[100,1000,5000,10000,100000];
+			this.autoBettingBtn.on("click",this,this.autoBetClick);
 		}
 
 		__proto.bettingStateChange=function(){
 			if(this._canBetting){
 				Tween.to(this.chipsBg,{y:20},500,null,Handler.create(this,this.chipActive),0,true);
-				this.autoBettingBtn.disabled=false;
 			}
 			else{
 				Tween.to(this.chipsBg,{y:50},500,null,null,0,true);
-				this.autoBettingBtn.disabled=true;
 				this.chips.selectEnable=false;
 				for(var i=0;i < this.chips.cells.length;i++){
 					var chipCell=this.chips.cells [i];
@@ -32046,6 +32402,7 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.chipActive=function(){
 			this.chips.selectEnable=true;
+			this.activeSelectSound=false;
 			if(this.chips.selectedIndex==-1){
 				this.chips.selectedIndex=0;
 			}
@@ -32064,6 +32421,12 @@ var Laya=window.Laya=(function(window,document){
 					chipCell.selected=false;
 				}
 			}
+			if(this.activeSelectSound==false){
+				this.activeSelectSound=true
+			}
+			else{
+				SoundManager.playSound("music/ttz_card_send.mp3");
+			}
 		}
 
 		__proto.getChipPosByScore=function(score){
@@ -32080,12 +32443,48 @@ var Laya=window.Laya=(function(window,document){
 			return null;
 		}
 
+		__proto.updateAutoBettingBtn=function(){
+			if(this._canBetting && ManagersMap.baoziwangManager.preRoundJetionArr.length){
+				this.autoBettingBtn.disabled=false;
+			}
+			else{
+				this.autoBettingBtn.disabled=true;
+			}
+		}
+
+		__proto.autoBetClick=function(event){
+			if(this.autoBeting)return;
+			var arr=ManagersMap.baoziwangManager.preRoundJetionArr;
+			var preTotalJetion=0;
+			var i=0;
+			for(i=0;i < arr.length;i++){
+				preTotalJetion+=arr[i].lJettonScore;
+			}
+			if(preTotalJetion >DataProxy.userScore){
+				ManagersMap.systemMessageManager.showSysMessage("您的金币不足");
+				return;
+			}
+			else{
+				for(i=0;i < arr.length;i++){
+					var body={};
+					body.cbJettonArea=arr[i].cbJettonArea;
+					body.lJettonScore=arr[i].lJettonScore;
+					NetProxy.getInstance().sendToServer("200_1",body);
+				}
+				this.autoBeting=true;
+			}
+		}
+
 		__getset(0,__proto,'canBetting',function(){
 			return this._canBetting;
 			},function(value){
 			if(this._canBetting==value)return;
 			this._canBetting=value;
 			this.bettingStateChange();
+			this.updateAutoBettingBtn();
+			if(this._canBetting){
+				SoundManager.playSound("music/ttz_my_board.mp3");
+			}
 		});
 
 		__getset(0,__proto,'selectChipScore',function(){
@@ -32102,6 +32501,14 @@ var Laya=window.Laya=(function(window,document){
 			this.recordList=null;
 			this.recordListBox=null;
 			this.recordArr=null;
+			this.applySZBtn=null;
+			this.applyingSZBtn=null;
+			this.ingSZBtn=null;
+			this.bankerImage=null;
+			this.bankerNameLabel=null;
+			this.bankerScoreLabel=null;
+			this.bankerPortrait=null;
+			this.portraitImage=null;
 			this.tempImage=null;
 			MainPanelTop.__super.call(this);
 		}
@@ -32112,6 +32519,29 @@ var Laya=window.Laya=(function(window,document){
 			this.recordListBox=this.getChildByName("recordListBox");
 			this.recordList=this.recordListBox.getChildByName("recordList");
 			this.recordListBox.scrollRect=new Rectangle(0,0,180,26);
+			this.applySZBtn=this.getChildByName("applySZBtn");
+			this.applyingSZBtn=this.getChildByName("applyingSZBtn");
+			this.ingSZBtn=this.getChildByName("ingSZBtn");
+			this.on("click",this,this.onClick);
+			this.bankerImage=this.getChildByName("bankerImage");
+			this.bankerNameLabel=this.getChildByName("bankerNameLabel");
+			this.bankerScoreLabel=this.getChildByName("bankerScoreLabel");
+			this.bankerPortrait=this.getChildByName("bankerPortrait");
+			this.portraitImage=this.bankerPortrait.getChildByName("portraitImage");
+		}
+
+		__proto.onClick=function(event){
+			switch(event.target){
+				case this.applySZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break ;
+				case this.applyingSZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break ;
+				case this.ingSZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break ;
+				}
 		}
 
 		__proto.recordInit=function(arr){
@@ -32130,7 +32560,7 @@ var Laya=window.Laya=(function(window,document){
 			else{
 				this.tempImage.skin=this.getRecordSkin(result);
 			}
-			Tween.to(this.recordList,{x:30},100,null,Handler.create(this,this.showNewRecord),4000,true);
+			Tween.to(this.recordList,{x:30},100,null,Handler.create(this,this.showNewRecord),5000,true);
 		}
 
 		__proto.showNewRecord=function(){
@@ -32175,6 +32605,45 @@ var Laya=window.Laya=(function(window,document){
 					break ;
 				}
 			return skin;
+		}
+
+		__proto.updateBankerInfo=function(){
+			if(DataProxy.bankerChairID==65535){
+				this.bankerNameLabel.text="老炮王";
+				this.bankerScoreLabel.text="100亿";
+				this.bankerImage.visible=true;
+				this.bankerPortrait.visible=false;
+			}
+			else{
+				this.bankerImage.visible=false;
+				this.bankerPortrait.visible=true;
+				this.bankerScoreLabel.text=BaoziwangDefine.getScoreStr(DataProxy.bankerSocre);
+				var bankerInfo=DataProxy.getUserInfoByChairID(DataProxy.bankerChairID);
+				if(bankerInfo){
+					this.bankerNameLabel.text=bankerInfo.szNickName;
+					this.portraitImage.skin=BaoziwangDefine.getPortraitImage(bankerInfo.cbGender,bankerInfo.wFaceID);
+				}
+			}
+		}
+
+		__proto.updateBankerBtn=function(){
+			switch(DataProxy.myBankerState){
+				case 0:
+					this.applySZBtn.visible=true;
+					this.applyingSZBtn.visible=false;
+					this.ingSZBtn.visible=false;
+					break ;
+				case 1:
+					this.applySZBtn.visible=false;
+					this.applyingSZBtn.visible=true;
+					this.ingSZBtn.visible=false;
+					break ;
+				case 2:
+					this.applySZBtn.visible=false;
+					this.applyingSZBtn.visible=false;
+					this.ingSZBtn.visible=true;
+					break ;
+				}
 		}
 
 		return MainPanelTop;
@@ -32283,6 +32752,109 @@ var Laya=window.Laya=(function(window,document){
 	})(Box)
 
 
+	//class managers.baoziwang.ShangZhuangPanel extends laya.ui.Box
+	var ShangZhuangPanel=(function(_super){
+		function ShangZhuangPanel(){
+			this.bgMask=null;
+			this.bgImage=null;
+			this.conditionLabel=null;
+			this.playerList=null;
+			this.applyBtn=null;
+			this.cancelBtn=null;
+			this.closeBtn=null;
+			ShangZhuangPanel.__super.call(this);
+		}
+
+		__class(ShangZhuangPanel,'managers.baoziwang.ShangZhuangPanel',_super);
+		var __proto=ShangZhuangPanel.prototype;
+		__proto.init=function(){
+			this.bgMask=new Sprite();
+			this.bgMask.graphics.drawRect(0,0,Laya.stage.width,Laya.stage.height,"#000000");
+			this.bgMask.alpha=0.6;
+			this.addChildAt(this.bgMask,0);
+			this.bgImage=this.getChildByName("bgImage");
+			this.conditionLabel=this.bgImage.getChildByName("conditionLabel");
+			this.playerList=this.bgImage.getChildByName("playerList");
+			this.applyBtn=this.bgImage.getChildByName("applyBtn");
+			this.cancelBtn=this.bgImage.getChildByName("cancelBtn");
+			this.closeBtn=this.bgImage.getChildByName("closeBtn");
+			this.visible=false;
+			this.on("click",this,this.onClick);
+			this.playerList.array=[];
+		}
+
+		__proto.onClick=function(event){
+			switch(event.target){
+				case this.applyBtn:
+					NetProxy.getInstance().sendToServer("200_2",{});
+					break ;
+				case this.cancelBtn:
+					NetProxy.getInstance().sendToServer("200_3",{});
+					break ;
+				case this.closeBtn:
+					this.closeMe();
+					break ;
+				}
+		}
+
+		__proto.openMe=function(){
+			this.visible=true;
+		}
+
+		__proto.closeMe=function(){
+			this.visible=false;
+		}
+
+		__proto.szConditonUpdate=function(num){
+			this.conditionLabel.text="申请上庄条件："+BaoziwangDefine.getScoreStr(num)+"金币";
+		}
+
+		__proto.addApplyBanker=function(chairID){
+			this.playerList.addItem(chairID);
+			this.updateBankerListIndex();
+		}
+
+		__proto.removeApplyBanker=function(szName){
+			var i=0;
+			for(i=0;i < this.playerList.array.length;i++){
+				var userInfo=DataProxy.getUserInfoByChairID(this.playerList.array[i]);
+				if(userInfo.szNickName==szName){
+					this.playerList.deleteItem(i);
+					break ;
+				}
+			}
+			this.updateBankerListIndex();
+		}
+
+		__proto.updateBankerListIndex=function(){
+			var i=0;
+			for(i=0;i < this.playerList.array.length;i++){
+				var applyCell=this.playerList.getCell(i);
+				applyCell.updateIndex(i);
+			}
+		}
+
+		__proto.updateMyBankerBtn=function(){
+			switch(DataProxy.myBankerState){
+				case 0:
+					this.applyBtn.visible=true;
+					this.cancelBtn.visible=false;
+					break ;
+				case 1:
+					this.applyBtn.visible=false;
+					this.cancelBtn.visible=true;
+					break ;
+				case 2:
+					this.applyBtn.visible=false;
+					this.cancelBtn.visible=true;
+					break ;
+				}
+		}
+
+		return ShangZhuangPanel;
+	})(Box)
+
+
 	//class managers.baoziwang.TipBox extends laya.ui.Box
 	var TipBox=(function(_super){
 		function TipBox(){
@@ -32345,25 +32917,6 @@ var Laya=window.Laya=(function(window,document){
 	})(Box)
 
 
-	//class managers.baoziwang.LittleChip extends laya.ui.Image
-	var LittleChip=(function(_super){
-		function LittleChip(skin){
-			this.info=null;
-			LittleChip.__super.call(this,skin);
-			this.mouseEnabled=false;
-		}
-
-		__class(LittleChip,'managers.baoziwang.LittleChip',_super);
-		var __proto=LittleChip.prototype;
-		__proto.updateInfo=function(obj){
-			this.info=obj;
-			this.skin="ui/baseUI/sgj_chip_x_"+BaoziwangDefine.getChipIndex(obj.lJettonScore)+".png";
-		}
-
-		return LittleChip;
-	})(Image)
-
-
 	//class managers.baoziwang.UserInfoBox extends laya.ui.Box
 	var UserInfoBox=(function(_super){
 		function UserInfoBox(){
@@ -32387,6 +32940,25 @@ var Laya=window.Laya=(function(window,document){
 
 		return UserInfoBox;
 	})(Box)
+
+
+	//class managers.baoziwang.LittleChip extends laya.ui.Image
+	var LittleChip=(function(_super){
+		function LittleChip(skin){
+			this.info=null;
+			LittleChip.__super.call(this,skin);
+			this.mouseEnabled=false;
+		}
+
+		__class(LittleChip,'managers.baoziwang.LittleChip',_super);
+		var __proto=LittleChip.prototype;
+		__proto.updateInfo=function(obj){
+			this.info=obj;
+			this.skin="ui/baseUI/sgj_chip_x_"+BaoziwangDefine.getChipIndex(obj.lJettonScore)+".png";
+		}
+
+		return LittleChip;
+	})(Image)
 
 
 	//class managers.baoziwang.TableLightBtn extends laya.ui.Image
@@ -36387,12 +36959,11 @@ var Laya=window.Laya=(function(window,document){
 			this.laoPaoWang=null;
 			this.mainPanelTop=null;
 			this.recordBtn=null;
-			this.bankerNameLabel=null;
-			this.bankerScoreLabel=null;
 			this.tipBox=null;
 			this.diceCupBox=null;
-			this.chatAndUserList=null;
 			this.recordPanel=null;
+			this.shangZhuangPanel=null;
+			this.chatAndUserList=null;
 			baoziwangUI.__super.call(this);
 		}
 
@@ -36400,25 +36971,27 @@ var Laya=window.Laya=(function(window,document){
 		var __proto=baoziwangUI.prototype;
 		__proto.createChildren=function(){
 			View.regComponent("managers.baoziwang.TableLightBtn",TableLightBtn);
-			View.regComponent("managers.baoziwang.RecordCell",RecordCell);
+			View.regComponent("managers.baoziwang.UserInfoBox",UserInfoBox);
 			View.regComponent("managers.baoziwang.ClockBox",ClockBox);
 			View.regComponent("managers.baoziwang.PortraitCell",PortraitCell);
 			View.regComponent("managers.baoziwang.MainPanelBottom",MainPanelBottom);
 			View.regComponent("managers.baoziwang.ChipCell",ChipCell);
 			View.regComponent("managers.baoziwang.LaoPaoWang",LaoPaoWang);
-			View.regComponent("customUI.BmpFontLabel",BmpFontLabel);
-			View.regComponent("managers.baoziwang.TipBox",TipBox);
-			View.regComponent("managers.baoziwang.DiceCupBox",DiceCupBox);
-			View.regComponent("managers.baoziwang.ChatAndUserList",ChatAndUserList);
-			View.regComponent("managers.baoziwang.UserInfoBox",UserInfoBox);
-			View.regComponent("managers.baoziwang.RecordPanel",RecordPanel);
 			View.regComponent("managers.baoziwang.MainPanelTop",MainPanelTop);
+			View.regComponent("customUI.BmpFontLabel",BmpFontLabel);
+			View.regComponent("managers.baoziwang.DiceCupBox",DiceCupBox);
+			View.regComponent("managers.baoziwang.RecordPanel",RecordPanel);
+			View.regComponent("managers.baoziwang.RecordCell",RecordCell);
+			View.regComponent("managers.baoziwang.ShangZhuangPanel",ShangZhuangPanel);
+			View.regComponent("managers.baoziwang.ApplyCell",ApplyCell);
+			View.regComponent("managers.baoziwang.ChatAndUserList",ChatAndUserList);
+			View.regComponent("managers.baoziwang.TipBox",TipBox);
 			laya.ui.Component.prototype.createChildren.call(this);
 			this.createView(baoziwangUI.uiView);
 		}
 
 		__static(baoziwangUI,
-		['uiView',function(){return this.uiView={"type":"View","props":{"width":800,"vScrollBarSkin":"\" \"","height":600,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"table","skin":"ui/common/yb_bj.jpg"},"child":[{"type":"Image","props":{"y":194,"x":132,"width":176,"var":"xLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":310,"width":204,"var":"bLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":516,"width":176,"var":"dLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Label","props":{"y":400,"x":136,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":400,"x":329,"width":170,"visible":false,"var":"myJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":399,"x":521,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":215,"x":137,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":215,"x":325,"width":170,"visible":false,"var":"allJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":215,"x":520,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}}]},{"type":"Box","props":{"y":70,"x":163,"visible":false,"var":"clockBox","runtime":"managers.baoziwang.ClockBox"},"child":[{"type":"Image","props":{"y":17,"x":43,"skin":"ui/baseUI/yb_nz_dk.png"}},{"type":"Image","props":{"y":5,"x":0,"skin":"ui/baseUI/ttz_clock.png"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qxz.png","name":"xzImage"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qdd.png","name":"ddImage"}},{"type":"Label","props":{"y":18,"x":6,"width":41,"text":"0","runtime":"customUI.BmpFontLabel","name":"clockNumLabel","height":30,"font":"sgj_nz","align":"center"}}]},{"type":"List","props":{"y":123,"x":22,"visible":false,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},"child":[{"type":"Box","props":{"y":6,"x":8,"width":84,"runtime":"managers.baoziwang.PortraitCell","renderType":"render","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portrait","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}},{"type":"Image","props":{"y":60,"skin":"ui/baseUI/ttz_head_player_bg.png","centerX":0},"child":[{"type":"Label","props":{"y":0,"x":13,"text":"我是名字","color":"#f4f3ec"}},{"type":"Label","props":{"y":15,"x":15,"text":"123456","color":"#f2eacb"}}]}]}]},{"type":"Box","props":{"width":718,"var":"mainPanelBottom","runtime":"managers.baoziwang.MainPanelBottom","height":64,"centerX":0,"bottom":0},"child":[{"type":"Image","props":{"y":50,"x":182,"visible":true,"skin":"ui/baseUI/ttz_board_2.png","name":"chipsBg"},"child":[{"type":"List","props":{"y":4,"x":49,"spaceX":11,"repeatX":5,"name":"chips"},"child":[{"type":"Box","props":{"y":0,"width":58,"scaleY":0.95,"scaleX":0.95,"runtime":"managers.baoziwang.ChipCell","renderType":"render","pivotY":29.5,"pivotX":29,"height":59},"child":[{"type":"Image","props":{"y":-5.000000000000092,"x":-14.000000000000021,"visible":false,"skin":"ui/baseUI/ttz_chip_d_light.png","name":"chipLight","centerX":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/sgj_chip_d_1.png","name":"chip"}}]}]}]},{"type":"Image","props":{"skin":"ui/baseUI/ttz_board_1.png"}},{"type":"Button","props":{"y":9,"x":570,"stateNum":"2","skin":"ui/baseUI/ttz_bt_xy.png","name":"autoBettingBtn","disabled":true}},{"type":"Box","props":{"y":-5,"x":-4,"width":84,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"var":"myPortraitImage","skin":"ui/baseUI/lob_men_1.jpg","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":false,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}}]},{"type":"Label","props":{"y":16,"x":77,"var":"myNameLabel","text":"我是名字","color":"#5b2e1f","bold":true}},{"type":"Image","props":{"y":31,"x":75,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":99,"var":"myMoneyLabel","text":"123456","color":"#5b2e1f","bold":true}}]},{"type":"Animation","props":{"y":125,"x":411,"var":"laoPaoWang","source":"ani/yb_rdh_idle.ani","runtime":"managers.baoziwang.LaoPaoWang","autoPlay":true}},{"type":"Box","props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},"child":[{"type":"Image","props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0}},{"type":"Image","props":{"y":3,"x":170,"var":"recordBtn","skin":"ui/baseUI/yb_bt_gd.png"}},{"type":"Button","props":{"y":2,"x":518,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png"}},{"type":"Button","props":{"y":2,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png"}},{"type":"Button","props":{"y":3,"x":519,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png"}},{"type":"Image","props":{"y":2,"x":386,"skin":"ui/baseUI/yb_tx_lpt.png"}},{"type":"Label","props":{"y":14,"x":460,"var":"bankerNameLabel","text":"老炮王","color":"#f4f3ec"}},{"type":"Label","props":{"y":37,"x":468,"var":"bankerScoreLabel","text":"10亿","color":"#f2eacb"}},{"type":"Image","props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"}},{"type":"Box","props":{"y":32,"x":52.5,"name":"recordListBox"},"child":[{"type":"List","props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},"child":[{"type":"Image","props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"}}]}]}]},{"type":"Box","props":{"y":240,"width":800,"var":"tipBox","runtime":"managers.baoziwang.TipBox","centerX":0},"child":[{"type":"Box","props":{"y":65,"x":0,"width":800,"pivotY":62.5,"name":"bg"},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/game_com_tip_bg.png"}},{"type":"Image","props":{"y":0,"x":799.5,"skin":"ui/baseUI/game_com_tip_bg.png","scaleX":-1}}]},{"type":"Image","props":{"y":22,"x":294,"skin":"ui/baseUI/ttz_ts_01.png","name":"word1"}},{"type":"Image","props":{"y":19,"x":264,"skin":"ui/baseUI/ttz_ts_02.png","name":"word2"}}]},{"type":"Box","props":{"y":333,"x":415,"width":1,"visible":false,"var":"diceCupBox","runtime":"managers.baoziwang.DiceCupBox","height":1},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_1.png","pivotY":65,"pivotX":117,"name":"tray"}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_2.png","pivotY":185,"pivotX":85,"name":"cap"}},{"type":"Image","props":{"y":-334,"x":0,"skin":"ui/baseUI/yb_gx_hd.png","scaleY":2.5,"scaleX":2.5,"pivotX":71.5,"name":"light"}},{"type":"Image","props":{"y":39,"x":-131,"skin":"ui/baseUI/yb_d_sm.png","name":"pointBox"},"child":[{"type":"Label","props":{"y":44,"x":89,"width":50,"text":"18","runtime":"customUI.BmpFontLabel","name":"numLabel","font":"yb_sz_ds","anchorY":0.5,"anchorX":0.5,"align":"right"}},{"type":"Image","props":{"y":46,"x":139,"width":38,"skin":"ui/baseUI/yb_wz_d.png","pivotY":21,"pivotX":18,"name":"point","height":38}},{"type":"Image","props":{"y":44,"x":196,"width":65,"skin":"ui/baseUI/yb_wz_dd.png","pivotY":36,"pivotX":33,"name":"dx","height":69}}]}]},{"type":"Box","props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},"child":[{"type":"Image","props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"}},{"type":"Image","props":{"y":149,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"}},{"type":"Image","props":{"y":249,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"}},{"type":"Image","props":{"y":288,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12}},{"type":"Image","props":{"y":193,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"}},{"type":"Image","props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417}},{"type":"Box","props":{"y":117,"x":296,"width":30,"name":"chatBtn","height":97}},{"type":"Box","props":{"y":219,"x":296,"width":30,"name":"userBtn","height":97}},{"type":"List","props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},"child":[{"type":"Image","props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60}},{"type":"Box","props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true}},{"type":"Image","props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true}}]}]}]},{"type":"Box","props":{"y":63,"x":105,"width":237,"var":"recordPanel","runtime":"managers.baoziwang.RecordPanel","height":486},"child":[{"type":"Image","props":{"y":0,"x":0,"width":236,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","height":490}},{"type":"List","props":{"y":9,"x":8,"width":224,"vScrollBarSkin":" ","spaceY":10,"name":"recordList","height":468},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.RecordCell","renderType":"render"},"child":[{"type":"Image","props":{"y":0,"x":0,"width":220,"skin":"ui/baseUI/yb_sz_ls_lv2.png","sizeGrid":"15,30,15,30","name":"bgImage","height":49}},{"type":"Image","props":{"y":15,"x":167,"skin":"ui/baseUI/yb_sz_ls_11.png"}},{"type":"Image","props":{"y":11,"x":189,"skin":"ui/baseUI/yb_bj_zs_01.png","name":"dxImage"}},{"type":"Image","props":{"y":2,"x":3,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice0Image"}},{"type":"Image","props":{"y":1,"x":48,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice1Image"}},{"type":"Image","props":{"y":1,"x":93,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice2Image"}},{"type":"Label","props":{"y":12,"x":140,"width":24,"text":"16","name":"pointLabel","height":20,"fontSize":22,"color":"#99dd99","bold":false,"align":"center"}}]}]}]}]};}
+		['uiView',function(){return this.uiView={"type":"View","props":{"width":800,"vScrollBarSkin":"\" \"","height":600,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"table","skin":"ui/common/yb_bj.jpg"},"child":[{"type":"Image","props":{"y":194,"x":132,"width":176,"var":"xLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":310,"width":204,"var":"bLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":516,"width":176,"var":"dLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Label","props":{"y":400,"x":136,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":400,"x":329,"width":170,"visible":false,"var":"myJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":399,"x":521,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":215,"x":137,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":215,"x":325,"width":170,"visible":false,"var":"allJetion1","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":215,"x":520,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}}]},{"type":"Box","props":{"y":70,"x":163,"visible":false,"var":"clockBox","runtime":"managers.baoziwang.ClockBox"},"child":[{"type":"Image","props":{"y":17,"x":43,"skin":"ui/baseUI/yb_nz_dk.png"}},{"type":"Image","props":{"y":5,"x":0,"skin":"ui/baseUI/ttz_clock.png"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qxz.png","name":"xzImage"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qdd.png","name":"ddImage"}},{"type":"Label","props":{"y":18,"x":6,"width":41,"text":"0","runtime":"customUI.BmpFontLabel","name":"clockNumLabel","height":30,"font":"sgj_nz","align":"center"}}]},{"type":"List","props":{"y":123,"x":22,"visible":false,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},"child":[{"type":"Box","props":{"y":6,"x":8,"width":84,"runtime":"managers.baoziwang.PortraitCell","renderType":"render","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portrait","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}},{"type":"Image","props":{"y":60,"skin":"ui/baseUI/ttz_head_player_bg.png","centerX":0},"child":[{"type":"Label","props":{"y":0,"x":13,"text":"我是名字","color":"#f4f3ec"}},{"type":"Label","props":{"y":15,"x":15,"text":"123456","color":"#f2eacb"}}]}]}]},{"type":"Box","props":{"width":718,"var":"mainPanelBottom","runtime":"managers.baoziwang.MainPanelBottom","height":64,"centerX":0,"bottom":0},"child":[{"type":"Image","props":{"y":50,"x":182,"visible":true,"skin":"ui/baseUI/ttz_board_2.png","name":"chipsBg"},"child":[{"type":"List","props":{"y":4,"x":49,"spaceX":11,"repeatX":5,"name":"chips"},"child":[{"type":"Box","props":{"y":0,"width":58,"scaleY":0.95,"scaleX":0.95,"runtime":"managers.baoziwang.ChipCell","renderType":"render","pivotY":29.5,"pivotX":29,"height":59},"child":[{"type":"Image","props":{"y":-5.000000000000092,"x":-14.000000000000021,"visible":false,"skin":"ui/baseUI/ttz_chip_d_light.png","name":"chipLight","centerX":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/sgj_chip_d_1.png","name":"chip"}}]}]}]},{"type":"Image","props":{"skin":"ui/baseUI/ttz_board_1.png"}},{"type":"Button","props":{"y":9,"x":570,"stateNum":"2","skin":"ui/baseUI/ttz_bt_xy.png","name":"autoBettingBtn","disabled":true}},{"type":"Box","props":{"y":-5,"x":-4,"width":84,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"var":"myPortraitImage","skin":"ui/baseUI/lob_men_1.jpg","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":false,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}}]},{"type":"Label","props":{"y":16,"x":77,"var":"myNameLabel","text":"我是名字","color":"#5b2e1f","bold":true}},{"type":"Image","props":{"y":31,"x":75,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":99,"var":"myMoneyLabel","text":"123456","color":"#5b2e1f","bold":true}}]},{"type":"Animation","props":{"y":125,"x":411,"var":"laoPaoWang","source":"ani/yb_rdh_idle.ani","runtime":"managers.baoziwang.LaoPaoWang","autoPlay":true}},{"type":"Box","props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},"child":[{"type":"Image","props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0}},{"type":"Image","props":{"y":3,"x":170,"var":"recordBtn","skin":"ui/baseUI/yb_bt_gd.png"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png","name":"applySZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png","name":"applyingSZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png","name":"ingSZBtn"}},{"type":"Image","props":{"y":2,"x":386,"skin":"ui/baseUI/yb_tx_lpt.png","name":"bankerImage"}},{"type":"Box","props":{"y":-7,"x":382,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"bankerPortrait","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":460,"text":"老炮王","name":"bankerNameLabel","color":"#f4f3ec"}},{"type":"Label","props":{"y":37,"x":468,"text":"10亿","name":"bankerScoreLabel","color":"#f2eacb"}},{"type":"Image","props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"}},{"type":"Box","props":{"y":32,"x":52.5,"name":"recordListBox"},"child":[{"type":"List","props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},"child":[{"type":"Image","props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"}}]}]}]},{"type":"Box","props":{"y":240,"width":800,"var":"tipBox","runtime":"managers.baoziwang.TipBox","centerX":0},"child":[{"type":"Box","props":{"y":65,"x":0,"width":800,"pivotY":62.5,"name":"bg"},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/game_com_tip_bg.png"}},{"type":"Image","props":{"y":0,"x":799.5,"skin":"ui/baseUI/game_com_tip_bg.png","scaleX":-1}}]},{"type":"Image","props":{"y":22,"x":294,"skin":"ui/baseUI/ttz_ts_01.png","name":"word1"}},{"type":"Image","props":{"y":19,"x":264,"skin":"ui/baseUI/ttz_ts_02.png","name":"word2"}}]},{"type":"Box","props":{"y":333,"x":415,"width":1,"visible":false,"var":"diceCupBox","runtime":"managers.baoziwang.DiceCupBox","height":1},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_1.png","pivotY":65,"pivotX":117,"name":"tray"}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_2.png","pivotY":185,"pivotX":85,"name":"cap"}},{"type":"Animation","props":{"y":-213,"x":-88,"width":172,"visible":false,"source":"ani/baozi.ani","name":"baoziAni","mouseEnabled":false,"height":121,"autoPlay":false}},{"type":"Image","props":{"y":-334,"x":0,"skin":"ui/baseUI/yb_gx_hd.png","scaleY":2.5,"scaleX":2.5,"pivotX":71.5,"name":"light"}},{"type":"Image","props":{"y":39,"x":-131,"skin":"ui/baseUI/yb_d_sm.png","name":"pointBg"},"child":[{"type":"Box","props":{"x":-30,"name":"pointBox"},"child":[{"type":"Label","props":{"y":46,"x":90,"width":50,"text":"18","runtime":"customUI.BmpFontLabel","name":"numLabel","font":"yb_sz_ds","anchorY":0.5,"anchorX":0.5,"align":"right"}},{"type":"Image","props":{"y":42,"x":137,"width":38,"skin":"ui/baseUI/yb_wz_d.png","pivotY":21,"pivotX":18,"name":"point","height":38}},{"type":"Image","props":{"y":45,"x":192,"skin":"ui/baseUI/yb_wz_bz.png","pivotY":36,"pivotX":33,"name":"dx"}}]}]}]},{"type":"Box","props":{"y":63,"x":105,"width":237,"var":"recordPanel","runtime":"managers.baoziwang.RecordPanel","height":486},"child":[{"type":"Image","props":{"y":0,"x":0,"width":236,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","height":490}},{"type":"List","props":{"y":9,"x":8,"width":224,"vScrollBarSkin":" ","spaceY":10,"name":"recordList","height":468},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.RecordCell","renderType":"render"},"child":[{"type":"Image","props":{"y":0,"x":0,"width":220,"skin":"ui/baseUI/yb_sz_ls_lv2.png","sizeGrid":"15,30,15,30","name":"bgImage","height":49}},{"type":"Image","props":{"y":15,"x":167,"skin":"ui/baseUI/yb_sz_ls_11.png"}},{"type":"Image","props":{"y":11,"x":189,"skin":"ui/baseUI/yb_bj_zs_01.png","name":"dxImage"}},{"type":"Image","props":{"y":2,"x":3,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice0Image"}},{"type":"Image","props":{"y":1,"x":48,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice1Image"}},{"type":"Image","props":{"y":1,"x":93,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice2Image"}},{"type":"Label","props":{"y":12,"x":140,"width":24,"text":"16","name":"pointLabel","height":20,"fontSize":22,"color":"#99dd99","bold":false,"align":"center"}}]}]}]},{"type":"Box","props":{"y":0,"x":0,"width":800,"var":"shangZhuangPanel","runtime":"managers.baoziwang.ShangZhuangPanel","height":600},"child":[{"type":"Image","props":{"y":8,"x":155,"width":451,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","name":"bgImage","height":541},"child":[{"type":"Image","props":{"y":12,"x":127,"skin":"ui/baseUI/ttz_ej_sz_sqsz.png"}},{"type":"Image","props":{"y":72,"x":14,"width":423,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":379}},{"type":"Image","props":{"y":110,"x":25,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":48,"x":150,"width":150,"text":"申请上庄条件：1亿金币","name":"conditionLabel","height":14,"fontSize":14,"color":"#f1e1e1"}},{"type":"Image","props":{"y":85,"x":199,"skin":"ui/baseUI/ttz_ej_sz_jb.png"}},{"type":"Image","props":{"y":85,"x":352,"skin":"ui/baseUI/ttz_ej_sz_pd.png"}},{"type":"Image","props":{"y":85,"x":67,"skin":"ui/baseUI/ttz_ej_sz_wj.png"}},{"type":"List","props":{"y":124,"x":26,"width":407,"spaceY":10,"repeatX":1,"name":"playerList","height":299},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.ApplyCell","renderType":"render"},"child":[{"type":"Image","props":{"y":20,"x":0,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":0,"x":7,"width":112,"text":"我是标准的八个字","name":"nameLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":142,"width":106,"text":"90亿","name":"scoreLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":291,"width":113,"text":"第一名","name":"indexLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}}]}]},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_apply.png","name":"applyBtn"}},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_cancel.png","name":"cancelBtn"}},{"type":"Button","props":{"y":9,"x":394,"stateNum":"2","skin":"ui/baseUI/btn_close.png","name":"closeBtn"}}]}]},{"type":"Box","props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},"child":[{"type":"Image","props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"}},{"type":"Image","props":{"y":149,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"}},{"type":"Image","props":{"y":249,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"}},{"type":"Image","props":{"y":288,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12}},{"type":"Image","props":{"y":193,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"}},{"type":"Image","props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417}},{"type":"Box","props":{"y":117,"x":296,"width":30,"name":"chatBtn","height":97}},{"type":"Box","props":{"y":219,"x":296,"width":30,"name":"userBtn","height":97}},{"type":"List","props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},"child":[{"type":"Image","props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60}},{"type":"Box","props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true}},{"type":"Image","props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true}}]}]}]}]};}
 		]);
 		return baoziwangUI;
 	})(View)

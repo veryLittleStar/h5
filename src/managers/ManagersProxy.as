@@ -3,6 +3,7 @@ package managers
 	import managers.baoziwang.BaoziwangDefine;
 	import managers.gameLogin.GameLoginDefine;
 	import managers.serverLogin.ServerLoginDefine;
+	import managers.systemMessage.SystemMessageDefine;
 
 	public class ManagersProxy
 	{
@@ -92,6 +93,18 @@ package managers
 					break;
 				case BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC:
 					ManagersMap.baoziwangManager.placeJetionFailRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_APPLY_BANKER_REC:
+					ManagersMap.baoziwangManager.applyBankerRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REC:
+					ManagersMap.baoziwangManager.cancelBankerRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_CHANGE_BANKER_REC:
+					ManagersMap.baoziwangManager.changeBankerRec(body);
+					break;
+				case SystemMessageDefine.MSG_SYSTEM_MESSAGE_REC:
+					ManagersMap.systemMessageManager.systemMessageRec(body);
 					break;
 			}
 		}

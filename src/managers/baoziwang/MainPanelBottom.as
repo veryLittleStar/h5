@@ -1,7 +1,9 @@
 package managers.baoziwang
 {
 	import laya.display.Sprite;
+	import laya.events.Event;
 	import laya.maths.Point;
+	import laya.media.SoundManager;
 	import laya.ui.Box;
 	import laya.ui.Button;
 	import laya.ui.Image;
@@ -10,6 +12,9 @@ package managers.baoziwang
 	import laya.utils.Tween;
 	
 	import managers.DataProxy;
+	import managers.ManagersMap;
+	
+	import net.NetProxy;
 	
 	public class MainPanelBottom extends Box
 	{
@@ -17,6 +22,8 @@ package managers.baoziwang
 		private var chipsBg:Image;
 		private var chips:List;
 		private var autoBettingBtn:Button;
+		private var activeSelectSound:Boolean = true;
+		public var autoBeting:Boolean = false;
 		public function MainPanelBottom()
 		{
 			super();
@@ -29,6 +36,7 @@ package managers.baoziwang
 			autoBettingBtn = getChildByName("autoBettingBtn") as Button;
 			chips.selectHandler = Handler.create(this,chipSelect,null,false);
 			chips.array = [100,1000,5000,10000,100000];
+			autoBettingBtn.on(Event.CLICK,this,autoBetClick);
 		}
 		
 		public function set canBetting(value:Boolean):void
@@ -36,6 +44,11 @@ package managers.baoziwang
 			if(_canBetting == value)return;
 			_canBetting = value;
 			bettingStateChange();
+			updateAutoBettingBtn();
+			if(_canBetting)
+			{
+				SoundManager.playSound("music/ttz_my_board.mp3");
+			}
 		}
 		
 		public function get canBetting():Boolean
@@ -48,13 +61,10 @@ package managers.baoziwang
 			if(_canBetting)
 			{
 				Tween.to(chipsBg,{y:20},500,null,Handler.create(this,chipActive),0,true);
-				autoBettingBtn.disabled = false;
-				
 			}
 			else
 			{
 				Tween.to(chipsBg,{y:50},500,null,null,0,true);
-				autoBettingBtn.disabled = true;
 				chips.selectEnable = false;
 				for(var i:int; i < chips.cells.length; i++)
 				{
@@ -67,6 +77,7 @@ package managers.baoziwang
 		private function chipActive():void
 		{
 			chips.selectEnable = true;
+			activeSelectSound = false;
 			if(chips.selectedIndex == -1)
 			{
 				chips.selectedIndex = 0;
@@ -91,6 +102,14 @@ package managers.baoziwang
 					chipCell.selected = false;
 				}
 			}
+			if(activeSelectSound == false)
+			{
+				activeSelectSound = true
+			}
+			else
+			{
+				SoundManager.playSound("music/ttz_card_send.mp3");
+			}
 		}
 		
 		public function get selectChipScore():int
@@ -113,6 +132,48 @@ package managers.baoziwang
 				}
 			}
 			return null;
+		}
+		
+		public function updateAutoBettingBtn():void
+		{
+			if(_canBetting && ManagersMap.baoziwangManager.preRoundJetionArr.length)
+			{
+				autoBettingBtn.disabled = false;
+			}
+			else
+			{
+				autoBettingBtn.disabled = true;
+			}
+		}
+		
+		private function autoBetClick(event:Event):void
+		{
+			if(autoBeting)return;
+			var arr:Array = ManagersMap.baoziwangManager.preRoundJetionArr;
+			var preTotalJetion:int = 0;
+			var i:int = 0;
+			for(i = 0; i < arr.length; i++)
+			{
+				preTotalJetion += arr[i].lJettonScore;
+			}
+			
+			if(preTotalJetion >DataProxy.userScore)
+			{
+				ManagersMap.systemMessageManager.showSysMessage("您的金币不足");
+				return;
+			}
+			else
+			{
+				for(i = 0; i < arr.length; i++)
+				{
+					var body:Object = {};
+					body.cbJettonArea 	= arr[i].cbJettonArea;
+					body.lJettonScore   = arr[i].lJettonScore;	
+					NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BZW_PLACE_JETION_REQ,body);
+				}
+				autoBeting = true;
+			}
+			
 		}
 		
 	}

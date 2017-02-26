@@ -2,6 +2,8 @@ package net.messages
 {
 	import laya.utils.Dictionary;
 	
+	import net.messages.baoziwang.MsgBZWApplyBankerReq;
+	import net.messages.baoziwang.MsgBZWCancelBankerReq;
 	import net.messages.baoziwang.MsgBZWGameOptionReq;
 	import net.messages.baoziwang.MsgBZWPlaceJetionReq;
 	import net.messages.gameLogin.MsgRoomLoginReq;
@@ -84,6 +86,8 @@ package net.messages
 			
 			_encodeMessageDict["100_1"] =  MsgBZWGameOptionReq;
 			_encodeMessageDict["200_1"] =  MsgBZWPlaceJetionReq;
+			_encodeMessageDict["200_2"] =  MsgBZWApplyBankerReq;
+			_encodeMessageDict["200_3"] =  MsgBZWCancelBankerReq;
 		}
 		
 	}

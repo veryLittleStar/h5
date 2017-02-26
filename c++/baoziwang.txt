@@ -162,3 +162,41 @@ struct tagUserScore
 	DWORD							dwExperience;						//用户经验
 	LONG							lLoveLiness;						//用户魅力
 };
+
+
+
+
+
+系统消息
+MDM_GF_FRAME,SUB_GF_SYSTEM_MESSAGE
+
+//系统消息
+struct CMD_CM_SystemMessage
+{
+	WORD							wType;								//消息类型
+	WORD							wLength;							//消息长度
+	TCHAR							szString[1024];						//消息内容  实际并不会发1024 最多1024
+};
+
+//类型掩码
+#define SMT_CHAT					0x0001								//聊天消息
+#define SMT_EJECT					0x0002								//弹出消息
+#define SMT_GLOBAL					0x0004								//全局消息
+#define SMT_PROMPT					0x0008								//提示消息
+#define SMT_TABLE_ROLL				0x0010								//滚动消息
+
+
+MDM_GF_GAME 200
+#define SUB_S_APPLY_BANKER			103									//申请庄家
+#define SUB_S_CHANGE_BANKER			104									//切换庄家
+
+#define SUB_C_PLACE_JETTON			1									//用户下注
+#define SUB_C_APPLY_BANKER			2									//申请庄家
+#define SUB_C_CANCEL_BANKER			3									//取消申请
+
+//切换庄家
+struct CMD_S_ChangeBanker
+{
+	WORD								wBankerUser;						//当庄玩家
+	LONGLONG							lBankerScore;						//庄家金币
+};

@@ -1,18 +1,34 @@
 package managers.baoziwang
 {
+	import laya.events.Event;
 	import laya.maths.Rectangle;
 	import laya.ui.Box;
+	import laya.ui.Button;
 	import laya.ui.Image;
+	import laya.ui.Label;
 	import laya.ui.List;
 	import laya.utils.Handler;
 	import laya.utils.Tween;
+	
+	import managers.DataProxy;
+	import managers.ManagersMap;
 	
 	public class MainPanelTop extends Box
 	{
 		private var recordList:List;
 		private var recordListBox:Box;
 		private var recordArr:Array;
+		private var applySZBtn:Button;
+		private var applyingSZBtn:Button;
+		private var ingSZBtn:Button;
+		private var bankerImage:Image;
+		private var bankerNameLabel:Label;
+		private var bankerScoreLabel:Label;
+		private var bankerPortrait:Box;
+		private var portraitImage:Image;
+		
 		private var tempImage:Image;
+		
 		public function MainPanelTop()
 		{
 			super();
@@ -23,6 +39,34 @@ package managers.baoziwang
 			recordListBox = getChildByName("recordListBox") as Box;
 			recordList = recordListBox.getChildByName("recordList") as List;
 			recordListBox.scrollRect = new Rectangle(0,0,180,26);
+			
+			applySZBtn = getChildByName("applySZBtn") as Button;
+			applyingSZBtn = getChildByName("applyingSZBtn") as Button;
+			ingSZBtn = getChildByName("ingSZBtn") as Button;
+			this.on(Event.CLICK,this,onClick);
+			
+			bankerImage = getChildByName("bankerImage") as Image;
+			bankerNameLabel = getChildByName("bankerNameLabel") as Label;
+			bankerScoreLabel = getChildByName("bankerScoreLabel") as Label;
+			
+			bankerPortrait = getChildByName("bankerPortrait") as Box;
+			portraitImage = bankerPortrait.getChildByName("portraitImage") as Image;
+		}
+		
+		private function onClick(event:Event):void
+		{
+			switch(event.target)
+			{
+				case applySZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break;
+				case applyingSZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break;
+				case ingSZBtn:
+					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break;
+			}
 		}
 		
 		public function recordInit(arr:Array):void
@@ -45,7 +89,7 @@ package managers.baoziwang
 			{
 				tempImage.skin = getRecordSkin(result);
 			}
-			Tween.to(recordList,{x:30},100,null,Handler.create(this,showNewRecord),4000,true);
+			Tween.to(recordList,{x:30},100,null,Handler.create(this,showNewRecord),5000,true);
 		}
 		
 		private function showNewRecord():void
@@ -98,6 +142,53 @@ package managers.baoziwang
 					break;
 			}
 			return skin;
+		}
+		
+		public function updateBankerInfo():void
+		{
+			if(DataProxy.bankerChairID == 65535)
+			{
+				bankerNameLabel.text = "老炮王";
+				bankerScoreLabel.text = "100亿";
+				bankerImage.visible = true;
+				bankerPortrait.visible = false;
+			}
+			else
+			{
+				bankerImage.visible = false;
+				bankerPortrait.visible = true;
+				bankerScoreLabel.text = BaoziwangDefine.getScoreStr(DataProxy.bankerSocre);
+				
+				var bankerInfo:Object = DataProxy.getUserInfoByChairID(DataProxy.bankerChairID);
+				if(bankerInfo)
+				{
+					bankerNameLabel.text = bankerInfo.szNickName;
+					portraitImage.skin = BaoziwangDefine.getPortraitImage(bankerInfo.cbGender,bankerInfo.wFaceID);
+				}
+			}
+			
+		}
+		
+		public function updateBankerBtn():void
+		{
+			switch(DataProxy.myBankerState)
+			{
+				case 0:
+					applySZBtn.visible = true;
+					applyingSZBtn.visible = false;
+					ingSZBtn.visible = false;
+					break;
+				case 1:
+					applySZBtn.visible = false;
+					applyingSZBtn.visible = true;
+					ingSZBtn.visible = false;
+					break;
+				case 2:
+					applySZBtn.visible = false;
+					applyingSZBtn.visible = false;
+					ingSZBtn.visible = true;
+					break;
+			}
 		}
 	}
 }

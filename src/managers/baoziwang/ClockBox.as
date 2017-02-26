@@ -80,7 +80,7 @@ package managers.baoziwang
 			this.visible = false;
 			if(type == 1)
 			{
-//				SoundManager.playSound("music/ttz_time_out.ogg");
+				SoundManager.playSound("music/ttz_time_out.mp3");
 			}
 		}
 		
@@ -90,7 +90,7 @@ package managers.baoziwang
 			_endSoundCount = value;
 			if(_endSoundCount <= 3)
 			{
-				SoundManager.playSound("music/ttz_time_run.ogg");
+				SoundManager.playSound("music/ttz_time_run.mp3");
 			}
 		}
 	}

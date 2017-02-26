@@ -27,7 +27,7 @@ package net.messages.baoziwang
 				vo["lUserMaxScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//玩家金币
 				
 				//庄家信息
-				vo["wBankerUser"]			= BytesUtil.read(bytes, BytesType.WORD);			//当前庄家
+				vo["wBankerChairID"]		= BytesUtil.read(bytes, BytesType.WORD);			//当前庄家chairID
 				vo["cbBankerTime"]		= BytesUtil.read(bytes, BytesType.WORD);			//庄家局数
 				vo["lBankerWinScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家成绩
 				vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家分数
@@ -75,7 +75,7 @@ package net.messages.baoziwang
 				vo["arcbDice"]	= arr;
 				
 				//庄家信息
-				vo["wBankerUser"]			= BytesUtil.read(bytes, BytesType.WORD);			//当前庄家
+				vo["wBankerChairID"]		= BytesUtil.read(bytes, BytesType.WORD);		//当前庄家chairID
 				vo["cbBankerTime"]		= BytesUtil.read(bytes, BytesType.WORD);			//庄家局数
 				vo["lBankerWinScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家赢分
 				vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家分数

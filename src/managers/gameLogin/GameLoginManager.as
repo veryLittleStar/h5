@@ -161,13 +161,23 @@ package managers.gameLogin
 				userInfo.dwUserMedal=obj.dwUserMedal;
 				userInfo.dwExperience=obj.dwExperience;
 				userInfo.lLoveLiness=obj.lLoveLiness;
+				
+				if(userInfo.wChairID == DataProxy.bankerChairID)
+				{
+					DataProxy.bankerSocre = obj.lScore;
+					ManagersMap.baoziwangManager.ui.mainPanelTop.updateBankerInfo();
+				}
 			}
 			
 			if(obj.dwUserID == DataProxy.userID)
 			{
 				DataProxy.userScore = obj.lScore;
 			}
-			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
+			else
+			{
+				ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);
+			}
+			
 		}
 		
 

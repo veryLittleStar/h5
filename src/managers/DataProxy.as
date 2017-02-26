@@ -28,10 +28,40 @@ package managers
 		public static var userInfoDic:Object = {};
 		/***/
 		public static var myUserInfo:Object ={};
+		/**当前庄家userID*/
+		public static var bankerChairID:int = 65535;
+		/**当前庄家的金币*/
+		public static var bankerSocre:int = -1;
+		/**我的坐庄状态 0无状态  1排队状态  2坐庄状态*/
+		public static var myBankerState:int = 0;
 		
 		
 		public function DataProxy()
 		{
+		}
+		
+		public static function getUserInfoByChairID(chairID:int):Object
+		{
+			for each(var userInfo:Object in userInfoDic)
+			{
+				if(userInfo.wChairID == chairID)
+				{
+					return userInfo;
+				}
+			}
+			return null;
+		}
+		
+		public static function getUserInfoByName(nameStr:String):Object
+		{
+			for each(var userInfo:Object in userInfoDic)
+			{
+				if(userInfo.szNickName == nameStr)
+				{
+					return userInfo;
+				}
+			}
+			return null;
 		}
 		
 		/////////////////////用户状态////////////////////////////////
