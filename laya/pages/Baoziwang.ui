@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":49,
-    "selecteID":151,
+    "selectedBox":1,
+    "selecteID":104,
     "props":{"width":800,"vScrollBarSkin":"\" \"","sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -210,7 +210,7 @@
                         ]
                 }],
             "$LOCKED":false,
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -783,7 +783,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -812,7 +812,7 @@
             "props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},
             "nodeParent":1,
             "label":"Box(mainPanelTop)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -826,7 +826,6 @@
             "compId":49,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0},
                     "nodeParent":49,
@@ -847,7 +846,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":3,"x":170,"var":"recordBtn","skin":"ui/baseUI/yb_bt_gd.png"},
                     "nodeParent":49,
@@ -867,7 +865,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png","name":"applySZBtn"},
                     "nodeParent":49,
@@ -888,7 +885,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png","name":"applyingSZBtn"},
                     "nodeParent":49,
@@ -909,7 +905,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "props":{"y":5,"x":520,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png","name":"ingSZBtn"},
                     "nodeParent":49,
@@ -930,7 +925,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":386,"skin":"ui/baseUI/yb_tx_lpt.png","name":"bankerImage"},
                     "nodeParent":49,
@@ -950,7 +944,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":-7,"x":382,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"bankerPortrait","height":84},
                     "nodeParent":49,
@@ -969,7 +962,6 @@
                     "compId":151,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},
                             "nodeParent":151,
@@ -1010,7 +1002,6 @@
                             "$HIDDEN":false
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84},
                             "nodeParent":151,
@@ -1033,7 +1024,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":14,"x":460,"text":"老炮王","name":"bankerNameLabel","color":"#f4f3ec"},
                     "nodeParent":49,
@@ -1053,7 +1043,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":37,"x":468,"text":"10亿","name":"bankerScoreLabel","color":"#f2eacb"},
                     "nodeParent":49,
@@ -1074,7 +1063,6 @@
                     "$LOCKED":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"},
                     "nodeParent":49,
@@ -1094,7 +1082,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":32,"x":52.5,"name":"recordListBox"},
                     "nodeParent":49,
@@ -1113,7 +1100,6 @@
                     "compId":85,
                     "child":[
                         {
-                            "x":45,
                             "type":"List",
                             "props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},
                             "nodeParent":85,
@@ -1132,7 +1118,6 @@
                             "compId":45,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"},
                                     "nodeParent":45,
@@ -1153,7 +1138,7 @@
                                 }]
                         }]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -2039,7 +2024,7 @@
             "props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},
             "nodeParent":1,
             "label":"Box(chatAndUserList)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -2053,6 +2038,7 @@
             "compId":92,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"},
                     "nodeParent":92,
@@ -2072,6 +2058,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":149,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"},
                     "nodeParent":92,
@@ -2091,6 +2078,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":249,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"},
                     "nodeParent":92,
@@ -2110,6 +2098,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":288,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12},
                     "nodeParent":92,
@@ -2129,6 +2118,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":193,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"},
                     "nodeParent":92,
@@ -2148,6 +2138,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417},
                     "nodeParent":92,
@@ -2168,6 +2159,7 @@
                     "$LOCKED":true
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":117,"x":296,"width":30,"name":"chatBtn","height":97},
                     "nodeParent":92,
@@ -2187,6 +2179,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "props":{"y":219,"x":296,"width":30,"name":"userBtn","height":97},
                     "nodeParent":92,
@@ -2206,6 +2199,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"List",
                     "props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},
                     "nodeParent":92,
@@ -2224,6 +2218,7 @@
                     "compId":110,
                     "child":[
                         {
+                            "x":45,
                             "type":"Box",
                             "props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},
                             "nodeParent":110,
@@ -2242,6 +2237,7 @@
                             "compId":111,
                             "child":[
                                 {
+                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60},
                                     "nodeParent":111,
@@ -2262,6 +2258,7 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Box",
                                     "props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},
                                     "nodeParent":111,
@@ -2342,6 +2339,7 @@
                                     "$HIDDEN":false
                                 },
                                 {
+                                    "x":60,
                                     "type":"Label",
                                     "props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true},
                                     "nodeParent":111,
@@ -2361,6 +2359,7 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"},
                                     "nodeParent":111,
@@ -2380,6 +2379,7 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Label",
                                     "props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true},
                                     "nodeParent":111,
@@ -2398,9 +2398,10 @@
                                     "child":[
                                         ]
                                 }]
-                        }]
+                        }],
+                    "$HIDDEN":false
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         }],
     "animations":[
         {
