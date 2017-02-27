@@ -142,7 +142,6 @@ package managers.baoziwang
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
-					_ui.diceCupBox.openDiceCup([5,5,4]);
 					break;
 			}
 		}
@@ -607,6 +606,11 @@ package managers.baoziwang
 			{
 				_ui.shangZhuangPanel.removeApplyBanker(userInfo.szNickName);
 			}
+		}
+		
+		public function userChatRec(obj:Object):void
+		{
+			_ui.chatAndUserList.userChatRec(obj);
 		}
 		
 	}

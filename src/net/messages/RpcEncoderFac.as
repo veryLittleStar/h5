@@ -88,6 +88,8 @@ package net.messages
 			_encodeMessageDict["200_1"] =  MsgBZWPlaceJetionReq;
 			_encodeMessageDict["200_2"] =  MsgBZWApplyBankerReq;
 			_encodeMessageDict["200_3"] =  MsgBZWCancelBankerReq;
+			
+			_encodeMessageDict["100_10"] =  MsgUserChatReq;
 		}
 		
 	}

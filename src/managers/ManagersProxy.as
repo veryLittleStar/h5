@@ -106,6 +106,9 @@ package managers
 				case SystemMessageDefine.MSG_SYSTEM_MESSAGE_REC:
 					ManagersMap.systemMessageManager.systemMessageRec(body);
 					break;
+				case "100_10":
+					ManagersMap.baoziwangManager.userChatRec(body);
+					break;
 			}
 		}
 		

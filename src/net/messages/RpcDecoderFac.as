@@ -123,6 +123,7 @@ package net.messages
 			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
 			
 			_decodeMessageDict["100_200"] 	= MsgSystemMessageRec;
+			_decodeMessageDict["100_10"] 	= MsgUserChatRec;
 		}
 		
 	}

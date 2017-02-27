@@ -138,6 +138,7 @@ package net.socket
 					bytes.writeBytes(value);
 					break;
 				case BytesType.CHAR:
+				case BytesType.TCHAR:
 					var cp:int = bytes.position;
 					if(value)
 					{

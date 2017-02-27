@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":104,
+    "selectedBox":92,
+    "selecteID":157,
     "props":{"width":800,"vScrollBarSkin":"\" \"","sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -2204,7 +2204,7 @@
                     "props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},
                     "nodeParent":92,
                     "label":"List(userList)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2218,7 +2218,6 @@
                     "compId":110,
                     "child":[
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},
                             "nodeParent":110,
@@ -2237,7 +2236,6 @@
                             "compId":111,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60},
                                     "nodeParent":111,
@@ -2258,7 +2256,6 @@
                                         ]
                                 },
                                 {
-                                    "x":60,
                                     "type":"Box",
                                     "props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},
                                     "nodeParent":111,
@@ -2339,7 +2336,6 @@
                                     "$HIDDEN":false
                                 },
                                 {
-                                    "x":60,
                                     "type":"Label",
                                     "props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true},
                                     "nodeParent":111,
@@ -2359,7 +2355,6 @@
                                         ]
                                 },
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"},
                                     "nodeParent":111,
@@ -2379,7 +2374,6 @@
                                         ]
                                 },
                                 {
-                                    "x":60,
                                     "type":"Label",
                                     "props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true},
                                     "nodeParent":111,
@@ -2399,7 +2393,47 @@
                                         ]
                                 }]
                         }],
-                    "$HIDDEN":false
+                    "$HIDDEN":true
+                },
+                {
+                    "x":30,
+                    "type":"TextInput",
+                    "props":{"y":385,"x":27,"width":250,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","name":"chatInput","height":30},
+                    "nodeParent":92,
+                    "label":"TextInput(chatInput)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":395,"x":146,"text":"TextInput"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":156,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Panel",
+                    "props":{"y":17,"x":15,"width":268,"vScrollBarSkin":" ","name":"chatPanel","height":362},
+                    "nodeParent":92,
+                    "label":"Panel(chatPanel)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":162,"x":135},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":157,
+                    "child":[
+                        ]
                 }],
             "$HIDDEN":false
         }],

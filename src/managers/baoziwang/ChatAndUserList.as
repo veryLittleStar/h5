@@ -4,9 +4,16 @@ package managers.baoziwang
 	import laya.ui.Box;
 	import laya.ui.Image;
 	import laya.ui.List;
+	import laya.ui.Panel;
+	import laya.ui.TextInput;
+	import laya.utils.Pool;
 	import laya.utils.Tween;
 	
 	import managers.DataProxy;
+	
+	import net.NetProxy;
+	
+	import ui.chatCellUI;
 	
 	public class ChatAndUserList extends Box
 	{
@@ -16,9 +23,12 @@ package managers.baoziwang
 		private var userBtn:Box;
 		private var chatBtn:Box;
 		private var userList:List;
+		private var chatPanel:Panel;
+		private var chatInput:TextInput;
 		
 		private var _showState:int = 0;
 		private var _choseState:int = 1;
+		private var chatCellArr:Array = [];
 		public function ChatAndUserList()
 		{
 			super();
@@ -32,11 +42,15 @@ package managers.baoziwang
 			userBtn = getChildByName("userBtn") as Box;
 			chatBtn = getChildByName("chatBtn") as Box;
 			userList = getChildByName("userList") as List;
+			chatPanel = getChildByName("chatPanel") as Panel;
+			chatInput = getChildByName("chatInput") as TextInput;
 			userBtn.on(Event.CLICK,this,userClick);
 			chatBtn.on(Event.CLICK,this,chatClick);
 			freshState();
 			userList.array = [];
 			this.x = -295;
+			chatInput.maxChars = 127;
+			chatInput.on(Event.ENTER,this,chatInputEnter);
 		}
 		
 		private function chatClick(event:* = null):void
@@ -124,6 +138,8 @@ package managers.baoziwang
 			if(_choseState == 0)//选中聊天
 			{
 				chatArrow.visible = true;
+				chatPanel.visible = true;
+				chatInput.visible = true;
 				userArrow.visible = false;
 				userList.visible = false;
 				bgImage.skin = "ui/baseUI/ttz_talk_bg_2.png";
@@ -131,6 +147,8 @@ package managers.baoziwang
 			else				//选中玩家
 			{
 				chatArrow.visible = false;
+				chatPanel.visible = false;
+				chatInput.visible = false;
 				userArrow.visible = true;
 				userList.visible = true;
 				bgImage.skin = "ui/baseUI/ttz_talk_bg_1.png";
@@ -157,6 +175,53 @@ package managers.baoziwang
 			{
 				userList.addItem(userInfo);
 			}
+		}
+		
+		private function chatInputEnter(event:Event):void
+		{
+			if(chatInput.text == "")
+			{
+				
+			}
+			else
+			{
+				var body:Object = {};
+				body.wChatLength 	= chatInput.text.length;
+				body.dwChatColor 	= 0;
+				body.dwTargetUserID = 0;
+				body.szChatString 	= chatInput.text;
+				NetProxy.getInstance().sendToServer("100_10",body);
+			}
+			
+		}
+		
+		public function userChatRec(obj:Object):void
+		{
+			//			vo["wChatLength"]				//信息长度
+			//			vo["dwChatColor"]				//信息颜色
+			//			vo["dwSendUserID"]				//发送用户
+			//			vo["dwTargetUserID"]			//目标用户
+			//			vo["szChatString"]				//聊天信息
+			if(chatCellArr.length >= 50)
+			{
+				Pool.recover("chatCellUI",chatCellArr.shift());
+			}
+			var chatCell:ChatCell = Pool.getItemByClass("chatCellUI",ChatCell);
+			chatCell.updateInfo(obj);
+			chatCellArr.push(chatCell);
+			chatPanel.addChild(chatCell);
+			
+			var i:int;
+			var posY:int = 0;
+			for(i = 0; i < chatCellArr.length; i++)
+			{
+				chatCell = chatCellArr[i];
+				chatCell.x = -8;
+				chatCell.y = posY;
+				posY += chatCell.height;
+			}
+			
+			chatPanel.scrollTo(0,chatPanel.contentHeight + 1000);
 		}
 	}
 }

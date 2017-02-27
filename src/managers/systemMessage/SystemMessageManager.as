@@ -20,7 +20,6 @@ package managers.systemMessage
 		
 		private function key_up():void
 		{
-			systemMessageRec("拉萨的卡夫卡楼上的房间啊乐山大佛");
 		}
 		
 		public function systemMessageRec(obj:Object):void
