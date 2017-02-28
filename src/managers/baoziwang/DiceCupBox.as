@@ -197,21 +197,28 @@ package managers.baoziwang
 		private function step5():void
 		{
 			this.visible = false;
+			var point:Point;
 			if(baozi)
 			{
-				Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:375,y:250},500,null,Handler.create(this,step6));
+				point = BaoziwangDefine.getDiceTargetPoint(BaoziwangDefine.RESULT_BAOZI);
+				point.x -= 50;
 			}
 			else
 			{
 				if(totalNum <= 10)
 				{
-					Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:175,y:250},500,null,Handler.create(this,step6));
+					point = BaoziwangDefine.getDiceTargetPoint(BaoziwangDefine.RESULT_SMALL);
+					point.x -= 40;
+					point.y -= 70;
 				}
 				else
 				{
-					Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:575,y:250},500,null,Handler.create(this,step6));
+					point = BaoziwangDefine.getDiceTargetPoint(BaoziwangDefine.RESULT_BIG);
+					point.x -= 40;
+					point.y -= 70;
 				}
 			}
+			Tween.to(diceCtn,{scaleX:0.5,scaleY:0.5,x:point.x,y:point.y},500,null,Handler.create(this,step6));
 		}
 		
 		private function step6():void

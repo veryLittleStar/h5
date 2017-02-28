@@ -38,14 +38,13 @@ package managers.baoziwang
 		public var maxScore:int = 0;
 		private var curResult:int = 0;
 		private var allJetion0:int = 0;
-		private var allJetion1:int = 0;
 		private var allJetion2:int = 0;
 		private var myJetion0:int = 0;
-		private var myJetion1:int = 0;
 		private var myJetion2:int = 0;
 		
 		public var preRoundJetionArr:Array = [];
 		public var curRoundJetionArr:Array = [];
+		private var gameStatus:int = 0;
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
 		{
@@ -78,7 +77,6 @@ package managers.baoziwang
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
 			_ui.xLightBtn.on(Event.CLICK,this,lightBtnClick);
-			_ui.bLightBtn.on(Event.CLICK,this,lightBtnClick);
 			_ui.dLightBtn.on(Event.CLICK,this,lightBtnClick);
 			SoundManager.playMusic("music/ybao_bg.mp3");
 		}
@@ -111,9 +109,6 @@ package managers.baoziwang
 			{
 				case _ui.xLightBtn:
 					placeJetionReq(BaoziwangDefine.RESULT_SMALL);
-					break;
-				case _ui.bLightBtn:
-					placeJetionReq(BaoziwangDefine.RESULT_BAOZI);
 					break;
 				case _ui.dLightBtn:
 					placeJetionReq(BaoziwangDefine.RESULT_BIG);
@@ -150,7 +145,7 @@ package managers.baoziwang
 		{
 			//obj.cbTimeLeave
 			//obj.nListUserCount
-			
+			gameStatus = BaoziwangDefine.GAME_STATUS_FREE;
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.clockBox.countDown(2,leftTime - 2500);
 			Laya.timer.once(leftTime - 2500,this,yaoTouzi);
@@ -170,16 +165,14 @@ package managers.baoziwang
 			//obj.lUserMaxScore
 			//obj.cbTimeLeave
 			//obj.nChipRobotCount
-			
+			gameStatus = BaoziwangDefine.GAME_STATUS_START;
 			var leftTime:int = obj.cbTimeLeave*1000;
 			_ui.tipBox.show(1);
 			Laya.timer.once(2500,this,xiaZhu,[leftTime-2500]);
 			maxScore = obj.lUserMaxScore;
 			allJetion0 = 0;
-			allJetion1 = 0;
 			allJetion2 = 0;
 			myJetion0 = 0;
-			myJetion1 = 0;
 			myJetion2 = 0;
 			SoundManager.playSound("music/xzTip.mp3");
 			
@@ -203,7 +196,6 @@ package managers.baoziwang
 			_ui.mainPanelBottom.canBetting = true;
 			_ui.clockBox.countDown(1,leftTime);
 			_ui.xLightBtn.shine();
-			_ui.bLightBtn.shine();
 			_ui.dLightBtn.shine();
 		}
 		
@@ -217,6 +209,8 @@ package managers.baoziwang
 			//obj.lUserScore					//玩家成绩
 			//obj.lUserReturnScore				//返回积分
 			//obj.lRevenue						//游戏税收
+			gameStatus = BaoziwangDefine.GAME_STATUS_END;
+			changeBankerDelay = true;
 			var endTime:int = obj.cbTimeLeave*1000 + Browser.now();
 			curResult = pushRecord(obj.arcbDice);
 			Laya.timer.once(800,this,maiDingLiShou,[endTime,obj.arcbDice]);
@@ -272,14 +266,18 @@ package managers.baoziwang
 				Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipDisappear,[chip]),0,true);
 			}
 			_ui.myJetion0.visible = false;
-			_ui.myJetion1.visible = false;
 			_ui.myJetion2.visible = false;
 			_ui.allJetion0.visible = false;
-			_ui.allJetion1.visible = false;
 			_ui.allJetion2.visible = false;
 			_ui.diceCupBox.reset();
 			SoundManager.playSound("music/ttz_chip_player.mp3");
 			updateUserInfo(DataProxy.userID);
+			changeBankerDelay = false;
+			if(changeBankerInfoDelay)
+			{
+				changeBankerRec(changeBankerInfoDelay);
+				changeBankerInfoDelay = null;
+			}
 		}
 		
 		private function chipDisappear(chip:Image):void
@@ -325,6 +323,7 @@ package managers.baoziwang
 			//obj.lEndRevenue
 			//obj.szGameRoomName
 			trace(obj.cbGameStatus,"gameSceneRec");
+			gameStatus = obj.cbGameStatus;
 			_ui.shangZhuangPanel.szConditonUpdate(obj.lApplyBankerCondition);
 			
 			DataProxy.bankerChairID = obj.wBankerChairID;
@@ -344,8 +343,8 @@ package managers.baoziwang
 			{
 				_ui.clockBox.countDown(2,leftTime);
 				_ui.mainPanelBottom.canBetting = false;
-				_ui.myJetion0.visible = _ui.myJetion1.visible = _ui.myJetion2.visible = false;
-				_ui.allJetion0.visible = _ui.allJetion1.visible = _ui.allJetion2.visible = false;
+				_ui.myJetion0.visible  = _ui.myJetion2.visible = false;
+				_ui.allJetion0.visible = _ui.allJetion2.visible = false;
 			}
 			else
 			{
@@ -358,37 +357,37 @@ package managers.baoziwang
 				{
 					_ui.clockBox.countDown(2,leftTime);
 					_ui.mainPanelBottom.canBetting = false;
+					changeBankerDelay = true;
 				}
 				//obj.arlAreaInAllScore
 				//obj.arlUserInAllScore
-				var i:int;
-				for(i = 0; i < obj.arlAreaInAllScore.length; i++)
+				_ui.myJetion0.visible = false;
+				_ui.myJetion2.visible = false;
+				_ui.allJetion0.visible = false;
+				_ui.allJetion2.visible = false;
+				
+				if(obj.arlUserInAllScore[0])
 				{
-					var mjLabel:Label = _ui["myJetion"+i] as Label;
-					if(obj.arlUserInAllScore[i])
-					{
-						mjLabel.visible = true;
-						mjLabel.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[i]);
-					}
-					else
-					{
-						mjLabel.visible = false;
-					}
+					_ui.myJetion0.visible = true;
+					_ui.myJetion0.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+				}
+				if(obj.arlUserInAllScore[2])
+				{
+					_ui.myJetion2.visible = true;
+					_ui.myJetion2.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
 				}
 				
-				for(i = 0; i < obj.arlAreaInAllScore.length; i++)
+				if(obj.arlAreaInAllScore[0])
 				{
-					var ajLabel:Label = _ui["allJetion"+i] as Label;
-					if(obj.arlAreaInAllScore[i])
-					{
-						ajLabel.visible = true;
-						ajLabel.text = BaoziwangDefine.getScoreStr1(obj.arlAreaInAllScore[i]);
-					}
-					else
-					{
-						ajLabel.visible = false;
-					}
+					_ui.allJetion0.visible = true;
+					_ui.allJetion0.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
 				}
+				if(obj.arlAreaInAllScore[2])
+				{
+					_ui.allJetion2.visible = true;
+					_ui.allJetion2.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+				}
+				
 			}
 		}
 		
@@ -532,7 +531,7 @@ package managers.baoziwang
 					target = _ui.xLightBtn;
 					break;
 				case BaoziwangDefine.RESULT_BAOZI:
-					target = _ui.bLightBtn;
+					target = _ui.bankerImage;
 					break;
 				case BaoziwangDefine.RESULT_BIG:
 					target = _ui.dLightBtn;
@@ -582,10 +581,17 @@ package managers.baoziwang
 			_ui.shangZhuangPanel.removeApplyBanker(obj.szCancelUser);
 		}
 		
+		private var changeBankerInfoDelay:Object;
+		private var changeBankerDelay:Boolean = false;
 		public function changeBankerRec(obj:Object):void
 		{
 			//vo["wBankerChairID"] 			//当庄玩家chairID
 			//vo["lBankerScore"] 			//庄家金币
+			if(changeBankerDelay)
+			{
+				changeBankerInfoDelay = obj;
+				return;
+			}
 			if(DataProxy.chairID == DataProxy.bankerChairID && obj.wBankerChairID == 65535)
 			{
 				DataProxy.myBankerState = 0;

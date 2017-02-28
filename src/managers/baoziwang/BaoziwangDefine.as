@@ -1,6 +1,10 @@
 package managers.baoziwang
 {
 	import laya.maths.Point;
+	import laya.ui.Image;
+	import laya.ui.View;
+	
+	import managers.ManagersMap;
 
 	public class BaoziwangDefine
 	{
@@ -37,6 +41,10 @@ package managers.baoziwang
 		public static const RESULT_BIG:int 	= 0;
 		public static const RESULT_BAOZI:int 	= 1;
 		public static const RESULT_SMALL:int 	= 2;
+		////////////////////////////////////////////
+		public static const GAME_STATUS_FREE:int = 0;
+		public static const GAME_STATUS_START:int = 100;
+		public static const GAME_STATUS_END:int = 101;
 		////////////////////////////////////////////
 		public function BaoziwangDefine()
 		{
@@ -149,5 +157,25 @@ package managers.baoziwang
 			return score;
 		}
 		
+		public static function getDiceTargetPoint(result:int):Point
+		{
+			var target:Image = ManagersMap.baoziwangManager.ui.xLightBtn;
+			switch(result)
+			{
+				case BaoziwangDefine.RESULT_SMALL:
+					target = ManagersMap.baoziwangManager.ui.xLightBtn;
+					break;
+				case BaoziwangDefine.RESULT_BAOZI:
+					target = ManagersMap.baoziwangManager.ui.bankerImage;
+					break;
+				case BaoziwangDefine.RESULT_BIG:
+					target = ManagersMap.baoziwangManager.ui.dLightBtn;
+					break;
+			}
+			var point:Point = new Point();
+			point.x = target.x + target.width/2;
+			point.y = target.y + target.height/2;
+			return point;
+		}
 	}
 }

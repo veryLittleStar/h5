@@ -46,9 +46,19 @@ package managers.serverLogin
 		public function loginReq():void
 		{
 			var body:Object = {};
-			body.account = NetDefine.getQueryString("account");
-			body.password = NetDefine.getQueryString("password");
-			NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_LOGIN_REQ,body);
+			var pid:String = NetDefine.getQueryString("pid");
+			if(pid != "")
+			{
+				body.s = parseInt(NetDefine.getQueryString("s"));
+				body.pid = pid;
+				NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_LOGIN_THIRD_PART_REQ,body);
+			}
+			else
+			{
+				body.account = NetDefine.getQueryString("account");
+				body.password = NetDefine.getQueryString("password");
+				NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_LOGIN_REQ,body);
+			}
 		}
 		
 		public function loginSuccessRec(obj:Object):void

@@ -191,6 +191,7 @@ package managers.baoziwang
 				body.dwTargetUserID = 0;
 				body.szChatString 	= chatInput.text;
 				NetProxy.getInstance().sendToServer("100_10",body);
+				chatInput.text = "";
 			}
 			
 		}

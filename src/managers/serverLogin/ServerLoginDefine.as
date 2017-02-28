@@ -4,6 +4,8 @@ package managers.serverLogin
 	{
 		public static const MSG_LOGIN_REQ:String 			= "1_2";
 		
+		public static const MSG_LOGIN_THIRD_PART_REQ:String = "1_4";
+		
 		public static const MSG_LOGIN_SUCCESS_REC:String	= "1_100";
 		
 		public static const MSG_LOGIN_FAILURE_REC:String 	= "1_101";

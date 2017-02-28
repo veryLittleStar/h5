@@ -9,6 +9,7 @@ package net.messages
 	import net.messages.gameLogin.MsgRoomLoginReq;
 	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
+	import net.messages.serverLogin.MsgLoginThirdPartReq;
 	import net.messages.user.MsgUserSitDownReq;
 	import net.socket.ByteArray;
 	
@@ -79,6 +80,7 @@ package net.messages
 			_encodeMessageDict["0_1"] =  MsgHeartBeatReq;
 			
 			_encodeMessageDict["1_2"] =  MsgLoginReq;
+			_encodeMessageDict["1_4"] =  MsgLoginThirdPartReq;
 			_encodeMessageDict["21_1"] =  MsgRoomLoginReq;
 			
 			//
