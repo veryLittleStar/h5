@@ -33,9 +33,10 @@ package net.messages.serverLogin
 			//用户信息
 			vo["cbGender"]			= BytesUtil.read(bytes, BytesType.BYTE);			//用户性别
 			vo["cbMoorMachine"]	= BytesUtil.read(bytes, BytesType.BYTE);			//锁定机器
-			vo["szAccounts"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//登录帐号
+			vo["szAccounts"]		= BytesUtil.read(bytes, BytesType.CHAR,37);			//登录帐号
 			vo["szNickName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//用户昵称
 			vo["szGroupName"]		= BytesUtil.read(bytes, BytesType.CHAR,32);			//社团名字
+			vo["szPassword"]		= BytesUtil.read(bytes, BytesType.CHAR,33);			//密码
 			
 			//配置信息
 			vo["cbShowServerStatus"]	= BytesUtil.read(bytes, BytesType.BYTE);		//显示服务器状态

@@ -22,9 +22,8 @@ package net.messages.gameLogin
 			BytesUtil.write(bytes, BytesType.WORD,21);
 			BytesUtil.write(bytes, BytesType.WORD,1);
 			BytesUtil.write(bytes, BytesType.DWORD,body.dwUserID);
-			var password:String = MD5.hash(body.password);
-			BytesUtil.write(bytes, BytesType.CHAR, password,33);
-			BytesUtil.write(bytes, BytesType.CHAR, password,33);
+			BytesUtil.write(bytes, BytesType.CHAR, body.password,33);
+			BytesUtil.write(bytes, BytesType.CHAR, body.password,33);
 			BytesUtil.write(bytes, BytesType.WORD,body.wKindID);
 			
 			return bytes;

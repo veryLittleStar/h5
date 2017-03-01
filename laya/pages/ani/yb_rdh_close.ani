@@ -4,9 +4,9 @@
     "props":{"sceneWidth":600,"sceneHeight":400,"sceneColor":"#000000"},
     "nodeParent":-1,
     "label":"View",
-    "isDirectory":false,
+    "isDirectory":true,
     "isAniNode":true,
-    "hasChild":false,
+    "hasChild":true,
     "frames":[
         {
             "type":1,
@@ -84,7 +84,7 @@
                             }],
                         "pivotY":[
                             {
-                                "value":63,
+                                "value":85,
                                 "tweenMethod":"linearNone",
                                 "tween":false,
                                 "target":2,
@@ -92,7 +92,7 @@
                                 "index":0
                             },
                             {
-                                "value":59,
+                                "value":89,
                                 "tweenMethod":"linearNone",
                                 "tween":false,
                                 "target":2,
@@ -100,7 +100,7 @@
                                 "index":2
                             },
                             {
-                                "value":60,
+                                "value":89,
                                 "tweenMethod":"linearNone",
                                 "tween":false,
                                 "target":2,
@@ -108,7 +108,7 @@
                                 "index":4
                             },
                             {
-                                "value":68,
+                                "value":81,
                                 "tweenMethod":"linearNone",
                                 "tween":false,
                                 "target":2,

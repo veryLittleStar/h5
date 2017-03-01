@@ -16,6 +16,8 @@ package managers
 		public static var nickName:String = "";
 		/**账号*/
 		public static var account:String = "";
+		/**密码*/
+		public static var password:String = "";
 		/**头像id*/
 		public static var faceID:int = 0;
 		/**用户性别*/

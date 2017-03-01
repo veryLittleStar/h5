@@ -19,7 +19,7 @@ package net.messages.serverLogin
 			BytesUtil.write(bytes, BytesType.WORD,0x01);
 			BytesUtil.write(bytes, BytesType.WORD,0x04);
 			BytesUtil.write(bytes, BytesType.BYTE, body.s);
-			BytesUtil.write(bytes, BytesType.TCHAR, body.pid,33);
+			BytesUtil.write(bytes, BytesType.TCHAR, body.pid,37);
 			
 			
 			return bytes;

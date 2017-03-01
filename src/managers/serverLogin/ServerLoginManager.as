@@ -85,6 +85,7 @@ package managers.serverLogin
 			DataProxy.gameID	= obj.dwGameID;
 			DataProxy.nickName 	= obj.szNickName;
 			DataProxy.account 	= obj.szAccounts;
+			DataProxy.password	= obj.szPassword;
 			DataProxy.userScore = obj.lUserScore;
 			DataProxy.gender 	= obj.cbGender;
 		}

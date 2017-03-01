@@ -221,8 +221,8 @@ package managers.baoziwang
 				chatCell.y = posY;
 				posY += chatCell.height;
 			}
-			
-			chatPanel.scrollTo(0,chatPanel.contentHeight + 1000);
+			chatPanel.refresh();
+			chatPanel.scrollTo(0,posY);
 		}
 	}
 }

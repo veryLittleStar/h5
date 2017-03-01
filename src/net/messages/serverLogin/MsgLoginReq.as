@@ -25,7 +25,7 @@ package net.messages.serverLogin
 			var password:String = MD5.hash(body.password);
 			BytesUtil.write(bytes, BytesType.CHAR, password,33);
 			BytesUtil.write(bytes, BytesType.CHAR, password,33);
-			BytesUtil.write(bytes, BytesType.CHAR, body.account,32);
+			BytesUtil.write(bytes, BytesType.CHAR, body.account,37);
 			BytesUtil.write(bytes, BytesType.BYTE, 2);
 			
 			return bytes;

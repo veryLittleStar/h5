@@ -20,8 +20,7 @@ package managers.gameLogin
 		public function roomLoginReq():void
 		{
 			var body:Object = {};
-			body.account = NetDefine.getQueryString("account");
-			body.password = NetDefine.getQueryString("password");
+			body.password = DataProxy.password;
 			body.dwUserID 	= DataProxy.userID;
 			body.wKindID	= DataProxy.kindID;
 			NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_ROOM_LOGIN_REQ,body);
@@ -37,7 +36,7 @@ package managers.gameLogin
 		{
 			//obj.lErrorCode
 			//obj.szDescribeString
-			trace(obj.szDescribeString);
+			ManagersMap.systemMessageManager.showSysMessage(obj.szDescribeString);
 		}
 		
 		public function roomLoginFinishRec(obj:Object):void

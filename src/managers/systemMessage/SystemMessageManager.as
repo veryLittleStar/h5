@@ -30,6 +30,14 @@ package managers.systemMessage
 			showSysMessage(obj.szString);
 		}
 		
+		public function userRequestFailureRec(obj:Object):void
+		{
+//			vo["lErrorCode"]				//错误代码
+//			vo["wlength"]						
+//			vo["szDescribeString"]			//描述信息
+			showSysMessage(obj.szDescribeString);
+		}
+		
 		public function showSysMessage(str:String):void
 		{
 			moveShowText();

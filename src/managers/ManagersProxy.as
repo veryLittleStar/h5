@@ -109,6 +109,9 @@ package managers
 				case "100_10":
 					ManagersMap.baoziwangManager.userChatRec(body);
 					break;
+				case SystemMessageDefine.MSG_USER_REQUEST_FAILURE_REC:
+					ManagersMap.systemMessageManager.userRequestFailureRec(body);
+					break;
 			}
 		}
 		
