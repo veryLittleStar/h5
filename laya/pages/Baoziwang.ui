@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":42,
-    "selecteID":12,
+    "selecteID":158,
     "props":{"width":800,"vScrollBarSkin":"\" \"","sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -457,7 +457,7 @@
                     "props":{"y":50,"x":182,"visible":true,"skin":"ui/baseUI/ttz_board_2.png","name":"chipsBg"},
                     "nodeParent":42,
                     "label":"Image(chipsBg)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -471,12 +471,11 @@
                     "compId":7,
                     "child":[
                         {
-                            "x":45,
                             "type":"List",
                             "props":{"y":4,"x":49,"spaceX":11,"repeatX":5,"name":"chips"},
                             "nodeParent":7,
                             "label":"List(chips)",
-                            "isOpen":true,
+                            "isOpen":false,
                             "isDirectory":true,
                             "isAniNode":true,
                             "hasChild":true,
@@ -490,7 +489,6 @@
                             "compId":43,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Box",
                                     "props":{"y":0,"width":58,"scaleY":0.95,"scaleX":0.95,"runtime":"managers.baoziwang.ChipCell","renderType":"render","pivotY":29.5,"pivotX":29,"height":59},
                                     "nodeParent":43,
@@ -509,7 +507,6 @@
                                     "compId":73,
                                     "child":[
                                         {
-                                            "x":75,
                                             "type":"Image",
                                             "props":{"y":-5.000000000000092,"x":-14.000000000000021,"visible":false,"skin":"ui/baseUI/ttz_chip_d_light.png","name":"chipLight","centerX":0},
                                             "nodeParent":73,
@@ -529,7 +526,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Image",
                                             "props":{"y":0,"x":0,"skin":"ui/baseUI/sgj_chip_d_1.png","name":"chip"},
                                             "nodeParent":73,
@@ -578,7 +574,7 @@
                 {
                     "x":30,
                     "type":"Button",
-                    "props":{"y":9,"x":570,"stateNum":"2","skin":"ui/baseUI/ttz_bt_xy.png","name":"autoBettingBtn","disabled":true},
+                    "props":{"y":36,"x":588,"visible":false,"stateNum":"2","skin":"ui/baseUI/xu_ya.png","name":"autoBettingBtn","disabled":true},
                     "nodeParent":42,
                     "label":"Button(autoBettingBtn)",
                     "isDirectory":false,
@@ -594,7 +590,8 @@
                     "compId":12,
                     "child":[
                         ],
-                    "$LOCKED":true
+                    "$LOCKED":false,
+                    "$HIDDEN":true
                 },
                 {
                     "x":30,
@@ -602,7 +599,7 @@
                     "props":{"y":-5,"x":-4,"width":84,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","height":84},
                     "nodeParent":42,
                     "label":"Box",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -616,7 +613,6 @@
                     "compId":36,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":61,"visible":true,"var":"myPortraitImage","skin":"ui/baseUI/lob_men_1.jpg","height":61,"centerY":0.5,"centerX":0.5},
                             "nodeParent":36,
@@ -635,7 +631,6 @@
                             "compId":39,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":2.5,"x":2.5,"width":56,"visible":false,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56},
                                     "nodeParent":39,
@@ -658,7 +653,6 @@
                             "$HIDDEN":false
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":84,"skin":"ui/baseUI/game_user_head_box_1.png","height":84},
                             "nodeParent":36,
@@ -739,6 +733,48 @@
                     "compId":41,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"y":12,"x":549,"stateNum":"2","skin":"ui/baseUI/miao_xiao.png","name":"mxBtn","disabled":true},
+                    "nodeParent":42,
+                    "label":"Button(mxBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":544,"x":581,"label":"label"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":158,
+                    "child":[
+                        ],
+                    "$LOCKED":false
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"y":12,"x":625,"stateNum":"2","skin":"ui/baseUI/miao_da.png","name":"mdBtn","disabled":true},
+                    "nodeParent":42,
+                    "label":"Button(mdBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":544,"x":581,"label":"label"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":159,
+                    "child":[
+                        ],
+                    "$LOCKED":false
                 }],
             "$HIDDEN":false
         },

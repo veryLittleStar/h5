@@ -22,6 +22,8 @@ package managers.baoziwang
 		private var chipsBg:Image;
 		private var chips:List;
 		private var autoBettingBtn:Button;
+		private var mxBtn:Button;
+		private var mdBtn:Button;
 		private var activeSelectSound:Boolean = true;
 		public var autoBeting:Boolean = false;
 		public function MainPanelBottom()
@@ -34,9 +36,13 @@ package managers.baoziwang
 			chipsBg = getChildByName("chipsBg") as Image;
 			chips = chipsBg.getChildByName("chips") as List;
 			autoBettingBtn = getChildByName("autoBettingBtn") as Button;
+			mxBtn = getChildByName("mxBtn") as Button;
+			mdBtn = getChildByName("mdBtn") as Button;
 			chips.selectHandler = Handler.create(this,chipSelect,null,false);
 			chips.array = [100,1000,5000,10000,100000];
 			autoBettingBtn.on(Event.CLICK,this,autoBetClick);
+			mxBtn.on(Event.CLICK,this,mxClick);
+			mdBtn.on(Event.CLICK,this,mdClick);
 		}
 		
 		public function set canBetting(value:Boolean):void
@@ -173,7 +179,59 @@ package managers.baoziwang
 				}
 				autoBeting = true;
 			}
+		}
+		
+		private function mxClick(obj:Object):void
+		{
+			var body:Object = {};
+			body.cbJettonArea 	= BaoziwangDefine.RESULT_SMALL;
+			NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BZW_ALL_IN_JETION_REQ,body);
+		}
+		
+		private function mdClick(obj:Object):void
+		{
+			var body:Object = {};
+			body.cbJettonArea 	= BaoziwangDefine.RESULT_BIG;
+			NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BZW_ALL_IN_JETION_REQ,body);
+		}
+		
+		public function updateMBtn(allInArea:int):void
+		{
+			if(DataProxy.bankerChairID == 65535)
+			{
+				mdBtn.disabled = true;
+				mxBtn.disabled = true;
+				return;
+			}
+			if(allInArea == -1)
+			{
+				mdBtn.disabled = false;
+				mxBtn.disabled = false;
+				return;
+			}
+			if(allInArea == -2)
+			{
+				mdBtn.disabled = true;
+				mxBtn.disabled = true;
+				return;
+			}
+			if(allInArea == BaoziwangDefine.RESULT_SMALL)
+			{
+				mdBtn.disabled = true;
+			}
+			else
+			{
+				mdBtn.disabled = false;
+			}
 			
+			if(allInArea == BaoziwangDefine.RESULT_BIG)
+			{
+				mxBtn.disabled = true;
+			}
+			else
+			{
+				mxBtn.disabled = false;
+			}
 		}
 		
 	}

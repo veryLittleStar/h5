@@ -137,6 +137,12 @@ package managers.baoziwang
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
+					var obj:Object = {};
+					obj["wChairID"] = DataProxy.chairID;
+					obj["cbJettonArea"] = 0;
+					obj["lJettonScore"] = 2000;
+					obj.cbAllIn	= 1;
+					placeJetionRec(obj);
 					break;
 			}
 		}
@@ -189,6 +195,7 @@ package managers.baoziwang
 			DataProxy.bankerChairID = obj.wBankerUser;
 			DataProxy.bankerSocre = obj.lBankerScore;
 			_ui.mainPanelTop.updateBankerInfo();
+			_ui.mainPanelBottom.updateMBtn(-1);
 		}
 		
 		private function xiaZhu(leftTime:int):void
@@ -215,6 +222,7 @@ package managers.baoziwang
 			curResult = pushRecord(obj.arcbDice);
 			Laya.timer.once(800,this,maiDingLiShou,[endTime,obj.arcbDice]);
 			_ui.mainPanelBottom.canBetting = false;
+			_ui.mainPanelBottom.updateMBtn(-2);
 		}
 		
 		private function maiDingLiShou(endTime:int,diceArr:Array):void
@@ -352,12 +360,14 @@ package managers.baoziwang
 				{
 					_ui.clockBox.countDown(1,leftTime);
 					_ui.mainPanelBottom.canBetting = true;
+					_ui.mainPanelBottom.updateMBtn(-1);
 				}
 				if(obj.cbGameStatus == 101)
 				{
 					_ui.clockBox.countDown(2,leftTime);
 					_ui.mainPanelBottom.canBetting = false;
 					changeBankerDelay = true;
+					_ui.mainPanelBottom.updateMBtn(-2);
 				}
 				//obj.arlAreaInAllScore
 				//obj.arlUserInAllScore
@@ -457,41 +467,78 @@ package managers.baoziwang
 			//obj["cbJettonArea"]		//筹码区域
 			//obj["lJettonScore"]		//加注数目
 			//obj["cbAndroid"]			//机器人
-			var chipIndex:int = BaoziwangDefine.getChipIndex(obj.lJettonScore);
-			if(chipIndex)
+			//obj.cbAllIn				//是否秒下
+			var jettonScore:int = obj.lJettonScore;
+			while(jettonScore >= 100)
 			{
-				var chipPoint:Point;
-				var destPoint:Point;
-				var chip:LittleChip = Pool.getItemByClass("littleChip",LittleChip);
-				chip.updateInfo(obj);
-				tempChipArr.push(chip);
-				destPoint = getRandomPointByArea(obj.cbJettonArea);
-				
-				if(obj.wChairID == DataProxy.chairID)
+				var tempScore:int = 0;
+				if(jettonScore >= 100000)
 				{
-					chipPoint = _ui.mainPanelBottom.getChipPosByScore(obj.lJettonScore);
-					if(chipPoint)
+					tempScore = 100000;
+				}
+				else if(jettonScore >= 10000)
+				{
+					tempScore = 10000;
+				}
+				else if(jettonScore >= 5000)
+				{
+					tempScore = 5000;
+				}
+				else if(jettonScore >= 1000)
+				{
+					tempScore = 1000;
+				}
+				else
+				{
+					tempScore = 100;
+				}
+				jettonScore -= tempScore;
+				var chipIndex:int = BaoziwangDefine.getChipIndex(tempScore);
+				if(chipIndex)
+				{
+					var chipPoint:Point;
+					var destPoint:Point;
+					var chip:LittleChip = Pool.getItemByClass("littleChip",LittleChip);
+					var chipInfo:Object = {};
+					chipInfo.wChairID = obj.wChairID;
+					chipInfo.cbJettonArea = obj.cbJettonArea;
+					chipInfo.lJettonScore = tempScore;
+					chip.updateInfo(chipInfo);
+					tempChipArr.push(chip);
+					destPoint = getRandomPointByArea(obj.cbJettonArea);
+					
+					if(obj.wChairID == DataProxy.chairID)
 					{
+						chipPoint = _ui.mainPanelBottom.getChipPosByScore(tempScore);
+						if(chipPoint)
+						{
+							chip.x = chipPoint.x;
+							chip.y = chipPoint.y;
+							Laya.stage.addChild(chip);
+							Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipFlyEnd,[chip]));
+						}
+					}
+					else
+					{
+						chipPoint = new Point();
+						chipPoint.y = Laya.stage.height * 0.6;
+						chipPoint.x = -chip.width;
 						chip.x = chipPoint.x;
 						chip.y = chipPoint.y;
 						Laya.stage.addChild(chip);
 						Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipFlyEnd,[chip]));
 					}
 				}
-				else
-				{
-					chipPoint = new Point();
-					chipPoint.y = Laya.stage.height * 0.6;
-					chipPoint.x = -chip.width;
-					chip.x = chipPoint.x;
-					chip.y = chipPoint.y;
-					Laya.stage.addChild(chip);
-					Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,chipFlyEnd,[chip]));
-				}
 			}
+			
+			
 			
 			if(obj.wChairID == DataProxy.chairID)
 			{
+				if(obj.cbAllIn)
+				{
+					_ui.mainPanelBottom.updateMBtn(obj.cbJettonArea);
+				}
 				this["myJetion"+obj.cbJettonArea] += obj.lJettonScore;
 				_ui["myJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["myJetion"+obj.cbJettonArea]);
 				_ui["myJetion"+obj.cbJettonArea].visible = true;

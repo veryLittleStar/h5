@@ -21,6 +21,7 @@ package net.messages.baoziwang
 			vo["cbJettonArea"]	= BytesUtil.read(bytes, BytesType.BYTE);		//筹码区域
 			vo["lJettonScore"] 	= BytesUtil.read(bytes, BytesType.LONGLONG);	//加注数目
 			vo["cbAndroid"]		= BytesUtil.read(bytes, BytesType.BYTE);		//机器人
+			vo["cbAllIn"]			= BytesUtil.read(bytes, BytesType.BYTE);		//是否秒下
 			
 			return vo;
 		}

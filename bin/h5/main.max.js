@@ -834,6 +834,7 @@ var Laya=window.Laya=(function(window,document){
 		BaoziwangDefine.MSG_BZW_GAME_RECORD_REC="200_106";
 		BaoziwangDefine.MSG_BZW_GAME_SCENE_REC="100_101";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REQ="200_1";
+		BaoziwangDefine.MSG_BZW_ALL_IN_JETION_REQ="200_5";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REC="200_101";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC="200_107";
 		BaoziwangDefine.MSG_BZW_APPLY_BANKER_REQ="200_2";
@@ -1378,6 +1379,25 @@ var Laya=window.Laya=(function(window,document){
 	})()
 
 
+	/**200_5 用户秒注*/
+	//class net.messages.baoziwang.MsgBZWAllInJetionReq
+	var MsgBZWAllInJetionReq=(function(){
+		function MsgBZWAllInJetionReq(){}
+		__class(MsgBZWAllInJetionReq,'net.messages.baoziwang.MsgBZWAllInJetionReq');
+		var __proto=MsgBZWAllInJetionReq.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcEncoder":true})
+		__proto.makeEncodeBytes=function(body){
+			var bytes=BytesUtil.getByteArray();
+			BytesUtil.write(bytes,"word",200);
+			BytesUtil.write(bytes,"word",5);
+			BytesUtil.write(bytes,'byte',body.cbJettonArea);
+			return bytes;
+		}
+
+		return MsgBZWAllInJetionReq;
+	})()
+
+
 	/**200_103 申请庄家返回*/
 	//class net.messages.baoziwang.MsgBZWApplyBankerRec
 	var MsgBZWApplyBankerRec=(function(){
@@ -1685,6 +1705,7 @@ var Laya=window.Laya=(function(window,document){
 			vo["cbJettonArea"]=BytesUtil.read(bytes,'byte');
 			vo["lJettonScore"]=BytesUtil.read(bytes,"longlong");
 			vo["cbAndroid"]=BytesUtil.read(bytes,'byte');
+			vo["cbAllIn"]=BytesUtil.read(bytes,'byte');
 			return vo;
 		}
 
@@ -1982,6 +2003,7 @@ var Laya=window.Laya=(function(window,document){
 			this._encodeMessageDict["200_1"]=MsgBZWPlaceJetionReq;
 			this._encodeMessageDict["200_2"]=MsgBZWApplyBankerReq;
 			this._encodeMessageDict["200_3"]=MsgBZWCancelBankerReq;
+			this._encodeMessageDict["200_5"]=MsgBZWAllInJetionReq;
 			this._encodeMessageDict["100_10"]=MsgUserChatReq;
 		}
 
@@ -15316,7 +15338,13 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.key_up=function(event){
 			switch(event.keyCode){
-				case 65:
+				case 65:;
+					var obj={};
+					obj["wChairID"]=DataProxy.chairID;
+					obj["cbJettonArea"]=0;
+					obj["lJettonScore"]=2000;
+					obj.cbAllIn=1;
+					this.placeJetionRec(obj);
 					break ;
 				}
 		}
@@ -15354,6 +15382,7 @@ var Laya=window.Laya=(function(window,document){
 			DataProxy.bankerChairID=obj.wBankerUser;
 			DataProxy.bankerSocre=obj.lBankerScore;
 			this._ui.mainPanelTop.updateBankerInfo();
+			this._ui.mainPanelBottom.updateMBtn(-1);
 		}
 
 		__proto.xiaZhu=function(leftTime){
@@ -15370,6 +15399,7 @@ var Laya=window.Laya=(function(window,document){
 			this.curResult=this.pushRecord(obj.arcbDice);
 			Laya.timer.once(800,this,this.maiDingLiShou,[endTime,obj.arcbDice]);
 			this._ui.mainPanelBottom.canBetting=false;
+			this._ui.mainPanelBottom.updateMBtn(-2);
 		}
 
 		__proto.maiDingLiShou=function(endTime,diceArr){
@@ -15455,11 +15485,13 @@ var Laya=window.Laya=(function(window,document){
 				if(obj.cbGameStatus==100){
 					this._ui.clockBox.countDown(1,leftTime);
 					this._ui.mainPanelBottom.canBetting=true;
+					this._ui.mainPanelBottom.updateMBtn(-1);
 				}
 				if(obj.cbGameStatus==101){
 					this._ui.clockBox.countDown(2,leftTime);
 					this._ui.mainPanelBottom.canBetting=false;
 					this.changeBankerDelay=true;
+					this._ui.mainPanelBottom.updateMBtn(-2);
 				}
 				this._ui.myJetion0.visible=false;
 				this._ui.myJetion2.visible=false;
@@ -15528,34 +15560,61 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.placeJetionRec=function(obj){
-			var chipIndex=BaoziwangDefine.getChipIndex(obj.lJettonScore);
-			if(chipIndex){
-				var chipPoint;
-				var destPoint;
-				var chip=Pool.getItemByClass("littleChip",LittleChip);
-				chip.updateInfo(obj);
-				this.tempChipArr.push(chip);
-				destPoint=this.getRandomPointByArea(obj.cbJettonArea);
-				if(obj.wChairID==DataProxy.chairID){
-					chipPoint=this._ui.mainPanelBottom.getChipPosByScore(obj.lJettonScore);
-					if(chipPoint){
+			var jettonScore=obj.lJettonScore;
+			while(jettonScore >=100){
+				var tempScore=0;
+				if(jettonScore >=100000){
+					tempScore=100000;
+				}
+				else if(jettonScore >=10000){
+					tempScore=10000;
+				}
+				else if(jettonScore >=5000){
+					tempScore=5000;
+				}
+				else if(jettonScore >=1000){
+					tempScore=1000;
+				}
+				else{
+					tempScore=100;
+				}
+				jettonScore-=tempScore;
+				var chipIndex=BaoziwangDefine.getChipIndex(tempScore);
+				if(chipIndex){
+					var chipPoint;
+					var destPoint;
+					var chip=Pool.getItemByClass("littleChip",LittleChip);
+					var chipInfo={};
+					chipInfo.wChairID=obj.wChairID;
+					chipInfo.cbJettonArea=obj.cbJettonArea;
+					chipInfo.lJettonScore=tempScore;
+					chip.updateInfo(chipInfo);
+					this.tempChipArr.push(chip);
+					destPoint=this.getRandomPointByArea(obj.cbJettonArea);
+					if(obj.wChairID==DataProxy.chairID){
+						chipPoint=this._ui.mainPanelBottom.getChipPosByScore(tempScore);
+						if(chipPoint){
+							chip.x=chipPoint.x;
+							chip.y=chipPoint.y;
+							Laya.stage.addChild(chip);
+							Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,this.chipFlyEnd,[chip]));
+						}
+					}
+					else{
+						chipPoint=new Point();
+						chipPoint.y=Laya.stage.height *0.6;
+						chipPoint.x=-chip.width;
 						chip.x=chipPoint.x;
 						chip.y=chipPoint.y;
 						Laya.stage.addChild(chip);
 						Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,this.chipFlyEnd,[chip]));
 					}
 				}
-				else{
-					chipPoint=new Point();
-					chipPoint.y=Laya.stage.height *0.6;
-					chipPoint.x=-chip.width;
-					chip.x=chipPoint.x;
-					chip.y=chipPoint.y;
-					Laya.stage.addChild(chip);
-					Tween.to(chip,{x:destPoint.x,y:destPoint.y},300,null,Handler.create(this,this.chipFlyEnd,[chip]));
-				}
 			}
 			if(obj.wChairID==DataProxy.chairID){
+				if(obj.cbAllIn){
+					this._ui.mainPanelBottom.updateMBtn(obj.cbJettonArea);
+				}
 				this["myJetion"+obj.cbJettonArea]+=obj.lJettonScore;
 				this._ui["myJetion"+obj.cbJettonArea].text=BaoziwangDefine.getScoreStr1(this["myJetion"+obj.cbJettonArea]);
 				this._ui["myJetion"+obj.cbJettonArea].visible=true;
@@ -15751,10 +15810,6 @@ var Laya=window.Laya=(function(window,document){
 				userInfo.dwUserMedal=obj.dwUserMedal;
 				userInfo.dwExperience=obj.dwExperience;
 				userInfo.lLoveLiness=obj.lLoveLiness;
-				if(userInfo.wChairID==DataProxy.bankerChairID){
-					DataProxy.bankerSocre=obj.lScore;
-					ManagersMap.baoziwangManager.ui.mainPanelTop.updateBankerInfo();
-				}
 			}
 			if(obj.dwUserID==DataProxy.userID){
 				DataProxy.userScore=obj.lScore;
@@ -32721,6 +32776,8 @@ var Laya=window.Laya=(function(window,document){
 			this.chipsBg=null;
 			this.chips=null;
 			this.autoBettingBtn=null;
+			this.mxBtn=null;
+			this.mdBtn=null;
 			this.activeSelectSound=true;
 			this.autoBeting=false;
 			MainPanelBottom.__super.call(this);
@@ -32732,9 +32789,13 @@ var Laya=window.Laya=(function(window,document){
 			this.chipsBg=this.getChildByName("chipsBg");
 			this.chips=this.chipsBg.getChildByName("chips");
 			this.autoBettingBtn=this.getChildByName("autoBettingBtn");
+			this.mxBtn=this.getChildByName("mxBtn");
+			this.mdBtn=this.getChildByName("mdBtn");
 			this.chips.selectHandler=Handler.create(this,this.chipSelect,null,false);
 			this.chips.array=[100,1000,5000,10000,100000];
 			this.autoBettingBtn.on("click",this,this.autoBetClick);
+			this.mxBtn.on("click",this,this.mxClick);
+			this.mdBtn.on("click",this,this.mdClick);
 		}
 
 		__proto.bettingStateChange=function(){
@@ -32823,6 +32884,48 @@ var Laya=window.Laya=(function(window,document){
 					NetProxy.getInstance().sendToServer("200_1",body);
 				}
 				this.autoBeting=true;
+			}
+		}
+
+		__proto.mxClick=function(obj){
+			var body={};
+			body.cbJettonArea=2;
+			NetProxy.getInstance().sendToServer("200_5",body);
+		}
+
+		__proto.mdClick=function(obj){
+			var body={};
+			body.cbJettonArea=0;
+			NetProxy.getInstance().sendToServer("200_5",body);
+		}
+
+		__proto.updateMBtn=function(allInArea){
+			if(DataProxy.bankerChairID==65535){
+				this.mdBtn.disabled=true;
+				this.mxBtn.disabled=true;
+				return;
+			}
+			if(allInArea==-1){
+				this.mdBtn.disabled=false;
+				this.mxBtn.disabled=false;
+				return;
+			}
+			if(allInArea==-2){
+				this.mdBtn.disabled=true;
+				this.mxBtn.disabled=true;
+				return;
+			}
+			if(allInArea==2){
+				this.mdBtn.disabled=true;
+			}
+			else{
+				this.mdBtn.disabled=false;
+			}
+			if(allInArea==0){
+				this.mxBtn.disabled=true;
+			}
+			else{
+				this.mxBtn.disabled=false;
 			}
 		}
 
@@ -37201,7 +37304,7 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__static(baoziwangUI,
-		['uiView',function(){return this.uiView={"type":"View","props":{"width":800,"vScrollBarSkin":"\" \"","height":600,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"table","skin":"ui/common/yb_bj.jpg"},"child":[{"type":"Image","props":{"y":194,"x":132,"width":280,"var":"xLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":413,"width":280,"var":"dLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Label","props":{"y":405,"x":188,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":405,"x":475,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":214,"x":186,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":214,"x":471,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}}]},{"type":"Box","props":{"y":70,"x":163,"visible":false,"var":"clockBox","runtime":"managers.baoziwang.ClockBox"},"child":[{"type":"Image","props":{"y":17,"x":43,"skin":"ui/baseUI/yb_nz_dk.png"}},{"type":"Image","props":{"y":5,"x":0,"skin":"ui/baseUI/ttz_clock.png"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qxz.png","name":"xzImage"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qdd.png","name":"ddImage"}},{"type":"Label","props":{"y":18,"x":6,"width":41,"text":"0","runtime":"customUI.BmpFontLabel","name":"clockNumLabel","height":30,"font":"sgj_nz","align":"center"}}]},{"type":"List","props":{"y":123,"x":22,"visible":false,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},"child":[{"type":"Box","props":{"y":6,"x":8,"width":84,"runtime":"managers.baoziwang.PortraitCell","renderType":"render","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portrait","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}},{"type":"Image","props":{"y":60,"skin":"ui/baseUI/ttz_head_player_bg.png","centerX":0},"child":[{"type":"Label","props":{"y":0,"x":13,"text":"我是名字","color":"#f4f3ec"}},{"type":"Label","props":{"y":15,"x":15,"text":"123456","color":"#f2eacb"}}]}]}]},{"type":"Box","props":{"width":718,"var":"mainPanelBottom","runtime":"managers.baoziwang.MainPanelBottom","height":64,"centerX":0,"bottom":0},"child":[{"type":"Image","props":{"y":50,"x":182,"visible":true,"skin":"ui/baseUI/ttz_board_2.png","name":"chipsBg"},"child":[{"type":"List","props":{"y":4,"x":49,"spaceX":11,"repeatX":5,"name":"chips"},"child":[{"type":"Box","props":{"y":0,"width":58,"scaleY":0.95,"scaleX":0.95,"runtime":"managers.baoziwang.ChipCell","renderType":"render","pivotY":29.5,"pivotX":29,"height":59},"child":[{"type":"Image","props":{"y":-5.000000000000092,"x":-14.000000000000021,"visible":false,"skin":"ui/baseUI/ttz_chip_d_light.png","name":"chipLight","centerX":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/sgj_chip_d_1.png","name":"chip"}}]}]}]},{"type":"Image","props":{"skin":"ui/baseUI/ttz_board_1.png"}},{"type":"Button","props":{"y":9,"x":570,"stateNum":"2","skin":"ui/baseUI/ttz_bt_xy.png","name":"autoBettingBtn","disabled":true}},{"type":"Box","props":{"y":-5,"x":-4,"width":84,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"var":"myPortraitImage","skin":"ui/baseUI/lob_men_1.jpg","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":false,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}}]},{"type":"Label","props":{"y":16,"x":77,"var":"myNameLabel","color":"#5b2e1f","bold":true}},{"type":"Image","props":{"y":31,"x":75,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":99,"var":"myMoneyLabel","color":"#5b2e1f","bold":true}}]},{"type":"Animation","props":{"y":125,"x":411,"var":"laoPaoWang","source":"ani/yb_rdh_idle.ani","runtime":"managers.baoziwang.LaoPaoWang","autoPlay":true}},{"type":"Box","props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},"child":[{"type":"Image","props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0}},{"type":"Image","props":{"y":3,"x":170,"var":"recordBtn","skin":"ui/baseUI/yb_bt_gd.png"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png","name":"applySZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png","name":"applyingSZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png","name":"ingSZBtn"}},{"type":"Image","props":{"y":2,"x":386,"var":"bankerImage","skin":"ui/baseUI/yb_tx_lpt.png","name":"bankerImage"}},{"type":"Box","props":{"y":-7,"x":382,"width":84,"visible":false,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"bankerPortrait","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":460,"name":"bankerNameLabel","color":"#f4f3ec"}},{"type":"Label","props":{"y":37,"x":468,"name":"bankerScoreLabel","color":"#f2eacb"}},{"type":"Image","props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"}},{"type":"Box","props":{"y":32,"x":52.5,"name":"recordListBox"},"child":[{"type":"List","props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},"child":[{"type":"Image","props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"}}]}]}]},{"type":"Box","props":{"y":240,"width":800,"var":"tipBox","runtime":"managers.baoziwang.TipBox","centerX":0},"child":[{"type":"Box","props":{"y":65,"x":0,"width":800,"pivotY":62.5,"name":"bg"},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/game_com_tip_bg.png"}},{"type":"Image","props":{"y":0,"x":799.5,"skin":"ui/baseUI/game_com_tip_bg.png","scaleX":-1}}]},{"type":"Image","props":{"y":22,"x":294,"skin":"ui/baseUI/ttz_ts_01.png","name":"word1"}},{"type":"Image","props":{"y":19,"x":264,"skin":"ui/baseUI/ttz_ts_02.png","name":"word2"}}]},{"type":"Box","props":{"y":333,"x":415,"width":1,"visible":false,"var":"diceCupBox","runtime":"managers.baoziwang.DiceCupBox","height":1},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_1.png","pivotY":65,"pivotX":117,"name":"tray"}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_2.png","pivotY":185,"pivotX":85,"name":"cap"}},{"type":"Animation","props":{"y":-213,"x":-88,"width":172,"visible":false,"source":"ani/baozi.ani","name":"baoziAni","mouseEnabled":false,"height":121,"autoPlay":false}},{"type":"Image","props":{"y":-334,"x":0,"skin":"ui/baseUI/yb_gx_hd.png","scaleY":2.5,"scaleX":2.5,"pivotX":71.5,"name":"light"}},{"type":"Image","props":{"y":39,"x":-131,"skin":"ui/baseUI/yb_d_sm.png","name":"pointBg"},"child":[{"type":"Box","props":{"x":-30,"name":"pointBox"},"child":[{"type":"Label","props":{"y":46,"x":90,"width":50,"text":"18","runtime":"customUI.BmpFontLabel","name":"numLabel","font":"yb_sz_ds","anchorY":0.5,"anchorX":0.5,"align":"right"}},{"type":"Image","props":{"y":42,"x":137,"width":38,"skin":"ui/baseUI/yb_wz_d.png","pivotY":21,"pivotX":18,"name":"point","height":38}},{"type":"Image","props":{"y":45,"x":192,"skin":"ui/baseUI/yb_wz_bz.png","pivotY":36,"pivotX":33,"name":"dx"}}]}]}]},{"type":"Box","props":{"y":63,"x":105,"width":237,"var":"recordPanel","runtime":"managers.baoziwang.RecordPanel","height":486},"child":[{"type":"Image","props":{"y":0,"x":0,"width":236,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","height":490}},{"type":"List","props":{"y":9,"x":8,"width":224,"vScrollBarSkin":" ","spaceY":10,"name":"recordList","height":468},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.RecordCell","renderType":"render"},"child":[{"type":"Image","props":{"y":0,"x":0,"width":220,"skin":"ui/baseUI/yb_sz_ls_lv2.png","sizeGrid":"15,30,15,30","name":"bgImage","height":49}},{"type":"Image","props":{"y":15,"x":167,"skin":"ui/baseUI/yb_sz_ls_11.png"}},{"type":"Image","props":{"y":11,"x":189,"skin":"ui/baseUI/yb_bj_zs_01.png","name":"dxImage"}},{"type":"Image","props":{"y":2,"x":3,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice0Image"}},{"type":"Image","props":{"y":1,"x":48,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice1Image"}},{"type":"Image","props":{"y":1,"x":93,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice2Image"}},{"type":"Label","props":{"y":12,"x":140,"width":24,"text":"16","name":"pointLabel","height":20,"fontSize":22,"color":"#99dd99","bold":false,"align":"center"}}]}]}]},{"type":"Box","props":{"y":0,"x":0,"width":800,"var":"shangZhuangPanel","runtime":"managers.baoziwang.ShangZhuangPanel","height":600},"child":[{"type":"Image","props":{"y":8,"x":155,"width":451,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","name":"bgImage","height":541},"child":[{"type":"Image","props":{"y":12,"x":127,"skin":"ui/baseUI/ttz_ej_sz_sqsz.png"}},{"type":"Image","props":{"y":72,"x":14,"width":423,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":379}},{"type":"Image","props":{"y":110,"x":25,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":48,"x":150,"width":150,"text":"申请上庄条件：1亿金币","name":"conditionLabel","height":14,"fontSize":14,"color":"#f1e1e1"}},{"type":"Image","props":{"y":85,"x":199,"skin":"ui/baseUI/ttz_ej_sz_jb.png"}},{"type":"Image","props":{"y":85,"x":352,"skin":"ui/baseUI/ttz_ej_sz_pd.png"}},{"type":"Image","props":{"y":85,"x":67,"skin":"ui/baseUI/ttz_ej_sz_wj.png"}},{"type":"List","props":{"y":124,"x":26,"width":407,"spaceY":10,"repeatX":1,"name":"playerList","height":299},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.ApplyCell","renderType":"render"},"child":[{"type":"Image","props":{"y":20,"x":0,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":0,"x":7,"width":112,"text":"我是标准的八个字","name":"nameLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":142,"width":106,"text":"90亿","name":"scoreLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":291,"width":113,"text":"第一名","name":"indexLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}}]}]},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_apply.png","name":"applyBtn"}},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_cancel.png","name":"cancelBtn"}},{"type":"Button","props":{"y":9,"x":394,"stateNum":"2","skin":"ui/baseUI/btn_close.png","name":"closeBtn"}}]}]},{"type":"Box","props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},"child":[{"type":"Image","props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"}},{"type":"Image","props":{"y":149,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"}},{"type":"Image","props":{"y":249,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"}},{"type":"Image","props":{"y":288,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12}},{"type":"Image","props":{"y":193,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"}},{"type":"Image","props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417}},{"type":"Box","props":{"y":117,"x":296,"width":30,"name":"chatBtn","height":97}},{"type":"Box","props":{"y":219,"x":296,"width":30,"name":"userBtn","height":97}},{"type":"List","props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},"child":[{"type":"Image","props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60}},{"type":"Box","props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true}},{"type":"Image","props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true}}]}]},{"type":"TextInput","props":{"y":385,"x":27,"width":250,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","name":"chatInput","height":30}},{"type":"Panel","props":{"y":17,"x":15,"width":268,"vScrollBarSkin":" ","name":"chatPanel","height":362}}]}]};}
+		['uiView',function(){return this.uiView={"type":"View","props":{"width":800,"vScrollBarSkin":"\" \"","height":600,"centerY":0,"centerX":0},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"table","skin":"ui/common/yb_bj.jpg"},"child":[{"type":"Image","props":{"y":194,"x":132,"width":280,"var":"xLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Image","props":{"y":194,"x":413,"width":280,"var":"dLightBtn","skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","runtime":"managers.baoziwang.TableLightBtn","height":246}},{"type":"Label","props":{"y":405,"x":188,"width":170,"visible":false,"var":"myJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":405,"x":475,"width":170,"visible":false,"var":"myJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_me","align":"center"}},{"type":"Label","props":{"y":214,"x":186,"width":170,"visible":false,"var":"allJetion2","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}},{"type":"Label","props":{"y":214,"x":471,"width":170,"visible":false,"var":"allJetion0","text":"1234567890w","runtime":"customUI.BmpFontLabel","mouseEnabled":false,"font":"benz_xz_total","align":"center"}}]},{"type":"Box","props":{"y":70,"x":163,"visible":false,"var":"clockBox","runtime":"managers.baoziwang.ClockBox"},"child":[{"type":"Image","props":{"y":17,"x":43,"skin":"ui/baseUI/yb_nz_dk.png"}},{"type":"Image","props":{"y":5,"x":0,"skin":"ui/baseUI/ttz_clock.png"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qxz.png","name":"xzImage"}},{"type":"Image","props":{"y":22,"x":52,"skin":"ui/baseUI/yb_nz_qdd.png","name":"ddImage"}},{"type":"Label","props":{"y":18,"x":6,"width":41,"text":"0","runtime":"customUI.BmpFontLabel","name":"clockNumLabel","height":30,"font":"sgj_nz","align":"center"}}]},{"type":"List","props":{"y":123,"x":22,"visible":false,"var":"playerList","spaceY":-4,"spaceX":608,"repeatY":4,"repeatX":2},"child":[{"type":"Box","props":{"y":6,"x":8,"width":84,"runtime":"managers.baoziwang.PortraitCell","renderType":"render","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portrait","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}},{"type":"Image","props":{"y":60,"skin":"ui/baseUI/ttz_head_player_bg.png","centerX":0},"child":[{"type":"Label","props":{"y":0,"x":13,"text":"我是名字","color":"#f4f3ec"}},{"type":"Label","props":{"y":15,"x":15,"text":"123456","color":"#f2eacb"}}]}]}]},{"type":"Box","props":{"width":718,"var":"mainPanelBottom","runtime":"managers.baoziwang.MainPanelBottom","height":64,"centerX":0,"bottom":0},"child":[{"type":"Image","props":{"y":50,"x":182,"visible":true,"skin":"ui/baseUI/ttz_board_2.png","name":"chipsBg"},"child":[{"type":"List","props":{"y":4,"x":49,"spaceX":11,"repeatX":5,"name":"chips"},"child":[{"type":"Box","props":{"y":0,"width":58,"scaleY":0.95,"scaleX":0.95,"runtime":"managers.baoziwang.ChipCell","renderType":"render","pivotY":29.5,"pivotX":29,"height":59},"child":[{"type":"Image","props":{"y":-5.000000000000092,"x":-14.000000000000021,"visible":false,"skin":"ui/baseUI/ttz_chip_d_light.png","name":"chipLight","centerX":0}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/sgj_chip_d_1.png","name":"chip"}}]}]}]},{"type":"Image","props":{"skin":"ui/baseUI/ttz_board_1.png"}},{"type":"Button","props":{"y":36,"x":588,"visible":false,"stateNum":"2","skin":"ui/baseUI/xu_ya.png","name":"autoBettingBtn","disabled":true}},{"type":"Box","props":{"y":-5,"x":-4,"width":84,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"var":"myPortraitImage","skin":"ui/baseUI/lob_men_1.jpg","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":false,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"skin":"ui/baseUI/game_user_head_box_1.png","height":84}}]},{"type":"Label","props":{"y":16,"x":77,"var":"myNameLabel","color":"#5b2e1f","bold":true}},{"type":"Image","props":{"y":31,"x":75,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":99,"var":"myMoneyLabel","color":"#5b2e1f","bold":true}},{"type":"Button","props":{"y":12,"x":549,"stateNum":"2","skin":"ui/baseUI/miao_xiao.png","name":"mxBtn","disabled":true}},{"type":"Button","props":{"y":12,"x":625,"stateNum":"2","skin":"ui/baseUI/miao_da.png","name":"mdBtn","disabled":true}}]},{"type":"Animation","props":{"y":125,"x":411,"var":"laoPaoWang","source":"ani/yb_rdh_idle.ani","runtime":"managers.baoziwang.LaoPaoWang","autoPlay":true}},{"type":"Box","props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},"child":[{"type":"Image","props":{"y":0,"skin":"ui/common/yb_bj_zsdt.png","centerX":0}},{"type":"Image","props":{"y":3,"x":170,"var":"recordBtn","skin":"ui/baseUI/yb_bt_gd.png"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz.png","name":"applySZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"2","skin":"ui/baseUI/ttz_bt_sz1.png","name":"applyingSZBtn"}},{"type":"Button","props":{"y":5,"x":520,"stateNum":"1","skin":"ui/baseUI/ttz_bt_sz4.png","name":"ingSZBtn"}},{"type":"Image","props":{"y":2,"x":386,"var":"bankerImage","skin":"ui/baseUI/yb_tx_lpt.png","name":"bankerImage"}},{"type":"Box","props":{"y":-7,"x":382,"width":84,"visible":false,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"bankerPortrait","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":460,"name":"bankerNameLabel","color":"#f4f3ec"}},{"type":"Label","props":{"y":37,"x":468,"name":"bankerScoreLabel","color":"#f2eacb"}},{"type":"Image","props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"}},{"type":"Box","props":{"y":32,"x":52.5,"name":"recordListBox"},"child":[{"type":"List","props":{"y":0,"x":0,"spaceX":6,"repeatX":6,"name":"recordList"},"child":[{"type":"Image","props":{"skin":"ui/baseUI/yb_bj_zs_03.png","renderType":"render"}}]}]}]},{"type":"Box","props":{"y":240,"width":800,"var":"tipBox","runtime":"managers.baoziwang.TipBox","centerX":0},"child":[{"type":"Box","props":{"y":65,"x":0,"width":800,"pivotY":62.5,"name":"bg"},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/game_com_tip_bg.png"}},{"type":"Image","props":{"y":0,"x":799.5,"skin":"ui/baseUI/game_com_tip_bg.png","scaleX":-1}}]},{"type":"Image","props":{"y":22,"x":294,"skin":"ui/baseUI/ttz_ts_01.png","name":"word1"}},{"type":"Image","props":{"y":19,"x":264,"skin":"ui/baseUI/ttz_ts_02.png","name":"word2"}}]},{"type":"Box","props":{"y":333,"x":415,"width":1,"visible":false,"var":"diceCupBox","runtime":"managers.baoziwang.DiceCupBox","height":1},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_1.png","pivotY":65,"pivotX":117,"name":"tray"}},{"type":"Image","props":{"y":0,"x":0,"skin":"ui/baseUI/yb_z_2.png","pivotY":185,"pivotX":85,"name":"cap"}},{"type":"Animation","props":{"y":-213,"x":-88,"width":172,"visible":false,"source":"ani/baozi.ani","name":"baoziAni","mouseEnabled":false,"height":121,"autoPlay":false}},{"type":"Image","props":{"y":-334,"x":0,"skin":"ui/baseUI/yb_gx_hd.png","scaleY":2.5,"scaleX":2.5,"pivotX":71.5,"name":"light"}},{"type":"Image","props":{"y":39,"x":-131,"skin":"ui/baseUI/yb_d_sm.png","name":"pointBg"},"child":[{"type":"Box","props":{"x":-30,"name":"pointBox"},"child":[{"type":"Label","props":{"y":46,"x":90,"width":50,"text":"18","runtime":"customUI.BmpFontLabel","name":"numLabel","font":"yb_sz_ds","anchorY":0.5,"anchorX":0.5,"align":"right"}},{"type":"Image","props":{"y":42,"x":137,"width":38,"skin":"ui/baseUI/yb_wz_d.png","pivotY":21,"pivotX":18,"name":"point","height":38}},{"type":"Image","props":{"y":45,"x":192,"skin":"ui/baseUI/yb_wz_bz.png","pivotY":36,"pivotX":33,"name":"dx"}}]}]}]},{"type":"Box","props":{"y":63,"x":105,"width":237,"var":"recordPanel","runtime":"managers.baoziwang.RecordPanel","height":486},"child":[{"type":"Image","props":{"y":0,"x":0,"width":236,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","height":490}},{"type":"List","props":{"y":9,"x":8,"width":224,"vScrollBarSkin":" ","spaceY":10,"name":"recordList","height":468},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.RecordCell","renderType":"render"},"child":[{"type":"Image","props":{"y":0,"x":0,"width":220,"skin":"ui/baseUI/yb_sz_ls_lv2.png","sizeGrid":"15,30,15,30","name":"bgImage","height":49}},{"type":"Image","props":{"y":15,"x":167,"skin":"ui/baseUI/yb_sz_ls_11.png"}},{"type":"Image","props":{"y":11,"x":189,"skin":"ui/baseUI/yb_bj_zs_01.png","name":"dxImage"}},{"type":"Image","props":{"y":2,"x":3,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice0Image"}},{"type":"Image","props":{"y":1,"x":48,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice1Image"}},{"type":"Image","props":{"y":1,"x":93,"visible":true,"skin":"ui/baseUI/ttz_sezi_d_1.png","name":"dice2Image"}},{"type":"Label","props":{"y":12,"x":140,"width":24,"text":"16","name":"pointLabel","height":20,"fontSize":22,"color":"#99dd99","bold":false,"align":"center"}}]}]}]},{"type":"Box","props":{"y":0,"x":0,"width":800,"var":"shangZhuangPanel","runtime":"managers.baoziwang.ShangZhuangPanel","height":600},"child":[{"type":"Image","props":{"y":8,"x":155,"width":451,"skin":"ui/baseUI/game_phb_10.png","sizeGrid":"20,20,25,20","name":"bgImage","height":541},"child":[{"type":"Image","props":{"y":12,"x":127,"skin":"ui/baseUI/ttz_ej_sz_sqsz.png"}},{"type":"Image","props":{"y":72,"x":14,"width":423,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":379}},{"type":"Image","props":{"y":110,"x":25,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":48,"x":150,"width":150,"text":"申请上庄条件：1亿金币","name":"conditionLabel","height":14,"fontSize":14,"color":"#f1e1e1"}},{"type":"Image","props":{"y":85,"x":199,"skin":"ui/baseUI/ttz_ej_sz_jb.png"}},{"type":"Image","props":{"y":85,"x":352,"skin":"ui/baseUI/ttz_ej_sz_pd.png"}},{"type":"Image","props":{"y":85,"x":67,"skin":"ui/baseUI/ttz_ej_sz_wj.png"}},{"type":"List","props":{"y":124,"x":26,"width":407,"spaceY":10,"repeatX":1,"name":"playerList","height":299},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.ApplyCell","renderType":"render"},"child":[{"type":"Image","props":{"y":20,"x":0,"width":400,"skin":"ui/baseUI/ttz_help_02.png","sizeGrid":"0,10,0,10"}},{"type":"Label","props":{"y":0,"x":7,"width":112,"text":"我是标准的八个字","name":"nameLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":142,"width":106,"text":"90亿","name":"scoreLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}},{"type":"Label","props":{"y":0,"x":291,"width":113,"text":"第一名","name":"indexLabel","height":0,"fontSize":14,"color":"#f1e1e1","align":"center"}}]}]},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_apply.png","name":"applyBtn"}},{"type":"Button","props":{"y":466,"x":156,"stateNum":"2","skin":"ui/baseUI/btn_cancel.png","name":"cancelBtn"}},{"type":"Button","props":{"y":9,"x":394,"stateNum":"2","skin":"ui/baseUI/btn_close.png","name":"closeBtn"}}]}]},{"type":"Box","props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},"child":[{"type":"Image","props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_1.png","sizeGrid":"0,52,0,0","name":"bgImage"}},{"type":"Image","props":{"y":149,"x":303,"skin":"ui/baseUI/ttz_talk_txt_01.png"}},{"type":"Image","props":{"y":249,"x":303,"skin":"ui/baseUI/ttz_talk_txt_02.png"}},{"type":"Image","props":{"y":288,"x":304,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow","height":12}},{"type":"Image","props":{"y":193,"x":304,"skin":"ui/baseUI/ttz_talk_j2.png","name":"chatArrow"}},{"type":"Image","props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417}},{"type":"Box","props":{"y":117,"x":296,"width":30,"name":"chatBtn","height":97}},{"type":"Box","props":{"y":219,"x":296,"width":30,"name":"userBtn","height":97}},{"type":"List","props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},"child":[{"type":"Box","props":{"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},"child":[{"type":"Image","props":{"y":5,"x":15,"width":266,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60}},{"type":"Box","props":{"y":-3,"x":10,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},"child":[{"type":"Image","props":{"width":61,"visible":true,"skin":"ui/baseUI/lob_men_1.jpg","name":"portraitImage","height":61,"centerY":0.5,"centerX":0.5},"child":[{"type":"Image","props":{"y":2.5,"x":2.5,"width":56,"visible":true,"skin":"ui/baseUI/game_user_head_zz.png","renderType":"mask","height":56}}]},{"type":"Image","props":{"width":84,"visible":true,"skin":"ui/baseUI/game_user_head_box_1.png","name":"portraitBg","height":84}}]},{"type":"Label","props":{"y":14,"x":92,"text":"名字标准的八个字","name":"userName","fontSize":14,"color":"#86583b","bold":true}},{"type":"Image","props":{"y":32,"x":95,"skin":"ui/baseUI/game_icon_gold.png"}},{"type":"Label","props":{"y":35,"x":121,"text":"123456","name":"userScore","fontSize":14,"color":"#86583b","bold":true}}]}]},{"type":"TextInput","props":{"y":385,"x":27,"width":250,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","name":"chatInput","height":30}},{"type":"Panel","props":{"y":17,"x":15,"width":268,"vScrollBarSkin":" ","name":"chatPanel","height":362}}]}]};}
 		]);
 		return baoziwangUI;
 	})(View)

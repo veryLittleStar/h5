@@ -23,6 +23,8 @@ package managers.baoziwang
 		
 		public static const MSG_BZW_PLACE_JETION_REQ:String = "200_1";
 		
+		public static const MSG_BZW_ALL_IN_JETION_REQ:String = "200_5";
+		
 		public static const MSG_BZW_PLACE_JETION_REC:String = "200_101";
 		
 		public static const MSG_BZW_PLACE_JETION_FAIL_REC:String = "200_107";
