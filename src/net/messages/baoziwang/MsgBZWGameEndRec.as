@@ -29,11 +29,13 @@ package net.messages.baoziwang
 			vo["arcbDice"]	= arr;													//每个区域的总分
 			
 			//庄家信息
+			vo["btBankerWin"] 			= BytesUtil.read(bytes, BytesType.BYTE);		//庄家输赢
 			vo["lBankerScore"] 		= BytesUtil.read(bytes, BytesType.LONGLONG);	//庄家成绩
 			vo["lBankerTotallScore"] 	= BytesUtil.read(bytes, BytesType.LONGLONG);	//庄家成绩
 			vo["nBankerTime"] 			= BytesUtil.read(bytes, BytesType.INT);			//做庄次数
 			
 			//玩家成绩
+			vo["btWin"] 				= BytesUtil.read(bytes, BytesType.BYTE);		//玩家输赢
 			vo["lUserScore"] 			= BytesUtil.read(bytes, BytesType.LONGLONG);	//玩家成绩
 			vo["lUserReturnScore"] 	= BytesUtil.read(bytes, BytesType.LONGLONG);	//返回积分
 			

@@ -1,5 +1,7 @@
 package managers.baoziwang
 {
+	import customUI.BmpFontLabel;
+	
 	import laya.events.Event;
 	import laya.events.Keyboard;
 	import laya.maths.Point;
@@ -45,6 +47,8 @@ package managers.baoziwang
 		public var preRoundJetionArr:Array = [];
 		public var curRoundJetionArr:Array = [];
 		private var gameStatus:int = 0;
+		private var userWinScore:int = 0;
+		private var bankerWinScore:int = 0;
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
 		{
@@ -137,12 +141,6 @@ package managers.baoziwang
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
-					var obj:Object = {};
-					obj["wChairID"] = DataProxy.chairID;
-					obj["cbJettonArea"] = 0;
-					obj["lJettonScore"] = 2000;
-					obj.cbAllIn	= 1;
-					placeJetionRec(obj);
 					break;
 			}
 		}
@@ -210,9 +208,11 @@ package managers.baoziwang
 		{
 			//obj.cbTimeLeave
 			//obj.arcbDice
+			//obj.btBankerWin
 			//obj.lBankerScore					//庄家成绩
 			//obj.lBankerTotallScore			//庄家成绩
 			//obj.nBankerTime					//做庄次数
+			//obj.btWin
 			//obj.lUserScore					//玩家成绩
 			//obj.lUserReturnScore				//返回积分
 			//obj.lRevenue						//游戏税收
@@ -223,6 +223,22 @@ package managers.baoziwang
 			Laya.timer.once(800,this,maiDingLiShou,[endTime,obj.arcbDice]);
 			_ui.mainPanelBottom.canBetting = false;
 			_ui.mainPanelBottom.updateMBtn(-2);
+			if(obj.btWin)
+			{
+				userWinScore = obj.lUserScore;
+			}
+			else
+			{
+				userWinScore = -obj.lUserScore;
+			}
+			if(obj.btBankerWin)
+			{
+				bankerWinScore = obj.lBankerScore;
+			}
+			else
+			{
+				bankerWinScore = -obj.lBankerScore;
+			}
 		}
 		
 		private function maiDingLiShou(endTime:int,diceArr:Array):void
@@ -238,6 +254,7 @@ package managers.baoziwang
 			_ui.diceCupBox.openDiceCup(arr);
 			_ui.laoPaoWang.changeMotion("open",false);
 			Laya.timer.once(6500,this,shouChouMa);
+			Laya.timer.once(6000,this,flyWinScore);
 		}
 		
 		private function shouChouMa():void
@@ -292,6 +309,53 @@ package managers.baoziwang
 		{
 			chip.removeSelf();
 			Pool.recover("littleChip",chip);
+		}
+		
+		private function flyWinScore():void
+		{
+			if(userWinScore)
+			{
+				var userWinLabel:BmpFontLabel = new BmpFontLabel();
+				userWinLabel.font = "benz_xz_me";
+				userWinLabel.align = "center";
+				userWinLabel.width = 170;
+				userWinLabel.text = userWinScore.toString();
+				userWinLabel.x = (Laya.stage.width - userWinLabel.width)/2;
+				userWinLabel.y = Laya.stage.height/2 + 100;
+				Laya.stage.addChild(userWinLabel);
+				var userPoint:Point = new Point();
+				userPoint.x = 40 - 85;
+				userPoint.y = 25;
+				userPoint = _ui.mainPanelBottom.localToGlobal(userPoint);
+				Tween.to(userWinLabel,{x:userPoint.x,y:userPoint.y},300,null,Handler.create(this,winLabelDelay,[userWinLabel]),0,true);
+				
+			}
+			if(bankerWinScore)
+			{
+				var bankerWinLabel:BmpFontLabel = new BmpFontLabel();
+				bankerWinLabel.font = "benz_xz_total";
+				bankerWinLabel.align = "center";
+				bankerWinLabel.width = 170;
+				bankerWinLabel.text = bankerWinScore.toString();
+				bankerWinLabel.x = (Laya.stage.width - bankerWinLabel.width)/2;
+				bankerWinLabel.y = Laya.stage.height/2 - 100;
+				Laya.stage.addChild(bankerWinLabel);
+				var bankerPoint:Point = new Point();
+				bankerPoint.x = 410 - 85;
+				bankerPoint.y = 30;
+				bankerPoint =_ui.mainPanelTop.localToGlobal(bankerPoint);
+				Tween.to(bankerWinLabel,{x:bankerPoint.x,y:bankerPoint.y},300,null,Handler.create(this,winLabelDelay,[bankerWinLabel]),0,true);
+			}
+			
+			function winLabelDelay(label:BmpFontLabel):void
+			{
+				Laya.timer.once(1000,this,winLabelRemove,[label],false);
+			}
+			
+			function winLabelRemove(label:BmpFontLabel):void
+			{
+				label.removeSelf();
+			}
 		}
 		
 		public function gameSceneRec(obj:Object):void
@@ -639,7 +703,7 @@ package managers.baoziwang
 				changeBankerInfoDelay = obj;
 				return;
 			}
-			if(DataProxy.chairID == DataProxy.bankerChairID && obj.wBankerChairID == 65535)
+			if(DataProxy.chairID == DataProxy.bankerChairID && obj.wBankerChairID != DataProxy.chairID)
 			{
 				DataProxy.myBankerState = 0;
 				_ui.mainPanelTop.updateBankerBtn();
