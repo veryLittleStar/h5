@@ -12,6 +12,7 @@ package net.messages
 	import net.messages.serverLogin.MsgLoginReq;
 	import net.messages.serverLogin.MsgLoginThirdPartReq;
 	import net.messages.user.MsgUserSitDownReq;
+	import net.messages.user.MsgUserStandUpReq;
 	import net.socket.ByteArray;
 	
 	public class RpcEncoderFac
@@ -86,6 +87,7 @@ package net.messages
 			
 			//
 			_encodeMessageDict["23_3"] =  MsgUserSitDownReq;
+			_encodeMessageDict["23_4"] =  MsgUserStandUpReq;
 			
 			_encodeMessageDict["100_1"] =  MsgBZWGameOptionReq;
 			_encodeMessageDict["200_1"] =  MsgBZWPlaceJetionReq;

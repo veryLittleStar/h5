@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":167,
-    "selecteID":180,
+    "selectedBox":226,
+    "selecteID":226,
     "props":{"width":800,"vScrollBarSkin":"\" \"","sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -767,7 +767,7 @@
                         ],
                     "$LOCKED":false
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -793,7 +793,7 @@
         {
             "x":15,
             "type":"Box",
-            "props":{"width":630,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},
+            "props":{"width":630,"visible":true,"var":"mainPanelTop","runtime":"managers.baoziwang.MainPanelTop","height":71,"centerX":0.5},
             "nodeParent":1,
             "label":"Box(mainPanelTop)",
             "isOpen":false,
@@ -1047,25 +1047,6 @@
                     "$LOCKED":false
                 },
                 {
-                    "type":"Image",
-                    "props":{"y":24,"x":-18,"skin":"ui/baseUI/ttz_bt_help.png"},
-                    "nodeParent":49,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "frames":[
-                        {
-                            "type":1,
-                            "props":{"y":29,"x":84,"skin":"ui/baseUI/ttz_bt_help.png"},
-                            "frame":0,
-                            "__InPool":false
-                        }],
-                    "compId":5,
-                    "child":[
-                        ]
-                },
-                {
                     "type":"Box",
                     "props":{"y":32,"x":52.5,"name":"recordListBox"},
                     "nodeParent":49,
@@ -1121,8 +1102,46 @@
                                         ]
                                 }]
                         }]
+                },
+                {
+                    "type":"Button",
+                    "props":{"y":3,"x":-52,"stateNum":"1","skin":"ui/baseUI/button_setting.png","scaleY":0.7,"scaleX":0.7,"name":"configBtn"},
+                    "nodeParent":49,
+                    "label":"Button(configBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"skin":"ui/baseUI/button_setting.png","label":"label"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":207,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Button",
+                    "props":{"y":-3,"x":626,"stateNum":"2","skin":"ui/baseUI/button_bank.png","scaleY":0.5,"scaleX":0.5,"name":"bankBtn"},
+                    "nodeParent":49,
+                    "label":"Button(bankBtn)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":31,"x":681,"skin":"ui/baseUI/button_bank.png","label":"label"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":182,
+                    "child":[
+                        ]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -2008,7 +2027,7 @@
             "props":{"y":81,"x":0,"width":328,"var":"chatAndUserList","runtime":"managers.baoziwang.ChatAndUserList","height":438,"centerY":0},
             "nodeParent":1,
             "label":"Box(chatAndUserList)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -2022,7 +2041,6 @@
             "compId":92,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":0,"x":1,"width":330,"skin":"ui/baseUI/ttz_talk_bg_2.png","sizeGrid":"0,52,0,0","name":"bgImage"},
                     "nodeParent":92,
@@ -2042,7 +2060,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":90,"x":303,"skin":"ui/baseUI/ttz_talk_txt_0.png"},
                     "nodeParent":92,
@@ -2062,7 +2079,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":188,"x":303,"skin":"ui/baseUI/ttz_talk_txt_1.png"},
                     "nodeParent":92,
@@ -2082,7 +2098,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":288,"x":303,"skin":"ui/baseUI/ttz_talk_txt_2.png"},
                     "nodeParent":92,
@@ -2102,7 +2117,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":151,"x":305,"width":12,"skin":"ui/baseUI/ttz_talk_j2.png","name":"sChatArrow","height":12},
                     "nodeParent":92,
@@ -2123,7 +2137,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":248,"x":305,"skin":"ui/baseUI/ttz_talk_j2.png","name":"rChatArrow"},
                     "nodeParent":92,
@@ -2144,7 +2157,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":343,"x":305,"skin":"ui/baseUI/ttz_talk_j2.png","name":"userArrow"},
                     "nodeParent":92,
@@ -2165,7 +2177,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":12,"x":8,"width":279,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"10,10,10,10","height":417},
                     "nodeParent":92,
@@ -2186,7 +2197,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":72,"x":296,"width":30,"name":"sChatBtn","height":97},
                     "nodeParent":92,
@@ -2207,7 +2217,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":171,"x":296,"width":30,"name":"rChatBtn","height":97},
                     "nodeParent":92,
@@ -2228,7 +2237,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":270,"x":296,"width":30,"name":"userBtn","height":97},
                     "nodeParent":92,
@@ -2249,7 +2257,6 @@
                     "$LOCKED":true
                 },
                 {
-                    "x":30,
                     "type":"List",
                     "props":{"y":14,"x":0,"width":285,"vScrollBarSkin":" ","spaceY":-4,"name":"userList","height":414},
                     "nodeParent":92,
@@ -2465,7 +2472,6 @@
                     "$HIDDEN":true
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":21,"x":11,"name":"sChatBox"},
                     "nodeParent":92,
@@ -2484,7 +2490,6 @@
                     "compId":163,
                     "child":[
                         {
-                            "x":45,
                             "type":"Panel",
                             "props":{"y":0,"x":0,"width":268,"vScrollBarSkin":" ","name":"sChatPanel","height":310},
                             "nodeParent":163,
@@ -2504,7 +2509,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"TextInput",
                             "props":{"y":370,"x":13,"width":250,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","name":"sChatInput","height":30},
                             "nodeParent":163,
@@ -2524,7 +2528,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"List",
                             "props":{"y":314,"x":11,"width":314,"spaceY":0,"spaceX":-3,"scaleY":0.8,"scaleX":0.8,"repeatY":1,"repeatX":5,"name":"sChatUserList","height":72,"hScrollBarSkin":" "},
                             "nodeParent":163,
@@ -2543,7 +2546,6 @@
                             "compId":166,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Box",
                                     "props":{"y":0,"x":0,"runtime":"managers.baoziwang.UserInfoBox","renderType":"render"},
                                     "nodeParent":166,
@@ -2562,7 +2564,6 @@
                                     "compId":167,
                                     "child":[
                                         {
-                                            "x":75,
                                             "type":"Image",
                                             "props":{"y":8,"x":5,"width":164,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","height":60},
                                             "nodeParent":167,
@@ -2583,7 +2584,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Box",
                                             "props":{"y":1,"x":-3,"width":84,"visible":true,"scaleY":0.9,"scaleX":0.9,"runtime":"managers.baoziwang.PortraitCell","name":"portraitBox","height":84},
                                             "nodeParent":167,
@@ -2664,7 +2664,6 @@
                                             "$HIDDEN":false
                                         },
                                         {
-                                            "x":75,
                                             "type":"Label",
                                             "props":{"y":17,"x":66,"text":"名字标准的八个字","name":"userName","fontSize":12,"color":"#86583b","bold":true},
                                             "nodeParent":167,
@@ -2684,7 +2683,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Image",
                                             "props":{"y":35,"x":67,"skin":"ui/baseUI/game_icon_gold.png"},
                                             "nodeParent":167,
@@ -2704,7 +2702,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Label",
                                             "props":{"y":39,"x":90,"text":"123456","name":"userScore","fontSize":12,"color":"#86583b","bold":true},
                                             "nodeParent":167,
@@ -2724,7 +2721,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Image",
                                             "props":{"y":7.0000000000000275,"x":5.999999999999942,"width":164,"visible":false,"skin":"ui/baseUI/yb_gx_yzsg_2.png","sizeGrid":"27,31,30,25","name":"choseMask","mouseEnabled":false,"height":60},
                                             "nodeParent":167,
@@ -2744,7 +2740,6 @@
                                                 ]
                                         },
                                         {
-                                            "x":75,
                                             "type":"Button",
                                             "props":{"y":10,"x":137,"width":30,"stateNum":"2","skin":"ui/baseUI/btn_close.png","name":"sCloseBtn","height":30},
                                             "nodeParent":167,
@@ -2768,7 +2763,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":21,"x":11,"name":"rChatBox"},
                     "nodeParent":92,
@@ -2787,7 +2781,6 @@
                     "compId":164,
                     "child":[
                         {
-                            "x":45,
                             "type":"TextInput",
                             "props":{"y":368,"x":12,"width":250,"skin":"ui/baseUI/ttz_wzwj_1.png","sizeGrid":"20,15,15,20","name":"rChatInput","height":30},
                             "nodeParent":164,
@@ -2807,7 +2800,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Panel",
                             "props":{"y":0,"x":0,"width":268,"vScrollBarSkin":" ","name":"rChatPanel","height":362},
                             "nodeParent":164,
@@ -2827,6 +2819,721 @@
                                 ]
                         }],
                     "$HIDDEN":true
+                }],
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "props":{"y":0,"x":0,"visible":false,"var":"bankBox"},
+            "nodeParent":1,
+            "label":"Box(bankBox)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "frames":[
+                {
+                    "type":1,
+                    "props":{},
+                    "frame":0,
+                    "__InPool":false
+                }],
+            "compId":181,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"y":0,"x":-6,"skin":"ui/baseUI/bank_panel_base.png","scaleY":0.8,"scaleX":0.8},
+                    "nodeParent":181,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{"y":203,"x":382,"skin":"ui/baseUI/bank_panel_base.png"},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":183,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "props":{"name":"bankTypeBox"},
+                    "nodeParent":181,
+                    "label":"Box(bankTypeBox)",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":223,
+                    "child":[
+                        {
+                            "type":"Label",
+                            "props":{"y":13,"x":360,"text":"银行","fontSize":40,"color":"#dbbab9","bold":true},
+                            "nodeParent":223,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":221,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Button",
+                            "props":{"y":14,"x":726,"stateNum":"1","skin":"ui/baseUI/button_closepanel.png","scaleY":0.8,"scaleX":0.8},
+                            "nodeParent":223,
+                            "label":"Button",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":21,"x":725,"skin":"ui/baseUI/button_closepanel.png","label":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":184,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Tab",
+                            "props":{"y":86,"x":239},
+                            "nodeParent":223,
+                            "label":"Tab",
+                            "isOpen":false,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":144,"x":474,"labels":"label1,label2"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":186,
+                            "child":[
+                                {
+                                    "type":"Button",
+                                    "props":{"skin":"ui/baseUI/button_bank_all.png","scaleY":0.8,"scaleX":0.8,"name":"item0"},
+                                    "nodeParent":186,
+                                    "label":"Button(item0)",
+                                    "isOpen":true,
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":65,"x":287,"skin":"ui/baseUI/button_bank_all.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":185,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Button",
+                                    "props":{"y":0,"x":166,"skin":"ui/baseUI/button_give.png","scaleY":0.8,"scaleX":0.8,"name":"item1"},
+                                    "nodeParent":186,
+                                    "label":"Button(item1)",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"skin":"ui/baseUI/button_give.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":187,
+                                    "child":[
+                                        ]
+                                }]
+                        },
+                        {
+                            "type":"Label",
+                            "props":{"y":151,"x":160,"text":"身上携带","fontSize":35,"color":"#dbbab9","bold":true},
+                            "nodeParent":223,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":188,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Label",
+                            "props":{"y":210,"x":163,"text":"银行存款","fontSize":35,"color":"#dbbab9","bold":true},
+                            "nodeParent":223,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":189,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":159,"x":331,"skin":"ui/baseUI/game_icon_gold.png"},
+                            "nodeParent":223,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":241,"x":399,"skin":"ui/baseUI/game_icon_gold.png"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":190,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":219,"x":333,"skin":"ui/baseUI/game_icon_gold.png"},
+                            "nodeParent":223,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":241,"x":399,"skin":"ui/baseUI/game_icon_gold.png"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":191,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Label",
+                            "props":{"y":151,"x":380,"text":"1234567","fontSize":35,"color":"#dbbab9","bold":false},
+                            "nodeParent":223,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":192,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Label",
+                            "props":{"y":212,"x":380,"text":"1234567","fontSize":35,"color":"#dbbab9","bold":false},
+                            "nodeParent":223,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":193,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Box",
+                            "props":{"y":279,"x":157,"width":502,"name":"bankTabBox","height":246},
+                            "nodeParent":223,
+                            "label":"Box(bankTabBox)",
+                            "isOpen":false,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":194,
+                            "child":[
+                                {
+                                    "type":"Label",
+                                    "props":{"y":0,"x":-61,"text":"输入金币数量","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "nodeParent":194,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":235,"x":149,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":196,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Label",
+                                    "props":{"y":101,"x":8,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "nodeParent":194,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":235,"x":149,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":198,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Button",
+                                    "props":{"y":161,"x":277,"stateNum":"1","skin":"ui/baseUI/button_bank_out.png","scaleY":0.8,"scaleX":0.8},
+                                    "nodeParent":194,
+                                    "label":"Button",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":200,"x":383,"skin":"ui/baseUI/button_bank_out.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":200,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Button",
+                                    "props":{"y":163,"x":36,"stateNum":"1","skin":"ui/baseUI/button_bank_in.png","scaleY":0.8,"scaleX":0.8},
+                                    "nodeParent":194,
+                                    "label":"Button",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":184,"x":112,"skin":"ui/baseUI/button_bank_in.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":201,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Radio",
+                                    "props":{"y":55,"x":179,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85},
+                                    "nodeParent":194,
+                                    "label":"Radio",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":67,"x":262,"label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":203,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Radio",
+                                    "props":{"y":55,"x":344,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85},
+                                    "nodeParent":194,
+                                    "label":"Radio",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":67,"x":262,"label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":204,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Label",
+                                    "props":{"y":63,"x":223,"text":"全部存入","fontSize":20,"color":"#dbbab9","bold":true},
+                                    "nodeParent":194,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":235,"x":149,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":205,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Label",
+                                    "props":{"y":63,"x":390,"text":"全部取出","fontSize":20,"color":"#dbbab9","bold":true},
+                                    "nodeParent":194,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":235,"x":149,"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":206,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"TextInput",
+                                    "props":{"y":2,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "nodeParent":194,
+                                    "label":"TextInput",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"TextInput"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":219,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"TextInput",
+                                    "props":{"y":107,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "nodeParent":194,
+                                    "label":"TextInput",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"TextInput"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":220,
+                                    "child":[
+                                        ]
+                                }],
+                            "$HIDDEN":true
+                        },
+                        {
+                            "type":"Box",
+                            "props":{"y":279,"x":157,"width":500,"name":"giveTabBox","height":250},
+                            "nodeParent":223,
+                            "label":"Box(giveTabBox)",
+                            "isOpen":false,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":195,
+                            "child":[
+                                {
+                                    "type":"Label",
+                                    "props":{"y":2,"x":7,"text":"赠送玩家","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "nodeParent":195,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":208,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Label",
+                                    "props":{"y":63,"x":-65,"text":"赠送金币数量","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "nodeParent":195,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":209,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Label",
+                                    "props":{"y":122,"x":7,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "nodeParent":195,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":210,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"TextInput",
+                                    "props":{"y":5,"x":170,"width":240,"text":"请输入玩家的ID","skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "nodeParent":195,
+                                    "label":"TextInput",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"TextInput"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":214,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"TextInput",
+                                    "props":{"y":64,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "nodeParent":195,
+                                    "label":"TextInput",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"TextInput"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":215,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"TextInput",
+                                    "props":{"y":123,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "nodeParent":195,
+                                    "label":"TextInput",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"text":"TextInput"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":216,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Button",
+                                    "props":{"y":178,"x":33,"stateNum":"1","skin":"ui/baseUI/button_gift_send.png","scaleY":0.8,"scaleX":0.8},
+                                    "nodeParent":195,
+                                    "label":"Button",
+                                    "isOpen":true,
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":464,"x":248,"skin":"ui/baseUI/button_gift_send.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":217,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "type":"Button",
+                                    "props":{"y":177,"x":263,"stateNum":"1","skin":"ui/baseUI/button_gift_history.png","scaleY":0.8,"scaleX":0.8},
+                                    "nodeParent":195,
+                                    "label":"Button",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "frames":[
+                                        {
+                                            "type":1,
+                                            "props":{"y":466,"x":530,"skin":"ui/baseUI/button_gift_history.png","label":"label"},
+                                            "frame":0,
+                                            "__InPool":false
+                                        }],
+                                    "compId":218,
+                                    "child":[
+                                        ]
+                                }],
+                            "$HIDDEN":false
+                        }],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "props":{"name":"giveRecordBox"},
+                    "nodeParent":181,
+                    "label":"Box(giveRecordBox)",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "frames":[
+                        {
+                            "type":1,
+                            "props":{},
+                            "frame":0,
+                            "__InPool":false
+                        }],
+                    "compId":224,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"y":14,"x":727,"stateNum":"1","skin":"ui/baseUI/button_closepanel.png","scaleY":0.8,"scaleX":0.8},
+                            "nodeParent":224,
+                            "label":"Button",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":21,"x":725,"skin":"ui/baseUI/button_closepanel.png","label":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":225,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "props":{"y":12,"x":320,"text":"赠送记录","fontSize":40,"color":"#dbbab9","bold":true},
+                            "nodeParent":224,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "frames":[
+                                {
+                                    "type":1,
+                                    "props":{"y":235,"x":149,"text":"label"},
+                                    "frame":0,
+                                    "__InPool":false
+                                }],
+                            "compId":226,
+                            "child":[
+                                ]
+                        }]
                 }],
             "$HIDDEN":false
         }],

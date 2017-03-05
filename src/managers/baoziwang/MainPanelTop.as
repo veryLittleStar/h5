@@ -12,6 +12,9 @@ package managers.baoziwang
 	
 	import managers.DataProxy;
 	import managers.ManagersMap;
+	import managers.gameLogin.GameLoginDefine;
+	
+	import net.NetProxy;
 	
 	public class MainPanelTop extends Box
 	{
@@ -26,6 +29,8 @@ package managers.baoziwang
 		private var bankerScoreLabel:Label;
 		private var bankerPortrait:Box;
 		private var portraitImage:Image;
+		private var bankBtn:Button;
+		private var configBtn:Button;
 		
 		private var tempImage:Image;
 		
@@ -51,6 +56,9 @@ package managers.baoziwang
 			
 			bankerPortrait = getChildByName("bankerPortrait") as Box;
 			portraitImage = bankerPortrait.getChildByName("portraitImage") as Image;
+			
+			bankBtn = getChildByName("bankBtn") as Button;
+			configBtn = getChildByName("configBtn") as Button;
 		}
 		
 		private function onClick(event:Event):void
@@ -65,6 +73,12 @@ package managers.baoziwang
 					break;
 				case ingSZBtn:
 					ManagersMap.baoziwangManager.ui.shangZhuangPanel.openMe();
+					break;
+				case bankBtn:
+					openBankBtn();
+					break;
+				case configBtn:
+					
 					break;
 			}
 		}
@@ -189,6 +203,15 @@ package managers.baoziwang
 					ingSZBtn.visible = true;
 					break;
 			}
+		}
+		
+		private function openBankBtn():void
+		{
+			var body:Object = {};
+			body.wTableID 	= DataProxy.tableID;
+			body.wChairID 	= DataProxy.chairID;
+			body.cbForceLeave 	= 0;
+			NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_USER_STAND_UP_REQ,body);
 		}
 	}
 }

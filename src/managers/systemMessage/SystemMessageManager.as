@@ -35,7 +35,15 @@ package managers.systemMessage
 //			vo["lErrorCode"]				//错误代码
 //			vo["wlength"]						
 //			vo["szDescribeString"]			//描述信息
-			showSysMessage(obj.szDescribeString);
+			switch(obj.lErrorCode)
+			{
+				case 4:
+					showSysMessage("正在游戏当中不能进入银行");
+					break;
+				default:
+					showSysMessage(obj.szDescribeString);
+					break;
+			}
 		}
 		
 		public function showSysMessage(str:String):void

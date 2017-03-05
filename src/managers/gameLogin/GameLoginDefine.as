@@ -20,6 +20,8 @@ package managers.gameLogin
 		
 		public static const MSG_USER_SIT_DOWN_REQ:String = "23_3";
 		
+		public static const MSG_USER_STAND_UP_REQ:String = "23_4";
+		
 		public static const MSG_GAME_OPTION_REQ:String = "100_1";
 		
 		public function GameLoginDefine()
