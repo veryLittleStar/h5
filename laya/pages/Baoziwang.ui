@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":226,
-    "selecteID":226,
+    "selectedBox":223,
+    "selecteID":186,
     "props":{"width":800,"vScrollBarSkin":"\" \"","sceneColor":"#000000","height":600,"centerY":0,"centerX":0},
     "nodeParent":-1,
     "label":"View",
@@ -153,7 +153,7 @@
                         ]
                 }],
             "$LOCKED":false,
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -767,7 +767,7 @@
                         ],
                     "$LOCKED":false
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -1105,7 +1105,7 @@
                 },
                 {
                     "type":"Button",
-                    "props":{"y":3,"x":-52,"stateNum":"1","skin":"ui/baseUI/button_setting.png","scaleY":0.7,"scaleX":0.7,"name":"configBtn"},
+                    "props":{"y":3,"x":-52,"var":"configBtn","stateNum":"1","skin":"ui/baseUI/button_setting.png","scaleY":0.7,"scaleX":0.7},
                     "nodeParent":49,
                     "label":"Button(configBtn)",
                     "isDirectory":false,
@@ -1124,7 +1124,7 @@
                 },
                 {
                     "type":"Button",
-                    "props":{"y":-3,"x":626,"stateNum":"2","skin":"ui/baseUI/button_bank.png","scaleY":0.5,"scaleX":0.5,"name":"bankBtn"},
+                    "props":{"y":-3,"x":626,"var":"bankBtn","stateNum":"2","skin":"ui/baseUI/button_bank.png","scaleY":0.5,"scaleX":0.5},
                     "nodeParent":49,
                     "label":"Button(bankBtn)",
                     "isDirectory":false,
@@ -1141,7 +1141,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -2451,7 +2451,7 @@
                                 },
                                 {
                                     "type":"Button",
-                                    "props":{"y":12,"x":225,"stateNum":"2","skin":"ui/baseUI/game_phb_10.png","name":"sChatBtn"},
+                                    "props":{"y":19,"x":220,"stateNum":"2","skin":"ui/baseUI/button_sChat.png","scaleY":0.9,"scaleX":0.9,"name":"sChatBtn"},
                                     "nodeParent":111,
                                     "label":"Button(sChatBtn)",
                                     "isDirectory":false,
@@ -2469,14 +2469,14 @@
                                         ]
                                 }]
                         }],
-                    "$HIDDEN":true
+                    "$HIDDEN":false
                 },
                 {
                     "type":"Box",
                     "props":{"y":21,"x":11,"name":"sChatBox"},
                     "nodeParent":92,
                     "label":"Box(sChatBox)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2506,7 +2506,8 @@
                                 }],
                             "compId":179,
                             "child":[
-                                ]
+                                ],
+                            "$HIDDEN":true
                         },
                         {
                             "type":"TextInput",
@@ -2525,7 +2526,8 @@
                                 }],
                             "compId":165,
                             "child":[
-                                ]
+                                ],
+                            "$HIDDEN":true
                         },
                         {
                             "type":"List",
@@ -2758,9 +2760,10 @@
                                             "child":[
                                                 ]
                                         }]
-                                }]
+                                }],
+                            "$HIDDEN":false
                         }],
-                    "$HIDDEN":false
+                    "$HIDDEN":true
                 },
                 {
                     "type":"Box",
@@ -2818,16 +2821,16 @@
                             "child":[
                                 ]
                         }],
-                    "$HIDDEN":true
+                    "$HIDDEN":false
                 }],
             "$HIDDEN":true
         },
         {
             "x":15,
             "type":"Box",
-            "props":{"y":0,"x":0,"visible":false,"var":"bankBox"},
+            "props":{"y":0,"x":0,"visible":false,"var":"bankPanel","runtime":"managers.baoziwang.BankPanel"},
             "nodeParent":1,
-            "label":"Box(bankBox)",
+            "label":"Box(bankPanel)",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
@@ -2867,7 +2870,7 @@
                     "props":{"name":"bankTypeBox"},
                     "nodeParent":181,
                     "label":"Box(bankTypeBox)",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2881,6 +2884,7 @@
                     "compId":223,
                     "child":[
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":13,"x":360,"text":"银行","fontSize":40,"color":"#dbbab9","bold":true},
                             "nodeParent":223,
@@ -2897,13 +2901,15 @@
                                 }],
                             "compId":221,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Button",
-                            "props":{"y":14,"x":726,"stateNum":"1","skin":"ui/baseUI/button_closepanel.png","scaleY":0.8,"scaleX":0.8},
+                            "props":{"y":14,"x":726,"stateNum":"1","skin":"ui/baseUI/button_closepanel.png","scaleY":0.8,"scaleX":0.8,"name":"closeBtn"},
                             "nodeParent":223,
-                            "label":"Button",
+                            "label":"Button(closeBtn)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -2916,14 +2922,16 @@
                                 }],
                             "compId":184,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Tab",
-                            "props":{"y":86,"x":239},
+                            "props":{"y":86,"x":239,"width":330,"space":-40,"selectedIndex":0,"name":"bankTab","direction":"horizontal"},
                             "nodeParent":223,
-                            "label":"Tab",
-                            "isOpen":false,
+                            "label":"Tab(bankTab)",
+                            "isOpen":true,
                             "isDirectory":true,
                             "isAniNode":true,
                             "hasChild":true,
@@ -2937,6 +2945,7 @@
                             "compId":186,
                             "child":[
                                 {
+                                    "x":60,
                                     "type":"Button",
                                     "props":{"skin":"ui/baseUI/button_bank_all.png","scaleY":0.8,"scaleX":0.8,"name":"item0"},
                                     "nodeParent":186,
@@ -2957,8 +2966,9 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Button",
-                                    "props":{"y":0,"x":166,"skin":"ui/baseUI/button_give.png","scaleY":0.8,"scaleX":0.8,"name":"item1"},
+                                    "props":{"y":0,"x":169,"skin":"ui/baseUI/button_give.png","scaleY":0.8,"scaleX":0.8,"name":"item1"},
                                     "nodeParent":186,
                                     "label":"Button(item1)",
                                     "isDirectory":false,
@@ -2977,6 +2987,7 @@
                                 }]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "props":{"y":151,"x":160,"text":"身上携带","fontSize":35,"color":"#dbbab9","bold":true},
                             "nodeParent":223,
@@ -2993,11 +3004,13 @@
                                 }],
                             "compId":188,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Label",
-                            "props":{"y":210,"x":163,"text":"银行存款","fontSize":35,"color":"#dbbab9","bold":true},
+                            "props":{"y":210,"x":160,"text":"银行存款","fontSize":35,"color":"#dbbab9","bold":true},
                             "nodeParent":223,
                             "label":"Label",
                             "isDirectory":false,
@@ -3012,11 +3025,13 @@
                                 }],
                             "compId":189,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Image",
-                            "props":{"y":159,"x":331,"skin":"ui/baseUI/game_icon_gold.png"},
+                            "props":{"y":159,"x":330,"skin":"ui/baseUI/game_icon_gold.png"},
                             "nodeParent":223,
                             "label":"Image",
                             "isDirectory":false,
@@ -3031,11 +3046,13 @@
                                 }],
                             "compId":190,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Image",
-                            "props":{"y":219,"x":333,"skin":"ui/baseUI/game_icon_gold.png"},
+                            "props":{"y":219,"x":330,"skin":"ui/baseUI/game_icon_gold.png"},
                             "nodeParent":223,
                             "label":"Image",
                             "isDirectory":false,
@@ -3050,13 +3067,15 @@
                                 }],
                             "compId":191,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Label",
-                            "props":{"y":151,"x":380,"text":"1234567","fontSize":35,"color":"#dbbab9","bold":false},
+                            "props":{"y":151,"x":380,"text":"1234567","name":"inPocketGoldLabel","fontSize":35,"color":"#dbbab9","bold":false},
                             "nodeParent":223,
-                            "label":"Label",
+                            "label":"Label(inPocketGoldLabel)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -3069,13 +3088,15 @@
                                 }],
                             "compId":192,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Label",
-                            "props":{"y":212,"x":380,"text":"1234567","fontSize":35,"color":"#dbbab9","bold":false},
+                            "props":{"y":212,"x":380,"text":"1234567","name":"inBankGoldLabel","fontSize":35,"color":"#dbbab9","bold":false},
                             "nodeParent":223,
-                            "label":"Label",
+                            "label":"Label(inBankGoldLabel)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -3088,9 +3109,11 @@
                                 }],
                             "compId":193,
                             "child":[
-                                ]
+                                ],
+                            "$LOCKED":true
                         },
                         {
+                            "x":45,
                             "type":"Box",
                             "props":{"y":279,"x":157,"width":502,"name":"bankTabBox","height":246},
                             "nodeParent":223,
@@ -3110,7 +3133,7 @@
                             "child":[
                                 {
                                     "type":"Label",
-                                    "props":{"y":0,"x":-61,"text":"输入金币数量","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "props":{"y":2,"x":-67,"text":"输入金币数量","fontSize":35,"color":"#dbbab9","bold":true},
                                     "nodeParent":194,
                                     "label":"Label",
                                     "isDirectory":false,
@@ -3125,11 +3148,12 @@
                                         }],
                                     "compId":196,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$LOCKED":true
                                 },
                                 {
                                     "type":"Label",
-                                    "props":{"y":101,"x":8,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "props":{"y":105,"x":1,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
                                     "nodeParent":194,
                                     "label":"Label",
                                     "isDirectory":false,
@@ -3144,13 +3168,14 @@
                                         }],
                                     "compId":198,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$LOCKED":true
                                 },
                                 {
                                     "type":"Button",
-                                    "props":{"y":161,"x":277,"stateNum":"1","skin":"ui/baseUI/button_bank_out.png","scaleY":0.8,"scaleX":0.8},
+                                    "props":{"y":161,"x":277,"stateNum":"1","skin":"ui/baseUI/button_bank_out.png","scaleY":0.8,"scaleX":0.8,"name":"getGoldBtn"},
                                     "nodeParent":194,
-                                    "label":"Button",
+                                    "label":"Button(getGoldBtn)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3167,9 +3192,9 @@
                                 },
                                 {
                                     "type":"Button",
-                                    "props":{"y":163,"x":36,"stateNum":"1","skin":"ui/baseUI/button_bank_in.png","scaleY":0.8,"scaleX":0.8},
+                                    "props":{"y":163,"x":36,"stateNum":"1","skin":"ui/baseUI/button_bank_in.png","scaleY":0.8,"scaleX":0.8,"name":"saveGoldBtn"},
                                     "nodeParent":194,
-                                    "label":"Button",
+                                    "label":"Button(saveGoldBtn)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3186,9 +3211,9 @@
                                 },
                                 {
                                     "type":"Radio",
-                                    "props":{"y":55,"x":179,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85},
+                                    "props":{"y":55,"x":179,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85,"name":"allSaveRadio"},
                                     "nodeParent":194,
-                                    "label":"Radio",
+                                    "label":"Radio(allSaveRadio)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3205,9 +3230,9 @@
                                 },
                                 {
                                     "type":"Radio",
-                                    "props":{"y":55,"x":344,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85},
+                                    "props":{"y":55,"x":344,"stateNum":"2","skin":"ui/baseUI/button_check_group.png","scaleY":0.85,"scaleX":0.85,"name":"allGetRadio"},
                                     "nodeParent":194,
-                                    "label":"Radio",
+                                    "label":"Radio(allGetRadio)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3262,9 +3287,9 @@
                                 },
                                 {
                                     "type":"TextInput",
-                                    "props":{"y":2,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "props":{"y":2,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","name":"goldNumInput","height":37,"fontSize":25,"color":"#dbbab9"},
                                     "nodeParent":194,
-                                    "label":"TextInput",
+                                    "label":"TextInput(goldNumInput)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3281,9 +3306,9 @@
                                 },
                                 {
                                     "type":"TextInput",
-                                    "props":{"y":107,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "props":{"y":107,"x":180,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","name":"savePwdInput","height":37,"fontSize":25,"color":"#dbbab9"},
                                     "nodeParent":194,
-                                    "label":"TextInput",
+                                    "label":"TextInput(savePwdInput)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3301,11 +3326,12 @@
                             "$HIDDEN":true
                         },
                         {
+                            "x":45,
                             "type":"Box",
                             "props":{"y":279,"x":157,"width":500,"name":"giveTabBox","height":250},
                             "nodeParent":223,
                             "label":"Box(giveTabBox)",
-                            "isOpen":false,
+                            "isOpen":true,
                             "isDirectory":true,
                             "isAniNode":true,
                             "hasChild":true,
@@ -3319,8 +3345,9 @@
                             "compId":195,
                             "child":[
                                 {
+                                    "x":60,
                                     "type":"Label",
-                                    "props":{"y":2,"x":7,"text":"赠送玩家","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "props":{"y":2,"x":4,"text":"赠送玩家","fontSize":35,"color":"#dbbab9","bold":true},
                                     "nodeParent":195,
                                     "label":"Label",
                                     "isDirectory":false,
@@ -3335,11 +3362,13 @@
                                         }],
                                     "compId":208,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$LOCKED":false
                                 },
                                 {
+                                    "x":60,
                                     "type":"Label",
-                                    "props":{"y":63,"x":-65,"text":"赠送金币数量","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "props":{"y":63,"x":-67,"text":"赠送金币数量","fontSize":35,"color":"#dbbab9","bold":true},
                                     "nodeParent":195,
                                     "label":"Label",
                                     "isDirectory":false,
@@ -3354,11 +3383,13 @@
                                         }],
                                     "compId":209,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$LOCKED":false
                                 },
                                 {
+                                    "x":60,
                                     "type":"Label",
-                                    "props":{"y":122,"x":7,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
+                                    "props":{"y":122,"x":4,"text":"银行密码","fontSize":35,"color":"#dbbab9","bold":true},
                                     "nodeParent":195,
                                     "label":"Label",
                                     "isDirectory":false,
@@ -3373,13 +3404,15 @@
                                         }],
                                     "compId":210,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$LOCKED":false
                                 },
                                 {
+                                    "x":60,
                                     "type":"TextInput",
-                                    "props":{"y":5,"x":170,"width":240,"text":"请输入玩家的ID","skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "props":{"y":5,"x":170,"width":240,"text":"请输入玩家的ID","skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","name":"targetUserIDInput","height":37,"fontSize":25,"color":"#dbbab9"},
                                     "nodeParent":195,
-                                    "label":"TextInput",
+                                    "label":"TextInput(targetUserIDInput)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3395,10 +3428,11 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"TextInput",
-                                    "props":{"y":64,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "props":{"y":64,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","name":"giveGoldNumInput","height":37,"fontSize":25,"color":"#dbbab9"},
                                     "nodeParent":195,
-                                    "label":"TextInput",
+                                    "label":"TextInput(giveGoldNumInput)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3414,10 +3448,11 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"TextInput",
-                                    "props":{"y":123,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","height":37,"fontSize":25,"color":"#dbbab9"},
+                                    "props":{"y":123,"x":170,"width":240,"skin":"ui/baseUI/ttz_talk_bg_3.png","sizeGrid":"12,12,12,12","name":"givePwdInput","height":37,"fontSize":25,"color":"#dbbab9"},
                                     "nodeParent":195,
-                                    "label":"TextInput",
+                                    "label":"TextInput(givePwdInput)",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
@@ -3433,10 +3468,11 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Button",
-                                    "props":{"y":178,"x":33,"stateNum":"1","skin":"ui/baseUI/button_gift_send.png","scaleY":0.8,"scaleX":0.8},
+                                    "props":{"y":177,"x":157,"stateNum":"1","skin":"ui/baseUI/button_gift_send.png","scaleY":0.8,"scaleX":0.8,"name":"sureGiveBtn"},
                                     "nodeParent":195,
-                                    "label":"Button",
+                                    "label":"Button(sureGiveBtn)",
                                     "isOpen":true,
                                     "isDirectory":false,
                                     "isAniNode":true,
@@ -3451,89 +3487,10 @@
                                     "compId":217,
                                     "child":[
                                         ]
-                                },
-                                {
-                                    "type":"Button",
-                                    "props":{"y":177,"x":263,"stateNum":"1","skin":"ui/baseUI/button_gift_history.png","scaleY":0.8,"scaleX":0.8},
-                                    "nodeParent":195,
-                                    "label":"Button",
-                                    "isDirectory":false,
-                                    "isAniNode":true,
-                                    "hasChild":false,
-                                    "frames":[
-                                        {
-                                            "type":1,
-                                            "props":{"y":466,"x":530,"skin":"ui/baseUI/button_gift_history.png","label":"label"},
-                                            "frame":0,
-                                            "__InPool":false
-                                        }],
-                                    "compId":218,
-                                    "child":[
-                                        ]
                                 }],
                             "$HIDDEN":false
                         }],
                     "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Box",
-                    "props":{"name":"giveRecordBox"},
-                    "nodeParent":181,
-                    "label":"Box(giveRecordBox)",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "frames":[
-                        {
-                            "type":1,
-                            "props":{},
-                            "frame":0,
-                            "__InPool":false
-                        }],
-                    "compId":224,
-                    "child":[
-                        {
-                            "x":45,
-                            "type":"Button",
-                            "props":{"y":14,"x":727,"stateNum":"1","skin":"ui/baseUI/button_closepanel.png","scaleY":0.8,"scaleX":0.8},
-                            "nodeParent":224,
-                            "label":"Button",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "frames":[
-                                {
-                                    "type":1,
-                                    "props":{"y":21,"x":725,"skin":"ui/baseUI/button_closepanel.png","label":"label"},
-                                    "frame":0,
-                                    "__InPool":false
-                                }],
-                            "compId":225,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "props":{"y":12,"x":320,"text":"赠送记录","fontSize":40,"color":"#dbbab9","bold":true},
-                            "nodeParent":224,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "frames":[
-                                {
-                                    "type":1,
-                                    "props":{"y":235,"x":149,"text":"label"},
-                                    "frame":0,
-                                    "__InPool":false
-                                }],
-                            "compId":226,
-                            "child":[
-                                ]
-                        }]
                 }],
             "$HIDDEN":false
         }],

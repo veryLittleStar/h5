@@ -77,11 +77,14 @@ package managers.baoziwang
 			_ui.chatAndUserList.init();
 			_ui.recordPanel.init();
 			_ui.shangZhuangPanel.init();
-			connectLoginServer();
+			_ui.bankPanel.init();
+//			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
 			_ui.xLightBtn.on(Event.CLICK,this,lightBtnClick);
 			_ui.dLightBtn.on(Event.CLICK,this,lightBtnClick);
+			_ui.configBtn.on(Event.CLICK,this,configClick);
+			_ui.bankBtn.on(Event.CLICK,this,bankClick);
 			SoundManager.playMusic("music/ybao_bg.mp3");
 		}
 		
@@ -105,6 +108,16 @@ package managers.baoziwang
 			data.host = Browser.window.initConfig.loginHost;
 			data.port = Browser.window.initConfig.loginPort;
 			NetProxy.getInstance().execute(NetDefine.CONNECT_SOCKET,data);
+		}
+		
+		private function configClick(event:Event):void
+		{
+			
+		}
+		
+		private function bankClick(event:Event):void
+		{
+			_ui.bankPanel.openMe();
 		}
 		
 		private function lightBtnClick(event:Event):void
