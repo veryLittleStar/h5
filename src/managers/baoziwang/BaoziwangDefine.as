@@ -39,6 +39,20 @@ package managers.baoziwang
 		
 		public static const MSG_BZW_CHANGE_BANKER_REC:String = "200_104";
 		
+		public static const MSG_BANK_INSURE_INFO_REQ:String = "25_1";
+		
+		public static const MSG_BANK_SAVE_SCORE_REQ:String = "25_2";
+		
+		public static const MSG_BANK_TAKE_SCORE_REQ:String = "25_3";
+		
+		public static const MSG_BANK_TRANSFER_SCORE_REQ:String = "25_4";
+		
+		public static const MSG_BANK_INSURE_INFO_REC:String = "25_100";
+		
+		public static const MSG_BANK_INSURE_SUCCESS_REC:String = "25_101";
+		
+		public static const MSG_BANK_INSURE_FAILURE_REC:String = "25_102";
+		
 		/////////////////////////
 		public static const RESULT_BIG:int 	= 0;
 		public static const RESULT_BAOZI:int 	= 1;

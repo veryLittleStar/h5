@@ -103,6 +103,15 @@ package managers
 				case BaoziwangDefine.MSG_BZW_CHANGE_BANKER_REC:
 					ManagersMap.baoziwangManager.changeBankerRec(body);
 					break;
+				case BaoziwangDefine.MSG_BANK_INSURE_INFO_REC:
+					ManagersMap.baoziwangManager.bankInsureInfoRec(body);
+					break;
+				case BaoziwangDefine.MSG_BANK_INSURE_SUCCESS_REC:
+					ManagersMap.baoziwangManager.bankInsureSuccessRec(body);
+					break;
+				case BaoziwangDefine.MSG_BANK_INSURE_FAILURE_REC:
+					ManagersMap.baoziwangManager.bankInsureFailureRec(body);
+					break;
 				case SystemMessageDefine.MSG_SYSTEM_MESSAGE_REC:
 					ManagersMap.systemMessageManager.systemMessageRec(body);
 					break;

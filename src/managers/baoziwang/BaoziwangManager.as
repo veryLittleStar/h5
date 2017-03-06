@@ -16,6 +16,7 @@ package managers.baoziwang
 	
 	import managers.DataProxy;
 	import managers.ManagerBase;
+	import managers.gameLogin.GameLoginDefine;
 	
 	import net.NetDefine;
 	import net.NetProxy;
@@ -25,12 +26,12 @@ package managers.baoziwang
 	
 	import system.Loading;
 	
-	import ui.baoziwangUI;
+	import ui.BaoziwangUI;
 	
 	public class BaoziwangManager extends ManagerBase
 	{
-		private var _ui:baoziwangUI;
-		public function get ui():baoziwangUI
+		private var _ui:BaoziwangUI;
+		public function get ui():BaoziwangUI
 		{
 			return _ui;
 		}
@@ -52,7 +53,7 @@ package managers.baoziwang
 		/////////////////////////////////////////
 		public function BaoziwangManager(uiClass:Class=null)
 		{
-			super(baoziwangUI);
+			super(BaoziwangUI);
 		}
 		
 		override protected function getResList():Array
@@ -66,7 +67,7 @@ package managers.baoziwang
 		
 		override protected function initPanel():void
 		{
-			_ui = _view as baoziwangUI;
+			_ui = _view as BaoziwangUI;
 			_ui.tipBox.visible = false;
 			_ui.mainPanelTop.init();
 			_ui.mainPanelBottom.init();
@@ -78,7 +79,7 @@ package managers.baoziwang
 			_ui.recordPanel.init();
 			_ui.shangZhuangPanel.init();
 			_ui.bankPanel.init();
-//			connectLoginServer();
+			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
 			_ui.xLightBtn.on(Event.CLICK,this,lightBtnClick);
@@ -117,7 +118,12 @@ package managers.baoziwang
 		
 		private function bankClick(event:Event):void
 		{
-			_ui.bankPanel.openMe();
+			DataProxy.standUPing = true;
+			var body:Object = {};
+			body.wTableID 	= DataProxy.tableID;
+			body.wChairID 	= DataProxy.chairID;
+			body.cbForceLeave 	= 0;
+			NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_USER_STAND_UP_REQ,body);
 		}
 		
 		private function lightBtnClick(event:Event):void
@@ -530,8 +536,9 @@ package managers.baoziwang
 		{
 			if(userID == DataProxy.userID)
 			{
-				_ui.myNameLabel.text = DataProxy.nickName;
+				_ui.myNameLabel.text = "昵称：" + DataProxy.nickName;
 				_ui.myMoneyLabel.text = DataProxy.userScore + "";
+				_ui.myGameIDLabel.text = "游戏ID：" + DataProxy.gameID;
 				_ui.myPortraitImage.skin = BaoziwangDefine.getPortraitImage(DataProxy.gender,DataProxy.faceID);
 				return;
 			}
@@ -751,6 +758,22 @@ package managers.baoziwang
 		{
 			_ui.chatAndUserList.userChatRec(obj);
 		}
+		
+		public function bankInsureInfoRec(obj:Object):void
+		{
+			_ui.bankPanel.bankInsureInfoRec(obj);
+		}
+		
+		public function bankInsureSuccessRec(obj:Object):void
+		{
+			_ui.bankPanel.bankInsureSuccessRec(obj);
+		}
+		
+		public function bankInsureFailureRec(obj:Object):void
+		{
+			_ui.bankPanel.bankInsureFailureRec(obj);
+		}
+		
 		
 	}
 }

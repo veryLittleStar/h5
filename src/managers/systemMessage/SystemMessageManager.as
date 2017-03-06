@@ -5,6 +5,7 @@ package managers.systemMessage
 	import laya.utils.Handler;
 	import laya.utils.Tween;
 	
+	import managers.DataProxy;
 	import managers.ManagerBase;
 	
 	import system.UILayer;
@@ -39,6 +40,7 @@ package managers.systemMessage
 			{
 				case 4:
 					showSysMessage("正在游戏当中不能进入银行");
+					DataProxy.standUPing = false;
 					break;
 				default:
 					showSysMessage(obj.szDescribeString);

@@ -42,6 +42,11 @@ package managers.gameLogin
 		public function roomLoginFinishRec(obj:Object):void
 		{
 			//
+			sitDown();
+		}
+		
+		public function sitDown():void
+		{
 			var body:Object = {};
 			body.wTableID = 2;
 			body.wChairID = 0;
@@ -79,6 +84,18 @@ package managers.gameLogin
 				DataProxy.userStatus= obj.cbUserStatus;
 				DataProxy.tableID 	= obj.wTableID;
 				DataProxy.chairID	= obj.wChairID;
+				if(obj.cbUserStatus == GameLoginDefine.US_NULL || obj.cbUserStatus == GameLoginDefine.US_FREE)
+				{
+					if(DataProxy.standUPing)
+					{
+						DataProxy.standUPing = false;
+						ManagersMap.baoziwangManager.ui.bankPanel.openMe();
+					}
+				}
+				else
+				{
+					ManagersMap.baoziwangManager.ui.bankPanel.closeMe();
+				}
 			}
 			
 			var userInfo:Object = DataProxy.userInfoDic[obj.dwUserID];

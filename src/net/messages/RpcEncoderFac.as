@@ -2,6 +2,10 @@ package net.messages
 {
 	import laya.utils.Dictionary;
 	
+	import net.messages.bank.MsgBankInsureInfoReq;
+	import net.messages.bank.MsgBankSaveScoreReq;
+	import net.messages.bank.MsgBankTakeScoreReq;
+	import net.messages.bank.MsgBankTransferScoreReq;
 	import net.messages.baoziwang.MsgBZWAllInJetionReq;
 	import net.messages.baoziwang.MsgBZWApplyBankerReq;
 	import net.messages.baoziwang.MsgBZWCancelBankerReq;
@@ -96,6 +100,11 @@ package net.messages
 			_encodeMessageDict["200_5"] =  MsgBZWAllInJetionReq;
 			
 			_encodeMessageDict["100_10"] =  MsgUserChatReq;
+			
+			_encodeMessageDict["25_1"] =  MsgBankInsureInfoReq;
+			_encodeMessageDict["25_2"] =  MsgBankSaveScoreReq;
+			_encodeMessageDict["25_3"] =  MsgBankTakeScoreReq;
+			_encodeMessageDict["25_4"] =  MsgBankTransferScoreReq;
 		}
 		
 	}

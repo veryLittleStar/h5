@@ -3,6 +3,9 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.IRpcDecoder;
+	import net.messages.bank.MsgBankInsreInfoRec;
+	import net.messages.bank.MsgBankInsureFailureRec;
+	import net.messages.bank.MsgBankInsureSuccessRec;
 	import net.messages.baoziwang.MsgBZWApplyBankerRec;
 	import net.messages.baoziwang.MsgBZWCancelBankerRec;
 	import net.messages.baoziwang.MsgBZWChangeBankerRec;
@@ -126,6 +129,11 @@ package net.messages
 			
 			_decodeMessageDict["100_200"] 	= MsgSystemMessageRec;
 			_decodeMessageDict["100_10"] 	= MsgUserChatRec;
+			
+			//bank
+			_decodeMessageDict["25_100"] =  MsgBankInsreInfoRec;
+			_decodeMessageDict["25_101"] =  MsgBankInsureSuccessRec;
+			_decodeMessageDict["25_102"] =  MsgBankInsureFailureRec;
 		}
 		
 	}
