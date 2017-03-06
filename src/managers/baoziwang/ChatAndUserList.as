@@ -11,6 +11,7 @@ package managers.baoziwang
 	import laya.utils.Tween;
 	
 	import managers.DataProxy;
+	import managers.gameLogin.GameLoginDefine;
 	
 	import net.NetProxy;
 	
@@ -215,23 +216,44 @@ package managers.baoziwang
 		
 		public function updateUserInfo(userID:int):void
 		{
+			updateUserStatus(userID);
+		}
+		
+		public function updateUserStatus(userID:int):void
+		{
 			var userInfo:Object = DataProxy.userInfoDic[userID];
 			if(!userInfo)return;
-			var i:int = 0;
-			var exist:Boolean = false;
-			for(i = 0;i < userList.array.length; i++)
+			var i:int;
+			var obj:Object;
+			if(userInfo.cbUserStatus == GameLoginDefine.US_NULL || userInfo.cbUserStatus == GameLoginDefine.US_NULL)
 			{
-				var obj:Object = userList.array[i];
-				if(obj.dwUserID == userID)
+				for(i = 0;i < userList.array.length; i++)
 				{
-					userList.changeItem(i,userInfo);
-					exist = true;
-					break;
+					obj = userList.array[i];
+					if(obj.dwUserID == userID)
+					{
+						userList.deleteItem(i);
+						break;
+					}
 				}
 			}
-			if(exist == false)
+			else
 			{
-				userList.addItem(userInfo);
+				var exist:Boolean = false;
+				for(i = 0;i < userList.array.length; i++)
+				{
+					obj = userList.array[i];
+					if(obj.dwUserID == userID)
+					{
+						userList.changeItem(i,userInfo);
+						exist = true;
+						break;
+					}
+				}
+				if(exist == false)
+				{
+					userList.addItem(userInfo);
+				}
 			}
 		}
 		

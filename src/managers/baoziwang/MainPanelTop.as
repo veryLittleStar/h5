@@ -29,8 +29,6 @@ package managers.baoziwang
 		private var bankerScoreLabel:Label;
 		private var bankerPortrait:Box;
 		private var portraitImage:Image;
-		private var bankBtn:Button;
-		private var configBtn:Button;
 		
 		private var tempImage:Image;
 		

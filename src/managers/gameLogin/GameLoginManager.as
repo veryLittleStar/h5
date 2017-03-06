@@ -89,6 +89,8 @@ package managers.gameLogin
 				userInfo.wChairID = obj.wChairID;
 				userInfo.cbUserStatus = obj.cbUserStatus;
 			}
+			
+			ManagersMap.baoziwangManager.updateUserStatus(obj.dwUserID);
 		}
 		
 		public function userInfoRec(obj:Object):void

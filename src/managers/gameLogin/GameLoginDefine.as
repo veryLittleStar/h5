@@ -27,5 +27,14 @@ package managers.gameLogin
 		public function GameLoginDefine()
 		{
 		}
+		
+		public static const US_NULL:int			=			0x0;								//没有状态
+		public static const US_FREE:int			= 			0x01;								//站立状态
+		public static const US_SIT:int			=			0x02;								//坐下状态
+		public static const US_READY:int			=			0x03;								//同意状态
+		public static const US_LOOKON:int			=			0x04;								//旁观状态
+		public static const US_PLAYING:int		= 			0x05;								//游戏状态
+		public static const US_OFFLINE:int		= 			0x06;								//断线状态
+		
 	}
 }

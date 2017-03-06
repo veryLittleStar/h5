@@ -37,6 +37,8 @@ package managers
 		/**我的坐庄状态 0无状态  1排队状态  2坐庄状态*/
 		public static var myBankerState:int = 0;
 		
+		public static var standUPing:Boolean = false;
+		
 		
 		public function DataProxy()
 		{

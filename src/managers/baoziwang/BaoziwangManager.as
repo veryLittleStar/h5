@@ -533,9 +533,18 @@ package managers.baoziwang
 				_ui.myNameLabel.text = DataProxy.nickName;
 				_ui.myMoneyLabel.text = DataProxy.userScore + "";
 				_ui.myPortraitImage.skin = BaoziwangDefine.getPortraitImage(DataProxy.gender,DataProxy.faceID);
-				
+				return;
 			}
 			_ui.chatAndUserList.updateUserInfo(userID);
+		}
+		
+		public function updateUserStatus(userID:int):void
+		{
+			if(userID == DataProxy.userID)
+			{
+				return;
+			}
+			_ui.chatAndUserList.updateUserStatus(userID);
 		}
 		
 		public function placeJetionRec(obj:Object):void
