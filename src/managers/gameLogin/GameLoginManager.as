@@ -129,6 +129,7 @@ package managers.gameLogin
 			//obj.lScore
 			//obj.lGrade
 			//obj.lInsure
+			//obj.lSelfOption
 			//obj.dwWinCount
 			//obj.dwLostCount
 			//obj.dwDrawCount
@@ -146,6 +147,7 @@ package managers.gameLogin
 				DataProxy.userStatus= obj.cbUserStatus;
 				DataProxy.tableID 	= obj.wTableID;
 				DataProxy.chairID	= obj.wChairID;
+				DataProxy.selfOption = obj.lSelfOption;
 				DataProxy.myUserInfo = obj;
 			}
 			DataProxy.userInfoDic[obj.dwUserID] = obj;

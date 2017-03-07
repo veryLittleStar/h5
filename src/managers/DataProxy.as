@@ -26,6 +26,8 @@ package managers
 		public static var userScore:int = 0;
 		/**用户状态*/
 		public static var userStatus:int = 0;
+		/**用户自定义项*/
+		public static var selfOption:int = 0;
 		/**这是所有玩家的用户数据*/
 		public static var userInfoDic:Object = {};
 		/***/

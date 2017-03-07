@@ -49,6 +49,7 @@ package managers.serverLogin
 			var pid:String = NetDefine.getQueryString("pid");
 			if(pid != "")
 			{
+				body.g = parseInt(NetDefine.getQueryString("g"));
 				body.s = parseInt(NetDefine.getQueryString("s"));
 				body.pid = pid;
 				NetProxy.getInstance().sendToServer(ServerLoginDefine.MSG_LOGIN_THIRD_PART_REQ,body);

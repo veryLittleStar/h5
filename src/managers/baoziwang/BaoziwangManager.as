@@ -16,6 +16,7 @@ package managers.baoziwang
 	
 	import managers.DataProxy;
 	import managers.ManagerBase;
+	import managers.ManagersMap;
 	import managers.gameLogin.GameLoginDefine;
 	
 	import net.NetDefine;
@@ -79,6 +80,7 @@ package managers.baoziwang
 			_ui.recordPanel.init();
 			_ui.shangZhuangPanel.init();
 			_ui.bankPanel.init();
+			_ui.configPanel.init();
 			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
@@ -113,7 +115,7 @@ package managers.baoziwang
 		
 		private function configClick(event:Event):void
 		{
-			
+			_ui.configPanel.openMe();
 		}
 		
 		private function bankClick(event:Event):void
@@ -540,6 +542,7 @@ package managers.baoziwang
 				_ui.myMoneyLabel.text = DataProxy.userScore + "";
 				_ui.myGameIDLabel.text = "游戏ID：" + DataProxy.gameID;
 				_ui.myPortraitImage.skin = BaoziwangDefine.getPortraitImage(DataProxy.gender,DataProxy.faceID);
+				_ui.configPanel.updateLimitNum(DataProxy.selfOption);
 				return;
 			}
 			_ui.chatAndUserList.updateUserInfo(userID);
@@ -774,6 +777,19 @@ package managers.baoziwang
 			_ui.bankPanel.bankInsureFailureRec(obj);
 		}
 		
+		public function bankChangePwdRec(obj:Object):void
+		{
+			//vo["lErrorCode"] 				//错误代码
+			//vo["wLength"] 				//消息长度
+			//vo["szDescribeString"] 		//描述消息
+			ManagersMap.systemMessageManager.showSysMessage(obj.szDescribeString);
+		}
+		
+		public function selfOptionChangeRec(obj:Object):void
+		{
+			DataProxy.selfOption = obj.lSelfOption;
+			_ui.configPanel.updateLimitNum(obj.lSelfOption);
+		}
 		
 	}
 }

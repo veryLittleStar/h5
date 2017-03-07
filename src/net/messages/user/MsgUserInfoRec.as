@@ -42,6 +42,7 @@ package net.messages.user
 			vo["lScore"]				= BytesUtil.read(bytes, BytesType.SCORE);			//用户分数
 			vo["lGrade"]				= BytesUtil.read(bytes, BytesType.SCORE);			//用户成绩
 			vo["lInsure"]				= BytesUtil.read(bytes, BytesType.SCORE);			//用户银行
+			vo["lSelfOption"]			= BytesUtil.read(bytes, BytesType.SCORE);			//用户自定义选项
 			
 			//游戏信息
 			vo["dwWinCount"]				= BytesUtil.read(bytes, BytesType.DWORD);		//胜利盘数

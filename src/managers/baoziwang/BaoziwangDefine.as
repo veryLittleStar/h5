@@ -53,6 +53,14 @@ package managers.baoziwang
 		
 		public static const MSG_BANK_INSURE_FAILURE_REC:String = "25_102";
 		
+		public static const MSG_BANK_CHANGE_PWD_REQ:String = "25_6";
+		
+		public static const MSG_BANK_CHANGE_PWD_REC:String = "25_104";
+		
+		public static const MSG_BZW_SELF_OPTION_CHANGE_REQ:String = "200_6";
+		
+		public static const MSG_BZW_SELF_OPTION_CHANGE_REC:String = "200_6";
+		
 		/////////////////////////
 		public static const RESULT_BIG:int 	= 0;
 		public static const RESULT_BAOZI:int 	= 1;

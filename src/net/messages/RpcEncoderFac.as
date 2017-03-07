@@ -3,6 +3,7 @@ package net.messages
 	import laya.utils.Dictionary;
 	
 	import net.messages.bank.MsgBankInsureInfoReq;
+	import net.messages.bank.MsgBankPwdChangeReq;
 	import net.messages.bank.MsgBankSaveScoreReq;
 	import net.messages.bank.MsgBankTakeScoreReq;
 	import net.messages.bank.MsgBankTransferScoreReq;
@@ -11,6 +12,7 @@ package net.messages
 	import net.messages.baoziwang.MsgBZWCancelBankerReq;
 	import net.messages.baoziwang.MsgBZWGameOptionReq;
 	import net.messages.baoziwang.MsgBZWPlaceJetionReq;
+	import net.messages.baoziwang.MsgBZWSelfOptionChangeReq;
 	import net.messages.gameLogin.MsgRoomLoginReq;
 	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
@@ -98,6 +100,7 @@ package net.messages
 			_encodeMessageDict["200_2"] =  MsgBZWApplyBankerReq;
 			_encodeMessageDict["200_3"] =  MsgBZWCancelBankerReq;
 			_encodeMessageDict["200_5"] =  MsgBZWAllInJetionReq;
+			_encodeMessageDict["200_6"] =  MsgBZWSelfOptionChangeReq;
 			
 			_encodeMessageDict["100_10"] =  MsgUserChatReq;
 			
@@ -105,6 +108,7 @@ package net.messages
 			_encodeMessageDict["25_2"] =  MsgBankSaveScoreReq;
 			_encodeMessageDict["25_3"] =  MsgBankTakeScoreReq;
 			_encodeMessageDict["25_4"] =  MsgBankTransferScoreReq;
+			_encodeMessageDict["25_6"] =  MsgBankPwdChangeReq;
 		}
 		
 	}

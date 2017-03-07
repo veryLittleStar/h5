@@ -15,6 +15,8 @@ package managers.baoziwang
 	
 	import managers.ManagersMap;
 	
+	import system.UILayer;
+	
 	public class DiceCupBox extends Box
 	{
 		private var diceCtn:Box = new Box();
@@ -156,7 +158,7 @@ package managers.baoziwang
 			tempP = diceCtn.localToGlobal(tempP);
 			diceCtn.x = tempP.x;
 			diceCtn.y = tempP.y;
-			Laya.stage.addChild(diceCtn);
+			this.parent.addChildAt(diceCtn,this.parent.getChildIndex(this)+1);
 			pointBg.visible = true;
 			numLabel.scaleX = numLabel.scaleY = point.scaleX = point.scaleY = dx.scaleX = dx.scaleY = 0;
 			Tween.to(numLabel,{scaleX:1,scaleY:1},500,Ease.backOut);
