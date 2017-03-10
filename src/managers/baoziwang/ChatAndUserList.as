@@ -225,7 +225,7 @@ package managers.baoziwang
 			if(!userInfo)return;
 			var i:int;
 			var obj:Object;
-			if(userInfo.cbUserStatus == GameLoginDefine.US_NULL || userInfo.cbUserStatus == GameLoginDefine.US_NULL)
+			if(userInfo.cbUserStatus == GameLoginDefine.US_NULL || userInfo.cbUserStatus == GameLoginDefine.US_FREE)
 			{
 				for(i = 0;i < userList.array.length; i++)
 				{

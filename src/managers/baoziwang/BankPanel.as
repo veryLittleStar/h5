@@ -29,6 +29,7 @@ package managers.baoziwang
 		private var bankTabBox:Box;
 		private var getGoldBtn:Button;
 		private var saveGoldBtn:Button;
+		private var transToGameBtn:Button;
 		private var allSaveCheckBox:CheckBox;
 		private var allGetCheckBox:CheckBox;
 		private var goldNumInput:Input;
@@ -61,6 +62,7 @@ package managers.baoziwang
 			bankTabBox			= bankTypeBox.getChildByName("bankTabBox") as Box;
 			getGoldBtn			= bankTabBox.getChildByName("getGoldBtn") as Button;
 			saveGoldBtn			= bankTabBox.getChildByName("saveGoldBtn") as Button;
+			transToGameBtn		= bankTabBox.getChildByName("transToGameBtn") as Button;
 			allSaveCheckBox		= bankTabBox.getChildByName("allSaveCheckBox") as CheckBox;
 			allGetCheckBox		= bankTabBox.getChildByName("allGetCheckBox") as CheckBox;
 			goldNumInput		= bankTabBox.getChildByName("goldNumInput") as Input;
@@ -114,6 +116,9 @@ package managers.baoziwang
 				case sureGiveBtn:
 					sureGiveClick();
 					break;
+				case transToGameBtn:
+					transferToGameClick();
+					break;
 			}
 		}
 		
@@ -166,6 +171,10 @@ package managers.baoziwang
 		{
 			inPocketGoldLabel.text = pocketScore + "";
 			inBankGoldLabel.text = bankScore + "";
+			
+			DataProxy.myUserInfo.lScore = pocketScore;
+			DataProxy.userScore = pocketScore;
+			ManagersMap.baoziwangManager.updateUserInfo();
 		}
 		
 		private function saveGoldClick():void
@@ -174,10 +183,25 @@ package managers.baoziwang
 			if(allSaveCheckBox.selected)
 			{
 				saveNum = parseInt(inPocketGoldLabel.text);
+				if(!saveNum || saveNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("身上携带金币不足");
+					return;
+				}
 			}
 			else
 			{
 				saveNum = parseInt(goldNumInput.text);
+				if(!saveNum || saveNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("请输入正确的金币数量");
+					return;
+				}
+				if(saveNum > parseInt(inPocketGoldLabel.text))
+				{
+					ManagersMap.systemMessageManager.showSysMessage("身上携带金币不足");
+					return;
+				}
 			}
 			
 			var body:Object = {};
@@ -192,16 +216,64 @@ package managers.baoziwang
 			if(allGetCheckBox.selected)
 			{
 				takeNum = parseInt(inBankGoldLabel.text);
+				if(!takeNum || takeNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("银行存款不足");
+					return;
+				}
 			}
 			else
 			{
 				takeNum = parseInt(goldNumInput.text);
+				if(!takeNum || takeNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("请输入正确的金币数量");
+					return;
+				}
+				if(takeNum > parseInt(inBankGoldLabel.text))
+				{
+					ManagersMap.systemMessageManager.showSysMessage("银行存款不足");
+					return;
+				}
 			}
 			var body:Object = {};
 			body.cbActivityGame 	= 2;
 			body.lTakeScore			= takeNum;
 			body.szInsurePass		= savePwdInput.text;
 			NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BANK_TAKE_SCORE_REQ,body);
+		}
+		
+		private function transferToGameClick():void
+		{
+			var tansNum:int = 0;
+			if(allGetCheckBox.selected)
+			{
+				tansNum = parseInt(inBankGoldLabel.text);
+				if(!tansNum || tansNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("银行存款不足");
+					return;
+				}
+			}
+			else
+			{
+				tansNum = parseInt(goldNumInput.text);
+				if(!tansNum || tansNum <= 0)
+				{
+					ManagersMap.systemMessageManager.showSysMessage("请输入正确的金币数量");
+					return;
+				}
+				if(tansNum > parseInt(inBankGoldLabel.text))
+				{
+					ManagersMap.systemMessageManager.showSysMessage("银行存款不足");
+					return;
+				}
+			}
+			var body:Object = {};
+			body.cbActivityGame 	= 100;
+			body.lTransferScore		= tansNum;
+			body.szInsurePass		= savePwdInput.text;
+			NetProxy.getInstance().sendToServer(BaoziwangDefine.MSG_BANK_TRANSFER_GAME_REQ,body);
 		}
 		
 		private function sureGiveClick():void

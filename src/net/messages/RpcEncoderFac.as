@@ -6,6 +6,7 @@ package net.messages
 	import net.messages.bank.MsgBankPwdChangeReq;
 	import net.messages.bank.MsgBankSaveScoreReq;
 	import net.messages.bank.MsgBankTakeScoreReq;
+	import net.messages.bank.MsgBankTransferGameReq;
 	import net.messages.bank.MsgBankTransferScoreReq;
 	import net.messages.baoziwang.MsgBZWAllInJetionReq;
 	import net.messages.baoziwang.MsgBZWApplyBankerReq;
@@ -109,6 +110,7 @@ package net.messages
 			_encodeMessageDict["25_3"] =  MsgBankTakeScoreReq;
 			_encodeMessageDict["25_4"] =  MsgBankTransferScoreReq;
 			_encodeMessageDict["25_6"] =  MsgBankPwdChangeReq;
+			_encodeMessageDict["25_7"] =  MsgBankTransferGameReq;
 		}
 		
 	}

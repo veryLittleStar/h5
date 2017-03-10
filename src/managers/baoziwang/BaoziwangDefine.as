@@ -47,6 +47,8 @@ package managers.baoziwang
 		
 		public static const MSG_BANK_TRANSFER_SCORE_REQ:String = "25_4";
 		
+		public static const MSG_BANK_TRANSFER_GAME_REQ:String = "25_7";
+		
 		public static const MSG_BANK_INSURE_INFO_REC:String = "25_100";
 		
 		public static const MSG_BANK_INSURE_SUCCESS_REC:String = "25_101";

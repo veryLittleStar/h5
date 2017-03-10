@@ -143,6 +143,7 @@ package managers.baoziwang
 		
 		private function placeJetionReq(area:int):void
 		{
+			if(gameStatus != 100)return;
 			var body:Object = {};
 			body.cbJettonArea 	= area;
 			if(_ui.mainPanelBottom.selectChipScore)
@@ -534,9 +535,9 @@ package managers.baoziwang
 			return obj.cbResult;
 		}
 		
-		public function updateUserInfo(userID:int):void
+		public function updateUserInfo(userID:int = -1):void
 		{
-			if(userID == DataProxy.userID)
+			if(userID == DataProxy.userID || userID == -1)
 			{
 				_ui.myNameLabel.text = "昵称：" + DataProxy.nickName;
 				_ui.myMoneyLabel.text = DataProxy.userScore + "";
