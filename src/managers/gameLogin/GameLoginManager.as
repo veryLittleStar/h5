@@ -195,6 +195,11 @@ package managers.gameLogin
 			
 		}
 		
+		public function userRankListRec(obj:Object):void
+		{
+			ManagersMap.baoziwangManager.ui.rankPanel.updateRankInfo(obj);
+		}
+		
 
 	}
 }

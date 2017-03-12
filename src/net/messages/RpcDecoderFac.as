@@ -30,6 +30,7 @@ package net.messages
 	import net.messages.status.MsgTableStatusRec;
 	import net.messages.user.MsgSystemMessageRec;
 	import net.messages.user.MsgUserInfoRec;
+	import net.messages.user.MsgUserRankListRec;
 	import net.messages.user.MsgUserRequestFailureRec;
 	import net.messages.user.MsgUserScoreRec;
 	import net.messages.user.MsgUserStatusRec;
@@ -116,6 +117,7 @@ package net.messages
 			_decodeMessageDict["23_101"] =  MsgUserScoreRec;
 			_decodeMessageDict["23_102"] =  MsgUserStatusRec;
 			_decodeMessageDict["23_103"] =  MsgUserRequestFailureRec;
+			_decodeMessageDict["23_104"] =  MsgUserRankListRec;
 			
 			//baoziwang
 			_decodeMessageDict["200_99"] 	= MsgBZWGameFreeRec

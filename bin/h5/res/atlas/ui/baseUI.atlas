@@ -1,29 +1,8 @@
 {
     "frames": {
-        "ttz_dyj_txk.png": {
-            "frame": {
-                "x": 0,
-                "y": 0,
-                "w": 353,
-                "h": 302,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 12,
-                "y": 0,
-                "w": 353,
-                "h": 302
-            },
-            "sourceSize": {
-                "w": 375,
-                "h": 302
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "yb_gx_yg1.png": {
             "frame": {
-                "x": 355,
+                "x": 0,
                 "y": 0,
                 "w": 256,
                 "h": 256,
@@ -44,8 +23,8 @@
         },
         "yb_gx_yg.png": {
             "frame": {
-                "x": 355,
-                "y": 258,
+                "x": 258,
+                "y": 0,
                 "w": 345,
                 "h": 185,
                 "idx": 0
@@ -65,7 +44,7 @@
         },
         "game_com_tip_bg.png": {
             "frame": {
-                "x": 613,
+                "x": 605,
                 "y": 0,
                 "w": 400,
                 "h": 125,
@@ -87,7 +66,7 @@
         "yb_z_2.png": {
             "frame": {
                 "x": 0,
-                "y": 304,
+                "y": 258,
                 "w": 168,
                 "h": 225,
                 "idx": 0
@@ -107,8 +86,8 @@
         },
         "button_give.png": {
             "frame": {
-                "x": 170,
-                "y": 445,
+                "x": 0,
+                "y": 485,
                 "w": 207,
                 "h": 170,
                 "idx": 0
@@ -128,8 +107,8 @@
         },
         "button_bank_all.png": {
             "frame": {
-                "x": 379,
-                "y": 445,
+                "x": 0,
+                "y": 657,
                 "w": 206,
                 "h": 170,
                 "idx": 0
@@ -149,8 +128,8 @@
         },
         "button_bank.png": {
             "frame": {
-                "x": 0,
-                "y": 531,
+                "x": 208,
+                "y": 657,
                 "w": 87,
                 "h": 245,
                 "idx": 0
@@ -170,8 +149,8 @@
         },
         "yb_z_1.png": {
             "frame": {
-                "x": 587,
-                "y": 445,
+                "x": 258,
+                "y": 187,
                 "w": 233,
                 "h": 140,
                 "idx": 0
@@ -191,8 +170,8 @@
         },
         "ttz_talk_yy_1.png": {
             "frame": {
-                "x": 702,
-                "y": 127,
+                "x": 0,
+                "y": 829,
                 "w": 176,
                 "h": 176,
                 "idx": 0
@@ -210,10 +189,73 @@
             "rotated": false,
             "trimed": true
         },
+        "ttz_talk_bg_2.png": {
+            "frame": {
+                "x": 493,
+                "y": 187,
+                "w": 60,
+                "h": 444,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 60,
+                "h": 444
+            },
+            "sourceSize": {
+                "w": 60,
+                "h": 444
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_rank_bg_0.png": {
+            "frame": {
+                "x": 555,
+                "y": 187,
+                "w": 60,
+                "h": 444,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 60,
+                "h": 444
+            },
+            "sourceSize": {
+                "w": 60,
+                "h": 444
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_rank_bg_1.png": {
+            "frame": {
+                "x": 617,
+                "y": 127,
+                "w": 60,
+                "h": 444,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 60,
+                "h": 444
+            },
+            "sourceSize": {
+                "w": 60,
+                "h": 444
+            },
+            "rotated": false,
+            "trimed": true
+        },
         "ttz_talk_bg_0.png": {
             "frame": {
-                "x": 89,
-                "y": 531,
+                "x": 679,
+                "y": 127,
                 "w": 60,
                 "h": 444,
                 "idx": 0
@@ -233,29 +275,8 @@
         },
         "ttz_talk_bg_1.png": {
             "frame": {
-                "x": 822,
-                "y": 305,
-                "w": 60,
-                "h": 444,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 60,
-                "h": 444
-            },
-            "sourceSize": {
-                "w": 60,
-                "h": 444
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "ttz_talk_bg_2.png": {
-            "frame": {
-                "x": 587,
-                "y": 587,
+                "x": 741,
+                "y": 127,
                 "w": 60,
                 "h": 444,
                 "idx": 0
@@ -275,8 +296,8 @@
         },
         "yb_d_sm.png": {
             "frame": {
-                "x": 649,
-                "y": 751,
+                "x": 170,
+                "y": 329,
                 "w": 271,
                 "h": 84,
                 "idx": 0
@@ -296,8 +317,8 @@
         },
         "ttz_ts_02.png": {
             "frame": {
-                "x": 649,
-                "y": 837,
+                "x": 209,
+                "y": 415,
                 "w": 273,
                 "h": 82,
                 "idx": 0
@@ -317,8 +338,8 @@
         },
         "yb_bz_3.png": {
             "frame": {
-                "x": 170,
-                "y": 304,
+                "x": 803,
+                "y": 127,
                 "w": 158,
                 "h": 110,
                 "idx": 0
@@ -338,8 +359,8 @@
         },
         "yb_bz_2.png": {
             "frame": {
-                "x": 649,
-                "y": 587,
+                "x": 209,
+                "y": 499,
                 "w": 151,
                 "h": 104,
                 "idx": 0
@@ -359,8 +380,8 @@
         },
         "yb_bz_1.png": {
             "frame": {
-                "x": 880,
-                "y": 127,
+                "x": 803,
+                "y": 239,
                 "w": 174,
                 "h": 123,
                 "idx": 0
@@ -378,115 +399,10 @@
             "rotated": false,
             "trimed": true
         },
-        "button_bank_in.png": {
-            "frame": {
-                "x": 649,
-                "y": 921,
-                "w": 246,
-                "h": 84,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 246,
-                "h": 84
-            },
-            "sourceSize": {
-                "w": 246,
-                "h": 84
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "button_bank_out.png": {
-            "frame": {
-                "x": 897,
-                "y": 921,
-                "w": 246,
-                "h": 84,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 246,
-                "h": 84
-            },
-            "sourceSize": {
-                "w": 246,
-                "h": 84
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "button_gift_history.png": {
-            "frame": {
-                "x": 649,
-                "y": 1007,
-                "w": 246,
-                "h": 84,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 246,
-                "h": 84
-            },
-            "sourceSize": {
-                "w": 246,
-                "h": 84
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "button_gift_send.png": {
-            "frame": {
-                "x": 897,
-                "y": 1007,
-                "w": 246,
-                "h": 84,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 246,
-                "h": 84
-            },
-            "sourceSize": {
-                "w": 246,
-                "h": 84
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "button_blue_big.png": {
             "frame": {
-                "x": 0,
-                "y": 977,
-                "w": 245,
-                "h": 83,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 245,
-                "h": 83
-            },
-            "sourceSize": {
-                "w": 245,
-                "h": 83
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "button_blue_big1.png": {
-            "frame": {
-                "x": 247,
-                "y": 1033,
+                "x": 803,
+                "y": 364,
                 "w": 245,
                 "h": 83,
                 "idx": 0
@@ -506,8 +422,8 @@
         },
         "ttz_ts_01.png": {
             "frame": {
-                "x": 0,
-                "y": 1062,
+                "x": 803,
+                "y": 449,
                 "w": 212,
                 "h": 81,
                 "idx": 0
@@ -525,31 +441,10 @@
             "rotated": false,
             "trimed": true
         },
-        "button_ranking.png": {
-            "frame": {
-                "x": 702,
-                "y": 305,
-                "w": 99,
-                "h": 114,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 15,
-                "y": 14,
-                "w": 99,
-                "h": 114
-            },
-            "sourceSize": {
-                "w": 132,
-                "h": 130
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "ttz_wzwj_1.png": {
             "frame": {
-                "x": 151,
-                "y": 617,
+                "x": 617,
+                "y": 573,
                 "w": 281,
                 "h": 56,
                 "idx": 0
@@ -569,8 +464,8 @@
         },
         "ttz_wzwj_2.png": {
             "frame": {
-                "x": 151,
-                "y": 675,
+                "x": 617,
+                "y": 631,
                 "w": 281,
                 "h": 56,
                 "idx": 0
@@ -590,8 +485,8 @@
         },
         "ttz_board_2.png": {
             "frame": {
-                "x": 151,
-                "y": 733,
+                "x": 0,
+                "y": 1007,
                 "w": 380,
                 "h": 40,
                 "idx": 0
@@ -611,8 +506,8 @@
         },
         "yb_gx_hd.png": {
             "frame": {
-                "x": 434,
-                "y": 617,
+                "x": 900,
+                "y": 532,
                 "w": 143,
                 "h": 105,
                 "idx": 0
@@ -630,10 +525,10 @@
             "rotated": false,
             "trimed": true
         },
-        "btn_cancel.png": {
+        "btn_apply.png": {
             "frame": {
-                "x": 1015,
-                "y": 0,
+                "x": 362,
+                "y": 499,
                 "w": 122,
                 "h": 96,
                 "idx": 0
@@ -651,10 +546,10 @@
             "rotated": false,
             "trimed": true
         },
-        "btn_apply.png": {
+        "btn_cancel.png": {
             "frame": {
-                "x": 494,
-                "y": 1033,
+                "x": 178,
+                "y": 904,
                 "w": 122,
                 "h": 96,
                 "idx": 0
@@ -674,8 +569,8 @@
         },
         "ttz_bt_xy.png": {
             "frame": {
-                "x": 247,
-                "y": 775,
+                "x": 963,
+                "y": 127,
                 "w": 89,
                 "h": 104,
                 "idx": 0
@@ -695,8 +590,8 @@
         },
         "yb_wz_bz.png": {
             "frame": {
-                "x": 338,
-                "y": 775,
+                "x": 900,
+                "y": 639,
                 "w": 123,
                 "h": 68,
                 "idx": 0
@@ -716,8 +611,8 @@
         },
         "yb_sz_ls_lv2.png": {
             "frame": {
-                "x": 880,
-                "y": 252,
+                "x": 209,
+                "y": 605,
                 "w": 207,
                 "h": 40,
                 "idx": 0
@@ -737,8 +632,8 @@
         },
         "ttz_status_6.png": {
             "frame": {
-                "x": 338,
-                "y": 845,
+                "x": 297,
+                "y": 647,
                 "w": 183,
                 "h": 42,
                 "idx": 0
@@ -756,31 +651,10 @@
             "rotated": false,
             "trimed": true
         },
-        "button_blue_long.png": {
+        "game_user_head_box_0.png": {
             "frame": {
-                "x": 649,
-                "y": 693,
-                "w": 145,
-                "h": 53,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 145,
-                "h": 53
-            },
-            "sourceSize": {
-                "w": 145,
-                "h": 53
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "game_user_head_box_1.png": {
-            "frame": {
-                "x": 463,
-                "y": 775,
+                "x": 170,
+                "y": 258,
                 "w": 67,
                 "h": 63,
                 "idx": 0
@@ -800,8 +674,29 @@
         },
         "game_user_head_box_2.png": {
             "frame": {
-                "x": 613,
-                "y": 127,
+                "x": 297,
+                "y": 691,
+                "w": 67,
+                "h": 63,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 11,
+                "y": 11,
+                "w": 67,
+                "h": 63
+            },
+            "sourceSize": {
+                "w": 84,
+                "h": 84
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "game_user_head_box_1.png": {
+            "frame": {
+                "x": 297,
+                "y": 756,
                 "w": 67,
                 "h": 63,
                 "idx": 0
@@ -821,8 +716,8 @@
         },
         "game_user_head_box_3.png": {
             "frame": {
-                "x": 613,
-                "y": 192,
+                "x": 366,
+                "y": 691,
                 "w": 67,
                 "h": 63,
                 "idx": 0
@@ -842,8 +737,8 @@
         },
         "game_user_head_box_4.png": {
             "frame": {
-                "x": 247,
-                "y": 881,
+                "x": 297,
+                "y": 821,
                 "w": 67,
                 "h": 63,
                 "idx": 0
@@ -863,8 +758,8 @@
         },
         "game_user_head_box_a.png": {
             "frame": {
-                "x": 1056,
-                "y": 98,
+                "x": 366,
+                "y": 756,
                 "w": 75,
                 "h": 68,
                 "idx": 0
@@ -884,8 +779,8 @@
         },
         "game_user_head_box_b.png": {
             "frame": {
-                "x": 1056,
-                "y": 168,
+                "x": 979,
+                "y": 233,
                 "w": 73,
                 "h": 68,
                 "idx": 0
@@ -905,8 +800,8 @@
         },
         "game_user_head_box_c.png": {
             "frame": {
-                "x": 0,
-                "y": 778,
+                "x": 366,
+                "y": 826,
                 "w": 73,
                 "h": 73,
                 "idx": 0
@@ -924,31 +819,10 @@
             "rotated": false,
             "trimed": true
         },
-        "game_user_head_box_0.png": {
-            "frame": {
-                "x": 0,
-                "y": 853,
-                "w": 67,
-                "h": 63,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 11,
-                "y": 11,
-                "w": 67,
-                "h": 63
-            },
-            "sourceSize": {
-                "w": 84,
-                "h": 84
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "ttz_chip_d_light.png": {
             "frame": {
-                "x": 151,
-                "y": 775,
+                "x": 482,
+                "y": 633,
                 "w": 86,
                 "h": 81,
                 "idx": 0
@@ -968,8 +842,8 @@
         },
         "BackProgressBar$bar.png": {
             "frame": {
-                "x": 523,
-                "y": 840,
+                "x": 570,
+                "y": 633,
                 "w": 43,
                 "h": 159,
                 "idx": 0
@@ -989,8 +863,8 @@
         },
         "ttz_status_5.png": {
             "frame": {
-                "x": 316,
-                "y": 889,
+                "x": 615,
+                "y": 689,
                 "w": 148,
                 "h": 42,
                 "idx": 0
@@ -1008,31 +882,10 @@
             "rotated": false,
             "trimed": true
         },
-        "button_blue_small.png": {
-            "frame": {
-                "x": 316,
-                "y": 933,
-                "w": 113,
-                "h": 53,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 113,
-                "h": 53
-            },
-            "sourceSize": {
-                "w": 113,
-                "h": 53
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "yb_gx_yzsg.png": {
             "frame": {
-                "x": 431,
-                "y": 933,
+                "x": 615,
+                "y": 733,
                 "w": 78,
                 "h": 76,
                 "idx": 0
@@ -1052,8 +905,8 @@
         },
         "yb_gx_yzsg_2.png": {
             "frame": {
-                "x": 151,
-                "y": 858,
+                "x": 695,
+                "y": 733,
                 "w": 78,
                 "h": 76,
                 "idx": 0
@@ -1073,8 +926,8 @@
         },
         "button_setting.png": {
             "frame": {
-                "x": 884,
-                "y": 294,
+                "x": 775,
+                "y": 689,
                 "w": 70,
                 "h": 71,
                 "idx": 0
@@ -1094,8 +947,8 @@
         },
         "ttz_ej_sz_sqsz.png": {
             "frame": {
-                "x": 170,
-                "y": 416,
+                "x": 847,
+                "y": 709,
                 "w": 177,
                 "h": 27,
                 "idx": 0
@@ -1115,8 +968,8 @@
         },
         "yb_wz_dd.png": {
             "frame": {
-                "x": 247,
-                "y": 946,
+                "x": 775,
+                "y": 762,
                 "w": 65,
                 "h": 69,
                 "idx": 0
@@ -1136,8 +989,8 @@
         },
         "yb_wz_x.png": {
             "frame": {
-                "x": 884,
-                "y": 367,
+                "x": 847,
+                "y": 738,
                 "w": 65,
                 "h": 68,
                 "idx": 0
@@ -1155,10 +1008,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_bt_sz1.png": {
+        "ttz_bt_sz.png": {
             "frame": {
-                "x": 533,
-                "y": 724,
+                "x": 302,
+                "y": 886,
                 "w": 46,
                 "h": 96,
                 "idx": 0
@@ -1176,10 +1029,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_bt_sz.png": {
+        "ttz_bt_sz1.png": {
             "frame": {
-                "x": 884,
-                "y": 437,
+                "x": 914,
+                "y": 738,
                 "w": 46,
                 "h": 96,
                 "idx": 0
@@ -1199,8 +1052,8 @@
         },
         "button_closepanel.png": {
             "frame": {
-                "x": 0,
-                "y": 918,
+                "x": 962,
+                "y": 738,
                 "w": 77,
                 "h": 57,
                 "idx": 0
@@ -1218,10 +1071,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_tx_lpt.png": {
+        "yb_sz_ls_lv.png": {
             "frame": {
-                "x": 884,
-                "y": 535,
+                "x": 979,
+                "y": 303,
                 "w": 70,
                 "h": 58,
                 "idx": 0
@@ -1239,10 +1092,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_sz_ls_lv.png": {
+        "yb_tx_lpt.png": {
             "frame": {
-                "x": 951,
-                "y": 367,
+                "x": 842,
+                "y": 808,
                 "w": 70,
                 "h": 58,
                 "idx": 0
@@ -1262,8 +1115,8 @@
         },
         "btn_close.png": {
             "frame": {
-                "x": 951,
-                "y": 427,
+                "x": 1007,
+                "y": 0,
                 "w": 45,
                 "h": 90,
                 "idx": 0
@@ -1283,8 +1136,8 @@
         },
         "button_sChat.png": {
             "frame": {
-                "x": 956,
-                "y": 294,
+                "x": 350,
+                "y": 901,
                 "w": 62,
                 "h": 64,
                 "idx": 0
@@ -1304,8 +1157,8 @@
         },
         "button_check_group.png": {
             "frame": {
-                "x": 922,
-                "y": 595,
+                "x": 414,
+                "y": 901,
                 "w": 45,
                 "h": 88,
                 "idx": 0
@@ -1323,10 +1176,10 @@
             "rotated": false,
             "trimed": true
         },
-        "lob_men_1.jpg": {
+        "lob_men_2.jpg": {
             "frame": {
-                "x": 1020,
-                "y": 294,
+                "x": 382,
+                "y": 991,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1344,10 +1197,10 @@
             "rotated": false,
             "trimed": true
         },
-        "lob_women_1.jpg": {
+        "lob_men_1.jpg": {
             "frame": {
-                "x": 956,
-                "y": 519,
+                "x": 445,
+                "y": 991,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1367,29 +1220,8 @@
         },
         "lob_men_0.jpg": {
             "frame": {
-                "x": 998,
-                "y": 427,
-                "w": 61,
-                "h": 61,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 61,
-                "h": 61
-            },
-            "sourceSize": {
-                "w": 61,
-                "h": 61
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "lob_men_2.jpg": {
-            "frame": {
-                "x": 1023,
-                "y": 357,
+                "x": 962,
+                "y": 797,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1409,8 +1241,8 @@
         },
         "lob_men_3.jpg": {
             "frame": {
-                "x": 1083,
-                "y": 294,
+                "x": 441,
+                "y": 826,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1430,8 +1262,29 @@
         },
         "lob_women_0.jpg": {
             "frame": {
-                "x": 922,
-                "y": 685,
+                "x": 461,
+                "y": 889,
+                "w": 61,
+                "h": 61,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 61,
+                "h": 61
+            },
+            "sourceSize": {
+                "w": 61,
+                "h": 61
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "lob_women_1.jpg": {
+            "frame": {
+                "x": 504,
+                "y": 716,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1451,8 +1304,8 @@
         },
         "lob_women_2.jpg": {
             "frame": {
-                "x": 969,
-                "y": 582,
+                "x": 504,
+                "y": 779,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1472,8 +1325,8 @@
         },
         "lob_women_3.jpg": {
             "frame": {
-                "x": 1019,
-                "y": 490,
+                "x": 524,
+                "y": 842,
                 "w": 61,
                 "h": 61,
                 "idx": 0
@@ -1491,10 +1344,10 @@
             "rotated": false,
             "trimed": true
         },
-        "miao_da.png": {
+        "miao_xiao.png": {
             "frame": {
-                "x": 1061,
-                "y": 420,
+                "x": 524,
+                "y": 905,
                 "w": 70,
                 "h": 50,
                 "idx": 0
@@ -1512,10 +1365,10 @@
             "rotated": false,
             "trimed": true
         },
-        "miao_xiao.png": {
+        "miao_da.png": {
             "frame": {
-                "x": 924,
-                "y": 748,
+                "x": 508,
+                "y": 957,
                 "w": 70,
                 "h": 50,
                 "idx": 0
@@ -1535,8 +1388,8 @@
         },
         "xu_ya.png": {
             "frame": {
-                "x": 985,
-                "y": 645,
+                "x": 580,
+                "y": 957,
                 "w": 70,
                 "h": 50,
                 "idx": 0
@@ -1554,10 +1407,31 @@
             "rotated": false,
             "trimed": true
         },
+        "sgj_chip_d_5.png": {
+            "frame": {
+                "x": 587,
+                "y": 811,
+                "w": 58,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 58,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 58,
+                "h": 59
+            },
+            "rotated": false,
+            "trimed": true
+        },
         "sgj_chip_d_3.png": {
             "frame": {
-                "x": 1086,
-                "y": 357,
+                "x": 647,
+                "y": 811,
                 "w": 58,
                 "h": 59,
                 "idx": 0
@@ -1577,8 +1451,8 @@
         },
         "sgj_chip_d_2.png": {
             "frame": {
-                "x": 1032,
-                "y": 553,
+                "x": 707,
+                "y": 811,
                 "w": 58,
                 "h": 59,
                 "idx": 0
@@ -1598,8 +1472,8 @@
         },
         "sgj_chip_d_1.png": {
             "frame": {
-                "x": 1082,
-                "y": 472,
+                "x": 767,
+                "y": 833,
                 "w": 58,
                 "h": 59,
                 "idx": 0
@@ -1619,29 +1493,8 @@
         },
         "sgj_chip_d_4.png": {
             "frame": {
-                "x": 996,
-                "y": 697,
-                "w": 58,
-                "h": 59,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 58,
-                "h": 59
-            },
-            "sourceSize": {
-                "w": 58,
-                "h": 59
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "sgj_chip_d_5.png": {
-            "frame": {
-                "x": 996,
-                "y": 758,
+                "x": 596,
+                "y": 872,
                 "w": 58,
                 "h": 59,
                 "idx": 0
@@ -1661,8 +1514,8 @@
         },
         "yb_nz_dk.png": {
             "frame": {
-                "x": 314,
-                "y": 988,
+                "x": 508,
+                "y": 1009,
                 "w": 100,
                 "h": 33,
                 "idx": 0
@@ -1682,8 +1535,8 @@
         },
         "game_user_head_zz.png": {
             "frame": {
-                "x": 924,
-                "y": 800,
+                "x": 656,
+                "y": 872,
                 "w": 56,
                 "h": 56,
                 "idx": 0
@@ -1703,8 +1556,8 @@
         },
         "ttz_clock.png": {
             "frame": {
-                "x": 982,
-                "y": 819,
+                "x": 827,
+                "y": 868,
                 "w": 53,
                 "h": 59,
                 "idx": 0
@@ -1722,31 +1575,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_6_1.png": {
+        "ttz_sezi_5_1.png": {
             "frame": {
-                "x": 1089,
-                "y": 238,
-                "w": 49,
-                "h": 50,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 49,
-                "h": 50
-            },
-            "sourceSize": {
-                "w": 49,
-                "h": 50
-            },
-            "rotated": false,
-            "trimed": true
-        },
-        "ttz_sezi_3_1.png": {
-            "frame": {
-                "x": 924,
-                "y": 858,
+                "x": 714,
+                "y": 872,
                 "w": 49,
                 "h": 50,
                 "idx": 0
@@ -1766,8 +1598,8 @@
         },
         "ttz_sezi_4_1.png": {
             "frame": {
-                "x": 1037,
-                "y": 819,
+                "x": 882,
+                "y": 868,
                 "w": 49,
                 "h": 50,
                 "idx": 0
@@ -1785,10 +1617,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_5_1.png": {
+        "ttz_sezi_3_1.png": {
             "frame": {
-                "x": 1056,
-                "y": 697,
+                "x": 765,
+                "y": 894,
                 "w": 49,
                 "h": 50,
                 "idx": 0
@@ -1806,22 +1638,22 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_2.png": {
+        "ttz_sezi_6_1.png": {
             "frame": {
-                "x": 1057,
-                "y": 614,
-                "w": 48,
+                "x": 714,
+                "y": 924,
+                "w": 49,
                 "h": 50,
                 "idx": 0
             },
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 48,
+                "w": 49,
                 "h": 50
             },
             "sourceSize": {
-                "w": 48,
+                "w": 49,
                 "h": 50
             },
             "rotated": false,
@@ -1829,8 +1661,29 @@
         },
         "ttz_sezi_1.png": {
             "frame": {
-                "x": 1092,
-                "y": 533,
+                "x": 443,
+                "y": 329,
+                "w": 48,
+                "h": 50,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 48,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 48,
+                "h": 50
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_2.png": {
+            "frame": {
+                "x": 765,
+                "y": 946,
                 "w": 48,
                 "h": 50,
                 "idx": 0
@@ -1850,8 +1703,8 @@
         },
         "game_phb_10.png": {
             "frame": {
-                "x": 1056,
-                "y": 749,
+                "x": 933,
+                "y": 860,
                 "w": 47,
                 "h": 51,
                 "idx": 0
@@ -1869,31 +1722,10 @@
             "rotated": false,
             "trimed": true
         },
-        "xlch_chat_bg.png": {
-            "frame": {
-                "x": 1037,
-                "y": 871,
-                "w": 50,
-                "h": 47,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 50,
-                "h": 47
-            },
-            "sourceSize": {
-                "w": 50,
-                "h": 47
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "ttz_sezi_4.png": {
             "frame": {
-                "x": 1088,
-                "y": 802,
+                "x": 982,
+                "y": 860,
                 "w": 47,
                 "h": 50,
                 "idx": 0
@@ -1911,10 +1743,31 @@
             "rotated": false,
             "trimed": true
         },
+        "xlch_chat_bg.png": {
+            "frame": {
+                "x": 418,
+                "y": 597,
+                "w": 50,
+                "h": 47,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 47
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 47
+            },
+            "rotated": false,
+            "trimed": true
+        },
         "ttz_sezi_3.png": {
             "frame": {
-                "x": 1089,
-                "y": 854,
+                "x": 882,
+                "y": 920,
                 "w": 46,
                 "h": 50,
                 "idx": 0
@@ -1934,8 +1787,8 @@
         },
         "ttz_bt_sz4.png": {
             "frame": {
-                "x": 618,
-                "y": 1093,
+                "x": 933,
+                "y": 913,
                 "w": 46,
                 "h": 48,
                 "idx": 0
@@ -1955,8 +1808,8 @@
         },
         "ttz_sezi_2_1.png": {
             "frame": {
-                "x": 1105,
-                "y": 749,
+                "x": 435,
+                "y": 691,
                 "w": 43,
                 "h": 48,
                 "idx": 0
@@ -1976,8 +1829,8 @@
         },
         "ttz_sezi_1_1.png": {
             "frame": {
-                "x": 666,
-                "y": 1093,
+                "x": 443,
+                "y": 741,
                 "w": 43,
                 "h": 48,
                 "idx": 0
@@ -1995,10 +1848,52 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_d_3.png": {
+        "ttz_sezi_d_6.png": {
             "frame": {
-                "x": 466,
-                "y": 889,
+                "x": 610,
+                "y": 1009,
+                "w": 40,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 40,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_5.png": {
+            "frame": {
+                "x": 816,
+                "y": 929,
+                "w": 40,
+                "h": 40,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 1,
+                "y": 3,
+                "w": 40,
+                "h": 40
+            },
+            "sourceSize": {
+                "w": 43,
+                "h": 46
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_sezi_d_4.png": {
+            "frame": {
+                "x": 815,
+                "y": 971,
                 "w": 41,
                 "h": 40,
                 "idx": 0
@@ -2016,18 +1911,18 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_d_6.png": {
+        "ttz_sezi_d_3.png": {
             "frame": {
-                "x": 1107,
-                "y": 585,
-                "w": 40,
+                "x": 858,
+                "y": 972,
+                "w": 41,
                 "h": 40,
                 "idx": 0
             },
             "spriteSourceSize": {
                 "x": 1,
                 "y": 3,
-                "w": 40,
+                "w": 41,
                 "h": 40
             },
             "sourceSize": {
@@ -2039,8 +1934,8 @@
         },
         "ttz_sezi_d_2.png": {
             "frame": {
-                "x": 711,
-                "y": 1093,
+                "x": 901,
+                "y": 972,
                 "w": 43,
                 "h": 42,
                 "idx": 0
@@ -2058,31 +1953,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_d_4.png": {
-            "frame": {
-                "x": 1107,
-                "y": 627,
-                "w": 41,
-                "h": 40,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 1,
-                "y": 3,
-                "w": 41,
-                "h": 40
-            },
-            "sourceSize": {
-                "w": 43,
-                "h": 46
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "ttz_sezi_d_1.png": {
             "frame": {
-                "x": 756,
-                "y": 1093,
+                "x": 946,
+                "y": 963,
                 "w": 42,
                 "h": 42,
                 "idx": 0
@@ -2100,31 +1974,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_sezi_d_5.png": {
-            "frame": {
-                "x": 1107,
-                "y": 669,
-                "w": 40,
-                "h": 40,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 1,
-                "y": 3,
-                "w": 40,
-                "h": 40
-            },
-            "sourceSize": {
-                "w": 43,
-                "h": 46
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "ttz_sezi_6.png": {
             "frame": {
-                "x": 800,
-                "y": 1093,
+                "x": 981,
+                "y": 913,
                 "w": 41,
                 "h": 47,
                 "idx": 0
@@ -2144,8 +1997,8 @@
         },
         "ttz_head_player_bg.png": {
             "frame": {
-                "x": 511,
-                "y": 1001,
+                "x": 803,
+                "y": 532,
                 "w": 70,
                 "h": 27,
                 "idx": 0
@@ -2165,8 +2018,8 @@
         },
         "ttz_sezi_5.png": {
             "frame": {
-                "x": 843,
-                "y": 1093,
+                "x": 990,
+                "y": 962,
                 "w": 40,
                 "h": 46,
                 "idx": 0
@@ -2186,8 +2039,8 @@
         },
         "yb_wz_d.png": {
             "frame": {
-                "x": 1107,
-                "y": 711,
+                "x": 170,
+                "y": 415,
                 "w": 34,
                 "h": 34,
                 "idx": 0
@@ -2205,10 +2058,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_nz_qdd.png": {
+        "yb_nz_qxz.png": {
             "frame": {
-                "x": 975,
-                "y": 880,
+                "x": 596,
+                "y": 933,
                 "w": 59,
                 "h": 22,
                 "idx": 0
@@ -2226,10 +2079,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_nz_qxz.png": {
+        "yb_nz_qdd.png": {
             "frame": {
-                "x": 151,
-                "y": 936,
+                "x": 350,
+                "y": 967,
                 "w": 59,
                 "h": 22,
                 "idx": 0
@@ -2249,8 +2102,8 @@
         },
         "BackProgressBar.png": {
             "frame": {
-                "x": 1056,
-                "y": 238,
+                "x": 362,
+                "y": 597,
                 "w": 31,
                 "h": 6,
                 "idx": 0
@@ -2270,8 +2123,8 @@
         },
         "yb_bt_gd.png": {
             "frame": {
-                "x": 885,
-                "y": 1093,
+                "x": 657,
+                "y": 930,
                 "w": 52,
                 "h": 24,
                 "idx": 0
@@ -2291,8 +2144,8 @@
         },
         "ttz_talk_bg_3.png": {
             "frame": {
-                "x": 212,
-                "y": 936,
+                "x": 443,
+                "y": 381,
                 "w": 32,
                 "h": 32,
                 "idx": 0
@@ -2310,10 +2163,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_talk_txt_0.png": {
+        "ttz_rank_txt_1.png": {
             "frame": {
-                "x": 69,
-                "y": 853,
+                "x": 1017,
+                "y": 449,
                 "w": 16,
                 "h": 59,
                 "idx": 0
@@ -2331,10 +2184,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_talk_txt_1.png": {
+        "ttz_rank_txt_0.png": {
             "frame": {
-                "x": 1131,
-                "y": 168,
+                "x": 178,
+                "y": 829,
                 "w": 16,
                 "h": 59,
                 "idx": 0
@@ -2354,8 +2207,8 @@
         },
         "ttz_talk_txt_2.png": {
             "frame": {
-                "x": 796,
-                "y": 693,
+                "x": 239,
+                "y": 258,
                 "w": 16,
                 "h": 40,
                 "idx": 0
@@ -2373,10 +2226,52 @@
             "rotated": false,
             "trimed": true
         },
+        "ttz_talk_txt_1.png": {
+            "frame": {
+                "x": 1025,
+                "y": 639,
+                "w": 16,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 16,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 60
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_talk_txt_0.png": {
+            "frame": {
+                "x": 1025,
+                "y": 797,
+                "w": 16,
+                "h": 59,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 16,
+                "h": 59
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 60
+            },
+            "rotated": false,
+            "trimed": true
+        },
         "ttz_bt_help.png": {
             "frame": {
-                "x": 618,
-                "y": 1033,
+                "x": 858,
+                "y": 929,
                 "w": 22,
                 "h": 30,
                 "idx": 0
@@ -2394,31 +2289,10 @@
             "rotated": false,
             "trimed": true
         },
-        "win.png": {
-            "frame": {
-                "x": 1057,
-                "y": 666,
-                "w": 29,
-                "h": 29,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 29,
-                "h": 29
-            },
-            "sourceSize": {
-                "w": 30,
-                "h": 30
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "lose.png": {
             "frame": {
-                "x": 214,
-                "y": 1062,
+                "x": 1007,
+                "y": 92,
                 "w": 30,
                 "h": 30,
                 "idx": 0
@@ -2436,18 +2310,39 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_ej_sz_pd.png": {
+        "win.png": {
             "frame": {
-                "x": 702,
-                "y": 421,
-                "w": 42,
+                "x": 461,
+                "y": 952,
+                "w": 29,
+                "h": 29,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 29,
+                "h": 29
+            },
+            "sourceSize": {
+                "w": 30,
+                "h": 30
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "ttz_ej_sz_wj.png": {
+            "frame": {
+                "x": 302,
+                "y": 984,
+                "w": 41,
                 "h": 21,
                 "idx": 0
             },
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 42,
+                "w": 41,
                 "h": 21
             },
             "sourceSize": {
@@ -2457,18 +2352,18 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_ej_sz_wj.png": {
+        "ttz_ej_sz_pd.png": {
             "frame": {
-                "x": 746,
-                "y": 421,
-                "w": 41,
+                "x": 914,
+                "y": 836,
+                "w": 42,
                 "h": 21,
                 "idx": 0
             },
             "spriteSourceSize": {
                 "x": 0,
                 "y": 0,
-                "w": 41,
+                "w": 42,
                 "h": 21
             },
             "sourceSize": {
@@ -2480,8 +2375,8 @@
         },
         "ttz_ej_sz_jb.png": {
             "frame": {
-                "x": 939,
-                "y": 1093,
+                "x": 443,
+                "y": 791,
                 "w": 40,
                 "h": 21,
                 "idx": 0
@@ -2501,8 +2396,8 @@
         },
         "ttz_talk_bg_4.png": {
             "frame": {
-                "x": 214,
-                "y": 1094,
+                "x": 1032,
+                "y": 858,
                 "w": 20,
                 "h": 44,
                 "idx": 0
@@ -2520,31 +2415,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_sm_baozi.png": {
-            "frame": {
-                "x": 416,
-                "y": 1011,
-                "w": 50,
-                "h": 17,
-                "idx": 0
-            },
-            "spriteSourceSize": {
-                "x": 0,
-                "y": 0,
-                "w": 50,
-                "h": 17
-            },
-            "sourceSize": {
-                "w": 50,
-                "h": 17
-            },
-            "rotated": false,
-            "trimed": true
-        },
         "yb_sm_dianshu.png": {
             "frame": {
-                "x": 981,
-                "y": 1093,
+                "x": 847,
+                "y": 689,
                 "w": 50,
                 "h": 17,
                 "idx": 0
@@ -2562,10 +2436,31 @@
             "rotated": false,
             "trimed": true
         },
-        "sgj_chip_x_3.png": {
+        "yb_sm_baozi.png": {
             "frame": {
-                "x": 1015,
-                "y": 98,
+                "x": 657,
+                "y": 956,
+                "w": 50,
+                "h": 17,
+                "idx": 0
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 17
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 17
+            },
+            "rotated": false,
+            "trimed": true
+        },
+        "sgj_chip_x_1.png": {
+            "frame": {
+                "x": 170,
+                "y": 451,
                 "w": 27,
                 "h": 27,
                 "idx": 0
@@ -2585,8 +2480,8 @@
         },
         "sgj_chip_x_2.png": {
             "frame": {
-                "x": 1033,
-                "y": 1093,
+                "x": 652,
+                "y": 975,
                 "w": 27,
                 "h": 27,
                 "idx": 0
@@ -2604,10 +2499,10 @@
             "rotated": false,
             "trimed": true
         },
-        "sgj_chip_x_1.png": {
+        "sgj_chip_x_3.png": {
             "frame": {
-                "x": 981,
-                "y": 1112,
+                "x": 652,
+                "y": 1004,
                 "w": 27,
                 "h": 27,
                 "idx": 0
@@ -2627,8 +2522,8 @@
         },
         "sgj_chip_x_4.png": {
             "frame": {
-                "x": 939,
-                "y": 1116,
+                "x": 681,
+                "y": 975,
                 "w": 27,
                 "h": 27,
                 "idx": 0
@@ -2648,8 +2543,8 @@
         },
         "sgj_chip_x_5.png": {
             "frame": {
-                "x": 885,
-                "y": 1119,
+                "x": 681,
+                "y": 1004,
                 "w": 27,
                 "h": 27,
                 "idx": 0
@@ -2667,10 +2562,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_bj_zs_01.png": {
+        "yb_bj_zs_03.png": {
             "frame": {
-                "x": 618,
-                "y": 1065,
+                "x": 710,
+                "y": 976,
                 "w": 24,
                 "h": 26,
                 "idx": 0
@@ -2690,8 +2585,8 @@
         },
         "yb_bj_zs_02.png": {
             "frame": {
-                "x": 1062,
-                "y": 1093,
+                "x": 736,
+                "y": 976,
                 "w": 24,
                 "h": 26,
                 "idx": 0
@@ -2709,10 +2604,10 @@
             "rotated": false,
             "trimed": true
         },
-        "yb_bj_zs_03.png": {
+        "yb_bj_zs_01.png": {
             "frame": {
-                "x": 1088,
-                "y": 1093,
+                "x": 710,
+                "y": 1004,
                 "w": 24,
                 "h": 26,
                 "idx": 0
@@ -2732,8 +2627,8 @@
         },
         "yb_bj_xt.png": {
             "frame": {
-                "x": 1114,
-                "y": 1093,
+                "x": 736,
+                "y": 1004,
                 "w": 24,
                 "h": 25,
                 "idx": 0
@@ -2753,8 +2648,8 @@
         },
         "yb_z_3.png": {
             "frame": {
-                "x": 532,
-                "y": 822,
+                "x": 652,
+                "y": 1033,
                 "w": 42,
                 "h": 12,
                 "idx": 0
@@ -2774,8 +2669,8 @@
         },
         "game_icon_gold.png": {
             "frame": {
-                "x": 1032,
-                "y": 614,
+                "x": 480,
+                "y": 716,
                 "w": 22,
                 "h": 22,
                 "idx": 0
@@ -2795,8 +2690,8 @@
         },
         "ttz_help_02.png": {
             "frame": {
-                "x": 214,
-                "y": 1143,
+                "x": 508,
+                "y": 1051,
                 "w": 444,
                 "h": 1,
                 "idx": 0
@@ -2816,8 +2711,8 @@
         },
         "yb_bj_hg.png": {
             "frame": {
-                "x": 247,
-                "y": 1023,
+                "x": 652,
+                "y": 1047,
                 "w": 159,
                 "h": 2,
                 "idx": 0
@@ -2837,8 +2732,8 @@
         },
         "yb_sz_ls_11.png": {
             "frame": {
-                "x": 998,
-                "y": 490,
+                "x": 239,
+                "y": 300,
                 "w": 17,
                 "h": 17,
                 "idx": 0
@@ -2856,10 +2751,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_talk_j2.png": {
+        "ttz_talk_j1.png": {
             "frame": {
-                "x": 982,
-                "y": 800,
+                "x": 178,
+                "y": 890,
                 "w": 12,
                 "h": 12,
                 "idx": 0
@@ -2877,10 +2772,10 @@
             "rotated": false,
             "trimed": true
         },
-        "ttz_talk_j1.png": {
+        "ttz_talk_j2.png": {
             "frame": {
-                "x": 1061,
-                "y": 472,
+                "x": 696,
+                "y": 1033,
                 "w": 12,
                 "h": 12,
                 "idx": 0

@@ -81,6 +81,7 @@ package managers.baoziwang
 			_ui.shangZhuangPanel.init();
 			_ui.bankPanel.init();
 			_ui.configPanel.init();
+			_ui.rankPanel.init();
 			connectLoginServer();
 			Laya.stage.on(Event.KEY_UP,this,key_up);
 			_ui.recordBtn.on(Event.MOUSE_UP,this,recordBtnMouseUp);
