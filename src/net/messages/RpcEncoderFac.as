@@ -18,6 +18,7 @@ package net.messages
 	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
 	import net.messages.serverLogin.MsgLoginThirdPartReq;
+	import net.messages.user.MsgUserRankListReq;
 	import net.messages.user.MsgUserSitDownReq;
 	import net.messages.user.MsgUserStandUpReq;
 	import net.socket.ByteArray;
@@ -95,6 +96,7 @@ package net.messages
 			//
 			_encodeMessageDict["23_3"] =  MsgUserSitDownReq;
 			_encodeMessageDict["23_4"] =  MsgUserStandUpReq;
+			_encodeMessageDict["23_104"] =  MsgUserRankListReq;
 			
 			_encodeMessageDict["100_1"] =  MsgBZWGameOptionReq;
 			_encodeMessageDict["200_1"] =  MsgBZWPlaceJetionReq;

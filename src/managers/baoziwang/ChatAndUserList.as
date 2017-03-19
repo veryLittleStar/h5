@@ -2,6 +2,7 @@ package managers.baoziwang
 {
 	import laya.events.Event;
 	import laya.ui.Box;
+	import laya.ui.Button;
 	import laya.ui.Image;
 	import laya.ui.List;
 	import laya.ui.Panel;
@@ -30,10 +31,12 @@ package managers.baoziwang
 		private var rChatBox:Box;
 		private var rChatPanel:Panel;
 		private var rChatInput:TextInput;
+		private var rChatSendBtn:Button;
 		private var sChatBox:Box;
 		private var sChatUserList:List;
 		private var sChatInput:TextInput;
 		private var sChatPanel:Panel;
+		private var sChatSendBtn:Button;
 		
 		private var _showState:int = 0;
 		private var _choseState:int = 1;
@@ -58,14 +61,18 @@ package managers.baoziwang
 			rChatBox = getChildByName("rChatBox") as Box;
 			rChatInput = rChatBox.getChildByName("rChatInput") as TextInput;
 			rChatPanel = rChatBox.getChildByName("rChatPanel") as Panel;
+			rChatSendBtn = rChatBox.getChildByName("rChatSendBtn") as Button;
 			sChatBox = getChildByName("sChatBox") as Box;
 			sChatUserList = sChatBox.getChildByName("sChatUserList") as List;
 			sChatInput = sChatBox.getChildByName("sChatInput") as TextInput;
 			sChatPanel = sChatBox.getChildByName("sChatPanel") as Panel;
+			sChatSendBtn = sChatBox.getChildByName("sChatSendBtn") as Button;
 			
 			sChatBtn.on(Event.CLICK,this,sChatClick);
 			rChatBtn.on(Event.CLICK,this,rChatClick);
 			userBtn.on(Event.CLICK,this,userClick);
+			sChatSendBtn.on(Event.CLICK,this,sChatInputEnter);
+			rChatSendBtn.on(Event.CLICK,this,rChatInputEnter);
 			
 			freshState();
 			userList.array = [];

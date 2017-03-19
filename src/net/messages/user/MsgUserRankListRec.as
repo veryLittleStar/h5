@@ -25,6 +25,7 @@ package net.messages.user
 			for(i = 0; i < 15; i++)
 			{
 				var obj:Object = {};
+				obj["dwUserId"]			= BytesUtil.read(bytes, BytesType.DWORD);			//用户d
 				obj["wFaceID"]				= BytesUtil.read(bytes, BytesType.WORD);			//头像id
 				obj["cbGender"]			= BytesUtil.read(bytes, BytesType.BYTE);			//性别
 				obj["szNickName"]			= BytesUtil.read(bytes, BytesType.TCHAR,32);		//用户昵称

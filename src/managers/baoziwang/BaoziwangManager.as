@@ -262,6 +262,15 @@ package managers.baoziwang
 			{
 				bankerWinScore = -obj.lBankerScore;
 			}
+			
+			var recordInfo:Object = {};
+			recordInfo.winScore = userWinScore;
+			recordInfo.small = myJetion2;
+			recordInfo.big = myJetion0;
+			recordInfo.isBanker = DataProxy.bankerChairID == DataProxy.chairID?true:false;
+			recordInfo.result = curResult;
+			_ui.rankPanel.updatePersonalRecord(recordInfo);
+			_ui.rankPanel.rankReqThisRound = false;
 		}
 		
 		private function maiDingLiShou(endTime:int,diceArr:Array):void
@@ -342,14 +351,28 @@ package managers.baoziwang
 				userWinLabel.font = "benz_xz_me";
 				userWinLabel.align = "center";
 				userWinLabel.width = 170;
-				userWinLabel.text = userWinScore.toString();
+				userWinLabel.text = Math.abs(userWinScore).toString();
 				userWinLabel.x = (Laya.stage.width - userWinLabel.width)/2;
 				userWinLabel.y = Laya.stage.height/2 + 100;
 				Laya.stage.addChild(userWinLabel);
 				var userPoint:Point = new Point();
-				userPoint.x = 40 - 85;
-				userPoint.y = 25;
+				userPoint.x = 20;
+				userPoint.y = -35;
 				userPoint = _ui.mainPanelBottom.localToGlobal(userPoint);
+				
+				var userWinImage:Image = new Image();
+				if(userWinScore > 0)
+				{
+					userWinImage.skin = "ui/baseUI/win.png";
+				}
+				else
+				{
+					userWinImage.skin = "ui/baseUI/lose.png";
+				}
+				userWinLabel.addChild(userWinImage);
+				userWinImage.x = (userWinLabel.width -userWinLabel.textField.textWidth)/2-userWinImage.width;
+				userWinImage.y = (userWinLabel.height - userWinImage.height)/2;
+				
 				Tween.to(userWinLabel,{x:userPoint.x,y:userPoint.y},300,null,Handler.create(this,winLabelDelay,[userWinLabel]),0,true);
 				
 			}
@@ -359,20 +382,33 @@ package managers.baoziwang
 				bankerWinLabel.font = "benz_xz_total";
 				bankerWinLabel.align = "center";
 				bankerWinLabel.width = 170;
-				bankerWinLabel.text = bankerWinScore.toString();
+				bankerWinLabel.text = Math.abs(bankerWinScore).toString();
 				bankerWinLabel.x = (Laya.stage.width - bankerWinLabel.width)/2;
 				bankerWinLabel.y = Laya.stage.height/2 - 100;
 				Laya.stage.addChild(bankerWinLabel);
 				var bankerPoint:Point = new Point();
-				bankerPoint.x = 410 - 85;
+				bankerPoint.x = _ui.mainPanelTop.width/2 - bankerWinLabel.width/2 + 15;
 				bankerPoint.y = 30;
 				bankerPoint =_ui.mainPanelTop.localToGlobal(bankerPoint);
+				
+				var bankerWinImage:Image = new Image();
+				if(bankerWinScore > 0)
+				{
+					bankerWinImage.skin = "ui/baseUI/win.png";
+				}
+				else
+				{
+					bankerWinImage.skin = "ui/baseUI/lose.png";
+				}
+				bankerWinLabel.addChild(bankerWinImage);
+				bankerWinImage.x = (bankerWinLabel.width - bankerWinLabel.textField.textWidth)/2-bankerWinImage.width;
+				bankerWinImage.y = (bankerWinLabel.height - bankerWinImage.height)/2;
 				Tween.to(bankerWinLabel,{x:bankerPoint.x,y:bankerPoint.y},300,null,Handler.create(this,winLabelDelay,[bankerWinLabel]),0,true);
 			}
 			
 			function winLabelDelay(label:BmpFontLabel):void
 			{
-				Laya.timer.once(1000,this,winLabelRemove,[label],false);
+				Laya.timer.once(2500,this,winLabelRemove,[label],false);
 			}
 			
 			function winLabelRemove(label:BmpFontLabel):void
@@ -467,11 +503,13 @@ package managers.baoziwang
 				{
 					_ui.myJetion0.visible = true;
 					_ui.myJetion0.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+					myJetion0 = obj.arlUserInAllScore[0];
 				}
 				if(obj.arlUserInAllScore[2])
 				{
 					_ui.myJetion2.visible = true;
 					_ui.myJetion2.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+					myJetion2 = obj.arlUserInAllScore[2];
 				}
 				
 				if(obj.arlAreaInAllScore[0])
