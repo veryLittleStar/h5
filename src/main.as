@@ -16,6 +16,7 @@
 	import net.messages.CMD_GameServer;
 	
 	import system.Loading;
+	import system.Offline;
 	import system.UILayer;
 	
 	public class main {
@@ -35,8 +36,28 @@
 			
 			UILayer.init();
 			ManagersMap.init();
-			ManagersMap.baoziwangManager.openMe();
+			Loading.getInstance().openMe();
+			var resArr:Array = [
+				{url: "res/atlas/animation/ybao_human.json", type: Loader.ATLAS},
+				{url: "res/atlas/animation/ybao_human_big.json", type: Loader.ATLAS},
+				{url: "res/atlas/ui/baseUI.json", type: Loader.ATLAS},
+			];
+			Laya.loader.load(resArr, Handler.create(this, baseUILoaded));
 			Laya.stage.on(Event.KEY_UP,this,key_up);
+		}
+		
+		private function baseUILoaded():void
+		{
+			Loading.getInstance().closeMe();
+			if(Browser.window.location.search == "")
+			{
+				ManagersMap.serverLoginManager.openMe();
+			}
+			else
+			{				
+				ManagersMap.baoziwangManager.openMe();
+				ManagersMap.serverLoginManager.connectLoginServer();
+			}
 		}
 		
 		private function key_up(event:Event):void
@@ -44,6 +65,7 @@
 			switch(event.keyCode)
 			{
 				case Keyboard.A:
+					
 					break;
 			}
 		}

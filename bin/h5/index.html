@@ -2,6 +2,21 @@
 <head>
 	<meta charset='utf-8'/>
 	<title>豹子王</title>
+	<style type="text/css">
+	.container{
+            background-color:white;
+            width:500px;
+            height:500px;
+            margin:0 auto;
+            margin-top:150px;
+        }
+	.wrapper{
+			width:300px;
+			height:400px;
+            margin:0 auto;
+			margin-top:50px;
+        }
+	</style>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name='apple-mobile-web-app-capable' content='yes' />
@@ -12,7 +27,8 @@
 	<meta http-equiv='expires' content='0' />
 	<meta name='laya' logoimg='logo.png' logobkcolor='#ffffff' screenorientation='landscape' cacheid='fffffffff' />
 </head>
-<body style='margin:0;overflow:none;overflow-x:hidden;overflow-y:hidden;background-color: #000;'>
+<body style='margin:0;overflow:none;overflow-x:hidden;overflow-y:hidden;background-color: #ffffff;'>
+<div id="baseDiv"></div>
 <script type='text/javascript'>
 	var initConfig = {};
 	initConfig.loginHost = "114.55.251.6";
@@ -20,6 +36,23 @@
 	//initConfig.loginHost = "165d97w109.iask.in";
 	//initConfig.loginPort = "20644";
 </script>
-<script src='main.max.js' loader='laya'></script>
+<script type='text/javascript'>
+
+	var agent = navigator.userAgent.toLowerCase();
+	var isIE = /(msie\s|trident.*rv:)([\w.]+)/.test(agent);
+	if(isIE && document.documentMode < 10)
+	{
+		var tempDiv = document.createElement('div');
+		tempDiv.innerHTML = '<div class="container">系统检测到你的浏览器版本过低，请升级到IE10以上，或者使用360极速浏览器，火狐浏览器，搜狗浏览器，遨游浏览器，谷歌浏览器等打开链接：<br><a href="'+window.location+'">'+window.location+'</a><br>或者使用手机扫描以下二维码进入游戏：<div class="wrapper"><img src="http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url='+window.location+'"/></div></div>';
+		document.getElementById("baseDiv").appendChild(tempDiv); 
+	}
+	else
+	{
+		var scriptObj = document.createElement("script");
+		scriptObj.src = 'main.max.js'; 
+		scriptObj.loader='laya';
+		document.getElementById("baseDiv").appendChild(scriptObj);
+	}
+</script>
 </body>
 </html>

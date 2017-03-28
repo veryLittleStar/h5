@@ -130,6 +130,7 @@ package managers.gameLogin
 			//obj.lGrade
 			//obj.lInsure
 			//obj.lSelfOption
+			//obj.lTodayRecord
 			//obj.dwWinCount
 			//obj.dwLostCount
 			//obj.dwDrawCount
@@ -148,7 +149,18 @@ package managers.gameLogin
 				DataProxy.tableID 	= obj.wTableID;
 				DataProxy.chairID	= obj.wChairID;
 				DataProxy.selfOption = obj.lSelfOption;
+				DataProxy.todayRecord = obj.lTodayRecord;
 				DataProxy.myUserInfo = obj;
+				if(DataProxy.tableID != 65535)
+				{
+					var body:Object = {};
+					obj.body = body;
+					body.cbAllowLookon = 0;
+					body.dwFrameVersion = 0;
+					body.dwClientVersion = 0;
+					NetProxy.getInstance().sendToServer(GameLoginDefine.MSG_GAME_OPTION_REQ,body);
+					Loading.getInstance().closeMe();
+				}
 			}
 			DataProxy.userInfoDic[obj.dwUserID] = obj;
 			ManagersMap.baoziwangManager.updateUserInfo(obj.dwUserID);

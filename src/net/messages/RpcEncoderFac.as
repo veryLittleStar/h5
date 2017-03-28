@@ -17,7 +17,9 @@ package net.messages
 	import net.messages.gameLogin.MsgRoomLoginReq;
 	import net.messages.serverLogin.MsgHeartBeatReq;
 	import net.messages.serverLogin.MsgLoginReq;
+	import net.messages.serverLogin.MsgLoginThirdPartMirRq;
 	import net.messages.serverLogin.MsgLoginThirdPartReq;
+	import net.messages.serverLogin.MsgRegisterAccountReq;
 	import net.messages.user.MsgUserRankListReq;
 	import net.messages.user.MsgUserSitDownReq;
 	import net.messages.user.MsgUserStandUpReq;
@@ -90,7 +92,9 @@ package net.messages
 			_encodeMessageDict["0_1"] =  MsgHeartBeatReq;
 			
 			_encodeMessageDict["1_2"] =  MsgLoginReq;
+			_encodeMessageDict["1_3"] =  MsgRegisterAccountReq;
 			_encodeMessageDict["1_4"] =  MsgLoginThirdPartReq;
+			_encodeMessageDict["1_5"] =  MsgLoginThirdPartMirRq;
 			_encodeMessageDict["21_1"] =  MsgRoomLoginReq;
 			
 			//

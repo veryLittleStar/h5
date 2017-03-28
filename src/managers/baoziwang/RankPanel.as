@@ -3,12 +3,14 @@ package managers.baoziwang
 	import laya.events.Event;
 	import laya.ui.Box;
 	import laya.ui.Image;
+	import laya.ui.Label;
 	import laya.ui.List;
 	import laya.ui.Tab;
 	import laya.utils.Browser;
 	import laya.utils.Handler;
 	import laya.utils.Tween;
 	
+	import managers.DataProxy;
 	import managers.gameLogin.GameLoginDefine;
 	
 	import net.NetProxy;
@@ -27,6 +29,7 @@ package managers.baoziwang
 		
 		private var personalBox:Box;
 		private var personalList:List;
+		private var personalWinTodayLabel:Label;
 		
 		private var todayBox:Box;
 		private var todayTab:Tab;
@@ -61,6 +64,7 @@ package managers.baoziwang
 			
 			personalBox = getChildByName("personalBox") as Box;
 			personalList = personalBox.getChildByName("personalList") as List;
+			personalWinTodayLabel = personalBox.getChildByName("personalWinTodayLabel") as Label;
 			
 			todayBox = getChildByName("todayBox") as Box;
 			todayTab = todayBox.getChildByName("tabBtn") as Tab;
@@ -273,6 +277,14 @@ package managers.baoziwang
 			obj.time = date.getHours() + ":" + minStr + ":" + secStr;
 			personalList.addItem(obj);
 			personalList.scrollTo(personalList.array.length);
+			
+			DataProxy.todayRecord += obj.winScore;
+			updateTodayRecord();
+		}
+		
+		public function updateTodayRecord():void
+		{
+			personalWinTodayLabel.text = "今日输赢：" + DataProxy.todayRecord;
 		}
 		
 		private function todayTabSwitch():void

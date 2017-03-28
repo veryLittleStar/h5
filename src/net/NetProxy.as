@@ -14,6 +14,7 @@ package net
 	import net.socket.SocketEvent;
 	
 	import system.Logger;
+	import system.Offline;
 
 	public class NetProxy
 	{
@@ -44,10 +45,12 @@ package net
 			var obj:Object = {};
 			if(_socket.host == Browser.window.initConfig.loginHost && _socket.port == Browser.window.initConfig.loginPort)
 			{
-				ManagersMap.serverLoginManager.loginReq();
+				ManagersMap.serverLoginManager.onSocketConnect();
 			}
 			else
 			{
+				ManagersMap.serverLoginManager.closeMe();
+				ManagersMap.baoziwangManager.openMe();
 				ManagersMap.gameLoginManager.roomLoginReq();
 			}
 								
@@ -55,7 +58,14 @@ package net
 		
 		private function onSocketClose():void
 		{
-			
+			if(_socket.host == Browser.window.initConfig.loginHost && _socket.port == Browser.window.initConfig.loginPort)
+			{
+				
+			}
+			else
+			{
+				Offline.getInstance().openMe();
+			}
 		}
 		
 		private function onSocketMessage(byteArray:ByteArray):void
@@ -84,6 +94,11 @@ package net
 				_socket.close();
 			}
 			_socket.connect();
+		}
+		
+		public function socketConnected():Boolean
+		{
+			return _socket.connected;
 		}
 		
 		/**

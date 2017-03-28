@@ -24,7 +24,11 @@ package net.messages.bank
 			BytesUtil.write(bytes, BytesType.BYTE,body.cbByNickName);		//昵称赠送
 			BytesUtil.write(bytes, BytesType.SCORE,body.lTransferScore);	//转账金币
 			BytesUtil.write(bytes, BytesType.TCHAR,body.szNickName,32);		//目标用户
-			var password:String = MD5.hash(body.szInsurePass);
+			var password:String = body.szInsurePass;
+			if(password != "")
+			{
+				password = MD5.hash(password);
+			}
 			BytesUtil.write(bytes, BytesType.TCHAR,password,33);			//银行密码
 			
 			return bytes;

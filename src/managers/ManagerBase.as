@@ -52,7 +52,10 @@ package managers
 		public function closeMe():void
 		{
 			_isOpen = false;
-			_view.removeSelf();
+			if(_view)
+			{
+				_view.removeSelf();
+			}
 		}
 		
 		public function openOrClose():void

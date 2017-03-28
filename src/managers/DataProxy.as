@@ -41,6 +41,10 @@ package managers
 		
 		public static var standUPing:Boolean = false;
 		
+		public static var enableSysBanker:Boolean = false;
+		
+		public static var todayRecord:int = 0;
+		
 		
 		public function DataProxy()
 		{

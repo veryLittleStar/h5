@@ -152,10 +152,20 @@ package managers.baoziwang
 		{
 			if(DataProxy.bankerChairID == 65535)
 			{
-				bankerNameLabel.text = "老炮王";
-				bankerScoreLabel.text = "100亿";
-				bankerImage.visible = true;
-				bankerPortrait.visible = false;
+				if(DataProxy.enableSysBanker)
+				{
+					bankerNameLabel.text = "老炮王";
+					bankerScoreLabel.text = "100亿";
+					bankerImage.visible = true;
+					bankerPortrait.visible = false;
+				}
+				else
+				{
+					bankerNameLabel.text = "无人坐庄";
+					bankerScoreLabel.text = "";
+					bankerImage.visible = true;
+					bankerPortrait.visible = false;
+				}
 			}
 			else
 			{
