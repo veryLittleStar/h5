@@ -492,25 +492,25 @@ package managers.baoziwang
 				if(obj.arlUserInAllScore[0])
 				{
 					_ui.myJetion0.visible = true;
-					_ui.myJetion0.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+					_ui.myJetion0.text =obj.arlUserInAllScore[0] + "";
 					myJetion0 = obj.arlUserInAllScore[0];
 				}
 				if(obj.arlUserInAllScore[2])
 				{
 					_ui.myJetion2.visible = true;
-					_ui.myJetion2.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+					_ui.myJetion2.text = obj.arlUserInAllScore[2] + "";
 					myJetion2 = obj.arlUserInAllScore[2];
 				}
 				
 				if(obj.arlAreaInAllScore[0])
 				{
 					_ui.allJetion0.visible = true;
-					_ui.allJetion0.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+					_ui.allJetion0.text = obj.arlUserInAllScore[0] + "";
 				}
 				if(obj.arlAreaInAllScore[2])
 				{
 					_ui.allJetion2.visible = true;
-					_ui.allJetion2.text = BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+					_ui.allJetion2.text = obj.arlUserInAllScore[2] + "";
 				}
 				
 			}
@@ -667,7 +667,7 @@ package managers.baoziwang
 					_ui.mainPanelBottom.updateMBtn(obj.cbJettonArea);
 				}
 				this["myJetion"+obj.cbJettonArea] += obj.lJettonScore;
-				_ui["myJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["myJetion"+obj.cbJettonArea]);
+				_ui["myJetion"+obj.cbJettonArea].text = this["myJetion"+obj.cbJettonArea] + "";
 				_ui["myJetion"+obj.cbJettonArea].visible = true;
 				DataProxy.userScore -= obj.lJettonScore;
 				DataProxy.myUserInfo.lScore -= obj.lJettonScore;
@@ -681,7 +681,7 @@ package managers.baoziwang
 				_ui.mainPanelBottom.autoBeting = false;
 			}
 			this["allJetion"+obj.cbJettonArea] += obj.lJettonScore;
-			_ui["allJetion"+obj.cbJettonArea].text = BaoziwangDefine.getScoreStr1(this["allJetion"+obj.cbJettonArea]);
+			_ui["allJetion"+obj.cbJettonArea].text = this["allJetion"+obj.cbJettonArea] + "";
 			_ui["allJetion"+obj.cbJettonArea].visible = true;
 			
 			SoundManager.playSound("music/ttz_chip_player.mp3");

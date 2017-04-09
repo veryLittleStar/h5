@@ -15,9 +15,12 @@ package managers.baoziwang
 		override public function set dataSource(value:*):void
 		{
 			super.dataSource = value;
+			if (!value)return;
 			var nameLabel:Label = getChildByName("nameLabel") as Label;
 			var scoreLabel:Label = getChildByName("scoreLabel") as Label;
-			var userInfo:Object = DataProxy.getUserInfoByChairID(value);
+			var indexLabel:Label = getChildByName("indexLabel") as Label;
+			indexLabel.text = (value.index+1) + "";
+			var userInfo:Object = DataProxy.getUserInfoByChairID(value.chairID);
 			if(userInfo)
 			{
 				nameLabel.text = userInfo.szNickName;
@@ -25,10 +28,5 @@ package managers.baoziwang
 			}
 		}
 		
-		public function updateIndex(index:int):void
-		{
-			var indexLabel:Label = getChildByName("indexLabel") as Label;
-			indexLabel.text = (index+1) + "";
-		}
 	}
 }

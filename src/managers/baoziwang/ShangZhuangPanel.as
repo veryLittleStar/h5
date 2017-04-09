@@ -80,8 +80,7 @@ package managers.baoziwang
 		
 		public function addApplyBanker(chairID:int):void
 		{
-			playerList.addItem(chairID);
-			updateBankerListIndex();
+			playerList.addItem({chairID:chairID,index:playerList.length});
 		}
 		
 		public function removeApplyBanker(szName:String):void
@@ -89,7 +88,7 @@ package managers.baoziwang
 			var i:int;
 			for(i = 0; i < playerList.array.length; i++)
 			{
-				var userInfo:Object = DataProxy.getUserInfoByChairID(playerList.array[i]);
+				var userInfo:Object = DataProxy.getUserInfoByChairID(playerList.array[i].chairID);
 				if(userInfo.szNickName == szName)
 				{
 					playerList.deleteItem(i);
@@ -99,13 +98,19 @@ package managers.baoziwang
 			updateBankerListIndex();
 		}
 		
+		public function removeApplyBankerAll():void
+		{
+			playerList.array = [];
+		}
+		
 		private function updateBankerListIndex():void
 		{
 			var i:int;
 			for(i = 0; i < playerList.array.length; i++)
 			{
-				var applyCell:ApplyCell = playerList.getCell(i) as ApplyCell;
-				applyCell.updateIndex(i);
+				var item:Object = playerList.getItem(i);
+				item.index = i;
+				playerList.changeItem(i,item);
 			}
 		}
 		

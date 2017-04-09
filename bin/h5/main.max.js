@@ -2908,6 +2908,7 @@ var Laya=window.Laya=(function(window,document){
 	var NetProxy=(function(){
 		function NetProxy(){
 			this._socket=null;
+			this._socketConnected=false;
 			this._socket=new BytesSocket();
 			this._socket.openHandler=Handler.create(this,this.onSocketOpen,null,false);
 			this._socket.closeHandler=Handler.create(this,this.onSocketClose,null,false);
@@ -2926,14 +2927,28 @@ var Laya=window.Laya=(function(window,document){
 				ManagersMap.baoziwangManager.openMe();
 				ManagersMap.gameLoginManager.roomLoginReq();
 			}
+			this._socketConnected=true;
 		}
 
 		__proto.onSocketClose=function(){
+			console.log(this._socket.connected,"socket");
 			if(this._socket.host==Browser.window.initConfig.loginHost && this._socket.port==Browser.window.initConfig.loginPort){
+				if(this._socketConnected){
+					Offline.getInstance().openMe(0);
+				}
+				else{
+					Offline.getInstance().openMe(1);
+				}
 			}
 			else{
-				Offline.getInstance().openMe();
+				if(this._socketConnected){
+					Offline.getInstance().openMe(0);
+				}
+				else{
+					Offline.getInstance().openMe(1);
+				}
 			}
+			this._socketConnected=false;
 		}
 
 		__proto.onSocketMessage=function(byteArray){
@@ -16064,21 +16079,21 @@ var Laya=window.Laya=(function(window,document){
 				this._ui.allJetion2.visible=false;
 				if(obj.arlUserInAllScore[0]){
 					this._ui.myJetion0.visible=true;
-					this._ui.myJetion0.text=BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+					this._ui.myJetion0.text=obj.arlUserInAllScore[0]+"";
 					this.myJetion0=obj.arlUserInAllScore[0];
 				}
 				if(obj.arlUserInAllScore[2]){
 					this._ui.myJetion2.visible=true;
-					this._ui.myJetion2.text=BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+					this._ui.myJetion2.text=obj.arlUserInAllScore[2]+"";
 					this.myJetion2=obj.arlUserInAllScore[2];
 				}
 				if(obj.arlAreaInAllScore[0]){
 					this._ui.allJetion0.visible=true;
-					this._ui.allJetion0.text=BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[0]);
+					this._ui.allJetion0.text=obj.arlUserInAllScore[0]+"";
 				}
 				if(obj.arlAreaInAllScore[2]){
 					this._ui.allJetion2.visible=true;
-					this._ui.allJetion2.text=BaoziwangDefine.getScoreStr1(obj.arlUserInAllScore[2]);
+					this._ui.allJetion2.text=obj.arlUserInAllScore[2]+"";
 				}
 			}
 		}
@@ -16195,7 +16210,7 @@ var Laya=window.Laya=(function(window,document){
 					this._ui.mainPanelBottom.updateMBtn(obj.cbJettonArea);
 				}
 				this["myJetion"+obj.cbJettonArea]+=obj.lJettonScore;
-				this._ui["myJetion"+obj.cbJettonArea].text=BaoziwangDefine.getScoreStr1(this["myJetion"+obj.cbJettonArea]);
+				this._ui["myJetion"+obj.cbJettonArea].text=this["myJetion"+obj.cbJettonArea]+"";
 				this._ui["myJetion"+obj.cbJettonArea].visible=true;
 				DataProxy.userScore-=obj.lJettonScore;
 				DataProxy.myUserInfo.lScore-=obj.lJettonScore;
@@ -16208,7 +16223,7 @@ var Laya=window.Laya=(function(window,document){
 				this._ui.mainPanelBottom.autoBeting=false;
 			}
 			this["allJetion"+obj.cbJettonArea]+=obj.lJettonScore;
-			this._ui["allJetion"+obj.cbJettonArea].text=BaoziwangDefine.getScoreStr1(this["allJetion"+obj.cbJettonArea]);
+			this._ui["allJetion"+obj.cbJettonArea].text=this["allJetion"+obj.cbJettonArea]+"";
 			this._ui["allJetion"+obj.cbJettonArea].visible=true;
 			SoundManager.playSound("music/ttz_chip_player.mp3");
 		}
@@ -16378,6 +16393,7 @@ var Laya=window.Laya=(function(window,document){
 					if(DataProxy.standUPing){
 						DataProxy.standUPing=false;
 						ManagersMap.baoziwangManager.ui.bankPanel.openMe();
+						ManagersMap.baoziwangManager.ui.shangZhuangPanel.removeApplyBankerAll();
 					}
 				}
 				else{
@@ -32872,16 +32888,14 @@ var Laya=window.Laya=(function(window,document){
 
 		__class(ApplyCell,'managers.baoziwang.ApplyCell',_super);
 		var __proto=ApplyCell.prototype;
-		__proto.updateIndex=function(index){
-			var indexLabel=this.getChildByName("indexLabel");
-			indexLabel.text=(index+1)+"";
-		}
-
 		__getset(0,__proto,'dataSource',_super.prototype._$get_dataSource,function(value){
 			_super.prototype._$set_dataSource.call(this,value);
+			if (!value)return;
 			var nameLabel=this.getChildByName("nameLabel");
 			var scoreLabel=this.getChildByName("scoreLabel");
-			var userInfo=DataProxy.getUserInfoByChairID(value);
+			var indexLabel=this.getChildByName("indexLabel");
+			indexLabel.text=(value.index+1)+"";
+			var userInfo=DataProxy.getUserInfoByChairID(value.chairID);
 			if(userInfo){
 				nameLabel.text=userInfo.szNickName;
 				scoreLabel.text=BaoziwangDefine.getScoreStr(userInfo.lScore);
@@ -35021,14 +35035,13 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.addApplyBanker=function(chairID){
-			this.playerList.addItem(chairID);
-			this.updateBankerListIndex();
+			this.playerList.addItem({chairID:chairID,index:this.playerList.length});
 		}
 
 		__proto.removeApplyBanker=function(szName){
 			var i=0;
 			for(i=0;i < this.playerList.array.length;i++){
-				var userInfo=DataProxy.getUserInfoByChairID(this.playerList.array[i]);
+				var userInfo=DataProxy.getUserInfoByChairID(this.playerList.array[i].chairID);
 				if(userInfo.szNickName==szName){
 					this.playerList.deleteItem(i);
 					break ;
@@ -35037,11 +35050,16 @@ var Laya=window.Laya=(function(window,document){
 			this.updateBankerListIndex();
 		}
 
+		__proto.removeApplyBankerAll=function(){
+			this.playerList.array=[];
+		}
+
 		__proto.updateBankerListIndex=function(){
 			var i=0;
 			for(i=0;i < this.playerList.array.length;i++){
-				var applyCell=this.playerList.getCell(i);
-				applyCell.updateIndex(i);
+				var item=this.playerList.getItem(i);
+				item.index=i;
+				this.playerList.changeItem(i,item);
 			}
 		}
 
@@ -39040,8 +39058,10 @@ var Laya=window.Laya=(function(window,document){
 
 	//class ui.offlineUI extends laya.ui.View
 	var offlineUI=(function(_super){
-		function offlineUI(){offlineUI.__super.call(this);;
-		};
+		function offlineUI(){
+			this.labelContent=null;
+			offlineUI.__super.call(this);
+		}
 
 		__class(offlineUI,'ui.offlineUI',_super);
 		var __proto=offlineUI.prototype;
@@ -39051,7 +39071,7 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__static(offlineUI,
-		['uiView',function(){return this.uiView={"type":"View","props":{"width":600,"height":400},"child":[{"type":"Label","props":{"text":"您已断开和服务器的连接，请刷新页面重新登录","fontSize":20,"color":"#f6f1f1","centerY":0,"centerX":0}}]};}
+		['uiView',function(){return this.uiView={"type":"View","props":{"width":600,"height":400},"child":[{"type":"Label","props":{"var":"labelContent","text":"您已断开和服务器的连接，请刷新页面重新登录","fontSize":20,"color":"#f6f1f1","centerY":0,"centerX":0}}]};}
 		]);
 		return offlineUI;
 	})(View)
@@ -39785,10 +39805,16 @@ var Laya=window.Laya=(function(window,document){
 
 		__class(Offline,'system.Offline',_super);
 		var __proto=Offline.prototype;
-		__proto.openMe=function(){
+		__proto.openMe=function(type){
 			this.width=Laya.stage.width;
 			this.height=Laya.stage.height;
 			Laya.stage.addChild(this);
+			if(type==0){
+				this.labelContent.text="您已断开和服务器的连接，请刷新页面重新登录";
+			}
+			else{
+				this.labelContent.text="连接服务器失败，请刷新页面重新登录";
+			}
 		}
 
 		Offline.getInstance=function(){

@@ -29,6 +29,7 @@ package net
 		}
 		//////////////////////////////////////
 		private var _socket:BytesSocket;
+		private var _socketConnected:Boolean = false;
 		
 		//////////////////////////////////////
 		
@@ -53,19 +54,35 @@ package net
 				ManagersMap.baoziwangManager.openMe();
 				ManagersMap.gameLoginManager.roomLoginReq();
 			}
-								
+			_socketConnected = true;				
 		}
 		
 		private function onSocketClose():void
 		{
+			trace(_socket.connected,"socket");
 			if(_socket.host == Browser.window.initConfig.loginHost && _socket.port == Browser.window.initConfig.loginPort)
 			{
-				
+				if(_socketConnected)
+				{
+					Offline.getInstance().openMe(0);
+				}
+				else
+				{
+					Offline.getInstance().openMe(1);
+				}
 			}
 			else
 			{
-				Offline.getInstance().openMe();
+				if(_socketConnected)
+				{
+					Offline.getInstance().openMe(0);
+				}
+				else
+				{
+					Offline.getInstance().openMe(1);
+				}
 			}
+			_socketConnected = false;
 		}
 		
 		private function onSocketMessage(byteArray:ByteArray):void

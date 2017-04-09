@@ -90,6 +90,7 @@ package managers.gameLogin
 					{
 						DataProxy.standUPing = false;
 						ManagersMap.baoziwangManager.ui.bankPanel.openMe();
+						ManagersMap.baoziwangManager.ui.shangZhuangPanel.removeApplyBankerAll();
 					}
 				}
 				else
