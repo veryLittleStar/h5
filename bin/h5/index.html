@@ -37,13 +37,14 @@
 	//initConfig.loginPort = "20644";
 </script>
 <script type='text/javascript'>
-
+	
 	var agent = navigator.userAgent.toLowerCase();
 	var isIE = /(msie\s|trident.*rv:)([\w.]+)/.test(agent);
 	if(isIE && document.documentMode < 10)
 	{
+		var tempUrl = encodeURIComponent(window.location);
 		var tempDiv = document.createElement('div');
-		tempDiv.innerHTML = '<div class="container">系统检测到你的浏览器版本过低，请升级到IE10以上，或者使用360极速浏览器，火狐浏览器，搜狗浏览器，遨游浏览器，谷歌浏览器等打开链接：<br><a href="'+window.location+'">'+window.location+'</a><br>或者使用手机扫描以下二维码进入游戏：<div class="wrapper"><img src="http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url='+window.location+'"/></div></div>';
+		tempDiv.innerHTML = '<div class="container">系统检测到你的浏览器版本过低，请升级到IE10以上，或者使用360极速浏览器，火狐浏览器，搜狗浏览器，遨游浏览器，谷歌浏览器等打开链接：<br><a href="'+window.location+'">'+window.location+'</a><br>或者使用手机扫描以下二维码进入游戏：<div class="wrapper"><img src="http://pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url='+tempUrl+'"/></div></div>';
 		document.getElementById("baseDiv").appendChild(tempDiv); 
 	}
 	else
