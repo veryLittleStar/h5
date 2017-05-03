@@ -1,2 +1,19 @@
-Project configuration:d:\Documents\myLayaaaaqaaaaaqqsaaaaaaaareqaaaaasaaqq/.actionScriptProperties.
+1,0.00,,0,Project command:d:\github\h5/.actionScriptProperties;iflash=false;windowshow=false;chromerun=false;quickcompile=true
+Project configuration:d:\github\h5/.actionScriptProperties.
+1,0.00,,0,output path:d:/github/h5/bin/h5/
+1,0.00,,0,Main Class:d:/github/h5/src/main.as
+1,0.00,,0,output file:main
+1,0.00,,0,compilerSourcePath D:/tools/LayaAir/LayaAirAs3_1.5.5/as/libs/src/
+
+1,0.00,,0,Compile Path:d:/github/h5/src/
+
+1,0.00,,0,Compile Path:D:/tools/LayaAir/LayaAirAs3_1.5.5/as/libs/src/
+
+1,0.00,d:/github/h5/src,0,Collect
+1,0.00,D:/tools/LayaAir/LayaAirAs3_1.5.5/as/libs/src,0,Collect
+1,2.00,,0,read class message
+1,89.73,,0,Disable Flash3D d:/github/h5/src/main.as
+12,89.73,d:/github/h5/bin/h5/main.max.js,1195723,
+11,89.73,d:/github/h5/bin/h5/main.max.html,791,
 ******************************************************************************
+14,89.73,,0,
