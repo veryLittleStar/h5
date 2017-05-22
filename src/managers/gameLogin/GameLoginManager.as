@@ -139,6 +139,8 @@ package managers.gameLogin
 			//obj.dwUserMedal
 			//obj.dwExperience
 			//obj.lLoveLiness
+			//obj.dwGate
+			//obj.dwServer
 			if(obj.dwUserID == DataProxy.userID)
 			{
 				DataProxy.faceID 	= obj.wFaceID;

@@ -64,11 +64,12 @@ package net
 			{
 				if(_socketConnected)
 				{
-					Offline.getInstance().openMe(0);
+//					ManagersMap.systemMessageManager.showSysMessage("连接服务器失败，请重新尝试");
+//					Offline.getInstance().openMe(0);
 				}
 				else
 				{
-					Offline.getInstance().openMe(1);
+					ManagersMap.systemMessageManager.showSysMessage("连接服务器失败，请重新尝试");
 				}
 			}
 			else
@@ -137,8 +138,9 @@ package net
 			var main:int = bytes.readUnsignedShort();
 			var sub:int = bytes.readUnsignedShort();
 			var header:String = main + "_" + sub;
+			var length:int = bytes.length - 4;
 			var body:Object = RpcDecoderFac.getInstance().getDecodeData(header,bytes);
-			trace("接收数据，消息号：",main,sub,"数据长度:",bytes.length-4,{body:body});
+			trace("接收数据，消息号：",main,sub,"数据长度:",length,{body:body});
 			ManagersProxy.getInstance().messageHanlder(header,body);
 		}
 	}

@@ -54,6 +54,11 @@ package net.messages.user
 			vo["dwExperience"]			= BytesUtil.read(bytes, BytesType.DWORD);		//用户经验
 			vo["lLoveLiness"]				= BytesUtil.read(bytes, BytesType.LONG);		//用户魅力
 			
+			vo["dwGate"]				= BytesUtil.read(bytes, BytesType.DWORD);		//
+			vo["dwServer"]				= BytesUtil.read(bytes, BytesType.DWORD);		//
+			
+			
+			
 			return vo;
 		}
 	}

@@ -8,6 +8,7 @@
 	import laya.utils.Handler;
 	import laya.webgl.WebGL;
 	
+	import managers.DataProxy;
 	import managers.ManagersMap;
 	
 	import net.NetDefine;
@@ -41,6 +42,7 @@
 				{url: "res/atlas/animation/ybao_human.json", type: Loader.ATLAS},
 				{url: "res/atlas/animation/ybao_human_big.json", type: Loader.ATLAS},
 				{url: "res/atlas/ui/baseUI.json", type: Loader.ATLAS},
+				{url: "serverList.json",type: Loader.JSON}
 			];
 			Laya.loader.load(resArr, Handler.create(this, baseUILoaded));
 			Laya.stage.on(Event.KEY_UP,this,key_up);
@@ -48,6 +50,7 @@
 		
 		private function baseUILoaded():void
 		{
+			initServerList();
 			Loading.getInstance().closeMe();
 			if(Browser.window.location.search == "")
 			{
@@ -67,6 +70,19 @@
 				case Keyboard.A:
 					
 					break;
+			}
+		}
+		
+		private function initServerList():void
+		{
+			Laya.loader.load("serverList.json",Handler.create(this,serverListLoaded),null,Loader.JSON);
+		}
+		
+		private function serverListLoaded(e:* = null):void
+		{
+			if(e && e is Array)
+			{
+				DataProxy.serverList = e;
 			}
 		}
 		

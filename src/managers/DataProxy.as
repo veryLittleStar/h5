@@ -1,5 +1,8 @@
 package managers
 {
+	import laya.net.Loader;
+	import laya.utils.Handler;
+
 	public class DataProxy
 	{
 		/**玩家id*/
@@ -45,6 +48,7 @@ package managers
 		
 		public static var todayRecord:int = 0;
 		
+		public static var serverList:Array;
 		
 		public function DataProxy()
 		{

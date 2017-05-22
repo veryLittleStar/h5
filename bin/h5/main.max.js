@@ -702,7 +702,8 @@ var Laya=window.Laya=(function(window,document){
 			var resArr=[
 			{url:"res/atlas/animation/ybao_human.json",type:"atlas"},
 			{url:"res/atlas/animation/ybao_human_big.json",type:"atlas"},
-			{url:"res/atlas/ui/baseUI.json",type:"atlas"},];
+			{url:"res/atlas/ui/baseUI.json",type:"atlas"},
+			{url:"serverList.json",type:"json"}];
 			Laya.loader.load(resArr,Handler.create(this,this.baseUILoaded));
 			Laya.stage.on("keyup",this,this.key_up);
 		}
@@ -710,6 +711,7 @@ var Laya=window.Laya=(function(window,document){
 		__class(main,'main');
 		var __proto=main.prototype;
 		__proto.baseUILoaded=function(){
+			this.initServerList();
 			Loading.getInstance().closeMe();
 			if(Browser.window.location.search==""){
 				ManagersMap.serverLoginManager.openMe();
@@ -725,6 +727,16 @@ var Laya=window.Laya=(function(window,document){
 				case 65:
 					break ;
 				}
+		}
+
+		__proto.initServerList=function(){
+			Laya.loader.load("serverList.json",Handler.create(this,this.serverListLoaded),null,"json");
+		}
+
+		__proto.serverListLoaded=function(e){
+			if(e && (e instanceof Array)){
+				DataProxy.serverList=e;
+			}
 		}
 
 		return main;
@@ -1017,6 +1029,7 @@ var Laya=window.Laya=(function(window,document){
 		DataProxy.standUPing=false;
 		DataProxy.enableSysBanker=false;
 		DataProxy.todayRecord=0;
+		DataProxy.serverList=null
 		__static(DataProxy,
 		['US_NULL',function(){return this.US_NULL=0x00;},'US_FREE',function(){return this.US_FREE=0x01;},'US_SIT',function(){return this.US_SIT=0x02;},'US_READY',function(){return this.US_READY=0x03;},'US_LOOKON',function(){return this.US_LOOKON=0x04;},'US_PLAYING',function(){return this.US_PLAYING=0x05;},'US_OFFLINE',function(){return this.US_OFFLINE=0x06;}
 		]);
@@ -2709,6 +2722,8 @@ var Laya=window.Laya=(function(window,document){
 			vo["dwUserMedal"]=BytesUtil.read(bytes,"dWord");
 			vo["dwExperience"]=BytesUtil.read(bytes,"dWord");
 			vo["lLoveLiness"]=BytesUtil.read(bytes,"long");
+			vo["dwGate"]=BytesUtil.read(bytes,"dWord");
+			vo["dwServer"]=BytesUtil.read(bytes,"dWord");
 			return vo;
 		}
 
@@ -2934,10 +2949,9 @@ var Laya=window.Laya=(function(window,document){
 			console.log(this._socket.connected,"socket");
 			if(this._socket.host==Browser.window.initConfig.loginHost && this._socket.port==Browser.window.initConfig.loginPort){
 				if(this._socketConnected){
-					Offline.getInstance().openMe(0);
 				}
 				else{
-					Offline.getInstance().openMe(1);
+					ManagersMap.systemMessageManager.showSysMessage("连接服务器失败，请重新尝试");
 				}
 			}
 			else{
@@ -2994,8 +3008,9 @@ var Laya=window.Laya=(function(window,document){
 			var main=bytes.readUnsignedShort();
 			var sub=bytes.readUnsignedShort();
 			var header=main+"_"+sub;
+			var length=bytes.length-4;
 			var body=RpcDecoderFac.getInstance().getDecodeData(header,bytes);
-			console.log("接收数据，消息号：",main,sub,"数据长度:",bytes.length-4,{body:body});
+			console.log("接收数据，消息号：",main,sub,"数据长度:",length,{body:body});
 			ManagersProxy.getInstance().messageHanlder(header,body);
 		}
 
