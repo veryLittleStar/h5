@@ -197,12 +197,6 @@ package managers.baoziwang
 		
 		public function updateMBtn(allInArea:int):void
 		{
-			if(DataProxy.bankerChairID == 65535)
-			{
-				mdBtn.disabled = true;
-				mxBtn.disabled = true;
-				return;
-			}
 			if(allInArea == -1)
 			{
 				mdBtn.disabled = false;

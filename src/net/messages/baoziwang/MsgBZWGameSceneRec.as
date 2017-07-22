@@ -27,10 +27,9 @@ package net.messages.baoziwang
 				vo["lUserMaxScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//玩家金币
 				
 				//庄家信息
-				vo["wBankerChairID"]		= BytesUtil.read(bytes, BytesType.WORD);			//当前庄家chairID
+				vo["SBanker"]				= MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);	//庄家数据
 				vo["cbBankerTime"]		= BytesUtil.read(bytes, BytesType.WORD);			//庄家局数
 				vo["lBankerWinScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家成绩
-				vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家分数
 				vo["bEnableSysBanker"]	= BytesUtil.read(bytes, BytesType.BOOL);			//系统做庄
 				
 				//控制信息
@@ -48,6 +47,12 @@ package net.messages.baoziwang
 					arr.push(BytesUtil.read(bytes, BytesType.LONGLONG));
 				}
 				vo["arlAreaInAllScore"]	= arr;													//每个区域的总分
+				
+				for(i = 0; i < 3; i++)
+				{
+					arr.push(BytesUtil.read(bytes, BytesType.LONGLONG));
+				}
+				vo["arMirlAreaInAllScore"]	= arr;													//传奇区域的总分
 				
 				//个人下注
 				arr = [];
@@ -75,10 +80,9 @@ package net.messages.baoziwang
 				vo["arcbDice"]	= arr;
 				
 				//庄家信息
-				vo["wBankerChairID"]		= BytesUtil.read(bytes, BytesType.WORD);		//当前庄家chairID
+				vo["SBanker"]				= MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);	//庄家数据
 				vo["cbBankerTime"]		= BytesUtil.read(bytes, BytesType.WORD);			//庄家局数
 				vo["lBankerWinScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家赢分
-				vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);		//庄家分数
 				vo["bEnableSysBanker"]	= BytesUtil.read(bytes, BytesType.BOOL);			//系统做庄
 				
 				//结束信息

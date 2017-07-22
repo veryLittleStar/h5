@@ -7,6 +7,7 @@ package net.messages
 	import net.messages.bank.MsgBankInsureFailureRec;
 	import net.messages.bank.MsgBankInsureSuccessRec;
 	import net.messages.bank.MsgBankPwdChangeRec;
+	import net.messages.baoziwang.MsgBZWApplyBankerNewRec;
 	import net.messages.baoziwang.MsgBZWApplyBankerRec;
 	import net.messages.baoziwang.MsgBZWCancelBankerRec;
 	import net.messages.baoziwang.MsgBZWChangeBankerRec;
@@ -15,6 +16,7 @@ package net.messages
 	import net.messages.baoziwang.MsgBZWGameRecordRec;
 	import net.messages.baoziwang.MsgBZWGameSceneRec;
 	import net.messages.baoziwang.MsgBZWGameStartRec;
+	import net.messages.baoziwang.MsgBZWMirPlaceJetionRec;
 	import net.messages.baoziwang.MsgBZWPlaceJetionFailRec;
 	import net.messages.baoziwang.MsgBZWPlaceJetionRec;
 	import net.messages.baoziwang.MsgBZWSelfOptionChangeRec;
@@ -129,6 +131,8 @@ package net.messages
 			_decodeMessageDict["200_104"] 	= MsgBZWChangeBankerRec;
 			_decodeMessageDict["200_107"] 	= MsgBZWPlaceJetionFailRec;
 			_decodeMessageDict["200_108"] 	= MsgBZWCancelBankerRec;
+			_decodeMessageDict["200_110"] 	= MsgBZWMirPlaceJetionRec;
+			_decodeMessageDict["200_111"] 	= MsgBZWApplyBankerNewRec;
 			_decodeMessageDict["100_101"] 	= MsgBZWGameSceneRec;
 			_decodeMessageDict["200_6"] 	= MsgBZWSelfOptionChangeRec;
 			

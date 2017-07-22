@@ -864,9 +864,11 @@ var Laya=window.Laya=(function(window,document){
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REQ="200_1";
 		BaoziwangDefine.MSG_BZW_ALL_IN_JETION_REQ="200_5";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_REC="200_101";
+		BaoziwangDefine.MSG_BZW_MIR_PLACE_JETION_REC="200_110";
 		BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC="200_107";
 		BaoziwangDefine.MSG_BZW_APPLY_BANKER_REQ="200_2";
 		BaoziwangDefine.MSG_BZW_APPLY_BANKER_REC="200_103";
+		BaoziwangDefine.MSG_BZW_APPLY_BANKER_NEW_REC="200_111";
 		BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REQ="200_3";
 		BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REC="200_108";
 		BaoziwangDefine.MSG_BZW_CHANGE_BANKER_REC="200_104";
@@ -1023,8 +1025,7 @@ var Laya=window.Laya=(function(window,document){
 		DataProxy.selfOption=0;
 		DataProxy.userInfoDic={};
 		DataProxy.myUserInfo={};
-		DataProxy.bankerChairID=65535;
-		DataProxy.bankerSocre=-1;
+		DataProxy.SBanker=null
 		DataProxy.myBankerState=0;
 		DataProxy.standUPing=false;
 		DataProxy.enableSysBanker=false;
@@ -1159,11 +1160,17 @@ var Laya=window.Laya=(function(window,document){
 				case "200_101":
 					ManagersMap.baoziwangManager.placeJetionRec(body);
 					break ;
+				case "200_110":
+					ManagersMap.baoziwangManager.mirPlaceJetionRec(body);
+					break ;
 				case "200_107":
 					ManagersMap.baoziwangManager.placeJetionFailRec(body);
 					break ;
 				case "200_103":
 					ManagersMap.baoziwangManager.applyBankerRec(body);
+					break ;
+				case "200_111":
+					ManagersMap.baoziwangManager.applyBankerNewRec(body);
 					break ;
 				case "200_108":
 					ManagersMap.baoziwangManager.cancelBankerRec(body);
@@ -1704,6 +1711,42 @@ var Laya=window.Laya=(function(window,document){
 	})()
 
 
+	/**200_111 新的申请庄家更新消息，原来的200_103废弃*/
+	//class net.messages.baoziwang.MsgBZWApplyBankerNewRec
+	var MsgBZWApplyBankerNewRec=(function(){
+		function MsgBZWApplyBankerNewRec(){}
+		__class(MsgBZWApplyBankerNewRec,'net.messages.baoziwang.MsgBZWApplyBankerNewRec');
+		var __proto=MsgBZWApplyBankerNewRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			vo["btCount"]=BytesUtil.read(bytes,'byte');
+			var i=0;
+			var arr=[];
+			for(i=0;i < vo.btCount;i++){
+				var obj=MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
+				arr.push(obj);
+			}
+			vo["arApplyBanker"]=arr;
+			return vo;
+		}
+
+		MsgBZWApplyBankerNewRec.SBankerDecoder=function(bytes){
+			var vo={};
+			vo["chIsMir"]=BytesUtil.read(bytes,'byte');
+			vo["szServer"]=BytesUtil.read(bytes,"tchar",16);
+			vo["wChair"]=BytesUtil.read(bytes,"word");
+			vo["szName"]=BytesUtil.read(bytes,"tchar",32);
+			vo["nGold"]=BytesUtil.read(bytes,"longlong");
+			vo["time"]=BytesUtil.read(bytes,"dWord");
+			return vo;
+		}
+
+		return MsgBZWApplyBankerNewRec;
+	})()
+
+
 	/**200_103 申请庄家返回*/
 	//class net.messages.baoziwang.MsgBZWApplyBankerRec
 	var MsgBZWApplyBankerRec=(function(){
@@ -1750,7 +1793,9 @@ var Laya=window.Laya=(function(window,document){
 		__proto.makeDecodeBytes=function(byteArray){
 			var vo={};
 			var bytes=(byteArray);
-			vo["szCancelUser"]=BytesUtil.read(bytes,"tchar",32);
+			vo["chIsMir"]=BytesUtil.read(bytes,'byte');
+			vo["wChair"]=BytesUtil.read(bytes,"word");
+			vo["szName"]=BytesUtil.read(bytes,"tchar",32);
 			return vo;
 		}
 
@@ -1786,8 +1831,7 @@ var Laya=window.Laya=(function(window,document){
 		__proto.makeDecodeBytes=function(byteArray){
 			var vo={};
 			var bytes=(byteArray);
-			vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
-			vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
+			vo["SBanker"]=MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
 			return vo;
 		}
 
@@ -1910,10 +1954,9 @@ var Laya=window.Laya=(function(window,document){
 			vo["cbTimeLeave"]=BytesUtil.read(bytes,'byte');
 			if(vo["cbGameStatus"]==0){
 				vo["lUserMaxScore"]=BytesUtil.read(bytes,"longlong");
-				vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
+				vo["SBanker"]=MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
 				vo["cbBankerTime"]=BytesUtil.read(bytes,"word");
 				vo["lBankerWinScore"]=BytesUtil.read(bytes,"longlong");
-				vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
 				vo["bEnableSysBanker"]=BytesUtil.read(bytes,'bool');
 				vo["lApplyBankerCondition"]=BytesUtil.read(bytes,"longlong");
 				vo["lAreaLimitScore"]=BytesUtil.read(bytes,"longlong");
@@ -1926,6 +1969,10 @@ var Laya=window.Laya=(function(window,document){
 					arr.push(BytesUtil.read(bytes,"longlong"));
 				}
 				vo["arlAreaInAllScore"]=arr;
+				for(i=0;i < 3;i++){
+					arr.push(BytesUtil.read(bytes,"longlong"));
+				}
+				vo["arMirlAreaInAllScore"]=arr;
 				arr=[];
 				for(i=0;i < 3;i++){
 					arr.push(BytesUtil.read(bytes,"longlong"));
@@ -1939,10 +1986,9 @@ var Laya=window.Laya=(function(window,document){
 					arr.push(BytesUtil.read(bytes,'byte'));
 				}
 				vo["arcbDice"]=arr;
-				vo["wBankerChairID"]=BytesUtil.read(bytes,"word");
+				vo["SBanker"]=MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
 				vo["cbBankerTime"]=BytesUtil.read(bytes,"word");
 				vo["lBankerWinScore"]=BytesUtil.read(bytes,"longlong");
-				vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
 				vo["bEnableSysBanker"]=BytesUtil.read(bytes,'bool');
 				vo["lEndBankerScore"]=BytesUtil.read(bytes,"longlong");
 				vo["lEndUserScore"]=BytesUtil.read(bytes,"longlong");
@@ -1967,8 +2013,7 @@ var Laya=window.Laya=(function(window,document){
 		__proto.makeDecodeBytes=function(byteArray){
 			var vo={};
 			var bytes=(byteArray);
-			vo["wBankerUser"]=BytesUtil.read(bytes,"word");
-			vo["lBankerScore"]=BytesUtil.read(bytes,"longlong");
+			vo["SBanker"]=MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
 			vo["lUserMaxScore"]=BytesUtil.read(bytes,"longlong");
 			vo["cbTimeLeave"]=BytesUtil.read(bytes,'byte');
 			vo["nChipRobotCount"]=BytesUtil.read(bytes,'int');
@@ -1976,6 +2021,29 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		return MsgBZWGameStartRec;
+	})()
+
+
+	/**200_110 从传奇那边过来的下注额更新*/
+	//class net.messages.baoziwang.MsgBZWMirPlaceJetionRec
+	var MsgBZWMirPlaceJetionRec=(function(){
+		function MsgBZWMirPlaceJetionRec(){}
+		__class(MsgBZWMirPlaceJetionRec,'net.messages.baoziwang.MsgBZWMirPlaceJetionRec');
+		var __proto=MsgBZWMirPlaceJetionRec.prototype;
+		Laya.imps(__proto,{"net.messages.IRpcDecoder":true})
+		__proto.makeDecodeBytes=function(byteArray){
+			var vo={};
+			var bytes=(byteArray);
+			var i=0;
+			var arr=[];
+			for(i=0;i < 3;i++){
+				arr.push(BytesUtil.read(bytes,"longlong"));
+			}
+			vo["arMirlAreaInAllScore"]=arr;
+			return vo;
+		}
+
+		return MsgBZWMirPlaceJetionRec;
 	})()
 
 
@@ -2279,6 +2347,8 @@ var Laya=window.Laya=(function(window,document){
 			this._decodeMessageDict["200_104"]=MsgBZWChangeBankerRec;
 			this._decodeMessageDict["200_107"]=MsgBZWPlaceJetionFailRec;
 			this._decodeMessageDict["200_108"]=MsgBZWCancelBankerRec;
+			this._decodeMessageDict["200_110"]=MsgBZWMirPlaceJetionRec;
+			this._decodeMessageDict["200_111"]=MsgBZWApplyBankerNewRec;
 			this._decodeMessageDict["100_101"]=MsgBZWGameSceneRec;
 			this._decodeMessageDict["200_6"]=MsgBZWSelfOptionChangeRec;
 			this._decodeMessageDict["100_200"]=MsgSystemMessageRec;
@@ -15766,6 +15836,8 @@ var Laya=window.Laya=(function(window,document){
 			this.curResult=0;
 			this.allJetion0=0;
 			this.allJetion2=0;
+			this.mirAllJetion0=0;
+			this.mirAllJetion2=0;
 			this.myJetion0=0;
 			this.myJetion2=0;
 			this.preRoundJetionArr=[];
@@ -15773,6 +15845,9 @@ var Laya=window.Laya=(function(window,document){
 			this.gameStatus=0;
 			this.userWinScore=0;
 			this.bankerWinScore=0;
+			this.userJetionScore=0;
+			this.userBankCostScore=0;
+			this.lastIsBanker=false;
 			this.changeBankerInfoDelay=null;
 			this.changeBankerDelay=false;
 			BaoziwangManager.__super.call(this,BaoziwangUI);
@@ -15882,8 +15957,11 @@ var Laya=window.Laya=(function(window,document){
 			this.maxScore=obj.lUserMaxScore;
 			this.allJetion0=0;
 			this.allJetion2=0;
+			this.mirAllJetion0=0;
+			this.mirAllJetion2=0;
 			this.myJetion0=0;
 			this.myJetion2=0;
+			this.userJetionScore=0;
 			SoundManager.playSound("music/xzTip.mp3");
 			if(this.curRoundJetionArr.length){
 				this.preRoundJetionArr.splice(0);
@@ -15892,8 +15970,7 @@ var Laya=window.Laya=(function(window,document){
 				}
 			}
 			this._ui.mainPanelBottom.updateAutoBettingBtn();
-			DataProxy.bankerChairID=obj.wBankerUser;
-			DataProxy.bankerSocre=obj.lBankerScore;
+			DataProxy.SBanker=obj.SBanker;
 			this._ui.mainPanelTop.updateBankerInfo();
 			this._ui.mainPanelBottom.updateMBtn(-1);
 		}
@@ -15929,8 +16006,14 @@ var Laya=window.Laya=(function(window,document){
 			recordInfo.winScore=this.userWinScore;
 			recordInfo.small=this.myJetion2;
 			recordInfo.big=this.myJetion0;
-			recordInfo.isBanker=DataProxy.bankerChairID==DataProxy.chairID?true:false;
+			recordInfo.isBanker=(DataProxy.SBanker && DataProxy.SBanker.chIsMir==0 && DataProxy.SBanker.wChair==DataProxy.chairID)?true:false;
 			recordInfo.result=this.curResult;
+			if(recordInfo.isBanker){
+				console.log(123456,"下庄回钱：",this.userBankCostScore);
+				DataProxy.userScore+=this.userBankCostScore;
+				console.log(123456,"下庄回钱后自己的钱：",DataProxy.userScore);
+			}
+			this.lastIsBanker=recordInfo.isBanker;
 			this._ui.rankPanel.updatePersonalRecord(recordInfo);
 			this._ui.rankPanel.rankReqThisRound=false;
 		}
@@ -15987,6 +16070,18 @@ var Laya=window.Laya=(function(window,document){
 			if(this.changeBankerInfoDelay){
 				this.changeBankerRec(this.changeBankerInfoDelay);
 				this.changeBankerInfoDelay=null;
+			}
+			if(this.userWinScore > 0){
+				DataProxy.userScore+=this.userWinScore+this.userJetionScore;
+				this._ui.myMoneyLabel.text=DataProxy.userScore+"";
+				console.log(123456,"下庄赢钱后自己的钱：",DataProxy.userScore);
+			}
+			else{
+				if(this.lastIsBanker){
+					DataProxy.userScore+=this.userWinScore;
+					this._ui.myMoneyLabel.text=DataProxy.userScore+"";
+					console.log(123456,"下庄输钱后自己的钱：",DataProxy.userScore);
+				}
 			}
 		}
 
@@ -16060,10 +16155,14 @@ var Laya=window.Laya=(function(window,document){
 			DataProxy.enableSysBanker=obj.bEnableSysBanker;
 			this.gameStatus=obj.cbGameStatus;
 			this._ui.shangZhuangPanel.szConditonUpdate(obj.lApplyBankerCondition);
-			DataProxy.bankerChairID=obj.wBankerChairID;
-			DataProxy.bankerSocre=obj.lBankerScore;
-			if(DataProxy.chairID==obj.wBankerChairID){
+			DataProxy.SBanker=obj.SBanker;
+			if(DataProxy.SBanker.chIsMir==0 && DataProxy.chairID==DataProxy.SBanker.wChair){
 				DataProxy.myBankerState=2;
+				if(obj.cbGameStatus==100 || obj.cbGameStatus==101){
+					this.userBankCostScore=DataProxy.SBanker.nGold;
+					DataProxy.userScore-=this.userBankCostScore;
+					this._ui.myMoneyLabel.text=DataProxy.userScore+"";
+				}
 			}
 			this._ui.mainPanelTop.updateBankerBtn();
 			this._ui.shangZhuangPanel.updateMyBankerBtn();
@@ -16102,13 +16201,22 @@ var Laya=window.Laya=(function(window,document){
 					this._ui.myJetion2.text=obj.arlUserInAllScore[2]+"";
 					this.myJetion2=obj.arlUserInAllScore[2];
 				}
-				if(obj.arlAreaInAllScore[0]){
-					this._ui.allJetion0.visible=true;
-					this._ui.allJetion0.text=obj.arlUserInAllScore[0]+"";
+				if(obj.cbGameStatus==100 || obj.cbGameStatus==101){
+					this.userJetionScore=this.myJetion0+this.myJetion2;
+					DataProxy.userScore-=this.userJetionScore;
+					this._ui.myMoneyLabel.text=DataProxy.userScore+"";
 				}
-				if(obj.arlAreaInAllScore[2]){
+				this.allJetion0=obj.arlUserInAllScore[0];
+				this.mirAllJetion0=obj.arMirlAreaInAllScore[0];
+				if((this.allJetion0+this.mirAllJetion0)> 0){
+					this._ui.allJetion0.visible=true;
+					this._ui.allJetion0.text=(this.allJetion0+this.mirAllJetion0)+"";
+				}
+				this.allJetion2=obj.arlUserInAllScore[2];
+				this.mirAllJetion2=obj.arMirlAreaInAllScore[2];
+				if((this.allJetion2+this.mirAllJetion2)> 0){
 					this._ui.allJetion2.visible=true;
-					this._ui.allJetion2.text=obj.arlUserInAllScore[2]+"";
+					this._ui.allJetion2.text=(this.allJetion2+this.mirAllJetion2)+"";
 				}
 			}
 		}
@@ -16229,6 +16337,7 @@ var Laya=window.Laya=(function(window,document){
 				this._ui["myJetion"+obj.cbJettonArea].visible=true;
 				DataProxy.userScore-=obj.lJettonScore;
 				DataProxy.myUserInfo.lScore-=obj.lJettonScore;
+				this.userJetionScore+=obj.lJettonScore;
 				this.updateUserInfo(DataProxy.userID);
 				this.curRoundJetionArr.push(obj);
 				if(this.preRoundJetionArr.length){
@@ -16238,9 +16347,22 @@ var Laya=window.Laya=(function(window,document){
 				this._ui.mainPanelBottom.autoBeting=false;
 			}
 			this["allJetion"+obj.cbJettonArea]+=obj.lJettonScore;
-			this._ui["allJetion"+obj.cbJettonArea].text=this["allJetion"+obj.cbJettonArea]+"";
+			this._ui["allJetion"+obj.cbJettonArea].text=this["allJetion"+obj.cbJettonArea]+this["mirAllJetion"+obj.cbJettonArea]+"";
 			this._ui["allJetion"+obj.cbJettonArea].visible=true;
 			SoundManager.playSound("music/ttz_chip_player.mp3");
+		}
+
+		__proto.mirPlaceJetionRec=function(obj){
+			this.mirAllJetion0=obj.arMirlAreaInAllScore[0];
+			if((this.allJetion0+this.mirAllJetion0)> 0){
+				this._ui.allJetion0.visible=true;
+				this._ui.allJetion0.text=(this.allJetion0+this.mirAllJetion0)+"";
+			}
+			this.mirAllJetion2=obj.arMirlAreaInAllScore[2];
+			if((this.allJetion2+this.mirAllJetion2)> 0){
+				this._ui.allJetion2.visible=true;
+				this._ui.allJetion2.text=(this.allJetion2+this.mirAllJetion2)+"";
+			}
 		}
 
 		__proto.chipFlyEnd=function(chip){
@@ -16275,26 +16397,31 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.applyBankerRec=function(obj){
-			if(DataProxy.chairID==obj.wChairID){
-				DataProxy.myBankerState=1;
-				this._ui.mainPanelTop.updateBankerBtn();
-				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			return;
+		}
+
+		// vo["wChairID"] //申请玩家
+		__proto.applyBankerNewRec=function(obj){
+			var i=0;
+			for(i=0;i < obj.arApplyBanker.length;i++){
+				var SBanker=obj.arApplyBanker[i];
+				SBanker.index=i;
+				if(SBanker.chIsMir==0 && DataProxy.chairID==SBanker.wChair){
+					DataProxy.myBankerState=1;
+					this._ui.mainPanelTop.updateBankerBtn();
+					this._ui.shangZhuangPanel.updateMyBankerBtn();
+				}
 			}
-			this._ui.shangZhuangPanel.addApplyBanker(obj.wChairID);
+			this._ui.shangZhuangPanel.addApplyBanker(obj);
 		}
 
 		__proto.cancelBankerRec=function(obj){
-			if(DataProxy.nickName==obj.szCancelUser){
+			if(obj.chIsMir==0 && obj.wChair==DataProxy.chairID){
 				DataProxy.myBankerState=0;
 				this._ui.mainPanelTop.updateBankerBtn();
 				this._ui.shangZhuangPanel.updateMyBankerBtn();
-			};
-			var userInfo=DataProxy.getUserInfoByName(obj.szCancelUser);
-			if(userInfo.wChairID==DataProxy.bankerChairID){
-				DataProxy.bankerChairID=65535;
-				this._ui.mainPanelTop.updateBankerInfo();
 			}
-			this._ui.shangZhuangPanel.removeApplyBanker(obj.szCancelUser);
+			this._ui.shangZhuangPanel.removeApplyBanker(obj);
 		}
 
 		__proto.changeBankerRec=function(obj){
@@ -16302,23 +16429,27 @@ var Laya=window.Laya=(function(window,document){
 				this.changeBankerInfoDelay=obj;
 				return;
 			}
-			if(DataProxy.chairID==DataProxy.bankerChairID && obj.wBankerChairID !=DataProxy.chairID){
-				DataProxy.myBankerState=0;
-				this._ui.mainPanelTop.updateBankerBtn();
-				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			if(DataProxy.myBankerState==2){
+				if(obj.SBanker.wChair !=DataProxy.chairID){
+					DataProxy.myBankerState=0;
+					this._ui.mainPanelTop.updateBankerBtn();
+					this._ui.shangZhuangPanel.updateMyBankerBtn();
+				}
 			}
-			if(DataProxy.chairID==obj.wBankerChairID){
-				DataProxy.myBankerState=2;
-				this._ui.mainPanelTop.updateBankerBtn();
-				this._ui.shangZhuangPanel.updateMyBankerBtn();
+			if(obj.SBanker.chIsMir==0){
+				if(DataProxy.chairID==obj.SBanker.wChair){
+					DataProxy.myBankerState=2;
+					this._ui.mainPanelTop.updateBankerBtn();
+					this._ui.shangZhuangPanel.updateMyBankerBtn();
+					this.userBankCostScore=obj.SBanker.nGold;
+					console.log(123456,"上庄扣钱：",this.userBankCostScore);
+					DataProxy.userScore-=this.userBankCostScore;
+					console.log(123456,"上庄扣钱后自己的钱：",DataProxy.userScore);
+					this._ui.myMoneyLabel.text=DataProxy.userScore+"";
+				}
 			}
-			DataProxy.bankerChairID=obj.wBankerChairID;
-			DataProxy.bankerSocre=obj.lBankerScore;
+			DataProxy.SBanker=obj.SBanker;
 			this._ui.mainPanelTop.updateBankerInfo();
-			var userInfo=DataProxy.getUserInfoByChairID(obj.wBankerChairID);
-			if(userInfo){
-				this._ui.shangZhuangPanel.removeApplyBanker(userInfo.szNickName);
-			}
 		}
 
 		__proto.userChatRec=function(obj){
@@ -32910,11 +33041,8 @@ var Laya=window.Laya=(function(window,document){
 			var scoreLabel=this.getChildByName("scoreLabel");
 			var indexLabel=this.getChildByName("indexLabel");
 			indexLabel.text=(value.index+1)+"";
-			var userInfo=DataProxy.getUserInfoByChairID(value.chairID);
-			if(userInfo){
-				nameLabel.text=userInfo.szNickName;
-				scoreLabel.text=BaoziwangDefine.getScoreStr(userInfo.lScore);
-			}
+			nameLabel.text=value.szName;
+			scoreLabel.text=BaoziwangDefine.getScoreStr(value.nGold);
 		});
 
 		return ApplyCell;
@@ -34297,11 +34425,6 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.updateMBtn=function(allInArea){
-			if(DataProxy.bankerChairID==65535){
-				this.mdBtn.disabled=true;
-				this.mxBtn.disabled=true;
-				return;
-			}
 			if(allInArea==-1){
 				this.mdBtn.disabled=false;
 				this.mxBtn.disabled=false;
@@ -34459,12 +34582,17 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.updateBankerInfo=function(){
-			if(DataProxy.bankerChairID==65535){
+			if(!DataProxy.SBanker || DataProxy.SBanker.wChair==65535){
 				if(DataProxy.enableSysBanker){
 					this.bankerNameLabel.text="老炮王";
-					this.bankerScoreLabel.text="100亿";
 					this.bankerImage.visible=true;
 					this.bankerPortrait.visible=false;
+					if(!DataProxy.SBanker){
+						this.bankerScoreLabel.text="100亿";
+					}
+					else{
+						this.bankerScoreLabel.text=BaoziwangDefine.getScoreStr(DataProxy.SBanker.nGold);
+					}
 				}
 				else{
 					this.bankerNameLabel.text="无人坐庄";
@@ -34476,11 +34604,14 @@ var Laya=window.Laya=(function(window,document){
 			else{
 				this.bankerImage.visible=false;
 				this.bankerPortrait.visible=true;
-				this.bankerScoreLabel.text=BaoziwangDefine.getScoreStr(DataProxy.bankerSocre);
-				var bankerInfo=DataProxy.getUserInfoByChairID(DataProxy.bankerChairID);
-				if(bankerInfo){
-					this.bankerNameLabel.text=bankerInfo.szNickName;
+				this.bankerScoreLabel.text=BaoziwangDefine.getScoreStr(DataProxy.SBanker.nGold);
+				this.bankerNameLabel.text=DataProxy.SBanker.szName;
+				if(DataProxy.SBanker.chIsMir==0){
+					var bankerInfo=DataProxy.getUserInfoByChairID(DataProxy.SBanker.wChair);
 					this.portraitImage.skin=BaoziwangDefine.getPortraitImage(bankerInfo.cbGender,bankerInfo.wFaceID);
+				}
+				else{
+					this.portraitImage.skin=BaoziwangDefine.getPortraitImage(Browser.now()%2,Browser.now()%4);
 				}
 			}
 		}
@@ -35049,33 +35180,28 @@ var Laya=window.Laya=(function(window,document){
 			this.conditionLabel.text="申请上庄条件："+BaoziwangDefine.getScoreStr(num)+"金币";
 		}
 
-		__proto.addApplyBanker=function(chairID){
-			this.playerList.addItem({chairID:chairID,index:this.playerList.length});
+		__proto.addApplyBanker=function(obj){
+			this.playerList.array=obj.arApplyBanker;
 		}
 
-		__proto.removeApplyBanker=function(szName){
+		__proto.removeApplyBanker=function(obj){
 			var i=0;
 			for(i=0;i < this.playerList.array.length;i++){
-				var userInfo=DataProxy.getUserInfoByChairID(this.playerList.array[i].chairID);
-				if(userInfo.szNickName==szName){
+				var SBanker=this.playerList.array[i];
+				if(SBanker.chIsMir==0 && SBanker.wChair==obj.wChair){
 					this.playerList.deleteItem(i);
 					break ;
 				}
 			}
-			this.updateBankerListIndex();
+			for(i=0;i < this.playerList.array.length;i++){
+				var item=this.playerList.getItem(i);
+				item.index=i;
+			}
+			this.playerList.refresh();
 		}
 
 		__proto.removeApplyBankerAll=function(){
 			this.playerList.array=[];
-		}
-
-		__proto.updateBankerListIndex=function(){
-			var i=0;
-			for(i=0;i < this.playerList.array.length;i++){
-				var item=this.playerList.getItem(i);
-				item.index=i;
-				this.playerList.changeItem(i,item);
-			}
 		}
 
 		__proto.updateMyBankerBtn=function(){

@@ -78,40 +78,47 @@ package managers.baoziwang
 			conditionLabel.text = "申请上庄条件："+BaoziwangDefine.getScoreStr(num)+"金币";
 		}
 		
-		public function addApplyBanker(chairID:int):void
+		public function addApplyBanker(obj:Object):void
 		{
-			playerList.addItem({chairID:chairID,index:playerList.length});
+			//obj.arApplyBanker
+			//	obj.chIsMir
+			//	obj.szServer
+			//	obj.wChair
+			//	obj.szName
+			//	obj.nGold
+			//	obj.time
+			//	obj.index
+			playerList.array = obj.arApplyBanker;
 		}
 		
-		public function removeApplyBanker(szName:String):void
+		public function removeApplyBanker(obj:Object):void
 		{
+			//vo["chIsMir"] 		
+			//vo["wChair"] 		
+			//vo["szName"]
 			var i:int;
 			for(i = 0; i < playerList.array.length; i++)
 			{
-				var userInfo:Object = DataProxy.getUserInfoByChairID(playerList.array[i].chairID);
-				if(userInfo.szNickName == szName)
+				var SBanker:Object = playerList.array[i];
+				if(SBanker.chIsMir == 0 && SBanker.wChair == obj.wChair)
 				{
 					playerList.deleteItem(i);
 					break;
 				}
 			}
-			updateBankerListIndex();
+			
+			for(i = 0; i < playerList.array.length; i++)
+			{
+				var item:Object = playerList.getItem(i);
+				item.index = i;
+			}
+			
+			playerList.refresh();
 		}
 		
 		public function removeApplyBankerAll():void
 		{
 			playerList.array = [];
-		}
-		
-		private function updateBankerListIndex():void
-		{
-			var i:int;
-			for(i = 0; i < playerList.array.length; i++)
-			{
-				var item:Object = playerList.getItem(i);
-				item.index = i;
-				playerList.changeItem(i,item);
-			}
 		}
 		
 		public function updateMyBankerBtn():void

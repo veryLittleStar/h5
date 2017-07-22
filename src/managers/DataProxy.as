@@ -35,10 +35,14 @@ package managers
 		public static var userInfoDic:Object = {};
 		/***/
 		public static var myUserInfo:Object ={};
-		/**当前庄家userID*/
-		public static var bankerChairID:int = 65535;
-		/**当前庄家的金币*/
-		public static var bankerSocre:int = -1;
+		/**庄家信息
+		 *  |chIsMir
+		 *  |szServer
+		 *  |wChair
+		 *  |szName
+		 *  |nGold
+		 *  |time*/
+		public static var SBanker:Object;
 		/**我的坐庄状态 0无状态  1排队状态  2坐庄状态*/
 		public static var myBankerState:int = 0;
 		

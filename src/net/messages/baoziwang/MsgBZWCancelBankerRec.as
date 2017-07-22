@@ -16,7 +16,9 @@ package net.messages.baoziwang
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["szCancelUser"] 			= BytesUtil.read(bytes, BytesType.TCHAR,32);		//取消申请玩家
+			vo["chIsMir"] 		= BytesUtil.read(bytes, BytesType.BYTE);
+			vo["wChair"] 		= BytesUtil.read(bytes, BytesType.WORD);
+			vo["szName"] 		= BytesUtil.read(bytes, BytesType.TCHAR,32);		//取消申请玩家
 			
 			return vo;
 		}

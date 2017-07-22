@@ -27,11 +27,15 @@ package managers.baoziwang
 		
 		public static const MSG_BZW_PLACE_JETION_REC:String = "200_101";
 		
+		public static const MSG_BZW_MIR_PLACE_JETION_REC:String = "200_110";
+		
 		public static const MSG_BZW_PLACE_JETION_FAIL_REC:String = "200_107";
 		
 		public static const MSG_BZW_APPLY_BANKER_REQ:String = "200_2";
 		
 		public static const MSG_BZW_APPLY_BANKER_REC:String = "200_103";
+		
+		public static const MSG_BZW_APPLY_BANKER_NEW_REC:String = "200_111";
 		
 		public static const MSG_BZW_CANCEL_BANKER_REQ:String = "200_3";
 		

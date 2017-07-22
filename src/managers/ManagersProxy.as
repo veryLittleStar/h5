@@ -94,11 +94,17 @@ package managers
 				case BaoziwangDefine.MSG_BZW_PLACE_JETION_REC:
 					ManagersMap.baoziwangManager.placeJetionRec(body);
 					break;
+				case BaoziwangDefine.MSG_BZW_MIR_PLACE_JETION_REC:
+					ManagersMap.baoziwangManager.mirPlaceJetionRec(body);
+					break;
 				case BaoziwangDefine.MSG_BZW_PLACE_JETION_FAIL_REC:
 					ManagersMap.baoziwangManager.placeJetionFailRec(body);
 					break;
 				case BaoziwangDefine.MSG_BZW_APPLY_BANKER_REC:
 					ManagersMap.baoziwangManager.applyBankerRec(body);
+					break;
+				case BaoziwangDefine.MSG_BZW_APPLY_BANKER_NEW_REC:
+					ManagersMap.baoziwangManager.applyBankerNewRec(body);
 					break;
 				case BaoziwangDefine.MSG_BZW_CANCEL_BANKER_REC:
 					ManagersMap.baoziwangManager.cancelBankerRec(body);

@@ -17,8 +17,7 @@ package net.messages.baoziwang
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["wBankerChairID"] 		= BytesUtil.read(bytes, BytesType.WORD);		//当庄玩家chairID
-			vo["lBankerScore"] 		= BytesUtil.read(bytes, BytesType.LONGLONG);	//庄家金币
+			vo["SBanker"] 		= MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
 			
 			
 			return vo;

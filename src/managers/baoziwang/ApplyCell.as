@@ -19,13 +19,18 @@ package managers.baoziwang
 			var nameLabel:Label = getChildByName("nameLabel") as Label;
 			var scoreLabel:Label = getChildByName("scoreLabel") as Label;
 			var indexLabel:Label = getChildByName("indexLabel") as Label;
+			
+			//	obj.chIsMir
+			//	obj.szServer
+			//	obj.wChair
+			//	obj.szName
+			//	obj.nGold
+			//	obj.time
+			//	obj.index
+			
 			indexLabel.text = (value.index+1) + "";
-			var userInfo:Object = DataProxy.getUserInfoByChairID(value.chairID);
-			if(userInfo)
-			{
-				nameLabel.text = userInfo.szNickName;
-				scoreLabel.text = BaoziwangDefine.getScoreStr(userInfo.lScore);
-			}
+			nameLabel.text = value.szName;
+			scoreLabel.text = BaoziwangDefine.getScoreStr(value.nGold);
 		}
 		
 	}

@@ -7,6 +7,7 @@ package managers.baoziwang
 	import laya.ui.Image;
 	import laya.ui.Label;
 	import laya.ui.List;
+	import laya.utils.Browser;
 	import laya.utils.Handler;
 	import laya.utils.Tween;
 	
@@ -150,14 +151,21 @@ package managers.baoziwang
 		
 		public function updateBankerInfo():void
 		{
-			if(DataProxy.bankerChairID == 65535)
+			if(!DataProxy.SBanker || DataProxy.SBanker.wChair == 65535)
 			{
 				if(DataProxy.enableSysBanker)
 				{
 					bankerNameLabel.text = "老炮王";
-					bankerScoreLabel.text = "100亿";
 					bankerImage.visible = true;
 					bankerPortrait.visible = false;
+					if(!DataProxy.SBanker)
+					{
+						bankerScoreLabel.text = "100亿";
+					}
+					else
+					{
+						bankerScoreLabel.text = BaoziwangDefine.getScoreStr(DataProxy.SBanker.nGold);
+					}
 				}
 				else
 				{
@@ -171,13 +179,17 @@ package managers.baoziwang
 			{
 				bankerImage.visible = false;
 				bankerPortrait.visible = true;
-				bankerScoreLabel.text = BaoziwangDefine.getScoreStr(DataProxy.bankerSocre);
+				bankerScoreLabel.text = BaoziwangDefine.getScoreStr(DataProxy.SBanker.nGold);
 				
-				var bankerInfo:Object = DataProxy.getUserInfoByChairID(DataProxy.bankerChairID);
-				if(bankerInfo)
+				bankerNameLabel.text = DataProxy.SBanker.szName;
+				if(DataProxy.SBanker.chIsMir == 0)
 				{
-					bankerNameLabel.text = bankerInfo.szNickName;
+					var bankerInfo:Object = DataProxy.getUserInfoByChairID(DataProxy.SBanker.wChair);
 					portraitImage.skin = BaoziwangDefine.getPortraitImage(bankerInfo.cbGender,bankerInfo.wFaceID);
+				}
+				else
+				{
+					portraitImage.skin = BaoziwangDefine.getPortraitImage(Browser.now()%2,Browser.now()%4);
 				}
 			}
 			

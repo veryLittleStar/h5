@@ -17,8 +17,9 @@ package net.messages.baoziwang
 			var vo:Object = {};
 			var bytes:ByteArray = ByteArray(byteArray);
 			
-			vo["wBankerUser"] 			= BytesUtil.read(bytes, BytesType.WORD);
-			vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);
+			vo["SBanker"]				= MsgBZWApplyBankerNewRec.SBankerDecoder(bytes);
+//			vo["wBankerUser"] 			= BytesUtil.read(bytes, BytesType.WORD);
+//			vo["lBankerScore"]		= BytesUtil.read(bytes, BytesType.LONGLONG);
 			vo["lUserMaxScore"] 		= BytesUtil.read(bytes, BytesType.LONGLONG);
 			vo["cbTimeLeave"]			= BytesUtil.read(bytes, BytesType.BYTE);
 			vo["nChipRobotCount"] 	= BytesUtil.read(bytes, BytesType.INT);
